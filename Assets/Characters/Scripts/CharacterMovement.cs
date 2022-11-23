@@ -21,6 +21,6 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        characterController.Move(characterInput.movementDirection * speed * Time.deltaTime);
+        characterController.Move(characterInput.MovementDirection * speed * Time.deltaTime);
     }
 }

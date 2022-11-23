@@ -4,25 +4,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterInput : MonoBehaviour
-{    public Vector3 movementDirection { get; private set; }
+{    
+    public Vector3 MovementDirection { get; private set; }
 
-    private void OnMoveForward()
+    private void OnMove(InputValue inputValue)
     {
-        movementDirection = Vector3.forward;
-    }
+        Vector3 input = inputValue.Get<Vector2>().normalized;
 
-    private void OnMoveBackward()
-    {
-        movementDirection = -Vector3.forward;
-    }
-
-    private void OnStrafeLeft()
-    {
-        movementDirection = -Vector3.right;
-    }
-
-    private void OnStrafeRight()
-    {
-        movementDirection = Vector3.right;
+        switch (input)
+        {
+            case Vector3 i when i == Vector3.up:
+                MovementDirection = Vector3.forward;
+                break;
+            case Vector3 i when i == Vector3.down:
+                MovementDirection = Vector3.back;
+                break;
+            case Vector3 i when i == Vector3.right:
+                MovementDirection = Vector3.right;
+                break;
+            case Vector3 i when i == Vector3.left:
+                MovementDirection = Vector3.left;
+                break;
+            default:
+                MovementDirection = Vector3.zero;
+                break;
+        }
     }
 }

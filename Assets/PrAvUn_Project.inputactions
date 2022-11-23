@@ -31,42 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "MoveForward",
-                    "type": "Button",
-                    "id": "b3db1812-dff4-4697-8ebc-bffbe6dfbe88",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MoveBackward",
-                    "type": "Button",
-                    "id": "5b92eb85-6222-4d84-8630-80b853dd1d39",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "StrafeLeft",
-                    "type": "Button",
-                    "id": "42ac50e5-5dfb-4c36-8601-847d523d751b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "StrafeRight",
-                    "type": "Button",
-                    "id": "d94dda73-d42a-4a73-a9b3-52b26556529a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -287,50 +251,6 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7163748d-56e7-4a52-bb21-4e10d823338b",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveForward",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e196d9aa-e0ee-4026-b574-5c769b326000",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveBackward",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "41f8ec0d-43d9-40b9-aeb9-c814cee3a634",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "StrafeLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1ff01b43-fa39-45cb-a633-4f013d7eadb5",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "StrafeRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
