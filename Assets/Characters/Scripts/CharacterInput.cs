@@ -4,44 +4,25 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterInput : MonoBehaviour
-{
-    [SerializeField] InputAction moveForward;
-    [SerializeField] InputAction moveBackward;
-    [SerializeField] InputAction strafeLeft;
-    [SerializeField] InputAction strafeRight;
+{    public Vector3 movementDirection { get; private set; }
 
-    public Vector3 movementDirection { get; private set; }
-
-    private void Awake()
+    private void OnMoveForward()
     {
-        moveForward.Enable();
-        moveBackward.Enable();
-        strafeLeft.Enable();
-        strafeRight.Enable();
+        movementDirection = Vector3.forward;
     }
 
-    private void OnDestroy()
+    private void OnMoveBackward()
     {
-        moveForward.Disable();
-        moveBackward.Disable();
-        strafeLeft.Disable();
-        strafeRight.Disable();
+        movementDirection = -Vector3.forward;
     }
 
-    private void Update()
+    private void OnStrafeLeft()
     {
-        movementDirection = Vector3.zero;
+        movementDirection = -Vector3.right;
+    }
 
-        if (moveForward.IsPressed())
-            movementDirection = Vector3.forward;
-
-        if (moveBackward.IsPressed())
-            movementDirection = -Vector3.forward;
-
-        if (strafeLeft.IsPressed())
-            movementDirection = -Vector3.right;
-
-        if (strafeRight.IsPressed())
-            movementDirection = Vector3.right;
+    private void OnStrafeRight()
+    {
+        movementDirection = Vector3.right;
     }
 }
