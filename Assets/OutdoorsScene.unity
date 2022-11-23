@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2155.9414, g: 2259.2183, b: 3279.7266, a: 1}
+  m_IndirectSpecularColor: {r: 2161.3838, g: 2265.3848, b: 3288.5664, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -714,7 +714,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: -0.002151852, y: 2.7934433e-10, z: 6.0110955e-13, w: 0.9999977}
+  m_LocalRotation: {x: -0.002151854, y: 2.4018584e-10, z: 5.168466e-13, w: 0.9999977}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1256,7 +1256,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.026489997, y: -0.000000017169123, z: 4.5496962e-10, w: 0.9996491}
+  m_LocalRotation: {x: 0.02649, y: 0.000000017666732, z: -4.68156e-10, w: 0.9996491}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1535,7 +1535,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.05530037, y: -0.00000001737743, z: 9.624509e-10, w: 0.99846977}
+  m_LocalRotation: {x: 0.055300374, y: 0.000000016980493, z: -9.404667e-10, w: 0.99846977}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1674,7 +1674,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823688464}
-  m_LocalRotation: {x: 0.026489995, y: -0.000000034586158, z: 9.165087e-10, w: 0.9996491}
+  m_LocalRotation: {x: 0.026489997, y: 0.000000034835857, z: -9.2312563e-10, w: 0.9996491}
   m_LocalPosition: {x: 0, y: 2, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2559,6 +2559,126 @@ PrefabInstance:
     - target: {fileID: 4548485766802525566, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}
       propertyPath: moveBackward.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Move Backward
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeLeft.m_Id
+      value: 19bb91fa-e99d-4a83-b3a4-49dc36ab44a4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveForward.m_Id
+      value: 16b9e743-e936-4119-a85f-262aafa6e972
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeRight.m_Id
+      value: 39251bdf-23d6-47b6-97df-00e07dca9d97
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveBackward.m_Id
+      value: c0b743de-9a44-4fbc-a936-707345f3a58b
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeLeft.m_Name
+      value: Strafe Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveForward.m_Name
+      value: Move Forward
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeRight.m_Name
+      value: Strafe Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveBackward.m_Name
+      value: Move Backward
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeLeft.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveForward.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeRight.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveBackward.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeLeft.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 8de7b848-4928-4d24-839f-5d2f35e2a624
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveForward.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 14e4101b-2819-44ed-8e08-1e9aa52bdfe5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeRight.m_SingletonActionBindings.Array.data[0].m_Id
+      value: c36296f0-3f29-45d3-8286-e70890334fdf
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveBackward.m_SingletonActionBindings.Array.data[0].m_Id
+      value: aa5aa5c0-004f-4921-b4cd-a4cbcb7500dd
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeLeft.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/a
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveForward.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/w
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeRight.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/d
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveBackward.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/s
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeLeft.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Strafe Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveForward.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Move Forward
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: strafeRight.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Strafe Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: moveBackward.m_SingletonActionBindings.Array.data[0].m_Action
       value: Move Backward
       objectReference: {fileID: 0}
     m_RemovedComponents: []
