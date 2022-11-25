@@ -11,16 +11,33 @@ public class CharacterMovement : MonoBehaviour
 
     private CharacterController characterController;
     private CharacterInput characterInput;
+    private Camera mainCamera;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         characterInput = GetComponent<CharacterInput>();
+
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        characterController.Move(characterInput.MovementDirection * speed * Time.deltaTime);
+        UpdateCharacterMovement();
+    }
+
+    private void UpdateCharacterMovement()
+    {
+        Vector3 movement = ApplyMovementRelativeToCameraPosition();
+
+        characterController.Move(movement * speed * Time.deltaTime);
+    }
+
+    private Vector3 ApplyMovementRelativeToCameraPosition()
+    {
+        Vector3 movement = mainCamera.transform.TransformDirection(characterInput.MovementDirection);
+        movement = Vector3.ProjectOnPlane(movement, Vector3.up);
+        return movement;
     }
 }
