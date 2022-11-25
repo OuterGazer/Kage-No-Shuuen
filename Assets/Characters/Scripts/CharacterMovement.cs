@@ -13,6 +13,8 @@ public class CharacterMovement : MonoBehaviour
     private CharacterInput characterInput;
     private Camera mainCamera;
 
+    private float velocityY;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -24,24 +26,36 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateHorizontalMovement();
+        Vector3 horizontalMovement = UpdateHorizontalMovement() * speed * Time.deltaTime;
+        Vector3 verticalMovement = UpdateVerticalMovement();
+        characterController.Move(horizontalMovement + verticalMovement);
     }
 
-    private void UpdateHorizontalMovement()
+    private Vector3 UpdateVerticalMovement()
+    {
+        velocityY = Physics.gravity.y * Time.deltaTime;
+
+        if (characterController.isGrounded)
+        { velocityY = 0; }
+
+        return new Vector3(0, velocityY, 0);
+    }
+
+    private Vector3 UpdateHorizontalMovement()
     {
         Vector3 movement = ApplyMovementRelativeToCameraPosition();
 
-        characterController.Move(movement * speed * Time.deltaTime);
-
         MakeCharacterAlwaysFaceForwardOnMovement(movement);
+
+        return movement;       
     }
 
     private void MakeCharacterAlwaysFaceForwardOnMovement(Vector3 movement)
     {
         if (movement != Vector3.zero)
         {
-            Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
-            transform.forward = projectedForwardVector;
+            Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);            
+            transform.rotation = Quaternion.LookRotation(projectedForwardVector, Vector3.up);
         }
     }
 
