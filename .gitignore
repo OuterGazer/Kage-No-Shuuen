@@ -2,6 +2,9 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+/[Aa]ssets/[Nn]inja Pack/
+Assets/Ninja Pack.meta
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -15,8 +18,10 @@
 /[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
-#/[Aa]ssets/
 !/[Aa]ssets/**/*.meta
+
+
+
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
