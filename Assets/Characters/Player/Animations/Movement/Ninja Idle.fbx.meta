@@ -19,9 +19,15 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: "Invalid copied Avatar Rig Configuration:\n\tNo human bone found.
-      Ensure both rig type match\n"
-    rigImportWarnings: 
+    rigImportErrors: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'mixamorig:LeftUpLeg'
+      : position error = 11.881386 mm\n\t'mixamorig:LeftLeg' : position error = 7.023006
+      mm\n\t'mixamorig:LeftFoot' : position error = 109.898315 mm\n\t'mixamorig:LeftToeBase'
+      : position error = 25.765594 mm\n\t'mixamorig:RightUpLeg' : position error
+      = 12.025587 mm\n\t'mixamorig:RightLeg' : position error = 6.372564 mm\n\t'mixamorig:RightFoot'
+      : position error = 111.768265 mm\n\t'mixamorig:RightToeBase' : position error
+      = 13.292645 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -43,7 +49,7 @@ ModelImporter:
       firstFrame: 0
       lastFrame: 100
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: 90
       level: 0
       cycleOffset: 0
       loop: 0
