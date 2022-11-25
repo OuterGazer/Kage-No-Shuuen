@@ -9,25 +9,13 @@ public class CharacterInput : MonoBehaviour
 
     private void OnMove(InputValue inputValue)
     {
-        Vector3 input = inputValue.Get<Vector2>().normalized;
+        Vector3 inputBuffer = inputValue.Get<Vector2>();
 
-        switch (input)
-        {
-            case Vector3 i when i == Vector3.up:
-                MovementDirection = Vector3.forward;
-                break;
-            case Vector3 i when i == Vector3.down:
-                MovementDirection = Vector3.back;
-                break;
-            case Vector3 i when i == Vector3.right:
-                MovementDirection = Vector3.right;
-                break;
-            case Vector3 i when i == Vector3.left:
-                MovementDirection = Vector3.left;
-                break;
-            default:
-                MovementDirection = Vector3.zero;
-                break;
-        }
+
+        // Movement from Input Module sends only up and down movement and it needs to be corrected into forward and backward.
+        if (inputBuffer.y != 0)
+            inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
+
+        MovementDirection = inputBuffer;
     }
 }
