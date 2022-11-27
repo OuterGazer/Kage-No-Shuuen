@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] float speed = 3f;
+    public float Speed => speed;
 
     private CharacterController characterController;
     private CharacterInput characterInput;
