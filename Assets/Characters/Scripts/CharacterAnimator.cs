@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController), typeof(CharacterMovement))]
+[RequireComponent(typeof(CharacterInput), typeof(CharacterMovement), typeof(Animator))]
 public class CharacterAnimator : MonoBehaviour
 {
     private Animator animator;
+    private CharacterInput characterInput;
     private CharacterMovement characterMovement;
-    private CharacterController characterController;
 
     int movementForward;
     int movementSideways;
@@ -17,8 +17,8 @@ public class CharacterAnimator : MonoBehaviour
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
+        characterInput= GetComponent<CharacterInput>();
         characterMovement = GetComponent<CharacterMovement>();
-        characterController = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -31,20 +31,24 @@ public class CharacterAnimator : MonoBehaviour
 
     private void Update()
     {
+        UpdateStandingAnimationTransitions();
+
+        oldPosition = transform.position;
+    }
+
+    private void UpdateStandingAnimationTransitions()
+    {
         Vector3 distanceMoved = transform.position - oldPosition;
+        float amountOfForwardMovement = Vector3.Project(distanceMoved, transform.forward).magnitude;
+        float amountOfSidewaysMovement = Vector3.Project(distanceMoved, transform.right).magnitude;
 
-        Vector3 amountOfForwardMovement = Vector3.Project(distanceMoved, transform.forward);
-        Vector3 amountOfSidewaysMovement = Vector3.Project(distanceMoved, transform.right);
+        float forwardMovementDirection = Mathf.Sign(characterInput.MovementDirection.z);
+        float sidewaysMovementDirection = Mathf.Sign(characterInput.MovementDirection.x);
 
-        float forwardMovementDirection = Mathf.Sign(amountOfForwardMovement.z);
-        float sidewaysMovementDirection = Mathf.Sign(amountOfSidewaysMovement.x);
-
-        float currentVelocityForward = (amountOfForwardMovement.magnitude / Time.deltaTime) / characterMovement.Speed;
-        float currentVelocitySideways = (amountOfSidewaysMovement.magnitude / Time.deltaTime) / characterMovement.Speed;
+        float currentVelocityForward = (amountOfForwardMovement / Time.deltaTime) / characterMovement.Speed;
+        float currentVelocitySideways = (amountOfSidewaysMovement / Time.deltaTime) / characterMovement.Speed;
 
         animator.SetFloat(movementForward, currentVelocityForward * forwardMovementDirection);
         animator.SetFloat(movementSideways, currentVelocitySideways * sidewaysMovementDirection);
-
-        oldPosition = transform.position;
     }
 }
