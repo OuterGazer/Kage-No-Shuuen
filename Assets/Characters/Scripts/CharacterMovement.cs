@@ -30,9 +30,9 @@ public class CharacterMovement : MonoBehaviour
     void Update()
     {
         float movingSpeed = characterInput.IsWalking? walkingSpeed : runningSpeed;
-
         Vector3 horizontalMovement = UpdateHorizontalMovement() * movingSpeed * Time.deltaTime;
         Vector3 verticalMovement = UpdateVerticalMovement();
+
         characterController.Move(horizontalMovement + verticalMovement);
     }
 

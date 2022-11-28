@@ -25,6 +25,5 @@ public class CharacterInput : MonoBehaviour
     private void OnWalk()
     {
         IsWalking = !IsWalking;
-            
     }
 }

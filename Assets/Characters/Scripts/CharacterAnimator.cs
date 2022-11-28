@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,6 +39,18 @@ public class CharacterAnimator : MonoBehaviour
 
     private void UpdateStandingAnimationTransitions()
     {
+        if (!characterInput.IsWalking)
+        {
+            PlayRunningAnimations();
+        }
+        else
+        {
+            PlayWalkingAnimations();
+        }
+    }
+
+    private void PlayWalkingAnimations()
+    {
         Vector3 distanceMoved = transform.position - oldPosition;
         float amountOfForwardMovement = Vector3.Project(distanceMoved, transform.forward).magnitude;
         float amountOfSidewaysMovement = Vector3.Project(distanceMoved, transform.right).magnitude;
@@ -45,21 +58,30 @@ public class CharacterAnimator : MonoBehaviour
         float forwardMovementDirection = Mathf.Sign(characterInput.MovementDirection.z);
         float sidewaysMovementDirection = Mathf.Sign(characterInput.MovementDirection.x);
 
-        float movementSpeed = characterInput.IsWalking? characterMovement.WalkingSpeed : characterMovement.RunningSpeed;
-        float currentVelocityForward = (amountOfForwardMovement / Time.deltaTime) / movementSpeed;
-        float currentVelocitySideways = (amountOfSidewaysMovement / Time.deltaTime) / movementSpeed;
+        float currentVelocityForwardNormalized = (amountOfForwardMovement / Time.deltaTime) / characterMovement.RunningSpeed;
+        float currentVelocitySidewaysNormalized = (amountOfSidewaysMovement / Time.deltaTime) / characterMovement.RunningSpeed;
 
+        Debug.Log($"{currentVelocityForwardNormalized * forwardMovementDirection} + {currentVelocitySidewaysNormalized * sidewaysMovementDirection}");
 
-        if (!characterInput.IsWalking)
-        {
-            animator.SetFloat(movementForward, currentVelocityForward * forwardMovementDirection);
-            animator.SetFloat(movementSideways, currentVelocitySideways * sidewaysMovementDirection);
-        }
-        else
-        {
-            animator.SetFloat(movementForward, 0.5f * forwardMovementDirection);
-            animator.SetFloat(movementSideways, 0.5f * sidewaysMovementDirection);
-        }
-        
+        animator.SetFloat(movementForward, currentVelocityForwardNormalized * forwardMovementDirection);
+        animator.SetFloat(movementSideways, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
+    }
+
+    private void PlayRunningAnimations()
+    {
+        Vector3 distanceMoved = transform.position - oldPosition;
+        float amountOfForwardMovement = Vector3.Project(distanceMoved, transform.forward).magnitude;
+        float amountOfSidewaysMovement = Vector3.Project(distanceMoved, transform.right).magnitude;
+
+        float forwardMovementDirection = Mathf.Sign(characterInput.MovementDirection.z);
+        float sidewaysMovementDirection = Mathf.Sign(characterInput.MovementDirection.x);
+
+        float currentVelocityForwardNormalized = (amountOfForwardMovement / Time.deltaTime) / characterMovement.RunningSpeed;
+        float currentVelocitySidewaysNormalized = (amountOfSidewaysMovement / Time.deltaTime) / characterMovement.RunningSpeed;
+
+        //Debug.Log($"{currentVelocityForward * forwardMovementDirection} + {currentVelocitySideways * sidewaysMovementDirection}");
+
+        animator.SetFloat(movementForward, currentVelocityForwardNormalized * forwardMovementDirection);
+        animator.SetFloat(movementSideways, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
     }
 }
