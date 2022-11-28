@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterInput), typeof(CharacterMovement), typeof(Animator))]
+[RequireComponent(typeof(CharacterInput), typeof(CharacterMovement))]
 public class CharacterAnimator : MonoBehaviour
 {
     private Animator animator;
