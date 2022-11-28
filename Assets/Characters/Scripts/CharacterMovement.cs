@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterInput), typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
+    // Due to how animation in the blend tree works, walking speed must be always half of running speed.
+    // TODO: look on a way to decouple the previous dependency.
     [SerializeField] float runningSpeed = 10f;
     [SerializeField] float walkingSpeed = 3f;
     public float RunningSpeed => runningSpeed;

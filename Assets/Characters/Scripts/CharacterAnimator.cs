@@ -32,55 +32,51 @@ public class CharacterAnimator : MonoBehaviour
 
     private void Update()
     {
+        // TODO: añadir una ligera aceleracion con DoTween para que las animaciones del blend tree sean más fluidas y no pasen de una a otra en un solo frame.
         UpdateStandingAnimationTransitions();
 
         oldPosition = transform.position;
     }
 
+    float amountOfForwardMovement;
+    float amountOfSidewaysMovement;
+    float forwardMovementDirection;
+    float sidewaysMovementDirection;
+    float currentVelocityForwardNormalized;
+    float currentVelocitySidewaysNormalized;
     private void UpdateStandingAnimationTransitions()
     {
-        if (!characterInput.IsWalking)
-        {
-            PlayRunningAnimations();
-        }
-        else
-        {
-            PlayWalkingAnimations();
-        }
+        CalculateDistanceMovedLastFrameProAxis();
+        CalculateMovementDirectionProAxis();
+        CalculateMovementSpeedProAxis();
+
+        ApplyAnimationTransitionValues();
     }
 
-    private void PlayWalkingAnimations()
+    private void CalculateDistanceMovedLastFrameProAxis()
     {
         Vector3 distanceMoved = transform.position - oldPosition;
-        float amountOfForwardMovement = Vector3.Project(distanceMoved, transform.forward).magnitude;
-        float amountOfSidewaysMovement = Vector3.Project(distanceMoved, transform.right).magnitude;
-
-        float forwardMovementDirection = Mathf.Sign(characterInput.MovementDirection.z);
-        float sidewaysMovementDirection = Mathf.Sign(characterInput.MovementDirection.x);
-
-        float currentVelocityForwardNormalized = (amountOfForwardMovement / Time.deltaTime) / characterMovement.RunningSpeed;
-        float currentVelocitySidewaysNormalized = (amountOfSidewaysMovement / Time.deltaTime) / characterMovement.RunningSpeed;
-
-        Debug.Log($"{currentVelocityForwardNormalized * forwardMovementDirection} + {currentVelocitySidewaysNormalized * sidewaysMovementDirection}");
-
-        animator.SetFloat(movementForward, currentVelocityForwardNormalized * forwardMovementDirection);
-        animator.SetFloat(movementSideways, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
+        amountOfForwardMovement = Vector3.Project(distanceMoved, transform.forward).magnitude;
+        amountOfSidewaysMovement = Vector3.Project(distanceMoved, transform.right).magnitude;
     }
 
-    private void PlayRunningAnimations()
+    private void CalculateMovementDirectionProAxis()
     {
-        Vector3 distanceMoved = transform.position - oldPosition;
-        float amountOfForwardMovement = Vector3.Project(distanceMoved, transform.forward).magnitude;
-        float amountOfSidewaysMovement = Vector3.Project(distanceMoved, transform.right).magnitude;
+        forwardMovementDirection = Mathf.Sign(characterInput.MovementDirection.z);
+        sidewaysMovementDirection = Mathf.Sign(characterInput.MovementDirection.x);
+    }
 
-        float forwardMovementDirection = Mathf.Sign(characterInput.MovementDirection.z);
-        float sidewaysMovementDirection = Mathf.Sign(characterInput.MovementDirection.x);
+    private void CalculateMovementSpeedProAxis()
+    {
+        // Blend tree uses normalized values 1 for running speed and 0,5 for walking speed
+        // A change here must take in account a change in the blend tree
+        // TODO: look for a way to decouple this
+        currentVelocityForwardNormalized = (amountOfForwardMovement / Time.deltaTime) / characterMovement.RunningSpeed;
+        currentVelocitySidewaysNormalized = (amountOfSidewaysMovement / Time.deltaTime) / characterMovement.RunningSpeed;
+    }
 
-        float currentVelocityForwardNormalized = (amountOfForwardMovement / Time.deltaTime) / characterMovement.RunningSpeed;
-        float currentVelocitySidewaysNormalized = (amountOfSidewaysMovement / Time.deltaTime) / characterMovement.RunningSpeed;
-
-        //Debug.Log($"{currentVelocityForward * forwardMovementDirection} + {currentVelocitySideways * sidewaysMovementDirection}");
-
+    private void ApplyAnimationTransitionValues()
+    {
         animator.SetFloat(movementForward, currentVelocityForwardNormalized * forwardMovementDirection);
         animator.SetFloat(movementSideways, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
     }
