@@ -17,7 +17,7 @@ public class CharacterInput : MonoBehaviour
         Vector3 inputBuffer = inputValue.Get<Vector2>();
 
 
-        // Movement from Input Module sends only up and down movement and it needs to be corrected into forward and backward.
+        // Movement from Input Module sends only Vector3.up and Vector3.down movement and it needs to be corrected into forward and backward.
         if (inputBuffer.y != 0)
             inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
 
@@ -25,7 +25,7 @@ public class CharacterInput : MonoBehaviour
     }
 
 
-    // TODO: tratar de que caminar funcione manteniendo el botón apretado y que al dejar de apretar se vuelva a correr.
+    // TODO: tratar de que caminar (y quizá agacharse también) funcione manteniendo el botón apretado y que al dejar de apretar se vuelva a correr.
     private void OnWalk()
     {
         IsWalking = !IsWalking;

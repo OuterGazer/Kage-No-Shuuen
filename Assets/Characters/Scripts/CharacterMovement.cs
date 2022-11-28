@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 [RequireComponent(typeof(CharacterInput), typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
@@ -30,11 +31,24 @@ public class CharacterMovement : MonoBehaviour
         mainCamera = Camera.main;
     }
 
+    float movingSpeed;
     // Update is called once per frame
     void Update()
     {
-        // TODO: add case for crouching (right now crouching and walking have same sped and thus the code works)
-        float movingSpeed = characterInput.IsWalking? walkingSpeed : runningSpeed;
+        // TODO: add case for crouching (right now crouching and walking have same speed and thus the code works) Switch Statement and enum        
+        if (characterInput.IsWalking)
+        {
+            movingSpeed = Mathf.MoveTowards(movingSpeed, walkingSpeed, 0.05f);
+            //movingSpeed = walkingSpeed;
+        }
+        else
+        {
+            movingSpeed = Mathf.MoveTowards(movingSpeed, runningSpeed, 0.05f);
+            //movingSpeed = runningSpeed;
+        }
+
+        //DOTween.To(() => transform.position, x => transform.position = x, new Vector3(2, 2, 2), 1);        
+
         Vector3 horizontalMovement = UpdateHorizontalMovement() * movingSpeed * Time.deltaTime;
         Vector3 verticalMovement = UpdateVerticalMovement();
 
