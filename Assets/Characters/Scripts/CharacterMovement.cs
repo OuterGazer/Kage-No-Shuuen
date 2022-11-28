@@ -11,8 +11,10 @@ public class CharacterMovement : MonoBehaviour
     // TODO: look on a way to decouple the previous dependency.
     [SerializeField] float runningSpeed = 10f;
     [SerializeField] float walkingSpeed = 3f;
+    [SerializeField] float crouchingSpeed = 3f;
     public float RunningSpeed => runningSpeed;
     public float WalkingSpeed => walkingSpeed;
+    public float CrouchingSpeed => crouchingSpeed;
 
     private CharacterController characterController;
     private CharacterInput characterInput;
@@ -31,6 +33,7 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // TODO: add case for crouching (right now crouching and walking have same sped and thus the code works)
         float movingSpeed = characterInput.IsWalking? walkingSpeed : runningSpeed;
         Vector3 horizontalMovement = UpdateHorizontalMovement() * movingSpeed * Time.deltaTime;
         Vector3 verticalMovement = UpdateVerticalMovement();

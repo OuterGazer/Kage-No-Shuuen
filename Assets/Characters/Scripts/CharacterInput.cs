@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class CharacterInput : MonoBehaviour
 {    
     public Vector3 MovementDirection { get; private set; }
     public bool IsWalking { get; private set; }
+    public bool IsCrouching { get; private set; }
+
+    [SerializeField] UnityEvent crouchEvent;
 
     private void OnMove(InputValue inputValue)
     {
@@ -25,5 +29,11 @@ public class CharacterInput : MonoBehaviour
     private void OnWalk()
     {
         IsWalking = !IsWalking;
+    }
+
+    private void OnCrouch()
+    {
+        IsWalking = !IsWalking; // TODO: needed so CharacterMovement applies right speed, change code to actually look at this.
+        IsCrouching = !IsCrouching; 
     }
 }

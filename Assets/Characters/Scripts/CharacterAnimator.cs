@@ -10,8 +10,9 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterInput characterInput;
     private CharacterMovement characterMovement;
 
-    int movementForward;
-    int movementSideways;
+    int movementForwardHash;
+    int movementSidewaysHash;
+    int crouchHash;
 
     Vector3 oldPosition;
 
@@ -24,8 +25,9 @@ public class CharacterAnimator : MonoBehaviour
 
     private void Start()
     {
-        movementForward = Animator.StringToHash("movementForward");
-        movementSideways = Animator.StringToHash("movementSideways");
+        movementForwardHash = Animator.StringToHash("movementForward");
+        movementSidewaysHash = Animator.StringToHash("movementSideways");
+        crouchHash = Animator.StringToHash("Crouch");
 
         oldPosition = transform.position;
     }
@@ -77,7 +79,12 @@ public class CharacterAnimator : MonoBehaviour
 
     private void ApplyAnimationTransitionValues()
     {
-        animator.SetFloat(movementForward, currentVelocityForwardNormalized * forwardMovementDirection);
-        animator.SetFloat(movementSideways, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
+        animator.SetFloat(movementForwardHash, currentVelocityForwardNormalized * forwardMovementDirection);
+        animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
+    }
+
+    public void OnCrouch()
+    {
+        animator.SetTrigger(crouchHash);
     }
 }
