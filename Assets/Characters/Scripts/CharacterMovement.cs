@@ -7,8 +7,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterInput), typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] float speed = 3f;
-    public float Speed => speed;
+    [SerializeField] float runningSpeed = 10f;
+    [SerializeField] float walkingSpeed = 3f;
+    public float RunningSpeed => runningSpeed;
+    public float WalkingSpeed => walkingSpeed;
 
     private CharacterController characterController;
     private CharacterInput characterInput;
@@ -27,7 +29,9 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 horizontalMovement = UpdateHorizontalMovement() * speed * Time.deltaTime;
+        float movingSpeed = characterInput.IsWalking? walkingSpeed : runningSpeed;
+
+        Vector3 horizontalMovement = UpdateHorizontalMovement() * movingSpeed * Time.deltaTime;
         Vector3 verticalMovement = UpdateVerticalMovement();
         characterController.Move(horizontalMovement + verticalMovement);
     }

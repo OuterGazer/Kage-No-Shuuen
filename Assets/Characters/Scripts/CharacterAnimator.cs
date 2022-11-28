@@ -45,10 +45,21 @@ public class CharacterAnimator : MonoBehaviour
         float forwardMovementDirection = Mathf.Sign(characterInput.MovementDirection.z);
         float sidewaysMovementDirection = Mathf.Sign(characterInput.MovementDirection.x);
 
-        float currentVelocityForward = (amountOfForwardMovement / Time.deltaTime) / characterMovement.Speed;
-        float currentVelocitySideways = (amountOfSidewaysMovement / Time.deltaTime) / characterMovement.Speed;
+        float movementSpeed = characterInput.IsWalking? characterMovement.WalkingSpeed : characterMovement.RunningSpeed;
+        float currentVelocityForward = (amountOfForwardMovement / Time.deltaTime) / movementSpeed;
+        float currentVelocitySideways = (amountOfSidewaysMovement / Time.deltaTime) / movementSpeed;
 
-        animator.SetFloat(movementForward, currentVelocityForward * forwardMovementDirection);
-        animator.SetFloat(movementSideways, currentVelocitySideways * sidewaysMovementDirection);
+
+        if (!characterInput.IsWalking)
+        {
+            animator.SetFloat(movementForward, currentVelocityForward * forwardMovementDirection);
+            animator.SetFloat(movementSideways, currentVelocitySideways * sidewaysMovementDirection);
+        }
+        else
+        {
+            animator.SetFloat(movementForward, 0.5f * forwardMovementDirection);
+            animator.SetFloat(movementSideways, 0.5f * sidewaysMovementDirection);
+        }
+        
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class CharacterInput : MonoBehaviour
 {    
     public Vector3 MovementDirection { get; private set; }
+    public bool IsWalking { get; private set; }
 
     private void OnMove(InputValue inputValue)
     {
@@ -17,5 +18,13 @@ public class CharacterInput : MonoBehaviour
             inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
 
         MovementDirection = inputBuffer;
+    }
+
+
+    // TODO: tratar de que caminar funcione manteniendo el botón apretado y que al dejar de apretar se vuelva a correr.
+    private void OnWalk()
+    {
+        IsWalking = !IsWalking;
+            
     }
 }
