@@ -42,7 +42,7 @@ public class CharacterMovement : MonoBehaviour
     float movingSpeed;
     void Update()
     {
-        UpdateCharacterState();           
+        UpdateCharacterState();
 
         Vector3 horizontalMovement = UpdateHorizontalMovement() * movingSpeed * Time.deltaTime;
         Vector3 verticalMovement = UpdateVerticalMovement();
@@ -52,27 +52,27 @@ public class CharacterMovement : MonoBehaviour
 
     private void UpdateCharacterState()
     {
-        //DOTween.To(() => transform.position, x => transform.position = x, new Vector3(2, 2, 2), 1); 
         switch (playerState)
         {
             case CharacterState.Standing:
-                UpdateCharacterSpeed(movingSpeed, 0f);
+                UpdateCharacterSpeed(movingSpeed, 0.0f, speedAcceleration);
                 break;
             case CharacterState.Walking:
-                UpdateCharacterSpeed(movingSpeed, walkingSpeed);
+                UpdateCharacterSpeed(movingSpeed, walkingSpeed, speedAcceleration);
                 break;
             case CharacterState.Crouching:
-                UpdateCharacterSpeed(movingSpeed, crouchingSpeed);
+                UpdateCharacterSpeed(movingSpeed, crouchingSpeed, speedAcceleration);
                 break;
             case CharacterState.Running:
-                UpdateCharacterSpeed(movingSpeed, runningSpeed);
+                UpdateCharacterSpeed(movingSpeed, runningSpeed, speedAcceleration);
                 break;
         }
     }
 
-    private void UpdateCharacterSpeed(float movingSpeed, float targetSpeed)
+    private void UpdateCharacterSpeed(float movingSpeed, float targetSpeed, float speedAcceleration)
     {
-        this.movingSpeed = Mathf.MoveTowards(movingSpeed, targetSpeed, speedAcceleration);        
+        //this.movingSpeed = Mathf.MoveTowards(movingSpeed, targetSpeed, speedAcceleration);
+        DOTween.To(() => this.movingSpeed, x => this.movingSpeed = x, targetSpeed, speedAcceleration);
     }
 
     private Vector3 UpdateVerticalMovement()
@@ -112,6 +112,7 @@ public class CharacterMovement : MonoBehaviour
 
 
     // TODO: Look for a better way to handle state change without multiple exit states in the methods
+    // TODO: fix bug where if we are already walking or crouching in a given direction, changing direction makes us run.
     public void OnWalk()
     {
         if(playerState == CharacterState.Walking) 
@@ -128,11 +129,14 @@ public class CharacterMovement : MonoBehaviour
         playerState = CharacterState.Crouching;
     }
 
-    public void OnMove()
+    public void OnMove(InputValue inputValue)
     {
         if (playerState == CharacterState.Walking)
             { return; }
 
-        playerState = CharacterState.Running;
+        if(inputValue.Get<Vector2>() != Vector2.zero)
+            playerState = CharacterState.Running;
+        else
+            playerState = CharacterState.Standing;
     }
 }
