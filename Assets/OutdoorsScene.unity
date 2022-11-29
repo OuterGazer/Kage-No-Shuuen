@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2161.8174, g: 2265.7617, b: 3289.004, a: 1}
+  m_IndirectSpecularColor: {r: 2161.8525, g: 2265.7617, b: 3288.9727, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -708,7 +708,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.0046970174, y: -3.300377e-26, z: 2.0198248e-28, w: 0.999989}
+  m_LocalRotation: {x: 0.004697015, y: -8.8639013e-10, z: 4.1634344e-12, w: 0.999989}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -775,18 +775,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 295247610415783175}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &754087497 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 754087497, guid: f3a501e21767747428cd4a475d9844b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 295247610415783175}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99d7dfa0aab09e48863e2219d33aecc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &765471435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,7 +1250,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.033335805, y: -1e-45, z: -0, w: 0.99944425}
+  m_LocalRotation: {x: 0.033335805, y: 1e-45, z: -0, w: 0.99944425}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1541,7 +1529,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.06213746, y: 0.000000019874795, z: -0.0000000012373603, w: 0.9980676}
+  m_LocalRotation: {x: 0.062137432, y: -0.000000017173335, z: 0.000000001069173, w: 0.9980676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2416,43 +2404,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4548485766802525566, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}
-      propertyPath: walkingSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
-        type: 3}
-      propertyPath: crouchEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
-        type: 3}
-      propertyPath: crouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
-        type: 3}
-      propertyPath: crouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 754087497}
-    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
-        type: 3}
-      propertyPath: crouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
-        type: 3}
-      propertyPath: crouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnCrouch
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
-        type: 3}
-      propertyPath: crouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CharacterAnimator, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643209012019600334, guid: f3a501e21767747428cd4a475d9844b8,
-        type: 3}
-      propertyPath: crouchEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      propertyPath: speedAcceleration
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3a501e21767747428cd4a475d9844b8, type: 3}

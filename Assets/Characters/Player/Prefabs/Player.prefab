@@ -439,6 +439,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runningSpeed: 6
+  walkingSpeed: 3
+  crouchingSpeed: 3
 --- !u!114 &754087497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +465,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8528093860a1b1747a8a91734f111c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4548485766802525566}
+        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
+        m_MethodName: OnWalk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  crouchEvent:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 754087497}
+        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
+        m_MethodName: OnCrouch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4548485766802525566}
+        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
+        m_MethodName: OnCrouch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1792574513
 MonoBehaviour:
   m_ObjectHideFlags: 0

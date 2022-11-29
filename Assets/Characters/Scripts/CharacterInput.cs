@@ -10,8 +10,6 @@ public class CharacterInput : MonoBehaviour
     public bool IsWalking { get; private set; }
     public bool IsCrouching { get; private set; }
 
-    [SerializeField] UnityEvent crouchEvent;
-
     private void OnMove(InputValue inputValue)
     {
         Vector3 inputBuffer = inputValue.Get<Vector2>();
@@ -28,12 +26,17 @@ public class CharacterInput : MonoBehaviour
     // TODO: tratar de que caminar (y quizá agacharse también) funcione manteniendo el botón apretado y que al dejar de apretar se vuelva a correr.
     private void OnWalk()
     {
-        IsWalking = !IsWalking;
+        //IsWalking = !IsWalking;
+        //walkEvent.Invoke();
     }
 
     private void OnCrouch()
     {
-        IsWalking = !IsWalking; // TODO: needed so CharacterMovement applies right speed, change code to actually look at this.
-        IsCrouching = !IsCrouching; 
+        //foreach(UnityEvent e in crouchEvent)
+        //{
+        //    e.Invoke();
+        //}
+        //IsWalking = !IsWalking; // TODO: needed so CharacterMovement applies right speed, change code to actually look at this.
+        //IsCrouching = !IsCrouching; 
     }
 }

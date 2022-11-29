@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float runningSpeed = 10f;
     [SerializeField] float walkingSpeed = 3f;
     [SerializeField] float crouchingSpeed = 3f;
+    [SerializeField] float speedAcceleration = 0.05f;
     public float RunningSpeed => runningSpeed;
     public float WalkingSpeed => walkingSpeed;
     public float CrouchingSpeed => crouchingSpeed;
@@ -20,6 +21,8 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController characterController;
     private CharacterInput characterInput;
     private Camera mainCamera;
+
+    private CharacterState playerState;
 
     private float velocityY;
 
@@ -31,28 +34,45 @@ public class CharacterMovement : MonoBehaviour
         mainCamera = Camera.main;
     }
 
+    private void Start()
+    {
+        playerState = CharacterState.Standing;
+    }
+
     float movingSpeed;
-    // Update is called once per frame
     void Update()
     {
-        // TODO: add case for crouching (right now crouching and walking have same speed and thus the code works) Switch Statement and enum        
-        if (characterInput.IsWalking)
-        {
-            movingSpeed = Mathf.MoveTowards(movingSpeed, walkingSpeed, 0.05f);
-            //movingSpeed = walkingSpeed;
-        }
-        else
-        {
-            movingSpeed = Mathf.MoveTowards(movingSpeed, runningSpeed, 0.05f);
-            //movingSpeed = runningSpeed;
-        }
-
-        //DOTween.To(() => transform.position, x => transform.position = x, new Vector3(2, 2, 2), 1);        
+        UpdateCharacterState();           
 
         Vector3 horizontalMovement = UpdateHorizontalMovement() * movingSpeed * Time.deltaTime;
         Vector3 verticalMovement = UpdateVerticalMovement();
 
         characterController.Move(horizontalMovement + verticalMovement);
+    }
+
+    private void UpdateCharacterState()
+    {
+        //DOTween.To(() => transform.position, x => transform.position = x, new Vector3(2, 2, 2), 1); 
+        switch (playerState)
+        {
+            case CharacterState.Standing:
+                UpdateCharacterSpeed(movingSpeed, 0f);
+                break;
+            case CharacterState.Walking:
+                UpdateCharacterSpeed(movingSpeed, walkingSpeed);
+                break;
+            case CharacterState.Crouching:
+                UpdateCharacterSpeed(movingSpeed, crouchingSpeed);
+                break;
+            case CharacterState.Running:
+                UpdateCharacterSpeed(movingSpeed, runningSpeed);
+                break;
+        }
+    }
+
+    private void UpdateCharacterSpeed(float movingSpeed, float targetSpeed)
+    {
+        this.movingSpeed = Mathf.MoveTowards(movingSpeed, targetSpeed, speedAcceleration);        
     }
 
     private Vector3 UpdateVerticalMovement()
@@ -88,5 +108,31 @@ public class CharacterMovement : MonoBehaviour
         Vector3 movement = mainCamera.transform.TransformDirection(characterInput.MovementDirection);
         movement = Vector3.ProjectOnPlane(movement, Vector3.up);
         return movement;
+    }
+
+
+    // TODO: Look for a better way to handle state change without multiple exit states in the methods
+    public void OnWalk()
+    {
+        if(playerState == CharacterState.Walking) 
+            { playerState = CharacterState.Running; return; }
+        
+        playerState = CharacterState.Walking;
+    }
+
+    public void OnCrouch()
+    {
+        if (playerState == CharacterState.Crouching)
+        { playerState = CharacterState.Running; return; }
+
+        playerState = CharacterState.Crouching;
+    }
+
+    public void OnMove()
+    {
+        if (playerState == CharacterState.Walking)
+            { return; }
+
+        playerState = CharacterState.Running;
     }
 }

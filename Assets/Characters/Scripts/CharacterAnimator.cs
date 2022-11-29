@@ -34,7 +34,6 @@ public class CharacterAnimator : MonoBehaviour
 
     private void Update()
     {
-        // TODO: añadir una ligera aceleracion con DoTween para que las animaciones del blend tree sean más fluidas y no pasen de una a otra en un solo frame.
         UpdateStandingAnimationTransitions();
 
         oldPosition = transform.position;
