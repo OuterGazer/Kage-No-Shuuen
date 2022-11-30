@@ -94,6 +94,40 @@ public class CharacterMovement : MonoBehaviour
             case CharacterState.CrouchStrafeLeft:
                 UpdateCharacterSpeed(-crouchingStrafeSpeed);
                 break;
+
+            case CharacterState.RunningForward | CharacterState.RunningStrafeRight:
+                UpdateCharacterSpeed(runningSpeed);
+                UpdateCharacterSpeed(runningStrafeSpeed);
+                break;
+            case CharacterState.RunningForward | CharacterState.RunningStrafeLeft:
+                UpdateCharacterSpeed(runningSpeed);
+                UpdateCharacterSpeed(-runningStrafeSpeed);
+                break;
+            case CharacterState.RunningBackwards | CharacterState.RunningStrafeRight:
+                UpdateCharacterSpeed(-runningSpeed);
+                UpdateCharacterSpeed(runningStrafeSpeed);
+                break;
+            case CharacterState.RunningBackwards | CharacterState.RunningStrafeLeft:
+                UpdateCharacterSpeed(-runningSpeed);
+                UpdateCharacterSpeed(-runningStrafeSpeed);
+                break;
+
+            case CharacterState.CrouchForward | CharacterState.CrouchStrafeRight:
+                UpdateCharacterSpeed(crouchingSpeed);
+                UpdateCharacterSpeed(crouchingStrafeSpeed);
+                break;
+            case CharacterState.CrouchForward | CharacterState.CrouchStrafeLeft:
+                UpdateCharacterSpeed(crouchingSpeed);
+                UpdateCharacterSpeed(-crouchingStrafeSpeed);
+                break;
+            case CharacterState.CrouchBackwards | CharacterState.CrouchStrafeRight:
+                UpdateCharacterSpeed(-crouchingSpeed);
+                UpdateCharacterSpeed(crouchingStrafeSpeed);
+                break;
+            case CharacterState.CrouchBackwards | CharacterState.CrouchStrafeLeft:
+                UpdateCharacterSpeed(-crouchingSpeed);
+                UpdateCharacterSpeed(-crouchingStrafeSpeed);
+                break;
         }
     }
 
@@ -174,11 +208,38 @@ public class CharacterMovement : MonoBehaviour
             case CharacterState.CrouchStrafeLeft:
                 playerState = CharacterState.RunningStrafeLeft;
                 break;
+
+            case CharacterState.RunningForward | CharacterState.RunningStrafeRight:
+                playerState = CharacterState.CrouchForward | CharacterState.CrouchStrafeRight;
+                break;
+            case CharacterState.RunningForward | CharacterState.RunningStrafeLeft:
+                playerState = CharacterState.CrouchForward | CharacterState.CrouchStrafeLeft;
+                break;
+            case CharacterState.RunningBackwards | CharacterState.RunningStrafeRight:
+                playerState = CharacterState.CrouchBackwards | CharacterState.CrouchStrafeRight;
+                break;
+            case CharacterState.RunningBackwards | CharacterState.RunningStrafeLeft:
+                playerState = CharacterState.CrouchBackwards | CharacterState.CrouchStrafeLeft;
+                break;
+
+            case CharacterState.CrouchForward | CharacterState.CrouchStrafeRight:
+                playerState = CharacterState.RunningForward | CharacterState.RunningStrafeRight;
+                break;
+            case CharacterState.CrouchForward | CharacterState.CrouchStrafeLeft:
+                playerState = CharacterState.RunningForward | CharacterState.RunningStrafeLeft;
+                break;
+            case CharacterState.CrouchBackwards | CharacterState.CrouchStrafeRight:
+                playerState = CharacterState.RunningBackwards | CharacterState.RunningStrafeRight;
+                break;
+            case CharacterState.CrouchBackwards | CharacterState.CrouchStrafeLeft:
+                playerState = CharacterState.RunningBackwards | CharacterState.RunningStrafeLeft;
+                break;
         }
     }
 
     public void OnMove(InputValue inputValue)
     {
+        // Need to take inputValue directly because MovementDirection is never zero to allow for deceleration.
         if(inputValue.Get<Vector2>() != Vector2.zero)
         {
             ChangeFromIdleToMovingState();
@@ -197,6 +258,10 @@ public class CharacterMovement : MonoBehaviour
             case CharacterState.RunningBackwards:
             case CharacterState.RunningStrafeRight:
             case CharacterState.RunningStrafeLeft:
+            case CharacterState.RunningForward | CharacterState.RunningStrafeRight:
+            case CharacterState.RunningForward | CharacterState.RunningStrafeLeft:
+            case CharacterState.RunningBackwards | CharacterState.RunningStrafeRight:
+            case CharacterState.RunningBackwards | CharacterState.RunningStrafeLeft:
                 playerState = CharacterState.StandIdle;
                 break;
 
@@ -204,6 +269,10 @@ public class CharacterMovement : MonoBehaviour
             case CharacterState.CrouchBackwards:
             case CharacterState.CrouchStrafeRight:
             case CharacterState.CrouchStrafeLeft:
+            case CharacterState.CrouchForward | CharacterState.CrouchStrafeRight:
+            case CharacterState.CrouchForward | CharacterState.CrouchStrafeLeft:
+            case CharacterState.CrouchBackwards | CharacterState.CrouchStrafeRight:
+            case CharacterState.CrouchBackwards | CharacterState.CrouchStrafeLeft:
                 playerState = CharacterState.CrouchIdle;
                 break;
         }
@@ -226,6 +295,23 @@ public class CharacterMovement : MonoBehaviour
                 break;
             case Vector3 i when i == Vector3.left:
                 SetAppropriateIdleToMovingState(CharacterState.RunningStrafeLeft, CharacterState.CrouchStrafeLeft);
+                break;
+
+            case Vector3 i when i == (Vector3.forward + Vector3.right):
+                SetAppropriateIdleToMovingState(CharacterState.RunningForward | CharacterState.RunningStrafeRight,
+                                                CharacterState.CrouchForward| CharacterState.CrouchStrafeRight);
+                break;
+            case Vector3 i when i == (Vector3.forward + Vector3.left):
+                SetAppropriateIdleToMovingState(CharacterState.RunningForward | CharacterState.RunningStrafeLeft,
+                                                CharacterState.CrouchForward | CharacterState.CrouchStrafeLeft);
+                break;
+            case Vector3 i when i == (Vector3.back + Vector3.right):
+                SetAppropriateIdleToMovingState(CharacterState.RunningBackwards | CharacterState.RunningStrafeRight,
+                                                CharacterState.CrouchBackwards | CharacterState.CrouchStrafeRight);
+                break;
+            case Vector3 i when i == (Vector3.back + Vector3.left):
+                SetAppropriateIdleToMovingState(CharacterState.RunningBackwards | CharacterState.RunningStrafeLeft,
+                                                CharacterState.CrouchBackwards | CharacterState.CrouchStrafeLeft);
                 break;
         }
     }
