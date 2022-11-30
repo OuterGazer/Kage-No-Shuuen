@@ -5,7 +5,6 @@ using UnityEngine;
 public enum CharacterState
 {
     Standing,
-    Walking,
     Running,
     Crouching,
     OnAir,

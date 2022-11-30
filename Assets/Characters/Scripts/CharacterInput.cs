@@ -6,9 +6,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput), typeof(CharacterMovement))]
 public class CharacterInput : MonoBehaviour
-{   public bool IsWalking { get; private set; }
-    public bool IsCrouching { get; private set; }
-
+{   
     private CharacterMovement characterMovement;
 
     private void Awake()
@@ -31,17 +29,11 @@ public class CharacterInput : MonoBehaviour
     // TODO: tratar de que caminar (y quizá agacharse también) funcione manteniendo el botón apretado y que al dejar de apretar se vuelva a correr.
     private void OnWalk()
     {
-        //IsWalking = !IsWalking;
-        //walkEvent.Invoke();
+        
     }
 
     private void OnCrouch()
     {
-        //foreach(UnityEvent e in crouchEvent)
-        //{
-        //    e.Invoke();
-        //}
-        //IsWalking = !IsWalking; // TODO: needed so CharacterMovement applies right speed, change code to actually look at this.
-        //IsCrouching = !IsCrouching; 
+        
     }
 }
