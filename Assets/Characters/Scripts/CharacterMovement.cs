@@ -209,61 +209,38 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    // TODO: la animacion de StandingIdle se intercala cada vez que trato de ir de una dirección a otra pq es muy diferente
+    //       buscar alguna forma de poder saltarmela (agachado no hay problema ya que todas las animaciones parten de la misma postura)
     private void ChangeFromIdleToMovingState()
     {
         switch (MovementDirection)
         {
             case Vector3 i when i == Vector3.forward:
-                switch (playerState)
-                {
-                    case CharacterState.StandIdle:
-                    case CharacterState.RunningForward:
-                        playerState = CharacterState.RunningForward;
-                        break;
-                    case CharacterState.CrouchIdle:
-                    case CharacterState.CrouchForward:
-                        playerState = CharacterState.CrouchForward;
-                        break;
-                }
+                SetAppropriateIdleToMovingState(CharacterState.RunningForward, CharacterState.CrouchForward);
                 break;
             case Vector3 i when i == Vector3.back:
-                switch (playerState)
-                {
-                    case CharacterState.StandIdle:
-                    case CharacterState.RunningBackwards:
-                        playerState = CharacterState.RunningBackwards;
-                        break;
-                    case CharacterState.CrouchIdle:
-                    case CharacterState.CrouchBackwards:
-                        playerState = CharacterState.CrouchBackwards;
-                        break;
-                }
+                SetAppropriateIdleToMovingState(CharacterState.RunningBackwards, CharacterState.CrouchBackwards);
                 break;
             case Vector3 i when i == Vector3.right:
-                switch (playerState)
-                {
-                    case CharacterState.StandIdle:
-                    case CharacterState.RunningStrafeRight:
-                        playerState = CharacterState.RunningStrafeRight;
-                        break;
-                    case CharacterState.CrouchIdle:
-                    case CharacterState.CrouchStrafeRight:
-                        playerState = CharacterState.CrouchStrafeRight;
-                        break;
-                }
+                SetAppropriateIdleToMovingState(CharacterState.RunningStrafeRight, CharacterState.CrouchStrafeRight);
                 break;
             case Vector3 i when i == Vector3.left:
-                switch (playerState)
-                {
-                    case CharacterState.StandIdle:
-                    case CharacterState.RunningStrafeLeft:
-                        playerState = CharacterState.RunningStrafeLeft;
-                        break;
-                    case CharacterState.CrouchIdle:
-                    case CharacterState.CrouchStrafeLeft:
-                        playerState = CharacterState.CrouchStrafeLeft;
-                        break;
-                }
+                SetAppropriateIdleToMovingState(CharacterState.RunningStrafeLeft, CharacterState.CrouchStrafeLeft);
+                break;
+        }
+    }
+
+    private void SetAppropriateIdleToMovingState(CharacterState inPossibleState1, CharacterState inPossibleState2)
+    {
+        switch (playerState)
+        {
+            case CharacterState.StandIdle:
+            case CharacterState i when i == inPossibleState1:
+                playerState = inPossibleState1;
+                break;
+            case CharacterState.CrouchIdle:
+            case CharacterState i when i == inPossibleState2:
+                playerState = inPossibleState2;
                 break;
         }
     }
