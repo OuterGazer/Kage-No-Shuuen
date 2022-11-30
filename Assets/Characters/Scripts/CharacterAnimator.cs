@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterInput), typeof(CharacterMovement))]
+[RequireComponent(typeof(CharacterMovement))]
 public class CharacterAnimator : MonoBehaviour
 {
     private Animator animator;
-    private CharacterInput characterInput;
     private CharacterMovement characterMovement;
 
     int movementForwardHash;
@@ -19,7 +18,6 @@ public class CharacterAnimator : MonoBehaviour
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        characterInput= GetComponent<CharacterInput>();
         characterMovement = GetComponent<CharacterMovement>();
     }
 
@@ -63,8 +61,8 @@ public class CharacterAnimator : MonoBehaviour
 
     private void CalculateMovementDirectionProAxis()
     {
-        forwardMovementDirection = Mathf.Sign(characterInput.MovementDirection.z);
-        sidewaysMovementDirection = Mathf.Sign(characterInput.MovementDirection.x);
+        forwardMovementDirection = Mathf.Sign(characterMovement.MovementDirection.z);
+        sidewaysMovementDirection = Mathf.Sign(characterMovement.MovementDirection.x);
     }
 
     private void CalculateMovementSpeedProAxis()

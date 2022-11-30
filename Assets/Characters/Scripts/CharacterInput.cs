@@ -4,22 +4,27 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInput), typeof(CharacterMovement))]
 public class CharacterInput : MonoBehaviour
-{    
-    public Vector3 MovementDirection { get; private set; }
-    public bool IsWalking { get; private set; }
+{   public bool IsWalking { get; private set; }
     public bool IsCrouching { get; private set; }
+
+    private CharacterMovement characterMovement;
+
+    private void Awake()
+    {
+        characterMovement = GetComponent<CharacterMovement>();
+    }
 
     private void OnMove(InputValue inputValue)
     {
         Vector3 inputBuffer = inputValue.Get<Vector2>();
 
-
         // Movement from Input Module sends only Vector3.up and Vector3.down movement and it needs to be corrected into forward and backward.
         if (inputBuffer.y != 0)
             inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
 
-        MovementDirection = inputBuffer;
+        characterMovement.SetMovementDirection(inputBuffer);
     }
 
 

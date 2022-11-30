@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 
-[RequireComponent(typeof(CharacterInput), typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
     // Due to how animation in the blend tree works, walking speed must be always half of running speed.
@@ -17,19 +17,29 @@ public class CharacterMovement : MonoBehaviour
     public float RunningSpeed => runningSpeed;
     public float WalkingSpeed => walkingSpeed;
     public float CrouchingSpeed => crouchingSpeed;
+    public Vector3 MovementDirection { get; private set; }
+
+    private float velocityY;
 
     private CharacterController characterController;
-    private CharacterInput characterInput;
     private Camera mainCamera;
 
     private CharacterState playerState;
 
-    private float velocityY;
+    public Vector3 SetMovementDirection(Vector3 movementDirection)
+    {
+        if(movementDirection != Vector3.zero)
+            return MovementDirection = movementDirection;
+        else
+            // When the player stops pressing a movement button, the vector becomes Vector3.zero.
+            // This line returns the last value and is used to correctly deccelerate the character
+            // and thus create an appropriate animation transition.
+            return MovementDirection;
+    }
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        characterInput = GetComponent<CharacterInput>();
 
         mainCamera = Camera.main;
     }
@@ -105,7 +115,7 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector3 ApplyMovementRelativeToCameraPosition()
     {
-        Vector3 movement = mainCamera.transform.TransformDirection(characterInput.MovementDirection);
+        Vector3 movement = mainCamera.transform.TransformDirection(MovementDirection);
         movement = Vector3.ProjectOnPlane(movement, Vector3.up);
         return movement;
     }
