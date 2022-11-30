@@ -44,7 +44,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
-        playerState = CharacterState.Standing;
+        playerState = CharacterState.StandIdle;
     }
 
     float movingSpeed;
@@ -62,10 +62,11 @@ public class CharacterMovement : MonoBehaviour
     {
         switch (playerState)
         {
-            case CharacterState.Standing:
+            case CharacterState.StandIdle:
+            case CharacterState.CrouchIdle:
                 UpdateCharacterSpeed(0.0f);
                 break;
-            case CharacterState.Crouching:
+            case CharacterState.CrouchMove:
                 UpdateCharacterSpeed(crouchingSpeed);
                 break;
             case CharacterState.Running:
@@ -114,26 +115,53 @@ public class CharacterMovement : MonoBehaviour
         return movement;
     }
 
-
-    // TODO: Look for a better way to handle state change without multiple exit states in the methods
+    // TODO: Look for an alternative to this switch mess, there must be a simpler way.
     public void OnCrouch()
     {
-        if (playerState == CharacterState.Crouching)
-        { playerState = CharacterState.Running; return; }
-
-        playerState = CharacterState.Crouching;
+        switch (playerState)
+        {
+            case CharacterState.Running:
+                playerState = CharacterState.CrouchMove;
+                break;
+            case CharacterState.StandIdle:
+                playerState = CharacterState.CrouchIdle;
+                break;
+            case CharacterState.CrouchMove:
+                playerState = CharacterState.Running;
+                break;
+            case CharacterState.CrouchIdle:
+                playerState = CharacterState.StandIdle;
+                break;
+        }
     }
 
     public void OnMove(InputValue inputValue)
     {
         if(inputValue.Get<Vector2>() != Vector2.zero)
         {
-            if (playerState == CharacterState.Crouching)
-            { return; }
-
-            playerState = CharacterState.Running;
+            switch (playerState)
+            {
+                case CharacterState.CrouchIdle:
+                case CharacterState.CrouchMove:
+                    playerState = CharacterState.CrouchMove;
+                    break;
+                case CharacterState.StandIdle:
+                case CharacterState.Running:
+                    playerState = CharacterState.Running;
+                    break;
+            }
         }
         else
-            playerState = CharacterState.Standing;
+        {
+            switch (playerState)
+            {
+                case CharacterState.Running:
+                    playerState = CharacterState.StandIdle;
+                    break;
+                case CharacterState.CrouchMove:
+                    playerState = CharacterState.CrouchIdle;
+                    break;
+            }
+        }
     }
 }
