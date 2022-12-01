@@ -44,6 +44,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     float movingSpeed;
+    public float MovingSpeed => movingSpeed;
     void Update()
     {
         UpdateMovingSpeedFromCharacterState();
@@ -151,11 +152,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void MakeCharacterAlwaysFaceForwardOnMovement()
     {
-        if (Mathf.Abs(movingSpeed) > 0.1f)
-        {
-            Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);            
-            transform.rotation = Quaternion.LookRotation(projectedForwardVector, Vector3.up);
-        }
+        
     }
 
     private Vector3 ApplyMovementRelativeToCameraPosition()

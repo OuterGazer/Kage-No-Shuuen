@@ -377,10 +377,11 @@ GameObject:
   m_Component:
   - component: {fileID: 295247609834509630}
   - component: {fileID: 295247609834509629}
-  - component: {fileID: 4548485766802525566}
-  - component: {fileID: 754087497}
   - component: {fileID: 7643209012019600334}
   - component: {fileID: 1792574513}
+  - component: {fileID: 4548485766802525566}
+  - component: {fileID: 593856575}
+  - component: {fileID: 754087497}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -426,33 +427,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &4548485766802525566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295247609834509631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4616787127ad2e9428bf853adb990af4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runningSpeed: 6
-  walkingSpeed: 3
-  crouchingSpeed: 3
---- !u!114 &754087497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295247609834509631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d99d7dfa0aab09e48863e2219d33aecc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7643209012019600334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,50 +439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8528093860a1b1747a8a91734f111c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4548485766802525566}
-        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
-        m_MethodName: OnWalk
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  crouchEvent:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 754087497}
-        m_TargetAssemblyTypeName: CharacterAnimator, Assembly-CSharp
-        m_MethodName: OnCrouch
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4548485766802525566}
-        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
-        m_MethodName: OnCrouch
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1792574513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,6 +470,48 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4548485766802525566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295247609834509631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4616787127ad2e9428bf853adb990af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runningSpeed: 6
+  runningStrafeSpeed: 6
+  crouchingSpeed: 2
+  crouchingStrafeSpeed: 3
+  timeToReachFullSpeed: 1
+--- !u!114 &593856575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295247609834509631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e244ec51b62e60846a467a3884ad68e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToOrientateCharacterForward: 0.25
+--- !u!114 &754087497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295247609834509631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99d7dfa0aab09e48863e2219d33aecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &295247610047879624
 GameObject:
   m_ObjectHideFlags: 0
