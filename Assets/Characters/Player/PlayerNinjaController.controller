@@ -103,13 +103,13 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Test
+  m_Name: Move + Crouch Blend Tree
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
+  m_IKOnFeet: 1
   m_WriteDefaultValues: 1
   m_Mirror: 0
   m_SpeedParameterActive: 0
@@ -262,7 +262,7 @@ AnimatorStateMachine:
     m_Position: {x: 490, y: -100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7421262423902901570}
-    m_Position: {x: 360, y: 10, z: 0}
+    m_Position: {x: 290, y: 20, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

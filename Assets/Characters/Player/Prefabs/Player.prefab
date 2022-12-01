@@ -484,7 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runningSpeed: 6
   runningStrafeSpeed: 6
-  crouchingSpeed: 2
+  crouchingSpeed: 3
   crouchingStrafeSpeed: 3
   timeToReachFullSpeed: 1
 --- !u!114 &593856575

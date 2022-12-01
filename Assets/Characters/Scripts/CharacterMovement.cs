@@ -165,66 +165,81 @@ public class CharacterMovement : MonoBehaviour
     // TODO: Look for an alternative to this switch mess, there must be a simpler way.
     public void OnCrouch(InputValue inputValue)
     {
-        switch (playerState)
+        if (!Mathf.Approximately(inputValue.Get<float>(), 0f)) 
         {
-            case CharacterState.StandIdle:
-                playerState = CharacterState.CrouchIdle;
-                break;
-            case CharacterState.CrouchIdle:
-                playerState = CharacterState.StandIdle;
-                break;
+            if(playerState.HasFlag(CharacterState.CrouchForward) ||
+               playerState.HasFlag(CharacterState.CrouchBackwards) ||
+               playerState.HasFlag(CharacterState.CrouchStrafeLeft) ||
+               playerState.HasFlag(CharacterState.CrouchStrafeRight))
+                    { return; }
 
-            case CharacterState.RunningForward:
-                playerState = CharacterState.CrouchForward;
-                break;
-            case CharacterState.RunningBackwards:
-                playerState = CharacterState.CrouchBackwards;
-                break;
-            case CharacterState.RunningStrafeRight:
-                playerState = CharacterState.CrouchStrafeLeft;
-                break;
-            case CharacterState.RunningStrafeLeft:
-                playerState = CharacterState.CrouchStrafeRight;
-                break;
+            switch (playerState)
+            {
+                case CharacterState.StandIdle:
+                    playerState = CharacterState.CrouchIdle;
+                    break;
 
-            case CharacterState.CrouchForward:
-                playerState = CharacterState.RunningForward;
-                break;
-            case CharacterState.CrouchBackwards:
-                playerState = CharacterState.RunningBackwards;
-                break;
-            case CharacterState.CrouchStrafeRight:
-                playerState = CharacterState.RunningStrafeRight;
-                break;
-            case CharacterState.CrouchStrafeLeft:
-                playerState = CharacterState.RunningStrafeLeft;
-                break;
+                case CharacterState.RunningForward:
+                    playerState = CharacterState.CrouchForward;
+                    break;
+                case CharacterState.RunningBackwards:
+                    playerState = CharacterState.CrouchBackwards;
+                    break;
+                case CharacterState.RunningStrafeRight:
+                    playerState = CharacterState.CrouchStrafeLeft;
+                    break;
+                case CharacterState.RunningStrafeLeft:
+                    playerState = CharacterState.CrouchStrafeRight;
+                    break;
 
-            case CharacterState.RunningForward | CharacterState.RunningStrafeRight:
-                playerState = CharacterState.CrouchForward | CharacterState.CrouchStrafeRight;
-                break;
-            case CharacterState.RunningForward | CharacterState.RunningStrafeLeft:
-                playerState = CharacterState.CrouchForward | CharacterState.CrouchStrafeLeft;
-                break;
-            case CharacterState.RunningBackwards | CharacterState.RunningStrafeRight:
-                playerState = CharacterState.CrouchBackwards | CharacterState.CrouchStrafeRight;
-                break;
-            case CharacterState.RunningBackwards | CharacterState.RunningStrafeLeft:
-                playerState = CharacterState.CrouchBackwards | CharacterState.CrouchStrafeLeft;
-                break;
+                case CharacterState.RunningForward | CharacterState.RunningStrafeRight:
+                    playerState = CharacterState.CrouchForward | CharacterState.CrouchStrafeRight;
+                    break;
+                case CharacterState.RunningForward | CharacterState.RunningStrafeLeft:
+                    playerState = CharacterState.CrouchForward | CharacterState.CrouchStrafeLeft;
+                    break;
+                case CharacterState.RunningBackwards | CharacterState.RunningStrafeRight:
+                    playerState = CharacterState.CrouchBackwards | CharacterState.CrouchStrafeRight;
+                    break;
+                case CharacterState.RunningBackwards | CharacterState.RunningStrafeLeft:
+                    playerState = CharacterState.CrouchBackwards | CharacterState.CrouchStrafeLeft;
+                    break;
+            }
+        }
+        else
+        {
+            switch (playerState)
+            {
+                case CharacterState.CrouchIdle:
+                    playerState = CharacterState.StandIdle;
+                    break;
 
-            case CharacterState.CrouchForward | CharacterState.CrouchStrafeRight:
-                playerState = CharacterState.RunningForward | CharacterState.RunningStrafeRight;
-                break;
-            case CharacterState.CrouchForward | CharacterState.CrouchStrafeLeft:
-                playerState = CharacterState.RunningForward | CharacterState.RunningStrafeLeft;
-                break;
-            case CharacterState.CrouchBackwards | CharacterState.CrouchStrafeRight:
-                playerState = CharacterState.RunningBackwards | CharacterState.RunningStrafeRight;
-                break;
-            case CharacterState.CrouchBackwards | CharacterState.CrouchStrafeLeft:
-                playerState = CharacterState.RunningBackwards | CharacterState.RunningStrafeLeft;
-                break;
+                case CharacterState.CrouchForward:
+                    playerState = CharacterState.RunningForward;
+                    break;
+                case CharacterState.CrouchBackwards:
+                    playerState = CharacterState.RunningBackwards;
+                    break;
+                case CharacterState.CrouchStrafeRight:
+                    playerState = CharacterState.RunningStrafeRight;
+                    break;
+                case CharacterState.CrouchStrafeLeft:
+                    playerState = CharacterState.RunningStrafeLeft;
+                    break;
+
+                case CharacterState.CrouchForward | CharacterState.CrouchStrafeRight:
+                    playerState = CharacterState.RunningForward | CharacterState.RunningStrafeRight;
+                    break;
+                case CharacterState.CrouchForward | CharacterState.CrouchStrafeLeft:
+                    playerState = CharacterState.RunningForward | CharacterState.RunningStrafeLeft;
+                    break;
+                case CharacterState.CrouchBackwards | CharacterState.CrouchStrafeRight:
+                    playerState = CharacterState.RunningBackwards | CharacterState.RunningStrafeRight;
+                    break;
+                case CharacterState.CrouchBackwards | CharacterState.CrouchStrafeLeft:
+                    playerState = CharacterState.RunningBackwards | CharacterState.RunningStrafeLeft;
+                    break;
+            }
         }
     }
 
@@ -269,8 +284,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    // TODO: la animacion de StandingIdle se intercala cada vez que trato de ir de una dirección a otra pq es muy diferente
-    //       buscar alguna forma de poder saltarmela (agachado no hay problema ya que todas las animaciones parten de la misma postura)
+    
     private void ChangeFromIdleToMovingState()
     {
         switch (MovementDirection)
