@@ -8,8 +8,6 @@ using DG.Tweening;
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
-    // Due to how animation in the blend tree works, walking speed must be always half of running speed.
-    // TODO: look on a way to decouple the previous dependency.
     [SerializeField] float runningSpeed = 6f;
     [SerializeField] float runningStrafeSpeed = 6f;
     [SerializeField] float crouchingSpeed = 3f;
@@ -30,10 +28,6 @@ public class CharacterMovement : MonoBehaviour
         if(movementDirection != Vector3.zero)
             return MovementDirection = movementDirection;
         else
-            // When the player stops pressing a movement button, the vector becomes Vector3.zero.
-            // This line returns the last value and is used to correctly deccelerate the character
-            // and thus create an appropriate animation transition from moving to idle.
-            // This adds "weight" making the characzer still move a bit after not pressing any movement key
             return MovementDirection;
     }
 
@@ -52,7 +46,7 @@ public class CharacterMovement : MonoBehaviour
     float movingSpeed;
     void Update()
     {
-        UpdateCharacterState();
+        UpdateMovingSpeedFromCharacterState();
 
         Vector3 horizontalMovement = UpdateHorizontalMovement() * Mathf.Abs(movingSpeed) * Time.deltaTime;
         Vector3 verticalMovement = UpdateVerticalMovement();
@@ -60,7 +54,7 @@ public class CharacterMovement : MonoBehaviour
         characterController.Move(horizontalMovement + verticalMovement);
     }
 
-    private void UpdateCharacterState()
+    private void UpdateMovingSpeedFromCharacterState()
     {
         switch (playerState)
         {
@@ -133,7 +127,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void UpdateCharacterSpeed(float targetSpeed)
     {
-        DOTween.To(() => this.movingSpeed, x => this.movingSpeed = x, targetSpeed, timeToReachFullSpeed);
+        DOTween.To(() => movingSpeed, x => movingSpeed = x, targetSpeed, timeToReachFullSpeed);
     }
 
     private Vector3 UpdateVerticalMovement()
@@ -150,14 +144,14 @@ public class CharacterMovement : MonoBehaviour
     {
         Vector3 movement = ApplyMovementRelativeToCameraPosition();
 
-        MakeCharacterAlwaysFaceForwardOnMovement(movement);
+        MakeCharacterAlwaysFaceForwardOnMovement();
 
         return movement;       
     }
 
-    private void MakeCharacterAlwaysFaceForwardOnMovement(Vector3 movement)
+    private void MakeCharacterAlwaysFaceForwardOnMovement()
     {
-        if (movement != Vector3.zero)
+        if (Mathf.Abs(movingSpeed) > 0.1f)
         {
             Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);            
             transform.rotation = Quaternion.LookRotation(projectedForwardVector, Vector3.up);
