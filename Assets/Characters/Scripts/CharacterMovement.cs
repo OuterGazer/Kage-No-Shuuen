@@ -163,7 +163,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     // TODO: Look for an alternative to this switch mess, there must be a simpler way.
-    public void OnCrouch()
+    public void OnCrouch(InputValue inputValue)
     {
         switch (playerState)
         {

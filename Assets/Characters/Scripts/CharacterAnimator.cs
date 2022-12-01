@@ -80,8 +80,8 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
     }
 
-    public void OnCrouch()
-    {
-        animator.SetTrigger(crouchHash);
-    }
+    //public void OnCrouch()
+    //{
+    //    animator.SetTrigger(crouchHash);
+    //}
 }
