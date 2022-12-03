@@ -45,14 +45,61 @@ public class CharacterMovement : MonoBehaviour
 
     float movingSpeed;
     public float MovingSpeed => movingSpeed;
+    Vector3 currentHorizontalMovement = Vector3.zero;
+    [SerializeField] float accMovement = 3f; // m/s2
     void Update()
     {
-        UpdateMovingSpeedFromCharacterState();
+        //UpdateMovingSpeedFromCharacterState();
+        UpdateMovingSpeedFromCharacterStateEnriqueStyle();
 
-        Vector3 horizontalMovement = UpdateHorizontalMovement() * Mathf.Abs(movingSpeed) * Time.deltaTime;
+        Vector3 desiredHorizontalMovement = UpdateHorizontalMovement();
+
+        // Smoothes movement direction applying
+        // an acceleration
+        Vector3 direction = desiredHorizontalMovement - currentHorizontalMovement;
+        float speedChangeToApply = accMovement * Time.deltaTime;
+        speedChangeToApply = Mathf.Min(speedChangeToApply, direction.magnitude);
+        currentHorizontalMovement += direction.normalized * speedChangeToApply;
+            
+        Vector3 horizontalMovement = currentHorizontalMovement * Mathf.Abs(movingSpeed) * Time.deltaTime;
+        //Vector3 horizontalMovement = UpdateHorizontalMovement() * Mathf.Abs(movingSpeed) * Time.deltaTime;
         Vector3 verticalMovement = UpdateVerticalMovement();
 
         characterController.Move(horizontalMovement + verticalMovement);
+    }
+
+    private void UpdateMovingSpeedFromCharacterStateEnriqueStyle()
+    {
+        float desiredMovingSpeed = 0f;
+
+        switch (playerState)
+        {
+            case CharacterState.CrouchForward:
+            case CharacterState.CrouchBackwards:
+                desiredMovingSpeed = crouchingSpeed;
+                break;
+            case CharacterState.CrouchStrafeRight:
+            case CharacterState.CrouchStrafeLeft:
+                desiredMovingSpeed = crouchingStrafeSpeed;
+                break;
+
+            case CharacterState.RunningForward:
+            case CharacterState.RunningBackwards:
+                desiredMovingSpeed = runningSpeed;
+                break;
+            case CharacterState.RunningStrafeLeft:
+            case CharacterState.RunningStrafeRight:
+                desiredMovingSpeed = runningStrafeSpeed;
+                break;
+        }
+        // Si esta agachado
+        //      si esta yendo hacia adelante-> desiredMovingSpeed = crouchingSpeed;
+        //      si no (strafe) -> desiredMovingSpeed = crouchingStrafeSpeed;
+        // Si no (running)
+        //      si esta yendo hacia adelante-> desiredMovingSpeed = runningSpeed;
+        //      si no (strafe) -> desiredMovingSpeed = runningSpeed;
+
+        UpdateCharacterSpeed(desiredMovingSpeed);
     }
 
     private void UpdateMovingSpeedFromCharacterState()
@@ -126,9 +173,21 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    float accelerationX = 5;    // m/s2
     private void UpdateCharacterSpeed(float targetSpeed)
     {
-        DOTween.To(() => movingSpeed, x => movingSpeed = x, targetSpeed, timeToReachFullSpeed);
+        //movingSpeed = targetSpeed;
+        //DOTween.To(() => movingSpeed, x => movingSpeed = x, targetSpeed, timeToReachFullSpeed);
+        if (movingSpeed < targetSpeed)
+        {
+            movingSpeed += accelerationX * Time.deltaTime;
+            if (movingSpeed > targetSpeed) { movingSpeed = targetSpeed; }
+        }
+        else if (movingSpeed > targetSpeed)
+        {
+            movingSpeed -= accelerationX * Time.deltaTime;
+            if (movingSpeed < targetSpeed) { movingSpeed = targetSpeed; }
+        }
     }
 
     private Vector3 UpdateVerticalMovement()
