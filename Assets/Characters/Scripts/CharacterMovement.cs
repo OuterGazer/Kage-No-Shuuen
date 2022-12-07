@@ -174,6 +174,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+    [SerializeField] float timeToChangeFromWallToFreeMove = 0.25f;
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.collider.CompareTag("Wall"))
@@ -183,9 +184,7 @@ public class CharacterMovement : MonoBehaviour
                 playerState = CharacterState.Crouching | CharacterState.OnWall;
                 BroadcastMessage("SetCharacterToWall");
 
-                DOTween.To(() => transform.forward, x => transform.forward = x, hit.transform.forward, 0.25f);
-                
-                // rotate character so its forward points to the appropriate direction
+                DOTween.To(() => transform.forward, x => transform.forward = x, hit.normal, timeToChangeFromWallToFreeMove);
             }
         }     
     }
