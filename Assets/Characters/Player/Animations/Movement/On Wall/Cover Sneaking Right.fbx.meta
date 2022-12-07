@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 4ed8cdb02ba91754e8ccb42d7b6a7554
+guid: 62444c78399f05044aa1192779105166
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Walking Forward
+    second: Cover Sneaking Right
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -19,8 +19,7 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: "Invalid copied Avatar Rig Configuration:\n\tNo human bone found.
-      Ensure both rig type match\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -37,11 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking Forward
+      name: Cover Sneaking Right
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 31
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
