@@ -19,7 +19,8 @@ public class CharacterAimer : MonoBehaviour
 
     private void Update()
     {
-        if (Mathf.Abs(characterMovement.MovingSpeed) > 0.1f)
+        if (Mathf.Abs(characterMovement.MovingSpeed) > 0.1f &&
+            !characterMovement.PlayerState.HasFlag(CharacterState.OnWall))
         {
             Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
 

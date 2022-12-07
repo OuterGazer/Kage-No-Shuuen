@@ -20,6 +20,7 @@ public class CharacterMovement : MonoBehaviour
     private Camera mainCamera;
 
     private CharacterState playerState;
+    public CharacterState PlayerState => playerState;
 
     public Vector3 SetMovementDirection(Vector3 movementDirection)
     {
