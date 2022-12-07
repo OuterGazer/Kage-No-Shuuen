@@ -4,6 +4,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
@@ -121,6 +122,7 @@ public class CharacterMovement : MonoBehaviour
         return movement;
     }
 
+    // TODO: eventually these methods need to be moved out, as they break the SRP
     public void OnCrouch(InputValue inputValue)
     {
         if (IsCrouchButtonPressed(inputValue))
@@ -169,5 +171,21 @@ public class CharacterMovement : MonoBehaviour
                 playerState = CharacterState.Idle | CharacterState.Crouching;
             }
         }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("Wall"))
+        {
+            if(playerState == CharacterState.Crouching)
+            {
+                playerState = CharacterState.Crouching | CharacterState.OnWall;
+                BroadcastMessage("SetCharacterToWall");
+
+                DOTween.To(() => transform.forward, x => transform.forward = x, hit.transform.forward, 0.25f);
+                
+                // rotate character so its forward points to the appropriate direction
+            }
+        }     
     }
 }

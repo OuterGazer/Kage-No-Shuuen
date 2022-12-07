@@ -11,7 +11,7 @@ public class CharacterAnimator : MonoBehaviour
 
     int movementForwardHash;
     int movementSidewaysHash;
-    int crouchHash;
+    int onWallHash;
 
     Vector3 oldPosition;
 
@@ -25,7 +25,7 @@ public class CharacterAnimator : MonoBehaviour
     {
         movementForwardHash = Animator.StringToHash("movementForward");
         movementSidewaysHash = Animator.StringToHash("movementSideways");
-        crouchHash = Animator.StringToHash("Crouch");
+        onWallHash = Animator.StringToHash("OnWall");
 
         oldPosition = transform.position;
     }
@@ -80,8 +80,8 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
     }
 
-    //public void OnCrouch()
-    //{
-    //    animator.SetTrigger(crouchHash);
-    //}
+    private void SetCharacterToWall()
+    {
+        animator.SetBool(onWallHash, true);
+    }
 }

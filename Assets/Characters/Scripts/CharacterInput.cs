@@ -24,16 +24,4 @@ public class CharacterInput : MonoBehaviour
 
         characterMovement.SetMovementDirection(inputBuffer);
     }
-
-
-    // TODO: tratar de que caminar (y quizá agacharse también) funcione manteniendo el botón apretado y que al dejar de apretar se vuelva a correr.
-    private void OnWalk()
-    {
-        
-    }
-
-    private void OnCrouch()
-    {
-        
-    }
 }
