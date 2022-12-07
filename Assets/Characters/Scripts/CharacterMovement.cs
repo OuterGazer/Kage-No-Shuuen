@@ -22,10 +22,7 @@ public class CharacterMovement : MonoBehaviour
 
     public Vector3 SetMovementDirection(Vector3 movementDirection)
     {
-        if(movementDirection != Vector3.zero)
-            return MovementDirection = movementDirection;
-        else
-            return MovementDirection;
+        return MovementDirection = movementDirection;
     }
 
     private void Awake()
@@ -43,24 +40,26 @@ public class CharacterMovement : MonoBehaviour
     float movingSpeed;
     public float MovingSpeed => movingSpeed;
     Vector3 currentHorizontalMovement = Vector3.zero;
-    [SerializeField] float accMovement = 3f; // m/s2
+    [SerializeField] float accMovementDir = 3f; // m/s2
     void Update()
     {
         UpdateMovingSpeedFromCharacterState();
+        ApplyAccelerationSmoothingToMovingDirection();
 
-        Vector3 desiredHorizontalMovement = UpdateHorizontalMovement();
-
-        // Smoothes movement direction applying
-        // an acceleration
-        Vector3 direction = desiredHorizontalMovement - currentHorizontalMovement;
-        float speedChangeToApply = accMovement * Time.deltaTime;
-        speedChangeToApply = Mathf.Min(speedChangeToApply, direction.magnitude);
-        currentHorizontalMovement += direction.normalized * speedChangeToApply;
-            
         Vector3 horizontalMovement = currentHorizontalMovement * movingSpeed * Time.deltaTime;
         Vector3 verticalMovement = UpdateVerticalMovement();
 
         characterController.Move(horizontalMovement + verticalMovement);
+    }
+
+    private void ApplyAccelerationSmoothingToMovingDirection()
+    {
+        Vector3 desiredHorizontalMovement = UpdateHorizontalMovement();
+
+        Vector3 direction = desiredHorizontalMovement - currentHorizontalMovement;
+        float speedChangeToApply = accMovementDir * Time.deltaTime;
+        speedChangeToApply = Mathf.Min(speedChangeToApply, direction.magnitude);
+        currentHorizontalMovement += direction.normalized * speedChangeToApply;
     }
 
     private void UpdateMovingSpeedFromCharacterState()
