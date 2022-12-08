@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine.UIElements;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController), typeof(CharacterStateHandler))]
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] float runningSpeed = 6f;
@@ -18,9 +18,7 @@ public class CharacterMovement : MonoBehaviour
 
     private CharacterController characterController;
     private Camera mainCamera;
-
-    private CharacterState playerState;
-    public CharacterState PlayerState => playerState;
+    private CharacterStateHandler characterStateHandler;
 
     public Vector3 SetMovementDirection(Vector3 movementDirection)
     {
@@ -32,11 +30,8 @@ public class CharacterMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         mainCamera = Camera.main;
-    }
 
-    private void Start()
-    {
-        playerState = CharacterState.Idle;
+        characterStateHandler = GetComponent<CharacterStateHandler>();
     }
 
     float movingSpeed;
@@ -53,7 +48,7 @@ public class CharacterMovement : MonoBehaviour
 
         characterController.Move(horizontalMovement + verticalMovement);
 
-        Debug.Log(playerState);
+        //Debug.Log(characterStateHandler.PlayerState);
     }
 
     private void ApplyAccelerationSmoothingToMovingDirection()
@@ -69,7 +64,7 @@ public class CharacterMovement : MonoBehaviour
     {
         float desiredMovingSpeed = 0f;
 
-        switch (playerState)
+        switch (characterStateHandler.PlayerState)
         {
             case CharacterState i when i.HasFlag(CharacterState.Idle): // Idle can combine itself with crouching.
                 desiredMovingSpeed = 0.0f; 
@@ -122,76 +117,5 @@ public class CharacterMovement : MonoBehaviour
         Vector3 movement = mainCamera.transform.TransformDirection(MovementDirection);
         movement = Vector3.ProjectOnPlane(movement, Vector3.up);
         return movement;
-    }
-
-    // TODO: eventually these methods need to be moved out, as they break the SRP
-    public void OnCrouch(InputValue inputValue)
-    {
-        if (IsCrouchButtonPressed(inputValue))
-        {
-            if (playerState.HasFlag(CharacterState.OnWall))
-            {
-                BroadcastMessage("HaveCharacterInteractWithWall", false);
-                playerState = CharacterState.Idle | CharacterState.Crouching;
-            }
-            if (playerState == CharacterState.Idle)
-                { playerState = CharacterState.Idle | CharacterState.Crouching; }
-            else if (playerState == CharacterState.Running)
-                { playerState = CharacterState.Crouching; }
-        }
-        else
-        {
-            if (playerState.HasFlag(CharacterState.OnWall))
-                { } // Do nothing for now
-            else if (playerState.HasFlag(CharacterState.Idle))
-                { playerState = CharacterState.Idle; }
-            else if (playerState == CharacterState.Crouching)
-                { playerState = CharacterState.Running; }
-        }
-    }
-
-    private static bool IsCrouchButtonPressed(InputValue inputValue)
-    {
-        return !Mathf.Approximately(inputValue.Get<float>(), 0f);
-    }
-
-    public void OnMove(InputValue inputValue)
-    {
-        if(inputValue.Get<Vector2>() != Vector2.zero)
-        {
-            if (playerState.HasFlag(CharacterState.Idle))
-            {
-                if (playerState.HasFlag(CharacterState.OnWall))
-                    { playerState = CharacterState.Crouching | CharacterState.OnWall; }
-                else if (playerState.HasFlag(CharacterState.Crouching))
-                    { playerState = CharacterState.Crouching; }
-                else
-                    { playerState = CharacterState.Running; }                
-            }
-        }
-        else
-        {
-            if (playerState == CharacterState.Running)
-                { playerState = CharacterState.Idle; }
-            else if((playerState.HasFlag(CharacterState.OnWall)))
-                { playerState = CharacterState.Idle | CharacterState.Crouching | CharacterState.OnWall; }
-            else if (playerState == CharacterState.Crouching)
-                { playerState = CharacterState.Idle | CharacterState.Crouching; }
-        }
-    }
-
-    [SerializeField] float timeToChangeFromWallToFreeMove = 0.25f;
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.collider.CompareTag("Cover"))
-        {
-            if(playerState.HasFlag(CharacterState.Crouching))
-            {
-                playerState = CharacterState.Idle | CharacterState.Crouching | CharacterState.OnWall;
-                BroadcastMessage("HaveCharacterInteractWithWall", true);
-
-                DOTween.To(() => transform.forward, x => transform.forward = x, hit.normal, timeToChangeFromWallToFreeMove);
-            }
-        }     
     }
 }

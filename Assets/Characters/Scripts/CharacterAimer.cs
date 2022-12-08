@@ -3,24 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterMovement))]
+[RequireComponent(typeof(CharacterController), typeof(CharacterStateHandler))]
 public class CharacterAimer : MonoBehaviour
 {
     [SerializeField] float timeToOrientateCharacterForward = 0.05f;
 
     CharacterMovement characterMovement;
     Camera mainCamera;
+    CharacterStateHandler characterStateHandler;
 
     private void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
         mainCamera = Camera.main;
+        characterStateHandler = GetComponent<CharacterStateHandler>();
     }
 
     private void Update()
     {
         if (Mathf.Abs(characterMovement.MovingSpeed) > 0.1f &&
-            !characterMovement.PlayerState.HasFlag(CharacterState.OnWall))
+            !characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall))
         {
             Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
 
