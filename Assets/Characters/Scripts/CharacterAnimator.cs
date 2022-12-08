@@ -80,8 +80,8 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
     }
 
-    private void SetCharacterToWall()
+    private void HaveCharacterInteractWithWall(bool isCover)
     {
-        animator.SetBool(onWallHash, true);
+        animator.SetBool(onWallHash, isCover);
     }
 }

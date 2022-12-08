@@ -52,12 +52,13 @@ public class CharacterMovement : MonoBehaviour
         Vector3 verticalMovement = UpdateVerticalMovement();
 
         characterController.Move(horizontalMovement + verticalMovement);
+
+        Debug.Log(playerState);
     }
 
     private void ApplyAccelerationSmoothingToMovingDirection()
     {
         Vector3 desiredHorizontalMovement = UpdateHorizontalMovement();
-
         Vector3 direction = desiredHorizontalMovement - currentHorizontalMovement;
         float speedChangeToApply = accMovementDir * Time.deltaTime;
         speedChangeToApply = Mathf.Min(speedChangeToApply, direction.magnitude);
@@ -73,7 +74,7 @@ public class CharacterMovement : MonoBehaviour
             case CharacterState i when i.HasFlag(CharacterState.Idle): // Idle can combine itself with crouching.
                 desiredMovingSpeed = 0.0f; 
                 break;
-            case CharacterState.Crouching:
+            case CharacterState i when i.HasFlag(CharacterState.Crouching):
                 desiredMovingSpeed = crouchingSpeed;
                 break;
             case CharacterState.Running:
@@ -128,17 +129,24 @@ public class CharacterMovement : MonoBehaviour
     {
         if (IsCrouchButtonPressed(inputValue))
         {
-            if (playerState == CharacterState.Idle)
+            if (playerState.HasFlag(CharacterState.OnWall))
+            {
+                BroadcastMessage("HaveCharacterInteractWithWall", false);
                 playerState = CharacterState.Idle | CharacterState.Crouching;
-            else if(playerState == CharacterState.Running)
-                playerState= CharacterState.Crouching;
+            }
+            if (playerState == CharacterState.Idle)
+                { playerState = CharacterState.Idle | CharacterState.Crouching; }
+            else if (playerState == CharacterState.Running)
+                { playerState = CharacterState.Crouching; }
         }
         else
         {
-            if (playerState.HasFlag(CharacterState.Idle))
-                playerState = CharacterState.Idle;
+            if (playerState.HasFlag(CharacterState.OnWall))
+                { } // Do nothing for now
+            else if (playerState.HasFlag(CharacterState.Idle))
+                { playerState = CharacterState.Idle; }
             else if (playerState == CharacterState.Crouching)
-                playerState = CharacterState.Running;
+                { playerState = CharacterState.Running; }
         }
     }
 
@@ -153,36 +161,34 @@ public class CharacterMovement : MonoBehaviour
         {
             if (playerState.HasFlag(CharacterState.Idle))
             {
-                
-                if(playerState.HasFlag(CharacterState.Crouching))
-                    playerState = CharacterState.Crouching;
+                if (playerState.HasFlag(CharacterState.OnWall))
+                    { playerState = CharacterState.Crouching | CharacterState.OnWall; }
+                else if (playerState.HasFlag(CharacterState.Crouching))
+                    { playerState = CharacterState.Crouching; }
                 else
-                    playerState = CharacterState.Running;
-                
+                    { playerState = CharacterState.Running; }                
             }
         }
         else
         {
             if (playerState == CharacterState.Running)
-            {
-                playerState = CharacterState.Idle;
-            }
+                { playerState = CharacterState.Idle; }
+            else if((playerState.HasFlag(CharacterState.OnWall)))
+                { playerState = CharacterState.Idle | CharacterState.Crouching | CharacterState.OnWall; }
             else if (playerState == CharacterState.Crouching)
-            {
-                playerState = CharacterState.Idle | CharacterState.Crouching;
-            }
+                { playerState = CharacterState.Idle | CharacterState.Crouching; }
         }
     }
 
     [SerializeField] float timeToChangeFromWallToFreeMove = 0.25f;
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.collider.CompareTag("Wall"))
+        if (hit.collider.CompareTag("Cover"))
         {
-            if(playerState == CharacterState.Crouching)
+            if(playerState.HasFlag(CharacterState.Crouching))
             {
-                playerState = CharacterState.Crouching | CharacterState.OnWall;
-                BroadcastMessage("SetCharacterToWall");
+                playerState = CharacterState.Idle | CharacterState.Crouching | CharacterState.OnWall;
+                BroadcastMessage("HaveCharacterInteractWithWall", true);
 
                 DOTween.To(() => transform.forward, x => transform.forward = x, hit.normal, timeToChangeFromWallToFreeMove);
             }
