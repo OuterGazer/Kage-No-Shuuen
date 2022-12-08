@@ -69,7 +69,7 @@ public class CharacterMovement : MonoBehaviour
             case CharacterState i when i.HasFlag(CharacterState.Idle): // Idle can combine itself with crouching.
                 desiredMovingSpeed = 0.0f; 
                 break;
-            case CharacterState i when i.HasFlag(CharacterState.Crouching):
+            case CharacterState i when i.HasFlag(CharacterState.Crouching): // Crouching can combine itself with OnWall
                 desiredMovingSpeed = crouchingSpeed;
                 break;
             case CharacterState.Running:
@@ -107,15 +107,19 @@ public class CharacterMovement : MonoBehaviour
 
     private Vector3 UpdateHorizontalMovement()
     {
-        Vector3 movement = ApplyMovementRelativeToCameraPosition();
+        Vector3 movement;
+        if (characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall))
+            { movement = ApplyMovementRelativeToCameraPosition(transform.forward); }
+        else
+            { movement = ApplyMovementRelativeToCameraPosition(Vector3.up); }
 
         return movement;       
     }
 
-    private Vector3 ApplyMovementRelativeToCameraPosition()
+    private Vector3 ApplyMovementRelativeToCameraPosition(Vector3 planeToProjectMovementOn)
     {
         Vector3 movement = mainCamera.transform.TransformDirection(MovementDirection);
-        movement = Vector3.ProjectOnPlane(movement, Vector3.up);
+        movement = Vector3.ProjectOnPlane(movement, planeToProjectMovementOn);
         return movement;
     }
 }

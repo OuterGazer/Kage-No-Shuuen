@@ -78,6 +78,8 @@ public class CharacterAnimator : MonoBehaviour
     {
         animator.SetFloat(movementForwardHash, currentVelocityForwardNormalized * forwardMovementDirection);
         animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
+
+        Debug.Log($"{currentVelocityForwardNormalized * forwardMovementDirection}, {currentVelocitySidewaysNormalized * sidewaysMovementDirection}");
     }
 
     private void HaveCharacterInteractWithWall(bool isCover)
