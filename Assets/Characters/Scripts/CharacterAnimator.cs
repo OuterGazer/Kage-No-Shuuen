@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterMovement))]
+[RequireComponent(typeof(CharacterMovement), typeof(CharacterStateHandler))]
 public class CharacterAnimator : MonoBehaviour
 {
+    [SerializeField] float cameraThresholdNearWall = 0.85f;
+
     private Animator animator;
     private CharacterMovement characterMovement;
+    private CharacterStateHandler characterStateHandler;
 
     int movementForwardHash;
     int movementSidewaysHash;
@@ -19,6 +22,7 @@ public class CharacterAnimator : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         characterMovement = GetComponent<CharacterMovement>();
+        characterStateHandler = GetComponent<CharacterStateHandler>();
     }
 
     private void Start()
@@ -67,7 +71,7 @@ public class CharacterAnimator : MonoBehaviour
 
     private void CalculateMovementSpeedProAxis()
     {
-        // Blend tree uses normalized values 1 for running speed and 0,5 for walking speed
+        // Blend tree uses normalized values 1 for running speed and 0,5 for crouching speed
         // A change here must take in account a change in the blend tree
         // TODO: look for a way to decouple this
         currentVelocityForwardNormalized = (amountOfForwardMovement / Time.deltaTime) / characterMovement.RunningSpeed;
@@ -77,9 +81,37 @@ public class CharacterAnimator : MonoBehaviour
     private void ApplyAnimationTransitionValues()
     {
         animator.SetFloat(movementForwardHash, currentVelocityForwardNormalized * forwardMovementDirection);
-        animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
 
-        Debug.Log($"{currentVelocityForwardNormalized * forwardMovementDirection}, {currentVelocitySidewaysNormalized * sidewaysMovementDirection}");
+        // TODO: Dot Product to have the player face the right way when OnWall works but it's not robust enough. Look for an alternative.
+        if (IsPlayerOnWallAndUsingWSInsteadOfAD())
+        {
+            if (IsPlayerForwardTheSameDirectionAsCameraRight())
+                animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * forwardMovementDirection);
+            else
+                animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * -forwardMovementDirection);
+        }
+        else
+        { animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection); }
+    }
+
+    private bool IsPlayerForwardTheSameDirectionAsCameraRight()
+    {
+        return Vector3.Dot(Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up), transform.forward) >= cameraThresholdNearWall;
+    }
+
+    private bool IsPlayerOnWallAndUsingWSInsteadOfAD()
+    {
+        return characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall) && IsCameraNearWall();
+    }
+
+    private bool IsCameraNearWall()
+    {
+        float dotProductCameraForwardAndPlayerXAxis = Vector3.Dot(Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up), transform.right);
+
+        if (dotProductCameraForwardAndPlayerXAxis >= cameraThresholdNearWall || dotProductCameraForwardAndPlayerXAxis <= -cameraThresholdNearWall)
+            return true;
+        else
+            return false;
     }
 
     private void HaveCharacterInteractWithWall(bool isCover)

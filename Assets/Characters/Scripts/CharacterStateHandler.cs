@@ -62,11 +62,11 @@ public class CharacterStateHandler : MonoBehaviour
         else
         {
             if (playerState == CharacterState.Running)
-            { playerState = CharacterState.Idle; }
+                { playerState = CharacterState.Idle; }
             else if ((playerState.HasFlag(CharacterState.OnWall)))
-            { playerState = CharacterState.Idle | CharacterState.Crouching | CharacterState.OnWall; }
+                { playerState = CharacterState.Idle | CharacterState.Crouching | CharacterState.OnWall; }
             else if (playerState == CharacterState.Crouching)
-            { playerState = CharacterState.Idle | CharacterState.Crouching; }
+                { playerState = CharacterState.Idle | CharacterState.Crouching; }
         }
     }
 

@@ -21,8 +21,7 @@ public class CharacterAimer : MonoBehaviour
 
     private void Update()
     {
-        if (Mathf.Abs(characterMovement.MovingSpeed) > 0.1f &&
-            !characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall))
+        if (IsCharacterMovingButNotOnWall())
         {
             Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
 
@@ -34,5 +33,11 @@ public class CharacterAimer : MonoBehaviour
             //Vector3 angleToOrientateCharacterThisFrame = Vector3.RotateTowards(transform.forward, forwardVectorToLookAtThisFrame, forwardOrientationSpeed * Time.deltaTime, 0f);
             //transform.rotation = Quaternion.LookRotation(angleToOrientateCharacterThisFrame, Vector3.up);
         }
+    }
+
+    private bool IsCharacterMovingButNotOnWall()
+    {
+        return Mathf.Abs(characterMovement.MovingSpeed) > 0.1f &&
+                    !characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall);
     }
 }
