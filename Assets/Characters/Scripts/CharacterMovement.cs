@@ -61,20 +61,17 @@ public class CharacterMovement : MonoBehaviour
     {
         if (IsCharacterOnWall())
         {
-            if (HasCoverEdgeBeenReached(Mathf.Sign(currentHorizontalMovement.x)))
+            if (HasCoverEdgeBeenReached())
                 movingSpeed = 0f;
         }
         else if (isCharacterAtCoverEdge)
             { isCharacterAtCoverEdge = false; }
     }
     [SerializeField] float stoppingDistanceToCoverEdge = 3.75f;
-    private bool HasCoverEdgeBeenReached(float movementDirectionSign)
+    private bool HasCoverEdgeBeenReached()
     {
-        Vector3 raycastOriginPoint;
-        if (MovementDirection != Vector3.zero)
-            raycastOriginPoint = transform.localPosition + (new Vector3(0f, 0.5f, (characterController.bounds.extents.x * stoppingDistanceToCoverEdge) * -movementDirectionSign));
-        else
-            raycastOriginPoint = transform.localPosition;
+        float characterMovementDirectionOnWall = Vector3.Dot(transform.right, currentHorizontalMovement);
+        Vector3 raycastOriginPoint = transform.position + transform.right * characterController.bounds.extents.x * stoppingDistanceToCoverEdge * characterMovementDirectionOnWall;
 
         return isCharacterAtCoverEdge = !Physics.Raycast(raycastOriginPoint, -transform.forward, 0.5f, coverMask);
     }
