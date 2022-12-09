@@ -52,11 +52,11 @@ public class CharacterStateHandler : MonoBehaviour
             if (playerState.HasFlag(CharacterState.Idle))
             {
                 if (playerState.HasFlag(CharacterState.OnWall))
-                { playerState = CharacterState.Crouching | CharacterState.OnWall; }
+                    { playerState = CharacterState.Crouching | CharacterState.OnWall; }
                 else if (playerState.HasFlag(CharacterState.Crouching))
-                { playerState = CharacterState.Crouching; }
+                    { playerState = CharacterState.Crouching; }
                 else
-                { playerState = CharacterState.Running; }
+                    { playerState = CharacterState.Running; }
             }
         }
         else

@@ -50,7 +50,7 @@ public class CharacterAnimator : MonoBehaviour
     private void UpdateStandingAnimationTransitions()
     {
         CalculateDistanceMovedLastFrameProAxis();
-        CalculateMovementDirectionProAxis();
+        CalculateSignOfMovementDirection();
         CalculateMovementSpeedProAxis();
 
         ApplyAnimationTransitionValues();
@@ -63,10 +63,21 @@ public class CharacterAnimator : MonoBehaviour
         amountOfSidewaysMovement = Vector3.Project(distanceMoved, transform.right).magnitude;
     }
 
-    private void CalculateMovementDirectionProAxis()
+    private void CalculateSignOfMovementDirection()
     {
-        forwardMovementDirection = Mathf.Sign(characterMovement.MovementDirection.z);
-        sidewaysMovementDirection = Mathf.Sign(characterMovement.MovementDirection.x);
+        if (IsPlayerPressingAMovementKey(characterMovement.MovementDirection.z))
+            forwardMovementDirection = Mathf.Sign(characterMovement.MovementDirection.z);
+
+        if (IsPlayerPressingAMovementKey(characterMovement.MovementDirection.x))
+            sidewaysMovementDirection = Mathf.Sign(characterMovement.MovementDirection.x);
+
+        // Releasing a key keeps the last sign, avoiding that the character
+        // briefly looks the other way while decelerating when sign is -1.
+    }
+
+    private bool IsPlayerPressingAMovementKey(float movementAxis)
+    {
+        return !Mathf.Approximately(movementAxis, 0f);
     }
 
     private void CalculateMovementSpeedProAxis()
