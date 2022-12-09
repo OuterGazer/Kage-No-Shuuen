@@ -11,5 +11,6 @@ public enum CharacterState
     Running = 1 << 1,
     Crouching = 1 << 2,
     OnWall = 1 << 3,
-    OnAir = 1 << 4,
+    OnHook = 1 << 4,
+    OnAir = 1 << 5,
 }

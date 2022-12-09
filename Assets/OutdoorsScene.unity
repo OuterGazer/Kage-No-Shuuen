@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2159.538, g: 2263.3047, b: 3286.379, a: 1}
+  m_IndirectSpecularColor: {r: 2161.13, g: 2263.2832, b: 3121.8672, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -775,7 +775,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.0046970174, y: 1.1257711e-24, z: -5.506089e-27, w: 0.999989}
+  m_LocalRotation: {x: 0.0046970174, y: 2.0479492e-24, z: -9.907514e-27, w: 0.999989}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -836,6 +836,24 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 93941400}
+--- !u!1 &568733907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 637690299299920348, guid: f3a501e21767747428cd4a475d9844b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 295247610415783175}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &568733910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568733907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44972679ffe0bf7468b7ed6abab15d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &593856569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 295247609834509630, guid: f3a501e21767747428cd4a475d9844b8,
@@ -1682,7 +1700,7 @@ GameObject:
   - component: {fileID: 1495358697}
   - component: {fileID: 1495358696}
   m_Layer: 0
-  m_Name: Cube (8)
+  m_Name: Hook Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1887,7 +1905,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.06213745, y: -0.000000017173132, z: 0.0000000010691605, w: 0.9980676}
+  m_LocalRotation: {x: 0.062137455, y: -0.000000025044276, z: 0.0000000015592005,
+    w: 0.9980676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2759,6 +2778,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548485766802525566, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: hookTarget
+      value: 
+      objectReference: {fileID: 1495358695}
+    - target: {fileID: 4548485766802525566, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: onHookSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3a501e21767747428cd4a475d9844b8, type: 3}

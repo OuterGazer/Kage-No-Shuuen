@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] float runningSpeed = 6f;
     [SerializeField] float crouchingSpeed = 3f;
+    [SerializeField] float onHookSpeed = 10f;
     public float RunningSpeed => runningSpeed;
     public Vector3 MovementDirection { get; private set; }
 
@@ -51,10 +52,36 @@ public class CharacterMovement : MonoBehaviour
         UpdateMovingSpeedFromCharacterState();
         ApplyAccelerationSmoothingToMovingDirection();
 
-        Vector3 horizontalMovement = currentHorizontalMovement * movingSpeed * Time.deltaTime;
+        Vector3 horizontalMovement = movingSpeed * Time.deltaTime * currentHorizontalMovement;
         Vector3 verticalMovement = UpdateVerticalMovement();
 
-        characterController.Move(horizontalMovement + verticalMovement);
+        if (characterStateHandler.PlayerState != CharacterState.OnHook &&
+            characterStateHandler.PlayerState != CharacterState.OnAir)
+        {
+            characterController.Move(horizontalMovement + verticalMovement);
+        }
+        else if (characterStateHandler.PlayerState == CharacterState.OnHook)
+        {
+            characterController.Move(onHookSpeed * Time.deltaTime * hangingDirection);
+
+            if ((hookTarget.position - transform.position).sqrMagnitude <= 4f)
+            {
+                characterStateHandler.SetCharacterOnAir();
+                BroadcastMessage("TransitionToOrFromHooked", false);
+            }                
+        }
+        else if(characterStateHandler.PlayerState == CharacterState.OnAir)
+        {
+            characterController.Move(verticalMovement);
+
+            if (characterController.isGrounded)
+            {
+                characterStateHandler.SetCharacterOnIdle();
+                BroadcastMessage("TransitionToOrFromAir", true);
+            }
+        }
+
+        //Debug.Log(characterStateHandler.PlayerState);
     }
 
     private void FixedUpdate()
@@ -79,8 +106,8 @@ public class CharacterMovement : MonoBehaviour
     {
         float characterMovementDirectionOnWall = Mathf.Sign(Vector3.Dot(transform.right, currentHorizontalMovement));
 
-        Vector3 raycastOriginPoint = transform.position + transform.right * characterController.bounds.extents.x * 
-                                                          stoppingDistanceToCoverEdge * characterMovementDirectionOnWall;
+        Vector3 raycastOriginPoint = transform.position + characterController.bounds.extents.x * characterMovementDirectionOnWall *
+                                                          stoppingDistanceToCoverEdge * transform.right;
 
         return isCharacterAtCoverEdge = !Physics.Raycast(raycastOriginPoint, -transform.forward, 0.5f, coverMask);
     }
@@ -109,6 +136,9 @@ public class CharacterMovement : MonoBehaviour
             case CharacterState.Running:
                 desiredMovingSpeed = runningSpeed;
                 break;
+            case CharacterState.OnHook: 
+                desiredMovingSpeed = onHookSpeed;
+                break;
         }
 
         if(!isCharacterAtCoverEdge)
@@ -116,6 +146,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     [SerializeField] float moveAcceleration = 5;    // m/s2
+    //[SerializeField] float onHookAcceleration = 10;    // m/s2
     private void UpdateCharacterSpeed(float targetSpeed)
     {
         if (movingSpeed < targetSpeed)
@@ -136,6 +167,11 @@ public class CharacterMovement : MonoBehaviour
 
         if (characterController.isGrounded)
         { velocityY = 0; }
+        //else
+        //{
+        //    characterStateHandler.SetCharacterOnAir();
+        //    BroadcastMessage("TransitionToOrFromAir", false);
+        //}
 
         return new Vector3(0, velocityY, 0);
     }
@@ -156,5 +192,22 @@ public class CharacterMovement : MonoBehaviour
         Vector3 movement = mainCamera.transform.TransformDirection(MovementDirection);
         movement = Vector3.ProjectOnPlane(movement, planeToProjectMovementOn);
         return movement;
+    }
+
+    [SerializeField] Transform hookTarget;
+    public void OnHookThrow()
+    {
+        BroadcastMessage("HaveCharacterThrowHook");
+        // TODO: encontrar una manera programática de agregar un target (con un Overlap/CheckSphere?)
+    }
+
+    private Vector3 hangingDirection;
+    public Vector3 HangingDirection => hangingDirection;
+    public void MoveCharacterToHookTarget()
+    {
+        hangingDirection = (hookTarget.position - transform.position).normalized;
+        characterStateHandler.SetCharacterOnHook();
+        BroadcastMessage("TransitionToOrFromHooked", true);
+        BroadcastMessage("TransitionToOrFromAir", false);
     }
 }

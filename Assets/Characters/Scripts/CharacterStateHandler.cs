@@ -84,4 +84,19 @@ public class CharacterStateHandler : MonoBehaviour
             }
         }
     }
+
+    public void SetCharacterOnHook()
+    {
+        playerState = CharacterState.OnHook;
+    }
+
+    public void SetCharacterOnAir()
+    {
+        playerState = CharacterState.OnAir;
+    }
+
+    public void SetCharacterOnIdle()
+    {
+        playerState = CharacterState.Idle;
+    }
 }

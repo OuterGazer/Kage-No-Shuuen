@@ -15,6 +15,9 @@ public class CharacterAnimator : MonoBehaviour
     int movementForwardHash;
     int movementSidewaysHash;
     int onWallHash;
+    int throwHookHash;
+    int isGroundedHash;
+    int isHookedHash;
 
     Vector3 oldPosition;
 
@@ -30,7 +33,11 @@ public class CharacterAnimator : MonoBehaviour
         movementForwardHash = Animator.StringToHash("movementForward");
         movementSidewaysHash = Animator.StringToHash("movementSideways");
         onWallHash = Animator.StringToHash("OnWall");
+        throwHookHash = Animator.StringToHash("throwHook");
+        isGroundedHash = Animator.StringToHash("isGrounded");
+        isHookedHash = Animator.StringToHash("isHooked");
 
+        animator.SetBool(isGroundedHash, true);
         oldPosition = transform.position;
     }
 
@@ -127,8 +134,28 @@ public class CharacterAnimator : MonoBehaviour
             { return false; }
     }
 
-    private void HaveCharacterInteractWithWall(bool isCover)
+    public void HaveCharacterInteractWithWall(bool isCover)
     {
         animator.SetBool(onWallHash, isCover);
+    }
+
+    public void HaveCharacterThrowHook()
+    {
+        animator.SetTrigger(throwHookHash);
+    }
+
+    public void TransitionToOrFromHooked(bool isHooked)
+    {
+        animator.SetBool(isHookedHash, isHooked);
+    }
+
+    public void TransitionToOrFromAir(bool isGrounded)
+    {
+        animator.SetBool(isGroundedHash, isGrounded);
+    }
+
+    public void HookHasArrivedAtTarget()
+    {
+        SendMessage("MoveCharacterToHookTarget");
     }
 }
