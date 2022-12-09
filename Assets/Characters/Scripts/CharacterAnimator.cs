@@ -85,18 +85,19 @@ public class CharacterAnimator : MonoBehaviour
         // TODO: Dot Product to have the player face the right way when OnWall works but it's not robust enough. Look for an alternative.
         if (IsPlayerOnWallAndUsingWSInsteadOfAD())
         {
-            if (IsPlayerForwardTheSameDirectionAsCameraRight())
+            if (IsPlayerForwardPointingTheSameDirectionAsCameraRight())
                 animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * forwardMovementDirection);
             else
                 animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * -forwardMovementDirection);
         }
         else
-        { animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection); }
+            { animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection); }
     }
 
-    private bool IsPlayerForwardTheSameDirectionAsCameraRight()
+    private bool IsPlayerForwardPointingTheSameDirectionAsCameraRight()
     {
-        return Vector3.Dot(Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up), transform.forward) >= cameraThresholdNearWall;
+        Vector3 projectedCameraRightToUpPlane = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up);
+        return Vector3.Dot(projectedCameraRightToUpPlane, transform.forward) >= cameraThresholdNearWall;
     }
 
     private bool IsPlayerOnWallAndUsingWSInsteadOfAD()
@@ -108,10 +109,11 @@ public class CharacterAnimator : MonoBehaviour
     {
         float dotProductCameraForwardAndPlayerXAxis = Vector3.Dot(Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up), transform.right);
 
-        if (dotProductCameraForwardAndPlayerXAxis >= cameraThresholdNearWall || dotProductCameraForwardAndPlayerXAxis <= -cameraThresholdNearWall)
-            return true;
+        if (dotProductCameraForwardAndPlayerXAxis >= cameraThresholdNearWall ||
+            dotProductCameraForwardAndPlayerXAxis <= -cameraThresholdNearWall)
+            { return true; }
         else
-            return false;
+            { return false; }
     }
 
     private void HaveCharacterInteractWithWall(bool isCover)
