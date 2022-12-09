@@ -197,8 +197,9 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] Transform hookTarget;
     public void OnHookThrow()
     {
-        BroadcastMessage("HaveCharacterThrowHook");
         // TODO: encontrar una manera programática de agregar un target (con un Overlap/CheckSphere?)
+        if (characterStateHandler.PlayerState.HasFlag(CharacterState.Idle))
+            BroadcastMessage("HaveCharacterThrowHook");
     }
 
     private Vector3 hangingDirection;
