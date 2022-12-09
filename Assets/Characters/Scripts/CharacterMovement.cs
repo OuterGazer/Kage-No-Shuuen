@@ -17,6 +17,7 @@ public class CharacterMovement : MonoBehaviour
 
     private float velocityY;
     private LayerMask coverMask;
+    private float currentOnHookSpeed;
 
     private CharacterController characterController;
     private Camera mainCamera;
@@ -198,8 +199,15 @@ public class CharacterMovement : MonoBehaviour
     public void OnHookThrow()
     {
         // TODO: encontrar una manera programática de agregar un target (con un Overlap/CheckSphere?)
-        if (characterStateHandler.PlayerState.HasFlag(CharacterState.Idle))
+        // TODO: pensar en si quiero que el jugador pueda lanzar el gancho estando OnWall
+        if (characterStateHandler.PlayerState.HasFlag(CharacterState.Idle) &&
+            !characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall))
+        {
             BroadcastMessage("HaveCharacterThrowHook");
+            characterStateHandler.SetCharacterOnHook();
+            currentOnHookSpeed = 0f;
+            hangingDirection = Vector3.zero;
+        }
     }
 
     private Vector3 hangingDirection;
@@ -207,7 +215,7 @@ public class CharacterMovement : MonoBehaviour
     public void MoveCharacterToHookTarget()
     {
         hangingDirection = (hookTarget.position - transform.position).normalized;
-        characterStateHandler.SetCharacterOnHook();
+        currentOnHookSpeed = onHookSpeed;
         BroadcastMessage("TransitionToOrFromHooked", true);
         BroadcastMessage("TransitionToOrFromAir", false);
     }
