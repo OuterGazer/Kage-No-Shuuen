@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2161.8096, g: 2265.754, b: 3288.9844, a: 1}
+  m_IndirectSpecularColor: {r: 2159.538, g: 2263.3047, b: 3286.379, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -772,7 +772,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.004697017, y: 4.7741267e-18, z: -8.514649e-20, w: 0.999989}
+  m_LocalRotation: {x: 0.004697014, y: -0.0000000010335444, z: 4.854628e-12, w: 0.999989}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: 765471439}
   - component: {fileID: 765471438}
   - component: {fileID: 765471437}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (5)
   m_TagString: Cover
   m_Icon: {fileID: 0}
@@ -948,7 +948,7 @@ GameObject:
   - component: {fileID: 898126169}
   - component: {fileID: 898126168}
   - component: {fileID: 898126167}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Cover
   m_Icon: {fileID: 0}
@@ -1205,7 +1205,7 @@ GameObject:
   - component: {fileID: 963650575}
   - component: {fileID: 963650574}
   - component: {fileID: 963650573}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Cover
   m_Icon: {fileID: 0}
@@ -1387,7 +1387,7 @@ GameObject:
   - component: {fileID: 1309005419}
   - component: {fileID: 1309005418}
   - component: {fileID: 1309005417}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Cover
   m_Icon: {fileID: 0}
@@ -1484,7 +1484,7 @@ GameObject:
   - component: {fileID: 1658805897}
   - component: {fileID: 1658805896}
   - component: {fileID: 1658805895}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Cover
   m_Icon: {fileID: 0}
@@ -1593,7 +1593,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.06213745, y: -0.000000017173763, z: 0.0000000010692001, w: 0.9980676}
+  m_LocalRotation: {x: 0.06213746, y: 0.000000019874799, z: -0.0000000012373605, w: 0.9980676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2232,7 +2232,7 @@ GameObject:
   - component: {fileID: 1907167020}
   - component: {fileID: 1907167019}
   - component: {fileID: 1907167018}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Cover
   m_Icon: {fileID: 0}

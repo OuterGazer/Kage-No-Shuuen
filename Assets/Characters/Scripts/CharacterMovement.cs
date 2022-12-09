@@ -15,10 +15,13 @@ public class CharacterMovement : MonoBehaviour
     public Vector3 MovementDirection { get; private set; }
 
     private float velocityY;
+    private LayerMask coverMask;
 
     private CharacterController characterController;
     private Camera mainCamera;
     private CharacterStateHandler characterStateHandler;
+
+    private bool isCharacterAtCoverEdge = false;
 
     public Vector3 SetMovementDirection(Vector3 movementDirection)
     {
@@ -34,6 +37,11 @@ public class CharacterMovement : MonoBehaviour
         characterStateHandler = GetComponent<CharacterStateHandler>();
     }
 
+    private void Start()
+    {
+        coverMask = LayerMask.GetMask("Cover");
+    }
+
     float movingSpeed;
     public float MovingSpeed => movingSpeed;
     Vector3 currentHorizontalMovement = Vector3.zero;
@@ -47,8 +55,28 @@ public class CharacterMovement : MonoBehaviour
         Vector3 verticalMovement = UpdateVerticalMovement();
 
         characterController.Move(horizontalMovement + verticalMovement);
+    }
 
-        //Debug.Log(characterStateHandler.PlayerState);
+    private void FixedUpdate()
+    {
+        if (IsCharacterOnWall())
+        {
+            if (HasCoverEdgeBeenReached(Mathf.Sign(currentHorizontalMovement.x)))
+                movingSpeed = 0f;
+        }
+        else if (isCharacterAtCoverEdge)
+            { isCharacterAtCoverEdge = false; }
+    }
+    [SerializeField] float stoppingDistanceToCoverEdge = 3.75f;
+    private bool HasCoverEdgeBeenReached(float movementDirectionSign)
+    {
+        Vector3 raycastOriginPoint;
+        if (MovementDirection != Vector3.zero)
+            raycastOriginPoint = transform.localPosition + (new Vector3(0f, 0.5f, (characterController.bounds.extents.x * stoppingDistanceToCoverEdge) * -movementDirectionSign));
+        else
+            raycastOriginPoint = transform.localPosition;
+
+        return isCharacterAtCoverEdge = !Physics.Raycast(raycastOriginPoint, -transform.forward, 0.5f, coverMask);
     }
 
     private void ApplyAccelerationSmoothingToMovingDirection()
@@ -77,7 +105,8 @@ public class CharacterMovement : MonoBehaviour
                 break;
         }
 
-        UpdateCharacterSpeed(desiredMovingSpeed);
+        if(!isCharacterAtCoverEdge)
+            UpdateCharacterSpeed(desiredMovingSpeed);
     }
 
     [SerializeField] float moveAcceleration = 5;    // m/s2
@@ -108,12 +137,17 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 UpdateHorizontalMovement()
     {
         Vector3 movement;
-        if (characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall))
-            { movement = ApplyMovementRelativeToCameraPosition(transform.forward); }
+        if (IsCharacterOnWall())
+        { movement = ApplyMovementRelativeToCameraPosition(transform.forward); }
         else
-            { movement = ApplyMovementRelativeToCameraPosition(Vector3.up); }
+        { movement = ApplyMovementRelativeToCameraPosition(Vector3.up); }
 
-        return movement;       
+        return movement;
+    }
+
+    private bool IsCharacterOnWall()
+    {
+        return characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall);
     }
 
     private Vector3 ApplyMovementRelativeToCameraPosition(Vector3 planeToProjectMovementOn)
