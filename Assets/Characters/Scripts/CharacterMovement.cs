@@ -73,14 +73,12 @@ public class CharacterMovement : MonoBehaviour
         return characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall);
     }
 
-    // TODO: because currentHorizontalDirection is smoothed out, raycast moves sequentally from transform.position
-    //       to max edge position. This makes the player able to keep moving a bit towards the cover edge if
-    //       the appropriate movement key is tapped several times.
-    //       Look for a way to avoid this.
+
     [SerializeField] float stoppingDistanceToCoverEdge = 3.75f;
     private bool HasCoverEdgeBeenReached()
     {
-        float characterMovementDirectionOnWall = Vector3.Dot(transform.right, currentHorizontalMovement);
+        float characterMovementDirectionOnWall = Mathf.Sign(Vector3.Dot(transform.right, currentHorizontalMovement));
+
         Vector3 raycastOriginPoint = transform.position + transform.right * characterController.bounds.extents.x * 
                                                           stoppingDistanceToCoverEdge * characterMovementDirectionOnWall;
 
