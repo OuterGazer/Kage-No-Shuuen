@@ -23,11 +23,8 @@ ModelImporter:
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
-    animationRetargetingWarnings: "\nRetargeting quality report for clip 'mixamo.com':\n\tLeftLowerArm
-      average position error 0.2 mm and maximum position error 1.2 mm at time 1:
-      6 (52.2%) Frame 36\n\tRightLowerArm average position error 0.3 mm and maximum
-      position error 4.5 mm at time 1: 1 (44.9%) Frame 31\n"
-    animationDoRetargetingWarnings: 1
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
     animationCompression: 3

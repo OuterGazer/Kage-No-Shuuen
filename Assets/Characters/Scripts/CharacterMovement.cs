@@ -196,6 +196,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     [SerializeField] Transform hookTarget;
+    public Transform HookTarget => hookTarget;
     public void OnHookThrow()
     {
         // TODO: encontrar una manera programática de agregar un target (con un Overlap/CheckSphere?)

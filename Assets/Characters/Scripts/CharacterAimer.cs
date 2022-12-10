@@ -51,4 +51,12 @@ public class CharacterAimer : MonoBehaviour
         return Mathf.Abs(characterMovement.MovingSpeed) > 0.1f &&
                     !characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall);
     }
+
+    //public void OnHookThrow()
+    //{
+    //    Vector3 target = characterMovement.HookTarget.position;
+    //    Vector3 projectedTargetPosition = Vector3.ProjectOnPlane(target, Vector3.up);
+
+    //    transform.forward = projectedTargetPosition;
+    //}
 }
