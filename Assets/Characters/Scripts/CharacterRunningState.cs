@@ -26,22 +26,39 @@ public class CharacterRunningState : MonoBehaviour
             {
                 inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
             }
-            else if(inputBuffer == Vector3.zero)
+            else
             {
-                idleState.enabled = true;
-                Debug.Log("Leaving Running State, Entering Idle State");
-                this.enabled = false;
+                ChangeToIdleStateOnStoppingMovement(inputBuffer);
             }
         }        
     }
 
-    private void OnCrouch(InputValue inputValue)
+    private void ChangeToIdleStateOnStoppingMovement(Vector3 inputBuffer)
     {
-        if (this.enabled)
+        if (inputBuffer == Vector3.zero)
         {
-            crouchingState.enabled = true;
-            Debug.Log("Leaving Running State, Entering Crouching State");
+            idleState.enabled = true;
             this.enabled = false;
         }
+    }
+
+    private void OnCrouch(InputValue inputValue)
+    {
+        ChangeToCrouchingStateOnCrouchButtonPress(inputValue);
+    }
+
+    private void ChangeToCrouchingStateOnCrouchButtonPress(InputValue inputValue)
+    {
+        if (this.enabled &&
+            IsCrouchButtonPressed(inputValue))
+        {
+            crouchingState.enabled = true;
+            this.enabled = false;
+        }
+    }
+
+    private static bool IsCrouchButtonPressed(InputValue inputValue)
+    {
+        return !Mathf.Approximately(inputValue.Get<float>(), 0f);
     }
 }

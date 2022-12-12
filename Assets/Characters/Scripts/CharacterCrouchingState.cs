@@ -25,22 +25,33 @@ public class CharacterCrouchingState : MonoBehaviour
             {
                 inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
             }
-            else if(inputBuffer == Vector3.zero)
+            else
             {
-                idleState.enabled = true;
-                Debug.Log("Leaving Crouching State, Entering Idle State");
-                this.enabled = false;
+                ChangeToIdleStateOnStoppingMovement(inputBuffer);
             }
+        }
+    }
+
+    private void ChangeToIdleStateOnStoppingMovement(Vector3 inputBuffer)
+    {
+        if (inputBuffer == Vector3.zero)
+        {
+            idleState.enabled = true;
+            this.enabled = false;
         }
     }
 
     private void OnCrouch(InputValue inputValue)
     {
-        if (this.enabled && 
+        ChangeToRunningStateOnCrouchButtonRelease(inputValue);
+    }
+
+    private void ChangeToRunningStateOnCrouchButtonRelease(InputValue inputValue)
+    {
+        if (this.enabled &&
             IsCrouchButtonReleased(inputValue))
         {
             runningState.enabled = true;
-            Debug.Log("Leaving Crouching State, Entering Running State");
             this.enabled = false;
         }
     }

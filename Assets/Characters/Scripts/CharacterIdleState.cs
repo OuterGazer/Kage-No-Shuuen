@@ -10,7 +10,6 @@ public class CharacterIdleState : MonoBehaviour
     private void Awake()
     {
         this.enabled = true;
-        Debug.Log("Character is in Idle State");
     }
 
 
@@ -21,7 +20,6 @@ public class CharacterIdleState : MonoBehaviour
             if (inputValue.Get<Vector2>() != Vector2.zero)
             {
                 runningState.enabled = true;
-                Debug.Log("Leaving Idle State, Entering Running State");
                 this.enabled = false;
             }
         }
