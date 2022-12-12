@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController), typeof(CharacterStateHandler))]
+//[RequireComponent(typeof(CharacterController), typeof(CharacterStateHandler))]
 public class CharacterAimer : MonoBehaviour
 {
     [SerializeField] float timeToOrientateCharacterForward = 0.05f;
@@ -12,11 +12,15 @@ public class CharacterAimer : MonoBehaviour
     Camera mainCamera;
     CharacterStateHandler characterStateHandler;
 
+    CharacterMovementBase movingState;
+
     private void Awake()
     {
         characterMovement = GetComponent<CharacterMovement>();
         mainCamera = Camera.main;
         characterStateHandler = GetComponent<CharacterStateHandler>();
+
+        movingState = GetComponent<CharacterMovementBase>();
     }
 
     private void Update()

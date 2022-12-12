@@ -187,9 +187,9 @@ public class CharacterMovement : MonoBehaviour
     {
         Vector3 movement;
         if (IsCharacterOnWall())
-        { movement = ApplyMovementRelativeToCameraPosition(transform.forward); }
+        { movement = ApplyMovementRelativeToCameraPosition(transform.forward); } // Projects movement controls on ground plane
         else
-        { movement = ApplyMovementRelativeToCameraPosition(Vector3.up); }
+        { movement = ApplyMovementRelativeToCameraPosition(Vector3.up); } // Projects movement controls on wall to avoid player from moving away from it
 
         return movement;
     }

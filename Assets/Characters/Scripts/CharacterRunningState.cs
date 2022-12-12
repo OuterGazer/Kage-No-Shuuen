@@ -4,14 +4,27 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 
-public class CharacterRunningState : MonoBehaviour
+[RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
+[RequireComponent(typeof(CharacterIdleState), typeof(CharacterCrouchingState))]
+public class CharacterRunningState : CharacterMovementBase
 {
+    [Header("Exit Scripts")]
     [SerializeField] CharacterIdleState idleState;
     [SerializeField] CharacterCrouchingState crouchingState;
 
     private void Awake()
     {
         this.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        SetCameraAndCharController(GetComponent<CharacterController>());
+    }
+
+    void Update()
+    {
+        UpdateMovement(speed, movementDirection);
     }
 
     // TODO: refactor this OnMove repeated code from CharacterRunningState
@@ -22,9 +35,12 @@ public class CharacterRunningState : MonoBehaviour
             Vector3 inputBuffer = inputValue.Get<Vector2>();
 
             // Movement from Input Module sends only Vector3.up and Vector3.down movement and it needs to be corrected into forward and backward.
-            if (inputBuffer.y != 0)
+            if (inputBuffer != Vector3.zero)
             {
-                inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
+                if(inputBuffer.y != 0f)
+                    inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
+
+                movementDirection = inputBuffer;
             }
             else
             {

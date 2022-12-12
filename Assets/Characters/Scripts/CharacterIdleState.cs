@@ -3,13 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterIdleState : MonoBehaviour
+[RequireComponent(typeof(PlayerInput), typeof(CharacterRunningState))]
+public class CharacterIdleState : CharacterMovementBase
 {
+    [Header("Exit Scripts")]
     [SerializeField] CharacterRunningState runningState;
 
     private void Awake()
     {
         this.enabled = true;
+        SetCameraAndCharController(GetComponent<CharacterController>());
+    }
+
+    private void Update()
+    {
+        UpdateMovement(speed, movementDirection);
     }
 
 

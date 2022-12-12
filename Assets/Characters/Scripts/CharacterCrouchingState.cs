@@ -3,14 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterCrouchingState : MonoBehaviour
+public class CharacterCrouchingState : CharacterMovementBase
 {
+    [Header("Exit Scripts")]
     [SerializeField] CharacterRunningState runningState;
     [SerializeField] CharacterIdleState idleState;
 
     private void Awake()
     {
         this.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        SetCameraAndCharController(GetComponent<CharacterController>());
+    }
+
+    void Update()
+    {
+        UpdateMovement(speed, movementDirection);
     }
 
     // TODO: refactor this OnMove repeated code from CharacterRunningState
@@ -21,9 +32,12 @@ public class CharacterCrouchingState : MonoBehaviour
             Vector3 inputBuffer = inputValue.Get<Vector2>();
 
             // Movement from Input Module sends only Vector3.up and Vector3.down movement and it needs to be corrected into forward and backward.
-            if (inputBuffer.y != 0)
+            if (inputBuffer != Vector3.zero)
             {
-                inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
+                if (inputBuffer.y != 0f)
+                    inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
+
+                movementDirection = inputBuffer;
             }
             else
             {
