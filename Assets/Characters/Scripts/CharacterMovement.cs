@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float runningSpeed = 6f;
     [SerializeField] float crouchingSpeed = 3f;
     [SerializeField] float onHookSpeed = 10f;
+    [SerializeField] float hookReachThreshold = 4f;
     public float RunningSpeed => runningSpeed;
     public Vector3 MovementDirection { get; private set; }
 
@@ -65,7 +66,7 @@ public class CharacterMovement : MonoBehaviour
         {
             characterController.Move(onHookSpeed * Time.deltaTime * hangingDirection);
 
-            if ((hookTarget.position - transform.position).sqrMagnitude <= 4f)
+            if ((hookTarget.position - transform.position).sqrMagnitude <= hookReachThreshold)
             {
                 characterStateHandler.SetCharacterOnAir();
                 BroadcastMessage("TransitionToOrFromHooked", false);
@@ -74,12 +75,6 @@ public class CharacterMovement : MonoBehaviour
         else if(characterStateHandler.PlayerState == CharacterState.OnAir)
         {
             characterController.Move(verticalMovement);
-
-            if (characterController.isGrounded)
-            {
-                characterStateHandler.SetCharacterOnIdle();
-                BroadcastMessage("TransitionToOrFromAir", true);
-            }
         }
 
         //Debug.Log(characterStateHandler.PlayerState);
@@ -167,12 +162,23 @@ public class CharacterMovement : MonoBehaviour
         velocityY = Physics.gravity.y * Time.deltaTime;
 
         if (characterController.isGrounded)
-        { velocityY = 0; }
-        //else
-        //{
-        //    characterStateHandler.SetCharacterOnAir();
-        //    BroadcastMessage("TransitionToOrFromAir", false);
-        //}
+        { 
+            velocityY = -0.1f;
+
+            if (characterStateHandler.PlayerState == CharacterState.OnAir)
+            {
+                BroadcastMessage("TransitionToOrFromAir", true);
+                characterStateHandler.SetCharacterOnIdle();
+            }
+        }
+        else
+        {
+            if (!characterStateHandler.PlayerState.HasFlag(CharacterState.OnHook))
+            {
+                BroadcastMessage("TransitionToOrFromAir", false);
+                characterStateHandler.SetCharacterOnAir();
+            }
+        }
 
         return new Vector3(0, velocityY, 0);
     }
@@ -218,6 +224,6 @@ public class CharacterMovement : MonoBehaviour
         hangingDirection = (hookTarget.position - transform.position).normalized;
         currentOnHookSpeed = onHookSpeed;
         BroadcastMessage("TransitionToOrFromHooked", true);
-        BroadcastMessage("TransitionToOrFromAir", false);
+        //BroadcastMessage("TransitionToOrFromAir", false);
     }
 }

@@ -52,6 +52,7 @@ public class CharacterAimer : MonoBehaviour
                     !characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall);
     }
 
+    // TODO: find solution to throw hook animation not pointing to hook target
     //public void OnHookThrow()
     //{
     //    Vector3 target = characterMovement.HookTarget.position;

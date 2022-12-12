@@ -151,6 +151,7 @@ public class CharacterAnimator : MonoBehaviour
 
     public void TransitionToOrFromAir(bool isGrounded)
     {
+        // TODO: fix the fact that the falling idle animation points automatically to the global z
         animator.SetBool(isGroundedHash, isGrounded);
     }
 
