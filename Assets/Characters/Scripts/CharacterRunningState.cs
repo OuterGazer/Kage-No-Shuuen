@@ -19,7 +19,7 @@ public class CharacterRunningState : CharacterMovementBase
 
     private void OnEnable()
     {
-        SetCameraAndCharController(GetComponent<CharacterController>());
+        //SetCameraAndCharController(GetComponent<CharacterController>());
     }
 
     void Update()

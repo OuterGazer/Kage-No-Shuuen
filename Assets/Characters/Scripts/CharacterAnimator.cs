@@ -15,8 +15,8 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterStateHandler characterStateHandler;
 
     //new implementation
-    private CharacterRunningState runningState;
     private Vector3 movementDirection;
+    private float runningSpeed;
 
     int movementForwardHash;
     int movementSidewaysHash;
@@ -33,7 +33,7 @@ public class CharacterAnimator : MonoBehaviour
         characterMovement = GetComponent<CharacterMovement>();
         characterStateHandler = GetComponent<CharacterStateHandler>();
 
-        runningState = GetComponent<CharacterRunningState>();
+        runningSpeed = GetComponent<CharacterRunningState>().Speed;
     }
 
     private void Start()
@@ -127,8 +127,8 @@ public class CharacterAnimator : MonoBehaviour
         // Blend tree uses normalized values 1 for running speed and 0,5 for crouching speed
         // A change here must take in account a change in the blend tree
         // TODO: look for a way to decouple this
-        currentVelocityForwardNormalized = (amountOfForwardMovement / Time.deltaTime) / 6f; 
-        currentVelocitySidewaysNormalized = (amountOfSidewaysMovement / Time.deltaTime) / 6f;
+        currentVelocityForwardNormalized = (amountOfForwardMovement / Time.deltaTime) / runningSpeed; 
+        currentVelocitySidewaysNormalized = (amountOfSidewaysMovement / Time.deltaTime) / runningSpeed;
     }
 
 

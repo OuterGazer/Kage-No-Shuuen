@@ -16,7 +16,7 @@ public class CharacterCrouchingState : CharacterMovementBase
 
     private void OnEnable()
     {
-        SetCameraAndCharController(GetComponent<CharacterController>());
+        //SetCameraAndCharController(GetComponent<CharacterController>());
     }
 
     void Update()

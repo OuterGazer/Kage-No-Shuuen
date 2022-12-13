@@ -9,24 +9,25 @@ public class CharacterMovementBase : MonoBehaviour
 {
     [Header("Movement Characteristics")]
     [SerializeField] protected float speed = 6f;
+    public float Speed => speed;
 
-    private Camera mainCamera;
-    private CharacterController characterController;
+    private static Camera mainCamera;
+    private static CharacterController CharacterController;
 
     protected static Vector3 movementDirection;
-    public Vector3 MovementDirection => movementDirection;
+    public static Vector3 MovementDirection => movementDirection;
 
-    private float velocityY = 0f;
+    private static float velocityY = 0f;
 
     protected void SetCameraAndCharController(CharacterController characterController)
     {
         mainCamera = Camera.main;
-        this.characterController = characterController;
+        CharacterController = characterController;
     }
 
     static float movingSpeed;
-    Vector3 currentHorizontalMovement = Vector3.zero;
-    [SerializeField] float accMovementDir = 3f; // m/s2
+    static Vector3 currentHorizontalMovement = Vector3.zero;
+    [SerializeField] static float accMovementDir = 3f; // m/s2
     protected void UpdateMovement(float speed, Vector3 movementDirection)
     {
         UpdateCharacterSpeed(speed);
@@ -35,13 +36,17 @@ public class CharacterMovementBase : MonoBehaviour
         Vector3 horizontalMovement = movingSpeed * Time.deltaTime * currentHorizontalMovement;
         Vector3 verticalMovement = UpdateVerticalMovement();
         
-        characterController.Move(horizontalMovement + verticalMovement);
+        CharacterController.Move(horizontalMovement + verticalMovement);
 
         OrientateCharacterForwardWhenMoving();
 
-        // Tries to avoid that movementdirection has a small value that needs first to go down to zero if you stop and then wnat to move in the opposite direction you were moving
-        //if (Mathf.Approximately(movingSpeed, 0f))
-        //    movementDirection = Vector3.zero;
+        ResetMovementDirectionToZeroWhenIdle();
+    }
+
+    void ResetMovementDirectionToZeroWhenIdle()
+    {
+        if (Mathf.Approximately(movingSpeed, 0f))
+            movementDirection = Vector3.zero;
     }
 
     private void ApplyAccelerationSmoothingToMovingDirection(Vector3 movementDirection)
@@ -53,7 +58,7 @@ public class CharacterMovementBase : MonoBehaviour
         currentHorizontalMovement += direction.normalized * speedChangeToApply;
     }
 
-    [SerializeField] float moveAcceleration = 5;    // m/s2
+    [SerializeField] static float moveAcceleration = 5;    // m/s2
     private void UpdateCharacterSpeed(float targetSpeed)
     {
         if (movingSpeed < targetSpeed)
@@ -72,7 +77,7 @@ public class CharacterMovementBase : MonoBehaviour
     {
         velocityY = Physics.gravity.y * Time.deltaTime;
 
-        if (characterController.isGrounded)
+        if (CharacterController.isGrounded)
         {
             velocityY = -0.1f;
         }
@@ -96,7 +101,8 @@ public class CharacterMovementBase : MonoBehaviour
     }
 
     // New Implementation
-    private float timeToOrientateCharacterForward = 0.25f;
+    // TODO: put it in its own class?
+    private static float timeToOrientateCharacterForward = 0.25f;
     private void OrientateCharacterForwardWhenMoving()
     {
         if (Mathf.Abs(movingSpeed) > 0.1f)
