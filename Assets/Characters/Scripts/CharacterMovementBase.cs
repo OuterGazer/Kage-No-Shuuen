@@ -1,9 +1,7 @@
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Playables;
+using DG.Tweening;
 
 public class CharacterMovementBase : MonoBehaviour
 {
@@ -26,24 +24,22 @@ public class CharacterMovementBase : MonoBehaviour
     }
 
     static float movingSpeed;
-    static Vector3 currentHorizontalMovement = Vector3.zero;
+    static protected Vector3 currentHorizontalMovement = Vector3.zero;
     [SerializeField] static float accMovementDir = 1.5f; // m/s2
-    protected void UpdateMovement(float speed, Vector3 movementDirection)
+    protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
         UpdateCharacterSpeed(speed);
-        ApplyAccelerationSmoothingToMovingDirection(movementDirection);
+        ApplyAccelerationSmoothingToMovingDirection(movementDirection, movementProjectionPlane);
 
         Vector3 horizontalMovement = movingSpeed * Time.deltaTime * currentHorizontalMovement;
         Vector3 verticalMovement = UpdateVerticalMovement();
         
         charController.Move(horizontalMovement + verticalMovement);
-
-        OrientateCharacterForwardWhenMoving();
     }
 
-    private void ApplyAccelerationSmoothingToMovingDirection(Vector3 movementDirection)
+    private void ApplyAccelerationSmoothingToMovingDirection(Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
-        Vector3 desiredHorizontalMovement = UpdateHorizontalMovement(movementDirection);
+        Vector3 desiredHorizontalMovement = UpdateHorizontalMovement(movementDirection, movementProjectionPlane);
         Vector3 direction = desiredHorizontalMovement - currentHorizontalMovement;
         float speedChangeToApply = accMovementDir * Time.deltaTime;
         speedChangeToApply = Mathf.Min(speedChangeToApply, direction.magnitude);
@@ -77,25 +73,25 @@ public class CharacterMovementBase : MonoBehaviour
         return new Vector3(0, velocityY, 0);
     }
 
-    private Vector3 UpdateHorizontalMovement(Vector3 movementDirection)
+    private Vector3 UpdateHorizontalMovement(Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
         Vector3 movement;
-        movement = ApplyMovementRelativeToCameraPosition(movementDirection);
+        movement = ApplyMovementRelativeToCameraPosition(movementDirection, movementProjectionPlane);
 
         return movement;
     }
 
-    private Vector3 ApplyMovementRelativeToCameraPosition(Vector3 movementDirection)
+    private Vector3 ApplyMovementRelativeToCameraPosition(Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
         Vector3 movement = mainCamera.transform.TransformDirection(movementDirection);
-        movement = Vector3.ProjectOnPlane(movement, Vector3.up);
+        movement = Vector3.ProjectOnPlane(movement, movementProjectionPlane);
         return movement;
     }
 
     // New Implementation
     // TODO: put it in its own class?
     private static float timeToOrientateCharacterForward = 0.25f;
-    private void OrientateCharacterForwardWhenMoving()
+    protected void OrientateCharacterForwardWhenMoving()
     {
         if (Mathf.Abs(movingSpeed) > 0.1f)
         {

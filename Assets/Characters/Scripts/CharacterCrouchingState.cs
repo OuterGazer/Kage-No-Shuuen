@@ -1,6 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class CharacterCrouchingState : CharacterMovementBase
@@ -8,22 +10,20 @@ public class CharacterCrouchingState : CharacterMovementBase
     [Header("Exit Scripts")]
     [SerializeField] CharacterRunningState runningState;
     [SerializeField] CharacterIdleState idleState;
+    [SerializeField] CharacterOnWallState onWallState;
 
-    private bool shouldLeaveState = false;
+    [HideInInspector] public UnityEvent attachCharacterToWall;
 
     private void Awake()
     {
         this.enabled = false;
     }
-    private void OnEnable()
-    {
-        //SetCameraAndCharController(GetComponent<CharacterController>());
-        shouldLeaveState = false;
-    }
 
     void Update()
     {
-        UpdateMovement(speed, movementDirection);
+        UpdateMovement(speed, movementDirection, Vector3.up);
+
+        OrientateCharacterForwardWhenMoving();
     }
 
     // TODO: refactor this OnMove repeated code from CharacterRunningState
@@ -76,5 +76,19 @@ public class CharacterCrouchingState : CharacterMovementBase
     private static bool IsCrouchButtonReleased(InputValue inputValue)
     {
         return Mathf.Approximately(inputValue.Get<float>(), 0f);
+    }
+
+    
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (this.enabled && hit.collider.CompareTag("Cover"))
+        {
+            attachCharacterToWall.Invoke();
+
+            onWallState.enabled = true;
+            onWallState.turnCharacterToWall(hit.normal);
+
+            this.enabled = false;
+        }
     }
 }

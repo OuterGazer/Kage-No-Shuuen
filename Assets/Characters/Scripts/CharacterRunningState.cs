@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Playables;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
 [RequireComponent(typeof(CharacterIdleState), typeof(CharacterCrouchingState))]
@@ -17,14 +16,11 @@ public class CharacterRunningState : CharacterMovementBase
         this.enabled = false;
     }
 
-    private void OnEnable()
-    {
-        //SetCameraAndCharController(GetComponent<CharacterController>());
-    }
-
     void Update()
     {
-        UpdateMovement(speed, movementDirection);
+        UpdateMovement(speed, movementDirection, Vector3.up);
+
+        OrientateCharacterForwardWhenMoving();
     }
 
     // TODO: refactor this OnMove repeated code from CharacterRunningState

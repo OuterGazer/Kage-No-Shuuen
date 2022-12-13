@@ -15,6 +15,8 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterStateHandler characterStateHandler;
 
     //new implementation
+    private CharacterCrouchingState crouchingState;
+    private CharacterOnWallState onWallState;
     private Vector3 movementDirection;
     private float runningSpeed;
 
@@ -34,6 +36,17 @@ public class CharacterAnimator : MonoBehaviour
         characterStateHandler = GetComponent<CharacterStateHandler>();
 
         runningSpeed = GetComponent<CharacterRunningState>().Speed;
+
+        crouchingState = GetComponent<CharacterCrouchingState>();
+        onWallState = GetComponent<CharacterOnWallState>();
+        crouchingState.attachCharacterToWall.AddListener(AttachCharacterToWall);
+        onWallState.removeCharacterFromWall.AddListener(RemoveCharacterFromWall);
+    }
+
+    private void OnDestroy()
+    {
+        crouchingState.attachCharacterToWall.RemoveListener(AttachCharacterToWall);
+        onWallState.removeCharacterFromWall.RemoveListener(RemoveCharacterFromWall);
     }
 
     private void Start()
@@ -193,9 +206,14 @@ public class CharacterAnimator : MonoBehaviour
             { return false; }
     }
 
-    public void HaveCharacterInteractWithWall(bool isCover)
+    public void AttachCharacterToWall()
     {
-        animator.SetBool(onWallHash, isCover);
+        animator.SetBool(onWallHash, true);
+    }
+
+    public void RemoveCharacterFromWall()
+    {
+        animator.SetBool(onWallHash, false);
     }
 
     public void HaveCharacterThrowHook()
