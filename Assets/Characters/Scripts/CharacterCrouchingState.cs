@@ -9,14 +9,16 @@ public class CharacterCrouchingState : CharacterMovementBase
     [SerializeField] CharacterRunningState runningState;
     [SerializeField] CharacterIdleState idleState;
 
+    private bool shouldLeaveState = false;
+
     private void Awake()
     {
         this.enabled = false;
     }
-
     private void OnEnable()
     {
         //SetCameraAndCharController(GetComponent<CharacterController>());
+        shouldLeaveState = false;
     }
 
     void Update()
@@ -41,32 +43,33 @@ public class CharacterCrouchingState : CharacterMovementBase
             }
             else
             {
-                ChangeToIdleStateOnStoppingMovement(inputBuffer);
+                movementDirection = Vector3.zero;
             }
         }
     }
 
-    private void ChangeToIdleStateOnStoppingMovement(Vector3 inputBuffer)
-    {
-        if (inputBuffer == Vector3.zero)
-        {
-            idleState.enabled = true;
-            this.enabled = false;
-        }
-    }
 
     private void OnCrouch(InputValue inputValue)
     {
-        ChangeToRunningStateOnCrouchButtonRelease(inputValue);
+        ChangeStateOnCrouchButtonRelease(inputValue);
     }
 
-    private void ChangeToRunningStateOnCrouchButtonRelease(InputValue inputValue)
+    private void ChangeStateOnCrouchButtonRelease(InputValue inputValue)
     {
         if (this.enabled &&
             IsCrouchButtonReleased(inputValue))
         {
-            runningState.enabled = true;
-            this.enabled = false;
+            if(movementDirection != Vector3.zero)
+            {
+                runningState.enabled = true;
+                this.enabled = false;
+            }
+            else
+            {
+                idleState.enabled = true;
+                this.enabled = false;
+            }
+            
         }
     }
 

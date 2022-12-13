@@ -8,6 +8,7 @@ public class CharacterIdleState : CharacterMovementBase
 {
     [Header("Exit Scripts")]
     [SerializeField] CharacterRunningState runningState;
+    [SerializeField] CharacterCrouchingState crouchingState;
 
     private void Awake()
     {
@@ -15,9 +16,14 @@ public class CharacterIdleState : CharacterMovementBase
         SetCameraAndCharController(GetComponent<CharacterController>());
     }
 
+    private void OnEnable()
+    {
+        movementDirection = Vector3.zero;
+    }
+
     private void Update()
     {
-        UpdateMovement(speed, Vector3.zero);
+        UpdateMovement(speed, movementDirection);
     }
 
 
@@ -30,6 +36,15 @@ public class CharacterIdleState : CharacterMovementBase
                 runningState.enabled = true;
                 this.enabled = false;
             }
+        }
+    }
+
+    public void OnCrouch(InputValue inputValue)
+    {
+        if (this.enabled)
+        {
+            crouchingState.enabled = true;
+            this.enabled = false;
         }
     }
 }
