@@ -12,7 +12,7 @@ public class CharacterMovementBase : MonoBehaviour
     public float Speed => speed;
 
     private static Camera mainCamera;
-    private static CharacterController CharacterController;
+    private static CharacterController charController;
 
     protected static Vector3 movementDirection;
     public static Vector3 MovementDirection => movementDirection;
@@ -22,12 +22,12 @@ public class CharacterMovementBase : MonoBehaviour
     protected void SetCameraAndCharController(CharacterController characterController)
     {
         mainCamera = Camera.main;
-        CharacterController = characterController;
+        charController = characterController;
     }
 
     static float movingSpeed;
     static Vector3 currentHorizontalMovement = Vector3.zero;
-    [SerializeField] static float accMovementDir = 3f; // m/s2
+    [SerializeField] static float accMovementDir = 1.5f; // m/s2
     protected void UpdateMovement(float speed, Vector3 movementDirection)
     {
         UpdateCharacterSpeed(speed);
@@ -36,17 +36,9 @@ public class CharacterMovementBase : MonoBehaviour
         Vector3 horizontalMovement = movingSpeed * Time.deltaTime * currentHorizontalMovement;
         Vector3 verticalMovement = UpdateVerticalMovement();
         
-        CharacterController.Move(horizontalMovement + verticalMovement);
+        charController.Move(horizontalMovement + verticalMovement);
 
         OrientateCharacterForwardWhenMoving();
-
-        ResetMovementDirectionToZeroWhenIdle();
-    }
-
-    void ResetMovementDirectionToZeroWhenIdle()
-    {
-        if (Mathf.Approximately(movingSpeed, 0f))
-            movementDirection = Vector3.zero;
     }
 
     private void ApplyAccelerationSmoothingToMovingDirection(Vector3 movementDirection)
@@ -77,7 +69,7 @@ public class CharacterMovementBase : MonoBehaviour
     {
         velocityY = Physics.gravity.y * Time.deltaTime;
 
-        if (CharacterController.isGrounded)
+        if (charController.isGrounded)
         {
             velocityY = -0.1f;
         }

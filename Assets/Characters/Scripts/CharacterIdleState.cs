@@ -17,7 +17,7 @@ public class CharacterIdleState : CharacterMovementBase
 
     private void Update()
     {
-        UpdateMovement(speed, movementDirection);
+        UpdateMovement(speed, Vector3.zero);
     }
 
 
