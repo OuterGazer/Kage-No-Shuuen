@@ -85,9 +85,8 @@ public class CharacterCrouchingState : CharacterMovementBase
         {
             attachCharacterToWall.Invoke();
 
+            onWallState.SetNormalToWallPlane(hit.normal);
             onWallState.enabled = true;
-            onWallState.turnCharacterToWall(hit.normal);
-
             this.enabled = false;
         }
     }

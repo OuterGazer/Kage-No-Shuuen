@@ -109,8 +109,10 @@ public class CharacterAnimator : MonoBehaviour
     private void CalculateSignOfMovementDirection()
     {
         if (IsPlayerPressingAMovementKey(movementDirection.z))
+        {
             forwardMovementDirection = Mathf.Sign(movementDirection.z);
-
+        }
+           
         if (IsPlayerPressingAMovementKey(movementDirection.x))
             sidewaysMovementDirection = Mathf.Sign(movementDirection.x);
 
@@ -167,7 +169,17 @@ public class CharacterAnimator : MonoBehaviour
     private void ApplyAnimationTransitionValues()
     {
         animator.SetFloat(movementForwardHash, currentVelocityForwardNormalized * forwardMovementDirection);
-        animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
+
+        if (IsPlayerOnWallAndUsingWSInsteadOfAD())
+        {
+            //TODO: refactor this OnWall check. It should go in the OnWall script
+            if (onWallState.enabled && IsPlayerForwardPointingTheSameDirectionAsCameraRight())
+                animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * forwardMovementDirection);
+            else
+                animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * -forwardMovementDirection);
+        }
+        else
+            animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
     }
     
     void OnMove(InputValue inputValue)
@@ -190,9 +202,18 @@ public class CharacterAnimator : MonoBehaviour
         return Vector3.Dot(projectedCameraRightToUpPlane, transform.forward) >= cameraThresholdNearWall;
     }
 
+    /// <summary>
+    /// old implementation, erase when new one works
+    /// </summary>
+    /// <returns></returns>
+    //private bool IsPlayerOnWallAndUsingWSInsteadOfAD()
+    //{
+    //    return characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall) && IsCameraNearWall();
+    //}
+
     private bool IsPlayerOnWallAndUsingWSInsteadOfAD()
     {
-        return characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall) && IsCameraNearWall();
+        return IsCameraNearWall();
     }
 
     private bool IsCameraNearWall()

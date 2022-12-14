@@ -23,8 +23,8 @@ public class CharacterMovementBase : MonoBehaviour
         charController = characterController;
     }
 
-    static float movingSpeed;
-    static protected Vector3 currentHorizontalMovement = Vector3.zero;
+    protected static float movingSpeed;
+    protected static Vector3 currentHorizontalMovement = Vector3.zero;
     [SerializeField] static float accMovementDir = 1.5f; // m/s2
     protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {

@@ -12,11 +12,11 @@ public class CharacterOnWallState : CharacterMovementBase
     [SerializeField] CharacterCrouchingState crouchingState;
 
     [HideInInspector] public UnityEvent removeCharacterFromWall;
+    [HideInInspector] public UnityEvent<float> correctCharacterAnimationWhenCameraIsNearWall;
     private LayerMask coverMask;
 
+    private Vector3 normalToWallPlane;
     private float charControllerHorizontalBound;
-
-    private bool isCharacterAtCoverEdge = false;
 
     private void Awake()
     {
@@ -29,28 +29,40 @@ public class CharacterOnWallState : CharacterMovementBase
         charControllerHorizontalBound = GetComponent<CharacterController>().bounds.extents.x;
     }
 
-    private void OnEnable()
-    {
-        isCharacterAtCoverEdge = false;
-    }
-
+    [SerializeField] float timeToCompleteCharacterOrientation = 0.25f;
     private void Update()
     {
+        TurnCharacterAgainstTheWall();
+
         UpdateMovement(speed, movementDirection, transform.forward);
+    }
+
+    private void TurnCharacterAgainstTheWall()
+    {
+        if (IsCharacterBackNotAgainstTheWall())
+            DOTween.To(() => transform.forward, x => transform.forward = x, normalToWallPlane, timeToCompleteCharacterOrientation);
+    }
+
+    public void SetNormalToWallPlane(Vector3 normalPlane)
+    {
+        normalToWallPlane = normalPlane;
+    }
+
+    private bool IsCharacterBackNotAgainstTheWall()
+    {
+        return !Mathf.Approximately(Vector3.Dot(transform.forward, normalToWallPlane), 1f);
     }
 
     private void FixedUpdate()
     {
         if (HasCoverEdgeBeenReached())
-            { movementDirection = Vector3.zero; }
-        else if (isCharacterAtCoverEdge)
-            { isCharacterAtCoverEdge = false; }
+            { DoNotAllowCharacterToMovePastEdge(); }
     }
 
-    [SerializeField] float timeToCompleteCharacterOrientation = 0.25f;
-    public void turnCharacterToWall(Vector3 normalPlane)
+    private void DoNotAllowCharacterToMovePastEdge()
     {
-        DOTween.To(() => transform.forward, x => transform.forward = x, normalPlane, timeToCompleteCharacterOrientation);
+        movementDirection = Vector3.zero;
+        movingSpeed = 0f;
     }
 
     [SerializeField] float stoppingDistanceToCoverEdge = 3.75f;
@@ -61,7 +73,7 @@ public class CharacterOnWallState : CharacterMovementBase
         Vector3 raycastOriginPoint = transform.position + charControllerHorizontalBound * characterMovementDirectionOnWall *
                                                           stoppingDistanceToCoverEdge * transform.right;
 
-        return isCharacterAtCoverEdge = !Physics.Raycast(raycastOriginPoint, -transform.forward, 0.5f, coverMask);
+        return !Physics.Raycast(raycastOriginPoint, -transform.forward, 0.5f, coverMask);
     }
 
     // TODO: refactor this OnMove repeated code from CharacterRunningState
@@ -93,7 +105,7 @@ public class CharacterOnWallState : CharacterMovementBase
         if (!Mathf.Approximately(inputBuffer, 0f))
         {
             crouchingState.enabled = true;
-
+            removeCharacterFromWall.Invoke();
             this.enabled = false;
         }
     }
