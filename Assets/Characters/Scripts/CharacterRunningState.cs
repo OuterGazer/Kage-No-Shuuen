@@ -24,7 +24,7 @@ public class CharacterRunningState : CharacterMovementBase
 
         UpdateMovement(speed, movementDirection, Vector3.up);
 
-        OrientateCharacterForwardWhenMoving();
+        OrientateCharacterForward();
     }
 
     private void ChangeToOnAirState()

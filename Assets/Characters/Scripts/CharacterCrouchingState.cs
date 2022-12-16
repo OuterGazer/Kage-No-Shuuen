@@ -29,7 +29,8 @@ public class CharacterCrouchingState : CharacterMovementBase
 
         UpdateMovement(speed, movementDirection, Vector3.up);
 
-        OrientateCharacterForwardWhenMoving();
+        if(movementDirection != Vector3.zero)
+            OrientateCharacterForward();
     }
 
     private void ChangeToOnAirState()

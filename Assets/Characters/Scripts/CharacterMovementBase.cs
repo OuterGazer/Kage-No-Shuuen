@@ -90,7 +90,7 @@ public class CharacterMovementBase : MonoBehaviour
 
     // TODO: put it in its own class?
     private static float timeToOrientateCharacterForward = 0.25f;
-    protected void OrientateCharacterForwardWhenMoving()
+    protected void OrientateCharacterForward()
     {
         Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
 
