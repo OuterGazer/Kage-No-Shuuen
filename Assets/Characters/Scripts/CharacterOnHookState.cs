@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterOnAirState))]
@@ -17,11 +18,13 @@ public class CharacterOnHookState : CharacterMovementBase
     [HideInInspector] public UnityEvent throwHook;
     [HideInInspector] public UnityEvent<bool> changeToHangingAnimation;
     private CharacterAnimator characterAnimator;
+    //private ChainIKConstraint hookHandConstraint;
 
     private Vector3 hangingDirection;
     public Vector3 HangingDirection => hangingDirection;
 
     private float currentOnHookSpeed;
+    
 
     private void Awake()
     {
@@ -29,11 +32,14 @@ public class CharacterOnHookState : CharacterMovementBase
 
         characterAnimator = GetComponent<CharacterAnimator>();
         characterAnimator.hookHasArrivedAtTarget.AddListener(MoveCharacterToHookTarget);
+        //hookHandConstraint = GetComponentInChildren<ChainIKConstraint>();
+        //hookHandConstraint.weight = 0f;
     }
 
     private void OnEnable()
     {
         throwHook.Invoke();
+        //hookHandConstraint.weight= 1.0f;
         currentOnHookSpeed = 0f;
         hangingDirection = Vector3.zero;
     }
@@ -47,6 +53,7 @@ public class CharacterOnHookState : CharacterMovementBase
             changeToHangingAnimation.Invoke(false);
 
             onAirState.enabled = true;
+            //hookHandConstraint.weight = 0f;
             this.enabled = false;
         }
     }
@@ -56,6 +63,7 @@ public class CharacterOnHookState : CharacterMovementBase
         hangingDirection = (hookTarget.position - transform.position).normalized;
         transform.up = hangingDirection;
         currentOnHookSpeed = speed;
+        //hookHandConstraint.weight = 0f;
         changeToHangingAnimation.Invoke(true);
     }
 }
