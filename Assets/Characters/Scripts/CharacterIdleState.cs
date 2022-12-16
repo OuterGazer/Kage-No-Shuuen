@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput), typeof(CharacterRunningState))]
+[RequireComponent(typeof(CharacterCrouchingState), typeof(CharacterRunningState), typeof(CharacterOnHookState))]
+[RequireComponent(typeof(PlayerInput), typeof(CharacterController))]
 public class CharacterIdleState : CharacterMovementBase
 {
     [Header("Exit Scripts")]

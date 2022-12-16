@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(CharacterIdleState))]
 public class CharacterOnAirState : CharacterMovementBase
 {
     [Header("Exit States")]

@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using DG.Tweening;
 
+[RequireComponent(typeof(CharacterCrouchingState))]
 public class CharacterOnWallState : CharacterMovementBase
 {
     [Header("Exit States")]

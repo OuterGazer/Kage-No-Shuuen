@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterRunningState), typeof(CharacterIdleState))]
+[RequireComponent(typeof(CharacterOnWallState), typeof(CharacterOnAirState))]
 public class CharacterCrouchingState : CharacterMovementBase
 {
     [Header("Exit Scripts")]

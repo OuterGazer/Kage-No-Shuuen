@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(CharacterOnAirState))]
 public class CharacterOnHookState : CharacterMovementBase
 {
     [SerializeField] float hookReachThreshold = 4f;

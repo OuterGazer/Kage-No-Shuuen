@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController), typeof(PlayerInput))]
-[RequireComponent(typeof(CharacterIdleState), typeof(CharacterCrouchingState))]
+[RequireComponent(typeof(CharacterIdleState), typeof(CharacterCrouchingState), typeof(CharacterOnAirState))]
 public class CharacterRunningState : CharacterMovementBase
 {
     [Header("Exit Scripts")]

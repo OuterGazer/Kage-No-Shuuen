@@ -88,7 +88,6 @@ public class CharacterMovementBase : MonoBehaviour
         return movement;
     }
 
-    // New Implementation
     // TODO: put it in its own class?
     private static float timeToOrientateCharacterForward = 0.25f;
     protected void OrientateCharacterForwardWhenMoving()
