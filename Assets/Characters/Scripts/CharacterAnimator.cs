@@ -20,6 +20,7 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterCrouchingState crouchingState;
     private CharacterOnWallState onWallState;
     private CharacterOnHookState onHookState;
+    private CharacterOnAirState onAirState;
     private Vector3 movementDirection;
     private float runningSpeed;
 
@@ -45,11 +46,13 @@ public class CharacterAnimator : MonoBehaviour
         crouchingState = GetComponent<CharacterCrouchingState>();
         onWallState = GetComponent<CharacterOnWallState>();
         onHookState = GetComponent<CharacterOnHookState>();
+        onAirState = GetComponent<CharacterOnAirState>();
         crouchingState.attachCharacterToWall.AddListener(AttachCharacterToWall);
         onWallState.removeCharacterFromWall.AddListener(RemoveCharacterFromWall);
         onWallState.correctCharacterAnimationWhenCameraIsNearWall.AddListener(SetCorrectAnimationWhenCharacterIsOnWall);
         onHookState.throwHook.AddListener(HaveCharacterThrowHook);
         onHookState.changeToHangingAnimation.AddListener(TransitionToOrFromHooked);
+        onAirState.isCharacterTouchingGround.AddListener(TransitionToOrFromAir);
     }
 
     private void OnDestroy()
@@ -59,6 +62,7 @@ public class CharacterAnimator : MonoBehaviour
         onWallState.correctCharacterAnimationWhenCameraIsNearWall.RemoveListener(SetCorrectAnimationWhenCharacterIsOnWall);
         onHookState.throwHook.RemoveListener(HaveCharacterThrowHook);
         onHookState.changeToHangingAnimation.RemoveListener(TransitionToOrFromHooked);
+        onAirState.isCharacterTouchingGround.RemoveListener(TransitionToOrFromAir);
     }
 
     private void Start()

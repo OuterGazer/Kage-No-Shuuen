@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class CharacterOnAirState : MonoBehaviour
+public class CharacterOnAirState : CharacterMovementBase
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Exit States")]
+    [SerializeField] CharacterIdleState idleState;
+
+    [HideInInspector] public UnityEvent<bool> isCharacterTouchingGround;
+
+    private void Awake()
     {
-        
+        isCharacterTouchingGround.Invoke(true);
+        this.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        transform.up = Vector3.up;
+        isCharacterTouchingGround.Invoke(false);
+    }
+
+    private void Update()
+    {
+        UpdateMovement(speed, Vector3.zero, Vector3.up);
+
+        if(charController.isGrounded)
+        {
+            isCharacterTouchingGround.Invoke(true);
+            idleState.enabled = true;
+            this.enabled = false;
+        }
     }
 }

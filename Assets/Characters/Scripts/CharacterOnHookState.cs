@@ -56,6 +56,5 @@ public class CharacterOnHookState : CharacterMovementBase
         transform.up = hangingDirection;
         currentOnHookSpeed = speed;
         changeToHangingAnimation.Invoke(true);
-        //BroadcastMessage("TransitionToOrFromAir", false);
     }
 }

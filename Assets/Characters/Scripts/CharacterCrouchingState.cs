@@ -11,6 +11,7 @@ public class CharacterCrouchingState : CharacterMovementBase
     [SerializeField] CharacterRunningState runningState;
     [SerializeField] CharacterIdleState idleState;
     [SerializeField] CharacterOnWallState onWallState;
+    [SerializeField] CharacterOnAirState onAirState;
 
     [HideInInspector] public UnityEvent attachCharacterToWall;
 
@@ -21,9 +22,18 @@ public class CharacterCrouchingState : CharacterMovementBase
 
     void Update()
     {
+        if (!charController.isGrounded)
+            ChangeToOnAirState();
+
         UpdateMovement(speed, movementDirection, Vector3.up);
 
         OrientateCharacterForwardWhenMoving();
+    }
+
+    private void ChangeToOnAirState()
+    {
+        onAirState.enabled = true;
+        this.enabled = false;
     }
 
     // TODO: refactor this OnMove repeated code from CharacterRunningState

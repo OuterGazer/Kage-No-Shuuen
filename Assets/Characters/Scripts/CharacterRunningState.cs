@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class CharacterRunningState : CharacterMovementBase
     [Header("Exit Scripts")]
     [SerializeField] CharacterIdleState idleState;
     [SerializeField] CharacterCrouchingState crouchingState;
+    [SerializeField] CharacterOnAirState onAirState;
 
     private void Awake()
     {
@@ -18,9 +20,18 @@ public class CharacterRunningState : CharacterMovementBase
 
     void Update()
     {
+        if (!charController.isGrounded)
+            ChangeToOnAirState();
+
         UpdateMovement(speed, movementDirection, Vector3.up);
 
         OrientateCharacterForwardWhenMoving();
+    }
+
+    private void ChangeToOnAirState()
+    {
+        onAirState.enabled = true;
+        this.enabled = false;
     }
 
     // TODO: refactor this OnMove repeated code from CharacterRunningState
