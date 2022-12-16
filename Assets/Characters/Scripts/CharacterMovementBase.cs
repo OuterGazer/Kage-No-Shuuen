@@ -10,7 +10,7 @@ public class CharacterMovementBase : MonoBehaviour
     public float Speed => speed;
 
     private static Camera mainCamera;
-    private static CharacterController charController;
+    protected static CharacterController charController;
 
     protected static Vector3 movementDirection;
     public static Vector3 MovementDirection => movementDirection;

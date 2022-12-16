@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 //[RequireComponent(typeof(CharacterMovement), typeof(CharacterStateHandler))]
 public class CharacterAnimator : MonoBehaviour
 {
     //[SerializeField] float cameraThresholdNearWall = 0.85f;
+    [HideInInspector] public UnityEvent hookHasArrivedAtTarget;
 
     private Animator animator;
     //old implementation
@@ -17,6 +19,7 @@ public class CharacterAnimator : MonoBehaviour
     //new implementation
     private CharacterCrouchingState crouchingState;
     private CharacterOnWallState onWallState;
+    private CharacterOnHookState onHookState;
     private Vector3 movementDirection;
     private float runningSpeed;
 
@@ -41,15 +44,21 @@ public class CharacterAnimator : MonoBehaviour
 
         crouchingState = GetComponent<CharacterCrouchingState>();
         onWallState = GetComponent<CharacterOnWallState>();
+        onHookState = GetComponent<CharacterOnHookState>();
         crouchingState.attachCharacterToWall.AddListener(AttachCharacterToWall);
         onWallState.removeCharacterFromWall.AddListener(RemoveCharacterFromWall);
         onWallState.correctCharacterAnimationWhenCameraIsNearWall.AddListener(SetCorrectAnimationWhenCharacterIsOnWall);
+        onHookState.throwHook.AddListener(HaveCharacterThrowHook);
+        onHookState.changeToHangingAnimation.AddListener(TransitionToOrFromHooked);
     }
 
     private void OnDestroy()
     {
         crouchingState.attachCharacterToWall.RemoveListener(AttachCharacterToWall);
         onWallState.removeCharacterFromWall.RemoveListener(RemoveCharacterFromWall);
+        onWallState.correctCharacterAnimationWhenCameraIsNearWall.RemoveListener(SetCorrectAnimationWhenCharacterIsOnWall);
+        onHookState.throwHook.RemoveListener(HaveCharacterThrowHook);
+        onHookState.changeToHangingAnimation.RemoveListener(TransitionToOrFromHooked);
     }
 
     private void Start()
@@ -262,6 +271,6 @@ public class CharacterAnimator : MonoBehaviour
 
     public void HookHasArrivedAtTarget()
     {
-        SendMessage("MoveCharacterToHookTarget");
+        hookHasArrivedAtTarget.Invoke();
     }
 }
