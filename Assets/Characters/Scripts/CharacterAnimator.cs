@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 //[RequireComponent(typeof(CharacterMovement), typeof(CharacterStateHandler))]
 public class CharacterAnimator : MonoBehaviour
 {
-    [SerializeField] float cameraThresholdNearWall = 0.85f;
+    //[SerializeField] float cameraThresholdNearWall = 0.85f;
 
     private Animator animator;
     //old implementation
@@ -29,6 +29,8 @@ public class CharacterAnimator : MonoBehaviour
 
     Vector3 oldPosition;
 
+    private bool isAnimationCorrectedWhenOnWall = false;
+
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -41,6 +43,7 @@ public class CharacterAnimator : MonoBehaviour
         onWallState = GetComponent<CharacterOnWallState>();
         crouchingState.attachCharacterToWall.AddListener(AttachCharacterToWall);
         onWallState.removeCharacterFromWall.AddListener(RemoveCharacterFromWall);
+        onWallState.correctCharacterAnimationWhenCameraIsNearWall.AddListener(SetCorrectAnimationWhenCharacterIsOnWall);
     }
 
     private void OnDestroy()
@@ -109,10 +112,8 @@ public class CharacterAnimator : MonoBehaviour
     private void CalculateSignOfMovementDirection()
     {
         if (IsPlayerPressingAMovementKey(movementDirection.z))
-        {
             forwardMovementDirection = Mathf.Sign(movementDirection.z);
-        }
-           
+
         if (IsPlayerPressingAMovementKey(movementDirection.x))
             sidewaysMovementDirection = Mathf.Sign(movementDirection.x);
 
@@ -170,16 +171,22 @@ public class CharacterAnimator : MonoBehaviour
     {
         animator.SetFloat(movementForwardHash, currentVelocityForwardNormalized * forwardMovementDirection);
 
-        if (IsPlayerOnWallAndUsingWSInsteadOfAD())
+        if (isAnimationCorrectedWhenOnWall)
         {
-            //TODO: refactor this OnWall check. It should go in the OnWall script
-            if (onWallState.enabled && IsPlayerForwardPointingTheSameDirectionAsCameraRight())
-                animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * forwardMovementDirection);
-            else
-                animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * -forwardMovementDirection);
+            animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * (forwardMovementDirection * onWallAnimationCorrectionFactor));
+            isAnimationCorrectedWhenOnWall = false;
         }
         else
+        {
             animator.SetFloat(movementSidewaysHash, currentVelocitySidewaysNormalized * sidewaysMovementDirection);
+        }
+    }
+
+    private float onWallAnimationCorrectionFactor = 1f;
+    private void SetCorrectAnimationWhenCharacterIsOnWall(float directionSign)
+    {
+        onWallAnimationCorrectionFactor = directionSign;
+        isAnimationCorrectedWhenOnWall = true;
     }
     
     void OnMove(InputValue inputValue)
@@ -196,12 +203,6 @@ public class CharacterAnimator : MonoBehaviour
         }
     }
 
-    private bool IsPlayerForwardPointingTheSameDirectionAsCameraRight()
-    {
-        Vector3 projectedCameraRightToUpPlane = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up);
-        return Vector3.Dot(projectedCameraRightToUpPlane, transform.forward) >= cameraThresholdNearWall;
-    }
-
     /// <summary>
     /// old implementation, erase when new one works
     /// </summary>
@@ -211,21 +212,27 @@ public class CharacterAnimator : MonoBehaviour
     //    return characterStateHandler.PlayerState.HasFlag(CharacterState.OnWall) && IsCameraNearWall();
     //}
 
-    private bool IsPlayerOnWallAndUsingWSInsteadOfAD()
-    {
-        return IsCameraNearWall();
-    }
+    //private bool IsPlayerOnWallAndUsingWSInsteadOfAD()
+    //{
+    //    return IsCameraNearWall();
+    //}
 
-    private bool IsCameraNearWall()
-    {
-        float dotProductCameraForwardAndPlayerXAxis = Vector3.Dot(Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up), transform.right);
+    //private bool IsCameraNearWall()
+    //{
+    //    float dotProductCameraForwardAndPlayerXAxis = Vector3.Dot(Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up), transform.right);
 
-        if (dotProductCameraForwardAndPlayerXAxis >= cameraThresholdNearWall ||
-            dotProductCameraForwardAndPlayerXAxis <= -cameraThresholdNearWall)
-            { return true; }
-        else
-            { return false; }
-    }
+    //    if (dotProductCameraForwardAndPlayerXAxis >= cameraThresholdNearWall ||
+    //        dotProductCameraForwardAndPlayerXAxis <= -cameraThresholdNearWall)
+    //        { return true; }
+    //    else
+    //        { return false; }
+    //}
+
+    //private bool IsPlayerForwardPointingTheSameDirectionAsCameraRight()
+    //{
+    //    Vector3 projectedCameraRightToUpPlane = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up);
+    //    return Vector3.Dot(projectedCameraRightToUpPlane, transform.forward) >= cameraThresholdNearWall;
+    //}
 
     public void AttachCharacterToWall()
     {

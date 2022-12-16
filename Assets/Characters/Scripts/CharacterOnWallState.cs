@@ -35,6 +35,8 @@ public class CharacterOnWallState : CharacterMovementBase
         TurnCharacterAgainstTheWall();
 
         UpdateMovement(speed, movementDirection, transform.forward);
+
+        ApplyCorrectAnimation();
     }
 
     private void TurnCharacterAgainstTheWall()
@@ -51,6 +53,40 @@ public class CharacterOnWallState : CharacterMovementBase
     private bool IsCharacterBackNotAgainstTheWall()
     {
         return !Mathf.Approximately(Vector3.Dot(transform.forward, normalToWallPlane), 1f);
+    }
+
+    private void ApplyCorrectAnimation()
+    {
+        if (IsPlayerOnWallAndUsingWSInsteadOfAD())
+        {
+            if (IsPlayerForwardPointingTheSameDirectionAsCameraRight())
+                correctCharacterAnimationWhenCameraIsNearWall.Invoke(+1f);
+            else
+                correctCharacterAnimationWhenCameraIsNearWall.Invoke(-1f);
+        }
+    }
+
+    private bool IsPlayerOnWallAndUsingWSInsteadOfAD()
+    {
+        return IsCameraNearWall();
+    }
+
+    [SerializeField] float cameraThresholdNearWall = 0.85f;
+    private bool IsCameraNearWall()
+    {
+        float dotProductCameraForwardAndPlayerXAxis = Vector3.Dot(Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up), transform.right);
+
+        if (dotProductCameraForwardAndPlayerXAxis >= cameraThresholdNearWall ||
+            dotProductCameraForwardAndPlayerXAxis <= -cameraThresholdNearWall)
+        { return true; }
+        else
+        { return false; }
+    }
+
+    private bool IsPlayerForwardPointingTheSameDirectionAsCameraRight()
+    {
+        Vector3 projectedCameraRightToUpPlane = Vector3.ProjectOnPlane(Camera.main.transform.right, Vector3.up);
+        return Vector3.Dot(projectedCameraRightToUpPlane, transform.forward) >= cameraThresholdNearWall;
     }
 
     private void FixedUpdate()
