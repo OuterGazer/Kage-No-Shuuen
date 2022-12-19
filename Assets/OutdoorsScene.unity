@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2159.5537, g: 2263.3438, b: 3286.375, a: 1}
+  m_IndirectSpecularColor: {r: 2159.747, g: 2263.621, b: 3286.6172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -775,7 +775,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.004697015, y: 8.8639013e-10, z: -4.1634344e-12, w: 0.999989}
+  m_LocalRotation: {x: 0.004697017, y: -4.7741267e-18, z: 8.514649e-20, w: 0.999989}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1311,7 +1311,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.03333581, y: 1e-45, z: -0, w: 0.99944425}
+  m_LocalRotation: {x: 0.03333581, y: -0, z: -0, w: 0.99944425}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1469,6 +1469,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309005415}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1363006051 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4346328891567714401, guid: f3a501e21767747428cd4a475d9844b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6879177245332342833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1407387491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,12 +2515,6 @@ MonoBehaviour:
   AutoEnableInputs: 1
   XYAxis: {fileID: -5630151704836100654, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   ZAxis: {fileID: 0}
---- !u!4 &1896141927 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2994652720307673247, guid: f3a501e21767747428cd4a475d9844b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 6879177245332342833}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1907167016
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,10 +2713,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5201827}
     m_Modifications:
-    - target: {fileID: 338064084, guid: f3a501e21767747428cd4a475d9844b8, type: 3}
+    - target: {fileID: 767884636729168588, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
       propertyPath: m_Data.m_Root
       value: 
-      objectReference: {fileID: 1896141927}
+      objectReference: {fileID: 1363006051}
+    - target: {fileID: 4418708312322543643, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: m_RigLayers.Array.data[0].m_Active
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7367104688647257536, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}
       propertyPath: m_RootOrder
@@ -2776,11 +2782,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7367104688647257544, guid: f3a501e21767747428cd4a475d9844b8,
-        type: 3}
-      propertyPath: hookThrowRadius
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3a501e21767747428cd4a475d9844b8, type: 3}

@@ -6,8 +6,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CharacterIdleState))]
 public class CharacterOnAirState : CharacterMovementBase
 {
-    // TODO: fix the fact that if you enter the state with a movement key pressed,
-    // once you reach the ground you won't keep moving automatically
+    // TODO: Change collider programatically to have landing animation play better.
 
     [Header("Exit States")]
     [SerializeField] CharacterIdleState idleState;
