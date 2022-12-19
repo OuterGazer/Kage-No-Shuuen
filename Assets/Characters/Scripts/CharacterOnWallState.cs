@@ -40,10 +40,13 @@ public class CharacterOnWallState : CharacterMovementBase
         ApplyCorrectAnimation();
     }
 
+    
     private void TurnCharacterAgainstTheWall()
     {
         if (IsCharacterBackNotAgainstTheWall())
+        {
             DOTween.To(() => transform.forward, x => transform.forward = x, normalToWallPlane, timeToCompleteCharacterOrientation);
+        }
     }
 
     public void SetNormalToWallPlane(Vector3 normalPlane)

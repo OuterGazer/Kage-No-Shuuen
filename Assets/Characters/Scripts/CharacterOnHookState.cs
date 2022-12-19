@@ -13,7 +13,10 @@ public class CharacterOnHookState : CharacterMovementBase
 
 
     [Header("Exit States")]
-    [SerializeField] CharacterOnAirState onAirState;    
+    [SerializeField] CharacterOnAirState onAirState;
+
+    [Header("Miscellaneous Characteristics")]
+    [SerializeField] float rigAlignmentToHookTargetAcceleration = 0.01f;
 
     [HideInInspector] public UnityEvent throwHook;
     [HideInInspector] public UnityEvent<bool> changeToHangingAnimation;
@@ -65,7 +68,7 @@ public class CharacterOnHookState : CharacterMovementBase
     {
         if (hookHandConstraint.weight < 1f && !isHookThrown)
         {
-            hookHandConstraint.weight += 0.01f;
+            hookHandConstraint.weight += rigAlignmentToHookTargetAcceleration;
         }
         else
         {

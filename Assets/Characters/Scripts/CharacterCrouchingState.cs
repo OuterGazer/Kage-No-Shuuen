@@ -39,7 +39,7 @@ public class CharacterCrouchingState : CharacterMovementBase
         this.enabled = false;
     }
 
-    // TODO: refactor this OnMove repeated code from CharacterRunningState
+    // TODO: refactor this OnMove repeated code from CharacterRunningState, it could go on CharacterMovementBase
     void OnMove(InputValue inputValue)
     {
         if (this.enabled)
