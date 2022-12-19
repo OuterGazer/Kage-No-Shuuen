@@ -8,4 +8,9 @@ public class AnimationEventForwarder : MonoBehaviour
     {
         SendMessageUpwards("HookHasArrivedAtTarget");
     }
+
+    public void ForwardExitDodgingState()
+    {
+        SendMessageUpwards("ExitDodgingState");
+    }
 }

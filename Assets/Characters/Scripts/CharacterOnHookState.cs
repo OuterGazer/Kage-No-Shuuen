@@ -9,6 +9,7 @@ using UnityEngine.Events;
 public class CharacterOnHookState : CharacterMovementBase
 {
     // TODO: pensar en si quiero que el jugador pueda lanzar el gancho estando OnWall
+    // TODO: Have head correctly point towards hook target.
 
     [SerializeField] float hookThrowRadius = 10f;
     [SerializeField] float hookReachThreshold = 4f;

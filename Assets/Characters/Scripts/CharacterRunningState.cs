@@ -5,12 +5,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterIdleState), typeof(CharacterCrouchingState), typeof(CharacterOnAirState))]
+[RequireComponent(typeof(CharacterDodgingState))]
 public class CharacterRunningState : CharacterMovementBase
 {
     [Header("Exit Scripts")]
     [SerializeField] CharacterIdleState idleState;
     [SerializeField] CharacterCrouchingState crouchingState;
     [SerializeField] CharacterOnAirState onAirState;
+    [SerializeField] CharacterDodgingState rollingState;
 
     private void Awake()
     {
@@ -82,5 +84,18 @@ public class CharacterRunningState : CharacterMovementBase
     private static bool IsCrouchButtonPressed(InputValue inputValue)
     {
         return !Mathf.Approximately(inputValue.Get<float>(), 0f);
+    }
+
+    public void OnDodge()
+    {
+        if (this.enabled)
+        {
+            rollingState.SetDodgeFacingDirection(currentHorizontalMovement.normalized);
+            movementDirection = Vector3.zero; //To prevent character to keep moving after dodging is finished.
+            movingSpeed = 0f;
+
+            rollingState.enabled = true;            
+            this.enabled = false;
+        }
     }
 }
