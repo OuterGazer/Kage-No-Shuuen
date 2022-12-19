@@ -52,8 +52,6 @@ public class CharacterIdleState : CharacterMovementBase
 
     public void OnHookThrow()
     {
-        // TODO: encontrar una manera programática de agregar un target (con un Overlap/CheckSphere?)
-        // TODO: pensar en si quiero que el jugador pueda lanzar el gancho estando OnWall
         if (this.enabled)
         {
             onHookState.enabled = true;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 338064083}
   - component: {fileID: 338064084}
   m_Layer: 0
-  m_Name: ArmToThumbConstraint
+  m_Name: ShoulderToThumbConstraint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796b75e345bd64d47a31edd757bd2670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0
+  m_Weight: 1
   m_Data:
-    m_Root: {fileID: 3852983829942776694}
+    m_Root: {fileID: 288681658695210478}
     m_Tip: {fileID: 1573727010707248366}
     m_Target: {fileID: 0}
     m_ChainRotationWeight: 1
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 1
+  m_Weight: 0
   m_Effectors: []
 --- !u!1 &2587925820132196428
 GameObject:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796b75e345bd64d47a31edd757bd2670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0
+  m_Weight: 1
   m_Data:
     m_Root: {fileID: 1664202111802419925}
     m_Tip: {fileID: 6184164727178482808}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796b75e345bd64d47a31edd757bd2670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0
+  m_Weight: 1
   m_Data:
     m_Root: {fileID: 1779273780923648895}
     m_Tip: {fileID: 3602344978392960247}
@@ -832,10 +832,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  hookThrowRadius: 10
   hookReachThreshold: 4
-  hookTarget: {fileID: 0}
   onAirState: {fileID: 7367104688647257547}
-  rigAlignmentToHookTargetAcceleration: 0.05
+  idleState: {fileID: 7367104688647257540}
+  rigAlignmentToHookTargetAcceleration: 0.04
+  rigBuilder: {fileID: 4418708312322543643}
+  shoulderToFingerConstraints:
+  - {fileID: 338064084}
+  - {fileID: 1112738914613053287}
+  - {fileID: 1562669806966696297}
+  - {fileID: 4788723681643381980}
+  - {fileID: 89793083221622518}
   throwHook:
     m_PersistentCalls:
       m_Calls: []
@@ -1356,7 +1364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796b75e345bd64d47a31edd757bd2670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0
+  m_Weight: 1
   m_Data:
     m_Root: {fileID: 8556621279173239835}
     m_Tip: {fileID: 3220170479679116079}
@@ -1411,7 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796b75e345bd64d47a31edd757bd2670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Weight: 0
+  m_Weight: 1
   m_Data:
     m_Root: {fileID: 6114231244054527896}
     m_Tip: {fileID: 4484767256368329599}

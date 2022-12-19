@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,21 +8,28 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CharacterOnAirState))]
 public class CharacterOnHookState : CharacterMovementBase
 {
+    // TODO: pensar en si quiero que el jugador pueda lanzar el gancho estando OnWall
+
+    [SerializeField] float hookThrowRadius = 10f;
     [SerializeField] float hookReachThreshold = 4f;
-    [SerializeField] Transform hookTarget;
-    public Transform HookTarget => hookTarget;
+    private Transform hookTarget;
 
 
     [Header("Exit States")]
     [SerializeField] CharacterOnAirState onAirState;
+    [SerializeField] CharacterIdleState idleState;
 
-    [Header("Miscellaneous Characteristics")]
+    [Header("Rig Characteristics")]
     [SerializeField] float rigAlignmentToHookTargetAcceleration = 0.01f;
+    [SerializeField] RigBuilder rigBuilder;
+    [SerializeField] ChainIKConstraint[] shoulderToFingerConstraints;
+    
 
     [HideInInspector] public UnityEvent throwHook;
     [HideInInspector] public UnityEvent<bool> changeToHangingAnimation;
     private CharacterAnimator characterAnimator;
-    private ChainIKConstraint hookHandConstraint;
+    private Rig spineToFingerRig;
+    private LayerMask hookTargetMask;
 
     private Vector3 hangingDirection;
     public Vector3 HangingDirection => hangingDirection;
@@ -36,16 +44,62 @@ public class CharacterOnHookState : CharacterMovementBase
 
         characterAnimator = GetComponent<CharacterAnimator>();
         characterAnimator.hookHasArrivedAtTarget.AddListener(MoveCharacterToHookTarget);
-        hookHandConstraint = GetComponentInChildren<ChainIKConstraint>();
-        hookHandConstraint.weight = 0f;
+        spineToFingerRig = GetComponentInChildren<Rig>();
+        spineToFingerRig.weight = 0f;
+        hookTargetMask = LayerMask.GetMask("HookTarget");
     }
 
     private void OnEnable()
     {
+        GetHookTargetNearby();
+    }
+
+    private void OnDisable()
+    {
+        hookTarget = null;
+        SetTargetToRigChain();        
+    }
+
+    private void GetHookTargetNearby()
+    {
+        Collider[] hookTargets = Physics.OverlapSphere(transform.position, hookThrowRadius, hookTargetMask);
+
+        if (hookTargets.Length == 0)
+        {
+            StartCoroutine(ExitToIdle());
+        }            
+        else
+        {
+            hookTarget = hookTargets[0].transform;
+            SetTargetToRigChain();
+
+            ThrowHook();
+        }
+    }
+
+    private IEnumerator ExitToIdle()
+    {
+        this.enabled = false;
+        yield return new WaitForEndOfFrame();
+        idleState.enabled = true;
+        
+    }
+
+    private void SetTargetToRigChain()
+    {
+        foreach (ChainIKConstraint item in shoulderToFingerConstraints)
+        {
+            item.data.target = hookTarget;
+        }
+        rigBuilder.Build();
+    }
+
+    private void ThrowHook()
+    {
         transform.forward = Vector3.ProjectOnPlane(hookTarget.position, Vector3.up);
 
         throwHook.Invoke();
-        
+
         isHookThrown = false;
         currentOnHookSpeed = 0f;
         hangingDirection = Vector3.zero;
@@ -57,7 +111,6 @@ public class CharacterOnHookState : CharacterMovementBase
 
         charController.Move(currentOnHookSpeed * Time.deltaTime * hangingDirection);
 
-
         if (IsHookTargetReached())
         {
             ExitState();
@@ -66,14 +119,15 @@ public class CharacterOnHookState : CharacterMovementBase
 
     private void PointArmTowardsHookTarget()
     {
-        if (hookHandConstraint.weight < 1f && !isHookThrown)
+        if (spineToFingerRig.weight < 1f && !isHookThrown)
         {
-            hookHandConstraint.weight += rigAlignmentToHookTargetAcceleration;
+            spineToFingerRig.weight += rigAlignmentToHookTargetAcceleration;
+
         }
         else
         {
             isHookThrown = true;
-            hookHandConstraint.weight = 0f;
+            spineToFingerRig.weight = 0f;
         }
     }
 
@@ -87,7 +141,7 @@ public class CharacterOnHookState : CharacterMovementBase
         changeToHangingAnimation.Invoke(false);
 
         onAirState.enabled = true;
-        hookHandConstraint.weight = 0f;
+        spineToFingerRig.weight = 0f;
         this.enabled = false;
     }
 
@@ -96,7 +150,7 @@ public class CharacterOnHookState : CharacterMovementBase
         hangingDirection = (hookTarget.position - transform.position).normalized;
         transform.up = hangingDirection;
         currentOnHookSpeed = speed;
-        hookHandConstraint.weight = 0f;
+        spineToFingerRig.weight = 0f;
         changeToHangingAnimation.Invoke(true);
     }
 }
