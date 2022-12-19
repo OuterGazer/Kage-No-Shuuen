@@ -46,6 +46,7 @@ public class CharacterAnimator : MonoBehaviour
         onWallState.correctCharacterAnimationWhenCameraIsNearWall.AddListener(SetCorrectAnimationWhenCharacterIsOnWall);
         onHookState.throwHook.AddListener(HaveCharacterThrowHook);
         onHookState.changeToHangingAnimation.AddListener(TransitionToOrFromHooked);
+        onAirState.changeToLandingAnimation.AddListener(TriggerLandingAnimation);
         onAirState.isCharacterTouchingGround.AddListener(TransitionToOrFromAir);
     }
 
@@ -181,6 +182,11 @@ public class CharacterAnimator : MonoBehaviour
     public void TransitionToOrFromHooked(bool isHooked)
     {
         animator.SetBool(isHookedHash, isHooked);
+    }
+
+    public void TriggerLandingAnimation()
+    {
+        animator.SetTrigger("Landing");
     }
 
     public void TransitionToOrFromAir(bool isGrounded)

@@ -121,7 +121,7 @@ public class CharacterOnHookState : CharacterMovementBase
     {
         if (spineToFingerRig.weight < 1f && !isHookThrown)
         {
-            spineToFingerRig.weight += rigAlignmentToHookTargetAcceleration;
+            spineToFingerRig.weight += rigAlignmentToHookTargetAcceleration * Time.deltaTime;
 
         }
         else
