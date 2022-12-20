@@ -60,4 +60,17 @@ public class CharacterIdleState : CharacterMovementBase
             this.enabled = false;
         }
     }
+
+    public void OnBlock(InputValue inputValue)
+    {
+        if (this.enabled)
+        {
+            float temp = inputValue.Get<float>();
+
+            if(temp > 0f)
+                BroadcastMessage("UpdateBlocking", true);
+            else
+                BroadcastMessage("UpdateBlocking", false);
+        }
+    }
 }

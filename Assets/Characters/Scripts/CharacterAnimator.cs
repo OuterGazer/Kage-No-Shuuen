@@ -29,6 +29,7 @@ public class CharacterAnimator : MonoBehaviour
     int isHookedHash;
     int landingHash;
     int dodgingHash;
+    int isBlockingHash;
 
     Vector3 oldPosition;
 
@@ -100,6 +101,7 @@ public class CharacterAnimator : MonoBehaviour
         isHookedHash = Animator.StringToHash("isHooked");
         landingHash = Animator.StringToHash("Landing");
         dodgingHash = Animator.StringToHash("Dodging");
+        isBlockingHash = Animator.StringToHash("isBlocking");
     }
 
     private void Update()
@@ -231,5 +233,10 @@ public class CharacterAnimator : MonoBehaviour
     public void PlayDodgeAnimation()
     {
         animator.SetTrigger(dodgingHash);
+    }
+
+    public void UpdateBlocking(bool isBlocking)
+    {
+        animator.SetBool(isBlockingHash, isBlocking);
     }
 }
