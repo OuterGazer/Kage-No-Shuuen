@@ -32,8 +32,10 @@ public class CharacterDodgingState : CharacterMovementBase
     {
         transform.forward = dodgeFacingDirection;
 
-        charController.Move(currentSpeed * Time.deltaTime * dodgeFacingDirection);
+        Vector3 movementOnPlane = currentSpeed * Time.deltaTime * dodgeFacingDirection;
+        Vector3 verticalMovement = new Vector3(0f, Physics.gravity.y * Time.deltaTime, 0f);
 
+        charController.Move(movementOnPlane + verticalMovement);
         EaseOutCurrentSpeed();
     }
 
