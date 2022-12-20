@@ -91,8 +91,6 @@ public class CharacterRunningState : CharacterMovementBase
         if (this.enabled)
         {
             rollingState.SetDodgeFacingDirection(currentHorizontalMovement.normalized);
-            movementDirection = Vector3.zero; //To prevent character to keep moving after dodging is finished.
-            movingSpeed = 0f;
 
             rollingState.enabled = true;            
             this.enabled = false;

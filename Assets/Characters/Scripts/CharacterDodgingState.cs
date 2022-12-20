@@ -24,8 +24,16 @@ public class CharacterDodgingState : CharacterMovementBase
 
     private void OnEnable()
     {
+        PreventMovementDecelerationAfterDodging();
+
         makeCharaterDodge.Invoke();
         currentSpeed = speed;
+    }
+
+    private void PreventMovementDecelerationAfterDodging()
+    {
+        movementDirection = Vector3.zero;
+        movingSpeed = 0f;
     }
 
     private void Update()
@@ -39,7 +47,6 @@ public class CharacterDodgingState : CharacterMovementBase
         EaseOutCurrentSpeed();
     }
 
-    private float t;
     private void EaseOutCurrentSpeed()
     {
         currentSpeed -= speedDeceleration * Time.deltaTime;

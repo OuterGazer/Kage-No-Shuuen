@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterCrouchingState), typeof(CharacterRunningState), typeof(CharacterOnHookState))]
@@ -20,7 +22,7 @@ public class CharacterIdleState : CharacterMovementBase
 
     private void OnEnable()
     {
-        movementDirection = Vector3.zero;
+        movementDirection = Vector3.zero;            
     }
 
     private void Update()
