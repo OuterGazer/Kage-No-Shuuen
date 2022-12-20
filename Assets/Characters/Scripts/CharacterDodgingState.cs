@@ -7,7 +7,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CharacterIdleState))]
 public class CharacterDodgingState : CharacterMovementBase
 {
-    [SerializeField] float impulseThreshold = 3f;
+    [SerializeField] float speedDeceleration = 0.05f;
 
     [Header("Exit States")]
     [SerializeField] CharacterIdleState idleState;
@@ -37,20 +37,12 @@ public class CharacterDodgingState : CharacterMovementBase
         EaseOutCurrentSpeed();
     }
 
+    private float t;
     private void EaseOutCurrentSpeed()
     {
-        if (currentSpeed >= impulseThreshold)
-            currentSpeed = Mathf.Lerp(speed, 0f, EaseOutQuad(1 - (currentSpeed * 0.999f) / speed) * Time.deltaTime);
-        else
-            currentSpeed = Mathf.Lerp(speed, 0f, t -= 0.05f * Time.deltaTime);
+        currentSpeed -= speedDeceleration * Time.deltaTime;
 
         Debug.Log(currentSpeed);
-    }
-
-    private float t;
-    private float EaseOutQuad(float x) 
-    {
-        return t = 1 - (1 - x) * (1 - x);
     }
 
 public void SetDodgeFacingDirection(Vector3 facingDirection)
