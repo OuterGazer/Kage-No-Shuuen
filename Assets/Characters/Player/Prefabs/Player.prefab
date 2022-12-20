@@ -317,10 +317,10 @@ MonoBehaviour:
   m_Data:
     m_ConstrainedObject: {fileID: 4346328891567714401}
     m_SourceObjects:
-      m_Length: 1
+      m_Length: 0
       m_Item0:
         transform: {fileID: 0}
-        weight: 1
+        weight: 0
       m_Item1:
         transform: {fileID: 0}
         weight: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
         weight: 0
     m_Offset: {x: 0, y: 0, z: 0}
     m_MinLimit: -10
-    m_MaxLimit: 90
+    m_MaxLimit: 70
     m_AimAxis: 4
     m_UpAxis: 2
     m_WorldUpType: 0
@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 7367104688647257544}
   - component: {fileID: 7367104688647257547}
   - component: {fileID: 834020474160094199}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -922,7 +922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   hookThrowRadius: 10
-  hookReachThreshold: 3
+  hookReachThreshold: 4
   onAirState: {fileID: 7367104688647257547}
   idleState: {fileID: 7367104688647257540}
   rigAlignmentToHookTargetAcceleration: 1
@@ -933,6 +933,7 @@ MonoBehaviour:
   - {fileID: 1562669806966696297}
   - {fileID: 4788723681643381980}
   - {fileID: 89793083221622518}
+  headConstraint: {fileID: 1817729045358859809}
   throwHook:
     m_PersistentCalls:
       m_Calls: []

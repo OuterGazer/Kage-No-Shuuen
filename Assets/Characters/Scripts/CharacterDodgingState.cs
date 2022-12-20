@@ -43,8 +43,6 @@ public class CharacterDodgingState : CharacterMovementBase
     private void EaseOutCurrentSpeed()
     {
         currentSpeed -= speedDeceleration * Time.deltaTime;
-
-        Debug.Log(currentSpeed);
     }
 
 public void SetDodgeFacingDirection(Vector3 facingDirection)

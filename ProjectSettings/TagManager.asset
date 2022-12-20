@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cover
+  - HookTarget
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Cover

@@ -5,11 +5,10 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(CharacterOnAirState))]
+[RequireComponent(typeof(CharacterOnAirState), typeof(CharacterIdleState))]
 public class CharacterOnHookState : CharacterMovementBase
 {
     // TODO: pensar en si quiero que el jugador pueda lanzar el gancho estando OnWall
-    // TODO: Have head correctly point towards hook target.
 
     [SerializeField] float hookThrowRadius = 10f;
     [SerializeField] float hookReachThreshold = 4f;
@@ -32,9 +31,9 @@ public class CharacterOnHookState : CharacterMovementBase
     private CharacterAnimator characterAnimator;
     private Rig spineToFingerRig;
     private LayerMask hookTargetMask;
+    private LayerMask obstaclesMask = ~(1 << 3);
 
     private Vector3 hangingDirection;
-    public Vector3 HangingDirection => hangingDirection;
 
     private float currentOnHookSpeed;
 
@@ -53,7 +52,7 @@ public class CharacterOnHookState : CharacterMovementBase
 
     private void OnEnable()
     {
-        GetHookTargetNearby();
+        ManageHookThrowing();
     }
 
     private void OnDisable()
@@ -62,29 +61,52 @@ public class CharacterOnHookState : CharacterMovementBase
         SetTargetToRigChain();        
     }
 
-    private void GetHookTargetNearby()
+    private void ManageHookThrowing()
+    {
+        CheckIfThereIsHookTargetInRange();        
+    }
+
+    private void CheckIfThereIsHookTargetInRange()
     {
         Collider[] hookTargets = Physics.OverlapSphere(transform.position, hookThrowRadius, hookTargetMask);
 
         if (hookTargets.Length == 0)
         {
             StartCoroutine(ExitToIdle());
-        }            
+        }
         else
         {
             hookTarget = hookTargets[0].transform;
-            SetTargetToRigChain();
-
-            ThrowHook();
+            CheckIfObstaclesBetweenCharacterAndTarget();
         }
+    }
+
+    private void CheckIfObstaclesBetweenCharacterAndTarget()
+    {
+        Vector3 tempHookDir = (hookTarget.position - transform.position).normalized;
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, tempHookDir, hookThrowRadius);
+
+        if (!hits[0].collider.CompareTag("HookTarget"))
+        {
+            StartCoroutine(ExitToIdle());
+        }
+        else
+        {
+            PerformHookThrowing();
+        }
+    }
+
+    private void PerformHookThrowing()
+    {
+        SetTargetToRigChain();
+        ThrowHook();
     }
 
     private IEnumerator ExitToIdle()
     {
         this.enabled = false;
         yield return new WaitForEndOfFrame();
-        idleState.enabled = true;
-        
+        idleState.enabled = true;        
     }
 
     private void SetTargetToRigChain()
@@ -93,9 +115,7 @@ public class CharacterOnHookState : CharacterMovementBase
         {
             item.data.target = hookTarget;
         }
-
         AssignConstraintTargetToHead();
-
         rigBuilder.Build();
     }
 
