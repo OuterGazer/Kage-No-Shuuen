@@ -24,6 +24,7 @@ public class CharacterOnHookState : CharacterMovementBase
     [SerializeField] float rigAlignmentToHookTargetAcceleration = 0.01f;
     [SerializeField] RigBuilder rigBuilder;
     [SerializeField] ChainIKConstraint[] shoulderToFingerConstraints;
+    [SerializeField] MultiAimConstraint headConstraint;
     
 
     [HideInInspector] public UnityEvent throwHook;
@@ -92,7 +93,18 @@ public class CharacterOnHookState : CharacterMovementBase
         {
             item.data.target = hookTarget;
         }
+
+        AssignConstraintTargetToHead();
+
         rigBuilder.Build();
+    }
+
+    private void AssignConstraintTargetToHead()
+    {
+        WeightedTransform weightedTransform = new WeightedTransform();
+        weightedTransform.transform = hookTarget;
+        weightedTransform.weight = 1.0f;
+        headConstraint.data.sourceObjects = new WeightedTransformArray() { weightedTransform };
     }
 
     private void ThrowHook()
@@ -123,7 +135,6 @@ public class CharacterOnHookState : CharacterMovementBase
         if (spineToFingerRig.weight < 1f && !isHookThrown)
         {
             spineToFingerRig.weight += rigAlignmentToHookTargetAcceleration * Time.deltaTime;
-
         }
         else
         {
