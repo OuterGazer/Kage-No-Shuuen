@@ -9,6 +9,7 @@ using UnityEngine.Events;
 public class CharacterOnHookState : CharacterMovementBase
 {
     // TODO: pensar en si quiero que el jugador pueda lanzar el gancho estando OnWall
+    // TODO: arreglar bug raro donde si aprieto el boton de agacharse durante la animación de lanzar pasan cosas raras
 
     [SerializeField] float hookThrowRadius = 10f;
     [SerializeField] float hookReachThreshold = 4f;
@@ -48,6 +49,11 @@ public class CharacterOnHookState : CharacterMovementBase
         spineToFingerRig = GetComponentInChildren<Rig>();
         spineToFingerRig.weight = 0f;
         hookTargetMask = LayerMask.GetMask("HookTarget");
+    }
+
+    private void OnDestroy()
+    {
+        characterAnimator.hookHasArrivedAtTarget.RemoveListener(MoveCharacterToHookTarget);
     }
 
     private void OnEnable()

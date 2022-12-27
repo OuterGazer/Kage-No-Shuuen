@@ -37,6 +37,8 @@ public class CharacterCrouchingState : CharacterMovementBase
     {
         onAirState.enabled = true;
         this.enabled = false;
+
+        idleState.move.Disable();
     }
 
     // TODO: refactor this OnMove repeated code from CharacterRunningState, it could go on CharacterMovementBase

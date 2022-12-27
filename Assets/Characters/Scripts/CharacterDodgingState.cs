@@ -57,11 +57,12 @@ public void SetDodgeFacingDirection(Vector3 facingDirection)
         dodgeFacingDirection = facingDirection;
     }
 
+    // Called from an animation event in the rolling animation
     public void ExitDodgingState()
     {
+        OrientateCharacterForward();
+
         idleState.enabled = true;
         this.enabled = false;
-
-        OrientateCharacterForward();
     }
 }

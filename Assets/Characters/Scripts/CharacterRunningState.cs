@@ -33,6 +33,8 @@ public class CharacterRunningState : CharacterMovementBase
     {
         onAirState.enabled = true;
         this.enabled = false;
+
+        idleState.move.Disable();
     }
 
     // TODO: refactor this OnMove repeated code from CharacterRunningState
@@ -54,7 +56,7 @@ public class CharacterRunningState : CharacterMovementBase
             {
                 ChangeToIdleStateOnStoppingMovement(inputBuffer);
             }
-        }        
+        }     
     }
 
     private void ChangeToIdleStateOnStoppingMovement(Vector3 inputBuffer)
@@ -86,14 +88,17 @@ public class CharacterRunningState : CharacterMovementBase
         return !Mathf.Approximately(inputValue.Get<float>(), 0f);
     }
 
+
     public void OnDodge()
     {
         if (this.enabled)
         {
             rollingState.SetDodgeFacingDirection(currentHorizontalMovement.normalized);
 
-            rollingState.enabled = true;            
+            rollingState.enabled = true;
             this.enabled = false;
+
+            idleState.move.Disable();
         }
     }
 }

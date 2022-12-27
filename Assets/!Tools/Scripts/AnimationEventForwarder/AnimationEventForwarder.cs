@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimationEventForwarder : MonoBehaviour
 {
+    
     public void ForwardHookHasArrivedAtTarget()
     {
         SendMessageUpwards("HookHasArrivedAtTarget");

@@ -19,19 +19,29 @@ public class CharacterIdleState : CharacterMovementBase
     [SerializeField] CharacterCrouchingState crouchingState;
     [SerializeField] CharacterOnHookState onHookState;
 
+    private PlayerInput playerInput;
+    public InputAction move;
+
     private void Awake()
     {
         this.enabled = true;
         SetCameraAndCharController(GetComponent<CharacterController>());
+        playerInput = GetComponent<PlayerInput>();
+        move = playerInput.actions["Move"];
     }
 
     private void OnEnable()
     {
-        movementDirection = Vector3.zero;            
+        movementDirection = Vector3.zero;
+
+        if (!move.enabled)
+            move.Enable();
     }
 
     private void Update()
     {
+        
+
         UpdateMovement(speed, movementDirection, Vector3.up);
 
         ChangeBlockingRiggingWeight();
@@ -85,16 +95,20 @@ public class CharacterIdleState : CharacterMovementBase
         {
             onHookState.enabled = true;
             this.enabled = false;
+
+            move.Disable();
         }
     }
 
+
+    // TODO: mover lento al personaje mientras bloquea, velocidad de agachado o menos.
     public void OnBlock(InputValue inputValue)
     {
         if (this.enabled)
         {
             float temp = inputValue.Get<float>();
 
-            //TODO: Refactor all the rigging stuff into own script and change BroadcastMessage for proper events
+            //TODO: Refactor all the rigging stuff into own script and change BroadcastMessage for proper events (also look in update!)
             if(temp > 0f)
             {
                 BroadcastMessage("UpdateBlocking", true);
