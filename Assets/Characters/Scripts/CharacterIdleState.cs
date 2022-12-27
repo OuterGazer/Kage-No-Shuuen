@@ -22,10 +22,13 @@ public class CharacterIdleState : CharacterMovementBase
     private PlayerInput playerInput;
     public InputAction move;
 
+    private bool isMovingAfterDodging = true;
+
     private void Awake()
     {
         this.enabled = true;
         SetCameraAndCharController(GetComponent<CharacterController>());
+        
         playerInput = GetComponent<PlayerInput>();
         move = playerInput.actions["Move"];
     }
@@ -35,11 +38,18 @@ public class CharacterIdleState : CharacterMovementBase
         movementDirection = Vector3.zero;
 
         if (!move.enabled)
+        { 
             move.Enable();
+
+            isMovingAfterDodging = false;
+        }          
     }
 
     private void Update()
     {
+        if (!isMovingAfterDodging)
+            movingSpeed = 0f;
+
         UpdateMovement(speed, movementDirection, Vector3.up);
 
         ChangeBlockingRiggingWeight();
@@ -62,8 +72,6 @@ public class CharacterIdleState : CharacterMovementBase
             else
                 blockingRig.weight = 1f;
         }
-
-        
     }
 
     public void OnMove(InputValue inputValue)
@@ -74,6 +82,8 @@ public class CharacterIdleState : CharacterMovementBase
             {
                 runningState.enabled = true;
                 this.enabled = false;
+
+                this.isMovingAfterDodging = true;
             }
         }
     }
