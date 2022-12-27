@@ -40,8 +40,6 @@ public class CharacterIdleState : CharacterMovementBase
 
     private void Update()
     {
-        
-
         UpdateMovement(speed, movementDirection, Vector3.up);
 
         ChangeBlockingRiggingWeight();

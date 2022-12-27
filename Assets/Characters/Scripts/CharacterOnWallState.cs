@@ -140,13 +140,16 @@ public class CharacterOnWallState : CharacterMovementBase
 
     private void OnCrouch(InputValue inputValue)
     {
-        float inputBuffer = inputValue.Get<float>();
-
-        if (!Mathf.Approximately(inputBuffer, 0f))
+        if (this.enabled)
         {
-            crouchingState.enabled = true;
-            removeCharacterFromWall.Invoke();
-            this.enabled = false;
+            float inputBuffer = inputValue.Get<float>();
+
+            if (!Mathf.Approximately(inputBuffer, 0f))
+            {
+                crouchingState.enabled = true;
+                removeCharacterFromWall.Invoke();
+                this.enabled = false;
+            }
         }
     }
 }

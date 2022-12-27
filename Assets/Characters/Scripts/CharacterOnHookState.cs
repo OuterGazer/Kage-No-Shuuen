@@ -90,7 +90,7 @@ public class CharacterOnHookState : CharacterMovementBase
     private void CheckIfObstaclesBetweenCharacterAndTarget()
     {
         Vector3 tempHookDir = (hookTarget.position - transform.position).normalized;
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, tempHookDir, hookThrowRadius + 1f);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, tempHookDir, hookThrowRadius + 1f, obstaclesMask);
 
         if (!hits[0].collider.CompareTag("HookTarget"))
         {
@@ -183,6 +183,7 @@ public class CharacterOnHookState : CharacterMovementBase
         this.enabled = false;
     }
 
+    // Called through an animation event
     public void MoveCharacterToHookTarget()
     {
         hangingDirection = (hookTarget.position - transform.position).normalized;

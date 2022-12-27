@@ -74,7 +74,7 @@ public class CharacterCrouchingState : CharacterMovementBase
         if (this.enabled &&
             IsCrouchButtonReleased(inputValue))
         {
-            if(movementDirection != Vector3.zero)
+            if (movementDirection != Vector3.zero)
             {
                 runningState.enabled = true;
                 this.enabled = false;
