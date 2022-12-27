@@ -12,8 +12,8 @@ public class CharacterOnWallState : CharacterMovementBase
     [Header("Exit States")]
     [SerializeField] CharacterCrouchingState crouchingState;
 
-    [HideInInspector] public UnityEvent removeCharacterFromWall;
-    [HideInInspector] public UnityEvent<float> correctCharacterAnimationWhenCameraIsNearWall;
+    [HideInInspector] public UnityEvent RemoveCharacterFromWall;
+    [HideInInspector] public UnityEvent<float> CorrectCharacterAnimationWhenCameraIsNearWall;
     private LayerMask coverMask;
 
     private Vector3 normalToWallPlane;
@@ -64,9 +64,9 @@ public class CharacterOnWallState : CharacterMovementBase
         if (IsPlayerOnWallAndUsingWSInsteadOfAD())
         {
             if (IsPlayerForwardPointingTheSameDirectionAsCameraRight())
-                correctCharacterAnimationWhenCameraIsNearWall.Invoke(+1f);
+                CorrectCharacterAnimationWhenCameraIsNearWall.Invoke(+1f);
             else
-                correctCharacterAnimationWhenCameraIsNearWall.Invoke(-1f);
+                CorrectCharacterAnimationWhenCameraIsNearWall.Invoke(-1f);
         }
     }
 
@@ -147,7 +147,7 @@ public class CharacterOnWallState : CharacterMovementBase
             if (!Mathf.Approximately(inputBuffer, 0f))
             {
                 crouchingState.enabled = true;
-                removeCharacterFromWall.Invoke();
+                RemoveCharacterFromWall.Invoke();
                 this.enabled = false;
             }
         }

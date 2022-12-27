@@ -12,7 +12,7 @@ public class CharacterDodgingState : CharacterMovementBase
     [Header("Exit States")]
     [SerializeField] CharacterIdleState idleState;
 
-    [HideInInspector] public UnityEvent makeCharaterDodge;
+    [HideInInspector] public UnityEvent MakeCharacterDodge;
 
     private Vector3 dodgeFacingDirection;
     private float currentSpeed;
@@ -24,7 +24,7 @@ public class CharacterDodgingState : CharacterMovementBase
 
     private void OnEnable()
     {
-        makeCharaterDodge.Invoke();
+        MakeCharacterDodge.Invoke();
         currentSpeed = speed;
     }
 

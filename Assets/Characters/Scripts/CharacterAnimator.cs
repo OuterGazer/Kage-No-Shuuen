@@ -18,6 +18,7 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterOnHookState onHookState;
     private CharacterOnAirState onAirState;
     private CharacterDodgingState dodgingState;
+    private CharacterBlockingState blockingState;
     private Vector3 movementDirection;
     private float runningSpeed;
 
@@ -52,18 +53,20 @@ public class CharacterAnimator : MonoBehaviour
         onHookState = GetComponent<CharacterOnHookState>();
         onAirState = GetComponent<CharacterOnAirState>();
         dodgingState = GetComponent<CharacterDodgingState>();
+        blockingState = GetComponent<CharacterBlockingState>();
     }
 
     private void AddNecessaryListeners()
     {
-        crouchingState.attachCharacterToWall.AddListener(AttachCharacterToWall);
-        onWallState.removeCharacterFromWall.AddListener(RemoveCharacterFromWall);
-        onWallState.correctCharacterAnimationWhenCameraIsNearWall.AddListener(SetCorrectAnimationWhenCharacterIsOnWall);
+        crouchingState.AttachCharacterToWall.AddListener(AttachCharacterToWall);
+        onWallState.RemoveCharacterFromWall.AddListener(RemoveCharacterFromWall);
+        onWallState.CorrectCharacterAnimationWhenCameraIsNearWall.AddListener(SetCorrectAnimationWhenCharacterIsOnWall);
         onHookState.throwHook.AddListener(HaveCharacterThrowHook);
-        onHookState.changeToHangingAnimation.AddListener(TransitionToOrFromHooked);
-        onAirState.changeToLandingAnimation.AddListener(TriggerLandingAnimation);
-        onAirState.isCharacterTouchingGround.AddListener(TransitionToOrFromAir);
-        dodgingState.makeCharaterDodge.AddListener(PlayDodgeAnimation);
+        onHookState.ChangeToHangingAnimation.AddListener(TransitionToOrFromHooked);
+        onAirState.ChangeToLandingAnimation.AddListener(TriggerLandingAnimation);
+        onAirState.IsCharacterTouchingGround.AddListener(TransitionToOrFromAir);
+        dodgingState.MakeCharacterDodge.AddListener(PlayDodgeAnimation);
+        blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
     }    
 
     private void OnDestroy()
@@ -73,14 +76,15 @@ public class CharacterAnimator : MonoBehaviour
 
     private void RemoveListeners()
     {
-        crouchingState.attachCharacterToWall.RemoveListener(AttachCharacterToWall);
-        onWallState.removeCharacterFromWall.RemoveListener(RemoveCharacterFromWall);
-        onWallState.correctCharacterAnimationWhenCameraIsNearWall.RemoveListener(SetCorrectAnimationWhenCharacterIsOnWall);
+        crouchingState.AttachCharacterToWall.RemoveListener(AttachCharacterToWall);
+        onWallState.RemoveCharacterFromWall.RemoveListener(RemoveCharacterFromWall);
+        onWallState.CorrectCharacterAnimationWhenCameraIsNearWall.RemoveListener(SetCorrectAnimationWhenCharacterIsOnWall);
         onHookState.throwHook.RemoveListener(HaveCharacterThrowHook);
-        onHookState.changeToHangingAnimation.RemoveListener(TransitionToOrFromHooked);
-        onAirState.changeToLandingAnimation.RemoveListener(TriggerLandingAnimation);
-        onAirState.isCharacterTouchingGround.RemoveListener(TransitionToOrFromAir);
-        dodgingState.makeCharaterDodge.RemoveListener(PlayDodgeAnimation);
+        onHookState.ChangeToHangingAnimation.RemoveListener(TransitionToOrFromHooked);
+        onAirState.ChangeToLandingAnimation.RemoveListener(TriggerLandingAnimation);
+        onAirState.IsCharacterTouchingGround.RemoveListener(TransitionToOrFromAir);
+        dodgingState.MakeCharacterDodge.RemoveListener(PlayDodgeAnimation);
+        blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
     }
 
     private void Start()

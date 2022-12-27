@@ -28,7 +28,7 @@ public class CharacterOnHookState : CharacterMovementBase
     
 
     [HideInInspector] public UnityEvent throwHook;
-    [HideInInspector] public UnityEvent<bool> changeToHangingAnimation;
+    [HideInInspector] public UnityEvent<bool> ChangeToHangingAnimation;
     private CharacterAnimator characterAnimator;
     private Rig spineToFingerRig;
     private LayerMask hookTargetMask;
@@ -176,7 +176,7 @@ public class CharacterOnHookState : CharacterMovementBase
 
     private void ExitState()
     {
-        changeToHangingAnimation.Invoke(false);
+        ChangeToHangingAnimation.Invoke(false);
 
         onAirState.enabled = true;
         spineToFingerRig.weight = 0f;
@@ -190,6 +190,6 @@ public class CharacterOnHookState : CharacterMovementBase
         transform.up = hangingDirection;
         currentOnHookSpeed = speed;
         spineToFingerRig.weight = 0f;
-        changeToHangingAnimation.Invoke(true);
+        ChangeToHangingAnimation.Invoke(true);
     }
 }

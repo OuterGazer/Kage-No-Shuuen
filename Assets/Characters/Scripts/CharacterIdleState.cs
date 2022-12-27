@@ -11,9 +11,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput), typeof(CharacterController))]
 public class CharacterIdleState : CharacterMovementBase
 {
-    [SerializeField] Rig blockingRig;
-    private bool isBlocking = false;
-
     [Header("Exit Scripts")]
     [SerializeField] CharacterRunningState runningState;
     [SerializeField] CharacterCrouchingState crouchingState;
@@ -47,7 +44,7 @@ public class CharacterIdleState : CharacterMovementBase
         }          
     }
 
-    // TODO: substitue all these magic numbers
+    // TODO: substitute all these magic numbers
     private IEnumerator AccelerateDirectionChange()
     {
         accMovementDir = 20f;
@@ -63,27 +60,6 @@ public class CharacterIdleState : CharacterMovementBase
             movingSpeed = 0f;
 
         UpdateMovement(speed, movementDirection, Vector3.up);
-
-        ChangeBlockingRiggingWeight();
-    }
-
-    [SerializeField] float weightChangeAcceleration = 1f;
-    private void ChangeBlockingRiggingWeight()
-    {
-        if (!isBlocking)
-        {
-            if (blockingRig.weight >= 0f)
-                blockingRig.weight -= weightChangeAcceleration * Time.deltaTime;
-            else
-                blockingRig.weight = 0f;
-        }
-        else
-        {
-            if (blockingRig.weight <= 1f)
-                blockingRig.weight += weightChangeAcceleration * Time.deltaTime;
-            else
-                blockingRig.weight = 1f;
-        }
     }
 
     public void OnMove(InputValue inputValue)
@@ -121,25 +97,5 @@ public class CharacterIdleState : CharacterMovementBase
     }
 
 
-    // TODO: mover lento al personaje mientras bloquea, velocidad de agachado o menos.
-    public void OnBlock(InputValue inputValue)
-    {
-        if (this.enabled)
-        {
-            float temp = inputValue.Get<float>();
-
-            //TODO: Refactor all the rigging stuff into own script and change BroadcastMessage for proper events (also look in update!)
-            if(temp > 0f)
-            {
-                BroadcastMessage("UpdateBlocking", true);
-                isBlocking = true;
-            }
-
-            else
-            {
-                BroadcastMessage("UpdateBlocking", false);
-                isBlocking = false;
-            }
-        }
-    }
+    
 }

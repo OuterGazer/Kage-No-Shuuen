@@ -15,7 +15,7 @@ public class CharacterCrouchingState : CharacterMovementBase
     [SerializeField] CharacterOnWallState onWallState;
     [SerializeField] CharacterOnAirState onAirState;
 
-    [HideInInspector] public UnityEvent attachCharacterToWall;
+    [HideInInspector] public UnityEvent AttachCharacterToWall;
 
     private void Awake()
     {
@@ -98,7 +98,7 @@ public class CharacterCrouchingState : CharacterMovementBase
     {
         if (this.enabled && hit.collider.CompareTag("Cover"))
         {
-            attachCharacterToWall.Invoke();
+            AttachCharacterToWall.Invoke();
 
             onWallState.SetNormalToWallPlane(hit.normal);
             onWallState.enabled = true;

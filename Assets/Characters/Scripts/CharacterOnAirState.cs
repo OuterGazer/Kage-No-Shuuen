@@ -12,14 +12,14 @@ public class CharacterOnAirState : CharacterMovementBase
     [Header("State Parameters")]
     [SerializeField] float groundDistanceThreshold = 1.0f;
 
-    [HideInInspector] public UnityEvent<bool> isCharacterTouchingGround;
-    [HideInInspector] public UnityEvent changeToLandingAnimation;
+    [HideInInspector] public UnityEvent<bool> IsCharacterTouchingGround;
+    [HideInInspector] public UnityEvent ChangeToLandingAnimation;
 
     private bool hasCharacterLanded = false;
 
     private void Awake()
     {
-        isCharacterTouchingGround.Invoke(true);
+        IsCharacterTouchingGround.Invoke(true);
         this.enabled = false;
     }
 
@@ -27,7 +27,7 @@ public class CharacterOnAirState : CharacterMovementBase
     {
         transform.up = Vector3.up;
         hasCharacterLanded = false;
-        isCharacterTouchingGround.Invoke(false);
+        IsCharacterTouchingGround.Invoke(false);
     }
 
     private void Update()
@@ -36,7 +36,7 @@ public class CharacterOnAirState : CharacterMovementBase
 
         if(charController.isGrounded)
         {
-            isCharacterTouchingGround.Invoke(true);
+            IsCharacterTouchingGround.Invoke(true);
             idleState.enabled = true;
             this.enabled = false;
         }
@@ -46,7 +46,7 @@ public class CharacterOnAirState : CharacterMovementBase
     {
         if (!hasCharacterLanded && IsCharacterAboutToLand())
         {
-            changeToLandingAnimation.Invoke();
+            ChangeToLandingAnimation.Invoke();
             hasCharacterLanded = true;
         }            
     }
