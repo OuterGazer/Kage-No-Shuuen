@@ -25,7 +25,7 @@ public class CharacterMovementBase : MonoBehaviour
 
     protected static float movingSpeed;
     protected static Vector3 currentHorizontalMovement = Vector3.zero;
-    [SerializeField] static float accMovementDir = 1.5f; // m/s2
+    protected static float accMovementDir = 1.5f; // m/s2
     protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
         UpdateCharacterSpeed(speed);
@@ -46,7 +46,7 @@ public class CharacterMovementBase : MonoBehaviour
         currentHorizontalMovement += direction.normalized * speedChangeToApply;
     }
 
-    [SerializeField] static float moveAcceleration = 5;    // m/s2
+    protected static float moveAcceleration = 5;    // m/s2
     private void UpdateCharacterSpeed(float targetSpeed)
     {
         if (movingSpeed < targetSpeed)

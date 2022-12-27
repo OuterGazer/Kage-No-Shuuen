@@ -42,7 +42,19 @@ public class CharacterIdleState : CharacterMovementBase
             move.Enable();
 
             isMovingAfterDodging = false;
+
+            StartCoroutine(AccelerateDirectionChange());
         }          
+    }
+
+    // TODO: substitue all these magic numbers
+    private IEnumerator AccelerateDirectionChange()
+    {
+        accMovementDir = 20f;
+
+        yield return new WaitForSeconds(0.25f);
+
+        accMovementDir = 1.5f;
     }
 
     private void Update()
@@ -88,7 +100,7 @@ public class CharacterIdleState : CharacterMovementBase
         }
     }
 
-    public void OnCrouch(InputValue inputValue)
+    public void OnCrouch()
     {
         if (this.enabled)
         {
