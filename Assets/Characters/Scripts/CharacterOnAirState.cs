@@ -6,8 +6,6 @@ using UnityEngine.Events;
 [RequireComponent(typeof(CharacterIdleState))]
 public class CharacterOnAirState : CharacterMovementBase
 {
-    // TODO: Change collider programatically to have landing animation play better.
-
     [Header("Exit States")]
     [SerializeField] CharacterIdleState idleState;
 

@@ -84,7 +84,7 @@ public class CharacterOnHookState : CharacterMovementBase
     private void CheckIfObstaclesBetweenCharacterAndTarget()
     {
         Vector3 tempHookDir = (hookTarget.position - transform.position).normalized;
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, tempHookDir, hookThrowRadius);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, tempHookDir, hookThrowRadius + 1f);
 
         if (!hits[0].collider.CompareTag("HookTarget"))
         {
