@@ -58,13 +58,15 @@ public class CharacterOnHookState : CharacterMovementBase
 
     private void OnEnable()
     {
+        onMovementStateChange.Invoke(this);
+
         ManageHookThrowing();
     }
 
     private void OnDisable()
     {
         hookTarget = null;
-        SetTargetToRigChain();        
+        SetTargetToRigChain();
     }
 
     private void ManageHookThrowing()

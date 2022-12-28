@@ -21,7 +21,6 @@ public class CharacterDodgingState : CharacterMovementBase
     {
         this.enabled = false;
     }
-
     private void OnEnable()
     {
         MakeCharacterDodge.Invoke();

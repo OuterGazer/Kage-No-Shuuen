@@ -1507,6 +1507,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 507b2cdee973ef544914c255dc947193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementStates:
+  - {fileID: 7367104688647257540}
+  - {fileID: 7367104688647257538}
+  - {fileID: 7367104688647257541}
+  - {fileID: 7367104688647257545}
+  - {fileID: 7367104688647257544}
+  - {fileID: 7367104688647257547}
+  combatStates:
+  - {fileID: 834020474160094199}
+  - {fileID: 4128263669422437884}
+  currentState: {fileID: 0}
 --- !u!114 &7367104688647257542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1535,11 +1546,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  onStateChange:
+    m_PersistentCalls:
+      m_Calls: []
   runningState: {fileID: 7367104688647257541}
   crouchingState: {fileID: 7367104688647257538}
   onHookState: {fileID: 7367104688647257544}
   move:
-    m_Name: 
+    m_Name: Move
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: c87d01fe-5a26-47b4-9c8b-0946d8a85093
@@ -1560,6 +1574,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  onStateChange:
+    m_PersistentCalls:
+      m_Calls: []
   runningState: {fileID: 7367104688647257541}
   idleState: {fileID: 7367104688647257540}
   onWallState: {fileID: 7367104688647257545}
@@ -1580,6 +1597,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  onStateChange:
+    m_PersistentCalls:
+      m_Calls: []
   idleState: {fileID: 7367104688647257540}
   crouchingState: {fileID: 7367104688647257538}
   onAirState: {fileID: 7367104688647257547}
@@ -1597,6 +1617,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  onStateChange:
+    m_PersistentCalls:
+      m_Calls: []
   crouchingState: {fileID: 7367104688647257538}
   RemoveCharacterFromWall:
     m_PersistentCalls:
@@ -1620,6 +1643,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  onStateChange:
+    m_PersistentCalls:
+      m_Calls: []
   hookThrowRadius: 10
   hookReachThreshold: 4
   onAirState: {fileID: 7367104688647257547}
@@ -1652,6 +1678,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  onStateChange:
+    m_PersistentCalls:
+      m_Calls: []
   idleState: {fileID: 7367104688647257540}
   groundDistanceThreshold: 0.5
   IsCharacterTouchingGround:
@@ -1673,6 +1702,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4.5
+  onStateChange:
+    m_PersistentCalls:
+      m_Calls: []
   speedDeceleration: 3.5
   idleState: {fileID: 7367104688647257540}
   MakeCharacterDodge:
@@ -1691,6 +1723,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
+  onStateChange:
+    m_PersistentCalls:
+      m_Calls: []
   blockingRig: {fileID: 1307412388}
   UpdateBlockingStatus:
     m_PersistentCalls:

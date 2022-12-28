@@ -30,6 +30,11 @@ public class CharacterOnWallState : CharacterMovementBase
         charControllerHorizontalBound = GetComponent<CharacterController>().bounds.extents.x;
     }
 
+    private void OnEnable()
+    {
+        onMovementStateChange.Invoke(this);
+    }
+
     [SerializeField] float timeToCompleteCharacterOrientation = 0.25f;
     private void Update()
     {

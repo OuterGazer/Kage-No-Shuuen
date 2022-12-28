@@ -19,6 +19,11 @@ public class CharacterRunningState : CharacterMovementBase
         this.enabled = false;
     }
 
+    private void OnEnable()
+    {
+        onMovementStateChange.Invoke(this);
+    }
+
     void Update()
     {
         if (!charController.isGrounded)

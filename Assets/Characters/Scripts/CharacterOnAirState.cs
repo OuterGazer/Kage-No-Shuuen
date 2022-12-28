@@ -25,6 +25,8 @@ public class CharacterOnAirState : CharacterMovementBase
 
     private void OnEnable()
     {
+        onMovementStateChange.Invoke(this);
+
         transform.up = Vector3.up;
         hasCharacterLanded = false;
         IsCharacterTouchingGround.Invoke(false);

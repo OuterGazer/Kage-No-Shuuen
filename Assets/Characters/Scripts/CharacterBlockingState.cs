@@ -17,13 +17,15 @@ public class CharacterBlockingState : CharacterMovementBase
         this.enabled = false;
     }
 
+    private void OnEnable()
+    {
+        UpdateBlockingStatus.Invoke(true);
+        isBlocking = true;
+    }
+
     private void Update()
     {
         ChangeBlockingRiggingWeight();
-
-        UpdateMovement(speed, movementDirection, Vector3.up);
-
-        OrientateCharacterForward();
     }
 
     [SerializeField] float weightChangeAcceleration = 1f;
@@ -45,18 +47,9 @@ public class CharacterBlockingState : CharacterMovementBase
         }
     }
 
-    public void OnBlock(InputValue inputValue)
+    void OnBlock(InputValue inputValue)
     {
-        float temp = inputValue.Get<float>();
-
-        if (temp > 0f)
-        {
-            UpdateBlockingStatus.Invoke(true);
-            isBlocking = true;
-            this.enabled = true;
-        }
-
-        else
+        if (IsBlockButtonReleased(inputValue))
         {
             UpdateBlockingStatus.Invoke(false);
             isBlocking = false;
@@ -64,10 +57,15 @@ public class CharacterBlockingState : CharacterMovementBase
         }
     }
 
+    private static bool IsBlockButtonReleased(InputValue inputValue)
+    {
+        return Mathf.Approximately(inputValue.Get<float>(), 0f);
+    }
+
     private IEnumerator DisableScript()
     {
         yield return new WaitUntil(() => blockingRig.weight <= 0f);
 
-        this.enabled = false;        
+        this.enabled = false;
     }
 }

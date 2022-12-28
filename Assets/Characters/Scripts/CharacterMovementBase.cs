@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class CharacterMovementBase : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class CharacterMovementBase : MonoBehaviour
     public static Vector3 MovementDirection => movementDirection;
 
     private static float velocityY = 0f;
+
+    [HideInInspector] public UnityEvent<CharacterMovementBase> onMovementStateChange;
 
     protected void SetCameraAndCharController(CharacterController characterController)
     {

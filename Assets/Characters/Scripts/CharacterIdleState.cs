@@ -32,6 +32,8 @@ public class CharacterIdleState : CharacterMovementBase
 
     private void OnEnable()
     {
+        onMovementStateChange.Invoke(this);
+
         movementDirection = Vector3.zero;
 
         if (!move.enabled)
@@ -95,7 +97,4 @@ public class CharacterIdleState : CharacterMovementBase
             move.Disable();
         }
     }
-
-
-    
 }
