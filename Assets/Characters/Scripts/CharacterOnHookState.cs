@@ -100,6 +100,7 @@ public class CharacterOnHookState : CharacterMovementBase
         }
         else
         {
+            idleState.move.Disable();
             PerformHookThrowing();
         }
     }

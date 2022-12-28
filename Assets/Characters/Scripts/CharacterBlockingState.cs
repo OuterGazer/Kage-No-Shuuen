@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class CharacterBlockingState : CharacterMovementBase
 {
+    // TODO: implement moving very slow while state is active
+
     [SerializeField] Rig blockingRig;
     private bool isBlocking = false;
 

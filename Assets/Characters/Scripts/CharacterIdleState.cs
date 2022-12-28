@@ -97,8 +97,6 @@ public class CharacterIdleState : CharacterMovementBase
         {
             onHookState.enabled = true;
             this.enabled = false;
-
-            move.Disable();
         }
     }
 }

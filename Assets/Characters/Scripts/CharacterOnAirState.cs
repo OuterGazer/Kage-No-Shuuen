@@ -41,6 +41,8 @@ public class CharacterOnAirState : CharacterMovementBase
             IsCharacterTouchingGround.Invoke(true);
             idleState.enabled = true;
             this.enabled = false;
+
+            idleState.EnableMovement();
         }
     }
 
