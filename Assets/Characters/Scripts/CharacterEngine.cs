@@ -16,7 +16,8 @@ public class CharacterEngine : MonoBehaviour
     [SerializeField] private CharacterMovementBase[] allowedStatesForBlocking = { };
     [SerializeField] private CharacterMovementBase[] allowedStatesForDodging = { };
 
-    [SerializeField] private CharacterMovementBase currentMovementState; // Serialized for testing purposes
+    private CharacterMovementBase currentMovementState;
+    private CharacterMovementBase currentCombatState;
 
 
     private void Awake()
@@ -25,6 +26,9 @@ public class CharacterEngine : MonoBehaviour
         {
             movementStates[i].onMovementStateChange.AddListener(UpdateCurrentMovementState);
         }
+
+        blockingState.onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
+        dodgingState.onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
     }
 
     private void OnDestroy()
@@ -34,12 +38,21 @@ public class CharacterEngine : MonoBehaviour
             movementStates[i].onMovementStateChange.RemoveListener(UpdateCurrentMovementState);
         }
 
+        blockingState.onCombatStateEnablingOrDisabling.RemoveListener(UpdateCurrentCombatState);
+        dodgingState.onCombatStateEnablingOrDisabling.RemoveListener(UpdateCurrentCombatState);
+
         currentMovementState = null;
+        currentCombatState = null;
     }
 
     private void UpdateCurrentMovementState(CharacterMovementBase enablingState)
     {
         currentMovementState = enablingState;
+    }
+
+    private void UpdateCurrentCombatState(CharacterMovementBase enablingState)
+    {
+        currentCombatState = enablingState;
     }
 
     public void OnDodge()
@@ -61,7 +74,7 @@ public class CharacterEngine : MonoBehaviour
     {
         foreach (CharacterMovementBase state in allowedStates)
         {
-            if (state.Equals(currentMovementState))
+            if (state.Equals(currentMovementState) && currentCombatState == null)
                 combatStateToEnable.enabled = true;
         }
     }

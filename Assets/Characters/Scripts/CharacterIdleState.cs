@@ -37,6 +37,7 @@ public class CharacterIdleState : CharacterMovementBase
         movementDirection = Vector3.zero;          
     }
 
+    // Called from CharacterDodgingState OnDisable
     public void EnableMovement()
     {
         if (!move.enabled)

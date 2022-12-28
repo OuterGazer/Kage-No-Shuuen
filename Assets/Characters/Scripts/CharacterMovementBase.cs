@@ -19,6 +19,7 @@ public class CharacterMovementBase : MonoBehaviour
     private static float velocityY = 0f;
 
     [HideInInspector] public UnityEvent<CharacterMovementBase> onMovementStateChange;
+    [HideInInspector] public UnityEvent<CharacterMovementBase> onCombatStateEnablingOrDisabling;
 
     protected void SetCameraAndCharController(CharacterController characterController)
     {

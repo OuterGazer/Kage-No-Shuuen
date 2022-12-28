@@ -19,8 +19,15 @@ public class CharacterBlockingState : CharacterMovementBase
 
     private void OnEnable()
     {
+        onCombatStateEnablingOrDisabling.Invoke(this);
+
         UpdateBlockingStatus.Invoke(true);
         isBlocking = true;
+    }
+
+    private void OnDisable()
+    {
+        onCombatStateEnablingOrDisabling.Invoke(null);
     }
 
     private void Update()
