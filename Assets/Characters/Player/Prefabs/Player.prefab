@@ -1409,6 +1409,7 @@ GameObject:
   - component: {fileID: 7367104688647257536}
   - component: {fileID: 7367104688647257539}
   - component: {fileID: 7367104688647257543}
+  - component: {fileID: 8832969203320372516}
   - component: {fileID: 7367104688647257542}
   - component: {fileID: 7367104688647257540}
   - component: {fileID: 7367104688647257538}
@@ -1417,6 +1418,7 @@ GameObject:
   - component: {fileID: 7367104688647257544}
   - component: {fileID: 7367104688647257547}
   - component: {fileID: 834020474160094199}
+  - component: {fileID: 4128263669422437884}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -1493,6 +1495,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8832969203320372516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367104688647257537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 507b2cdee973ef544914c255dc947193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7367104688647257542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,7 +1535,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  blockingRig: {fileID: 1307412388}
   runningState: {fileID: 7367104688647257541}
   crouchingState: {fileID: 7367104688647257538}
   onHookState: {fileID: 7367104688647257544}
@@ -1529,12 +1542,11 @@ MonoBehaviour:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: c87d01fe-5a26-47b4-9c8b-0946d8a85093
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  weightChangeAcceleration: 4
 --- !u!114 &7367104688647257538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,7 +1564,7 @@ MonoBehaviour:
   idleState: {fileID: 7367104688647257540}
   onWallState: {fileID: 7367104688647257545}
   onAirState: {fileID: 7367104688647257547}
-  attachCharacterToWall:
+  AttachCharacterToWall:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7367104688647257541
@@ -1586,10 +1598,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   crouchingState: {fileID: 7367104688647257538}
-  removeCharacterFromWall:
+  RemoveCharacterFromWall:
     m_PersistentCalls:
       m_Calls: []
-  correctCharacterAnimationWhenCameraIsNearWall:
+  CorrectCharacterAnimationWhenCameraIsNearWall:
     m_PersistentCalls:
       m_Calls: []
   timeToCompleteCharacterOrientation: 0.25
@@ -1624,7 +1636,7 @@ MonoBehaviour:
   throwHook:
     m_PersistentCalls:
       m_Calls: []
-  changeToHangingAnimation:
+  ChangeToHangingAnimation:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7367104688647257547
@@ -1642,10 +1654,10 @@ MonoBehaviour:
   speed: 0
   idleState: {fileID: 7367104688647257540}
   groundDistanceThreshold: 0.5
-  isCharacterTouchingGround:
+  IsCharacterTouchingGround:
     m_PersistentCalls:
       m_Calls: []
-  changeToLandingAnimation:
+  ChangeToLandingAnimation:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &834020474160094199
@@ -1663,9 +1675,27 @@ MonoBehaviour:
   speed: 4.5
   speedDeceleration: 3.5
   idleState: {fileID: 7367104688647257540}
-  makeCharaterDodge:
+  MakeCharacterDodge:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4128263669422437884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367104688647257537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a1219a5554a724b94438c47b8a27ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.5
+  blockingRig: {fileID: 1307412388}
+  UpdateBlockingStatus:
+    m_PersistentCalls:
+      m_Calls: []
+  weightChangeAcceleration: 4
 --- !u!1 &7367104688910039843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2711,9 +2741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44972679ffe0bf7468b7ed6abab15d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charAnimator: {fileID: 7367104688647257542}
-  dodgingState: {fileID: 834020474160094199}
-  onAirState: {fileID: 7367104688647257547}
 --- !u!4 &7947735989294942735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 608321761475470972, guid: 4a2ef68dde32fe34b93f2b3ec3caed65,
