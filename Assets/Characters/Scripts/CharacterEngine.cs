@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterEngine : MonoBehaviour
 {
+    // TODO: I must implement all exit state conditions here, for example so I can't throw hook while blocking, or change to running or crouching while rolling
+
     [SerializeField] private CharacterMovementBase[] movementStates = { };
     [SerializeField] private CharacterBlockingState blockingState;
     [SerializeField] private CharacterDodgingState dodgingState;
@@ -30,11 +33,18 @@ public class CharacterEngine : MonoBehaviour
         {
             movementStates[i].onMovementStateChange.RemoveListener(UpdateCurrentMovementState);
         }
+
+        currentMovementState = null;
     }
 
     private void UpdateCurrentMovementState(CharacterMovementBase enablingState)
     {
         currentMovementState = enablingState;
+    }
+
+    public void OnDodge()
+    {
+        EnableCombatStateIfInAllowedMovementState(allowedStatesForDodging, dodgingState);
     }
 
     public void OnBlock(InputValue inputValue)
@@ -43,11 +53,16 @@ public class CharacterEngine : MonoBehaviour
 
         if (temp > 0f)
         {
-            foreach(CharacterMovementBase state in allowedStatesForBlocking)
-            {
-                if (state.Equals(currentMovementState))
-                    blockingState.enabled = true;
-            }
+            EnableCombatStateIfInAllowedMovementState(allowedStatesForBlocking, blockingState);
+        }
+    }
+
+    private void EnableCombatStateIfInAllowedMovementState(CharacterMovementBase[] allowedStates, CharacterMovementBase combatStateToEnable)
+    {
+        foreach (CharacterMovementBase state in allowedStates)
+        {
+            if (state.Equals(currentMovementState))
+                combatStateToEnable.enabled = true;
         }
     }
 }

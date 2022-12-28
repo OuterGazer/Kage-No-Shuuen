@@ -34,16 +34,19 @@ public class CharacterIdleState : CharacterMovementBase
     {
         onMovementStateChange.Invoke(this);
 
-        movementDirection = Vector3.zero;
+        movementDirection = Vector3.zero;          
+    }
 
+    public void EnableMovement()
+    {
         if (!move.enabled)
-        { 
+        {
             move.Enable();
 
             isMovingAfterDodging = false;
 
             StartCoroutine(AccelerateDirectionChange());
-        }          
+        }
     }
 
     // TODO: substitute all these magic numbers

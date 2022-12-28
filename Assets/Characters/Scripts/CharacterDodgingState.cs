@@ -21,10 +21,20 @@ public class CharacterDodgingState : CharacterMovementBase
     {
         this.enabled = false;
     }
+
     private void OnEnable()
     {
+        SetDodgeFacingDirection(currentHorizontalMovement.normalized);
+
+        idleState.move.Disable();
+
         MakeCharacterDodge.Invoke();
         currentSpeed = speed;
+    }
+
+    private void OnDisable()
+    {
+        idleState.EnableMovement();
     }
 
     private void Update()

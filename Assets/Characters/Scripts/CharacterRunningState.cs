@@ -92,18 +92,4 @@ public class CharacterRunningState : CharacterMovementBase
     {
         return !Mathf.Approximately(inputValue.Get<float>(), 0f);
     }
-
-
-    public void OnDodge()
-    {
-        if (this.enabled)
-        {
-            rollingState.SetDodgeFacingDirection(currentHorizontalMovement.normalized);
-
-            rollingState.enabled = true;
-            this.enabled = false;
-
-            idleState.move.Disable();
-        }
-    }
 }
