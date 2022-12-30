@@ -1,0 +1,46 @@
+///
+///----Ninja_WeaponSet----
+///
+
+[Model]
+10 Shuriken
+2 Kunai
+2 Makibisi
+
+[How to use]
+-Shuriken throw at the enemy 
+-Shuriken made of iron
+
+-Kunai is small weapon
+-it usually use like knife or throw
+
+-Makibisi is Trap
+-You Spread Makibisi enemy cant Step on these
+
+[Version]
+
+1.0.0
+-first release
+
+-------------------------------
+
+忍者武器セット
+
+[モデル]
+10　手裏剣
+2 クナイ
+2　マキビシ
+
+[使い方]
+手裏剣
+敵に向かって投げて使う武器
+
+クナイ
+手に持ち小刀のように使ったり、投げて使うもの
+
+マキビシ
+地面にまいておき敵の追跡を振り切るもの
+
+[バージョン]
+1.0.0
+-ファーストリリース
