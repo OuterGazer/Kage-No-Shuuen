@@ -1026,13 +1026,14 @@ GameObject:
   - component: {fileID: 7072296892269362422}
   - component: {fileID: 7072296892269362420}
   - component: {fileID: 7072296892269362423}
+  - component: {fileID: 2034409255}
   m_Layer: 0
   m_Name: Scabbard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7072296892269362422
 Transform:
   m_ObjectHideFlags: 0
@@ -1040,7 +1041,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7072296892269362425}
-  m_LocalRotation: {x: -0.2560408, y: -0.71797836, z: 0.121490255, w: -0.6357596}
+  m_LocalRotation: {x: 0.2560416, y: 0.71797824, z: -0.121491015, w: 0.6357594}
   m_LocalPosition: {x: -0.7717753, y: 1.5703273, z: -0.13502675}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1098,6 +1099,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1773428102 &2034409255
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072296892269362425}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: -0.7717753, y: 1.5703273, z: -0.13502675}
+  m_RotationAtRest: {x: 30.001118, y: 100.78819, z: 14.250951}
+  m_TranslationOffsets:
+  - {x: 0.15230656, y: 0.19326997, z: -0.09215668}
+  m_RotationOffsets:
+  - {x: 29.11152, y: 103.165924, z: 19.068905}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 7145485064117009436}
+    weight: 1
 --- !u!1 &7072296892550336749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,10 +1541,13 @@ MonoBehaviour:
   - {fileID: 7367104688647257545}
   - {fileID: 7367104688647257544}
   - {fileID: 7367104688647257547}
-  combatStates:
-  - {fileID: 834020474160094199}
-  - {fileID: 4128263669422437884}
-  currentState: {fileID: 0}
+  blockingState: {fileID: 4128263669422437884}
+  dodgingState: {fileID: 834020474160094199}
+  allowedStatesForBlocking:
+  - {fileID: 7367104688647257540}
+  allowedStatesForDodging:
+  - {fileID: 7367104688647257541}
+  - {fileID: 7367104688647257538}
 --- !u!114 &7367104688647257542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1546,7 +1576,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  onStateChange:
+  onMovementStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
   runningState: {fileID: 7367104688647257541}
@@ -1574,7 +1607,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  onStateChange:
+  onMovementStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
   runningState: {fileID: 7367104688647257541}
@@ -1597,7 +1633,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  onStateChange:
+  onMovementStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
   idleState: {fileID: 7367104688647257540}
@@ -1617,7 +1656,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  onStateChange:
+  onMovementStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
   crouchingState: {fileID: 7367104688647257538}
@@ -1643,7 +1685,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  onStateChange:
+  onMovementStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
   hookThrowRadius: 10
@@ -1678,11 +1723,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  onStateChange:
+  onMovementStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
   idleState: {fileID: 7367104688647257540}
-  groundDistanceThreshold: 0.5
+  groundDistanceThreshold: 0.6
   IsCharacterTouchingGround:
     m_PersistentCalls:
       m_Calls: []
@@ -1702,7 +1750,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4.5
-  onStateChange:
+  onMovementStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
   speedDeceleration: 3.5
@@ -1723,7 +1774,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
-  onStateChange:
+  onMovementStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
   blockingRig: {fileID: 1307412388}
