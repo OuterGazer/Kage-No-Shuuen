@@ -14,4 +14,15 @@ public class AnimationEventForwarder : MonoBehaviour
     {
         SendMessageUpwards("ExitDodgingState");
     }
+
+    public void ForwardChangeCurrentWeapon()
+    {
+        SendMessageUpwards("ChangeCurrentWeapon");
+    }
+
+    public void ForwardResetWeaponChangeState()
+    {
+        SendMessageUpwards("ResetWeaponChangeState");
+    }
+    
 }

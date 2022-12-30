@@ -22,6 +22,8 @@ public class CharacterAnimator : MonoBehaviour
     private Vector3 movementDirection;
     private float runningSpeed;
 
+    private WeaponController weaponController;
+
     int movementForwardHash;
     int movementSidewaysHash;
     int onWallHash;
@@ -31,6 +33,7 @@ public class CharacterAnimator : MonoBehaviour
     int landingHash;
     int dodgingHash;
     int isBlockingHash;
+    int changeWeaponHash;
 
     Vector3 oldPosition;
 
@@ -54,6 +57,7 @@ public class CharacterAnimator : MonoBehaviour
         onAirState = GetComponent<CharacterOnAirState>();
         dodgingState = GetComponent<CharacterDodgingState>();
         blockingState = GetComponent<CharacterBlockingState>();
+        weaponController = GetComponent<WeaponController>();
     }
 
     private void AddNecessaryListeners()
@@ -67,6 +71,7 @@ public class CharacterAnimator : MonoBehaviour
         onAirState.IsCharacterTouchingGround.AddListener(TransitionToOrFromAir);
         dodgingState.MakeCharacterDodge.AddListener(PlayDodgeAnimation);
         blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
+        weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
     }    
 
     private void OnDestroy()
@@ -85,6 +90,7 @@ public class CharacterAnimator : MonoBehaviour
         onAirState.IsCharacterTouchingGround.RemoveListener(TransitionToOrFromAir);
         dodgingState.MakeCharacterDodge.RemoveListener(PlayDodgeAnimation);
         blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
+        weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
     }
 
     private void Start()
@@ -106,6 +112,7 @@ public class CharacterAnimator : MonoBehaviour
         landingHash = Animator.StringToHash("Landing");
         dodgingHash = Animator.StringToHash("Dodging");
         isBlockingHash = Animator.StringToHash("isBlocking");
+        changeWeaponHash = Animator.StringToHash("ChangeWeapon");
     }
 
     private void Update()
@@ -242,5 +249,10 @@ public class CharacterAnimator : MonoBehaviour
     public void UpdateBlocking(bool isBlocking)
     {
         animator.SetBool(isBlockingHash, isBlocking);
+    }
+
+    public void PlayChangeWeaponAnimation()
+    {
+        animator.SetTrigger(changeWeaponHash);
     }
 }

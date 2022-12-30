@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
@@ -18,6 +19,7 @@ public class WeaponController : MonoBehaviour
     Weapon currentWeapon;
 
     CharacterAnimator characterAnimator;
+    [HideInInspector] public UnityEvent onWeaponChange;
 
     private void Awake()
     {
@@ -41,22 +43,23 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
-        UpdateCurrentWeapon();
+        //UpdateCurrentWeapon();
         UpdateShoot();
         UpdateSlash();
     }    
 
-    private void UpdateCurrentWeapon()
+    // Gets called from an animation event
+    private void ChangeCurrentWeapon()
     {
         if (prevWeapon)
         {
-            prevWeapon = false;
+            //prevWeapon = false;
             SelectWeaponInDirection(-1);
         }
 
         if (nextWeapon)
         {
-            nextWeapon = false;
+            //nextWeapon = false;
             SelectWeaponInDirection(+1);
         }
     }
@@ -71,10 +74,16 @@ public class WeaponController : MonoBehaviour
         if (currentWeaponIndex >= weapons.Length)
         { currentWeaponIndex = 0; }
 
-        currentWeapon = weapons[currentWeaponIndex].GetComponent<Weapon>(); // Esta linea puede que le falte a Kike o a lo mejor se olvidó mencionar que la escribió.
+        currentWeapon = weapons[currentWeaponIndex].GetComponent<Weapon>();
         weapons[currentWeaponIndex].gameObject.SetActive(true);
         // TODO: esta línea aplica el animator controller propio de cada arma cuando implementemos el animatorcontrolleroverride
         // characterAnimator.ApplyAnimatorController(weapons[currentWeaponIndex]);
+    }
+
+    private void ResetWeaponChangeState()
+    {
+        prevWeapon = false;
+        nextWeapon = false;
     }
 
     private void UpdateShoot()
@@ -110,8 +119,20 @@ public class WeaponController : MonoBehaviour
     }
 
     
-    private void OnPrevWeapon() { prevWeapon = true; }
-    private void OnNextWeapon() { nextWeapon= true; }
+    private void OnPrevWeapon() 
+    {
+        if (prevWeapon || nextWeapon) { return; }
+        
+        prevWeapon = true;
+        onWeaponChange.Invoke();
+    }
+    private void OnNextWeapon()
+    {
+        if (prevWeapon || nextWeapon) { return; }
+
+        nextWeapon = true;
+        onWeaponChange.Invoke();
+    }
     private void OnShoot() { shoot = true; }
     private void OnSlash() { slash = true; }
 }
