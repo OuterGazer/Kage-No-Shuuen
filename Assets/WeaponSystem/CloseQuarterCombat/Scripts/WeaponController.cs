@@ -14,6 +14,7 @@ public class WeaponController : MonoBehaviour
     public bool nextWeapon;
     public bool shoot;
     public bool slash;
+    public bool heavySlash;
 
     Weapon[] weapons;
     Weapon currentWeapon;
@@ -21,7 +22,7 @@ public class WeaponController : MonoBehaviour
     CharacterAnimator characterAnimator;
     [HideInInspector] public UnityEvent onWeaponChange;
     [HideInInspector] public UnityEvent onSlash;
-
+    [HideInInspector] public UnityEvent onHeavySlash;
     private void Awake()
     {
         weapons = weaponsParent.GetComponentsInChildren<Weapon>();
@@ -104,6 +105,11 @@ public class WeaponController : MonoBehaviour
             onSlash.Invoke();
             slash = false;
         }
+        else if (heavySlash)
+        {
+            onHeavySlash.Invoke();
+            heavySlash = false;
+        }
     }
 
     internal void DamageStart()
@@ -140,4 +146,5 @@ public class WeaponController : MonoBehaviour
     }
     private void OnShoot() { shoot = true; }
     private void OnSlash() { slash = true; }
+    private void OnHeavySlash() { heavySlash = true; }
 }

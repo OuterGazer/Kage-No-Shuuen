@@ -36,6 +36,7 @@ public class CharacterAnimator : MonoBehaviour
     int changeWeaponHash;
     int slashHash;
     int canChainComboHash;
+    int heavySlashHash;
 
     Vector3 oldPosition;
 
@@ -75,6 +76,7 @@ public class CharacterAnimator : MonoBehaviour
         blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
         weaponController.onSlash.AddListener(PlaySlashAnimation);
+        weaponController.onHeavySlash.AddListener(PlayHeavySlashAnimation); 
     }    
 
     private void OnDestroy()
@@ -95,6 +97,7 @@ public class CharacterAnimator : MonoBehaviour
         blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
         weaponController.onSlash.RemoveListener(PlaySlashAnimation);
+        weaponController.onHeavySlash.RemoveListener(PlayHeavySlashAnimation);
     }
 
     private void Start()
@@ -119,6 +122,7 @@ public class CharacterAnimator : MonoBehaviour
         changeWeaponHash = Animator.StringToHash("ChangeWeapon");
         slashHash = Animator.StringToHash("Slash");
         canChainComboHash = Animator.StringToHash("canChainCombo");
+        heavySlashHash = Animator.StringToHash("HeavySlash");
     }
 
     private void Update()
@@ -268,6 +272,8 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetTrigger(slashHash);
     }
 
+    // Called through animation events
+    // Needs 2 in same animation, 1 == true, 0 == false
     public void SetCanChainCombo(int canChain)
     {
         if(canChain == 1)
@@ -275,5 +281,10 @@ public class CharacterAnimator : MonoBehaviour
         else if(canChain == 0)
             { animator.SetBool(canChainComboHash, false); }
 
+    }
+
+    public void PlayHeavySlashAnimation()
+    {
+        animator.SetTrigger(heavySlashHash);
     }
 }
