@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HeavySwordAnimatorOverride
+  m_Controller: {fileID: 9100000, guid: 28186da4abf59b740a12c4f91cbf983c, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -203655887218126122, guid: a416198af4f813d4ba3f39c5d4daec03,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: a3ca4805c0035a34b87e161a3c101957,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: eb144b8004951f9448f8f54469ba01b9,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 639ec963c6b9ce344b26c1c4e08955c4,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 7d837fabf80aeca449b308759dad3bc4,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 02fe15745a9affa40b7f7895e5fb7698,
+      type: 3}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 9dd84e791286d0845944332c1681d093,
+      type: 3}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 88aa8e6f98982cc44ac0c3f4a1e357f6,
+      type: 3}

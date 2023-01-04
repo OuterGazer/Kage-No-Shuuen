@@ -1393,10 +1393,14 @@ MonoBehaviour:
   nextWeapon: 0
   shoot: 0
   slash: 0
+  heavySlash: 0
   onWeaponChange:
     m_PersistentCalls:
       m_Calls: []
   onSlash:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeavySlash:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &7367104688910039843

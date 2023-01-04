@@ -23,6 +23,7 @@ public class CharacterAnimator : MonoBehaviour
     private float runningSpeed;
 
     private WeaponController weaponController;
+    private RuntimeAnimatorController standardAnimatorController;
 
     int movementForwardHash;
     int movementSidewaysHash;
@@ -104,6 +105,7 @@ public class CharacterAnimator : MonoBehaviour
     {
         GenerateHashes();
 
+        standardAnimatorController = animator.runtimeAnimatorController;
         animator.SetBool(isGroundedHash, true);
         oldPosition = transform.position;
     }
@@ -123,6 +125,14 @@ public class CharacterAnimator : MonoBehaviour
         slashHash = Animator.StringToHash("Slash");
         canChainComboHash = Animator.StringToHash("canChainCombo");
         heavySlashHash = Animator.StringToHash("HeavySlash");
+    }
+
+    public void ApplyAnimatorController(Weapon weapon)
+    {
+        if (weapon.animatorOverride)
+            animator.runtimeAnimatorController = weapon.animatorOverride;
+        else
+            animator.runtimeAnimatorController = standardAnimatorController;
     }
 
     private void Update()

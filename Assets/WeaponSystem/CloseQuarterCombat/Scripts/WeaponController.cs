@@ -19,13 +19,14 @@ public class WeaponController : MonoBehaviour
     Weapon[] weapons;
     Weapon currentWeapon;
 
-    CharacterAnimator characterAnimator;
+    CharacterAnimator characterAnimator; // TODO: preguntar a Kike si esto lo dejo así o aplico animator override a través de evento
     [HideInInspector] public UnityEvent onWeaponChange;
     [HideInInspector] public UnityEvent onSlash;
     [HideInInspector] public UnityEvent onHeavySlash;
     private void Awake()
     {
         weapons = weaponsParent.GetComponentsInChildren<Weapon>();
+        characterAnimator= GetComponent<CharacterAnimator>();
     }
 
     private void Start()
@@ -53,13 +54,11 @@ public class WeaponController : MonoBehaviour
     {
         if (prevWeapon)
         {
-            //prevWeapon = false;
             SelectWeaponInDirection(-1);
         }
 
         if (nextWeapon)
         {
-            //nextWeapon = false;
             SelectWeaponInDirection(+1);
         }
     }
@@ -76,8 +75,7 @@ public class WeaponController : MonoBehaviour
 
         currentWeapon = weapons[currentWeaponIndex].GetComponent<Weapon>();
         weapons[currentWeaponIndex].gameObject.SetActive(true);
-        // TODO: esta línea aplica el animator controller propio de cada arma cuando implementemos el animatorcontrolleroverride
-        // characterAnimator.ApplyAnimatorController(weapons[currentWeaponIndex]);
+        characterAnimator.ApplyAnimatorController(weapons[currentWeaponIndex]);
     }
 
     private void ResetWeaponChangeState()
