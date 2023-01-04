@@ -775,7 +775,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.0046970146, y: 0.000000001513828, z: -7.110551e-12, w: 0.999989}
+  m_LocalRotation: {x: 0.0046970146, y: -0.000000001513828, z: 7.110551e-12, w: 0.999989}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1881,8 +1881,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.062137432, y: -0.000000017173107, z: 0.0000000010691585,
-    w: 0.9980676}
+  m_LocalRotation: {x: 0.06213745, y: 0.000000017173132, z: -0.0000000010691605, w: 0.9980676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2707,6 +2706,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5201827}
     m_Modifications:
+    - target: {fileID: 7072296893358035682, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: m_Name
+      value: Ninja Katana
+      objectReference: {fileID: 0}
     - target: {fileID: 7367104688647257536, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}
       propertyPath: m_RootOrder

@@ -43,7 +43,6 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
-        //UpdateCurrentWeapon();
         UpdateShoot();
         UpdateSlash();
     }    
@@ -119,19 +118,26 @@ public class WeaponController : MonoBehaviour
     }
 
     
-    private void OnPrevWeapon() 
+    private void OnPrevWeapon()
     {
-        if (prevWeapon || nextWeapon) { return; }
-        
-        prevWeapon = true;
-        onWeaponChange.Invoke();
+        if (IsWeaponCurrentlyNotBeingChanged())
+        {
+            prevWeapon = true;
+            onWeaponChange.Invoke();
+        }
     }
+
     private void OnNextWeapon()
     {
-        if (prevWeapon || nextWeapon) { return; }
-
-        nextWeapon = true;
-        onWeaponChange.Invoke();
+        if (IsWeaponCurrentlyNotBeingChanged())
+        {
+            nextWeapon = true;
+            onWeaponChange.Invoke();
+        }
+    }
+    private bool IsWeaponCurrentlyNotBeingChanged()
+    {
+        return !prevWeapon && !nextWeapon;
     }
     private void OnShoot() { shoot = true; }
     private void OnSlash() { slash = true; }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 747640680396730171}
   - component: {fileID: 3040037165312648422}
   m_Layer: 0
-  m_Name: Katana
+  m_Name: Ninja Katana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
