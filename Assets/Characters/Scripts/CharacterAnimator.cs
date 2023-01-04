@@ -131,8 +131,20 @@ public class CharacterAnimator : MonoBehaviour
     {
         if (weapon.animatorOverride)
             animator.runtimeAnimatorController = weapon.animatorOverride;
-        else
+        else if(!weapon.animatorOverride)
             animator.runtimeAnimatorController = standardAnimatorController;
+
+        CorrectIsGroundedBug(); // TODO: look for the actual reason this happens and fix it
+    }
+
+    private void CorrectIsGroundedBug()
+    {
+        if (!animator.GetBool(isGroundedHash))
+        {
+            animator.SetTrigger(landingHash);
+            animator.SetBool(isGroundedHash, true);
+        }
+            
     }
 
     private void Update()

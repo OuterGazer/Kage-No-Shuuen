@@ -39,8 +39,7 @@ public class WeaponController : MonoBehaviour
         // Es mucho asumir que tendremos un arma inicial, pero peor es robar.
         // Se podría hacer un check para saber que weapons.Length no sea cero.
         currentWeapon = weapons[0];
-        // TODO: esta línea aplica el animator controller propio de cada arma cuando implementemos el animatorcontrolleroverride
-        //characterAnimator.ApplyAnimatorController(weapons[0]);
+        characterAnimator.ApplyAnimatorController(weapons[0]);
     }
 
     private void Update()
@@ -74,14 +73,16 @@ public class WeaponController : MonoBehaviour
         { currentWeaponIndex = 0; }
 
         currentWeapon = weapons[currentWeaponIndex].GetComponent<Weapon>();
-        weapons[currentWeaponIndex].gameObject.SetActive(true);
-        characterAnimator.ApplyAnimatorController(weapons[currentWeaponIndex]);
+        weapons[currentWeaponIndex].gameObject.SetActive(true);        
     }
 
+    // Called from an animation event
     private void ResetWeaponChangeState()
     {
         prevWeapon = false;
         nextWeapon = false;
+
+        characterAnimator.ApplyAnimatorController(weapons[currentWeaponIndex]);
     }
 
     private void UpdateShoot()

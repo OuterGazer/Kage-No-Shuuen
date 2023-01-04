@@ -26,12 +26,12 @@ public class CharacterRunningState : CharacterMovementBase
 
     void Update()
     {
-        if (!charController.isGrounded)
-            ChangeToOnAirState();
-
         UpdateMovement(speed, movementDirection, Vector3.up);
 
         OrientateCharacterForward();
+
+        if (!charController.isGrounded)
+            ChangeToOnAirState();
     }
 
     private void ChangeToOnAirState()

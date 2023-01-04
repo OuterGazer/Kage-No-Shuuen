@@ -29,13 +29,13 @@ public class CharacterCrouchingState : CharacterMovementBase
 
     void Update()
     {
-        if (!charController.isGrounded)
-            ChangeToOnAirState();
-
         UpdateMovement(speed, movementDirection, Vector3.up);
 
         if(movementDirection != Vector3.zero)
             OrientateCharacterForward();
+
+        if (!charController.isGrounded)
+            ChangeToOnAirState();
     }
 
     private void ChangeToOnAirState()
