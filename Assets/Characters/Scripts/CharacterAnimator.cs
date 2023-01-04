@@ -289,6 +289,7 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetTrigger(changeWeaponHash);
     }
 
+    //TODO: Have character correctly grab 2-Hand weapons with both hands
     public void PlaySlashAnimation()
     {
         animator.SetTrigger(slashHash);
