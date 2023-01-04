@@ -25,4 +25,8 @@ public class AnimationEventForwarder : MonoBehaviour
         SendMessageUpwards("ResetWeaponChangeState");
     }
     
+    public void ForwardSetCanChainCombo(int canChain)
+    {
+        SendMessageUpwards("SetCanChainCombo", canChain);
+    }
 }

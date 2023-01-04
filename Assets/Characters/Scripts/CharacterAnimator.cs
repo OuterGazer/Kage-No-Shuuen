@@ -35,6 +35,7 @@ public class CharacterAnimator : MonoBehaviour
     int isBlockingHash;
     int changeWeaponHash;
     int slashHash;
+    int canChainComboHash;
 
     Vector3 oldPosition;
 
@@ -117,6 +118,7 @@ public class CharacterAnimator : MonoBehaviour
         isBlockingHash = Animator.StringToHash("isBlocking");
         changeWeaponHash = Animator.StringToHash("ChangeWeapon");
         slashHash = Animator.StringToHash("Slash");
+        canChainComboHash = Animator.StringToHash("canChainCombo");
     }
 
     private void Update()
@@ -190,6 +192,7 @@ public class CharacterAnimator : MonoBehaviour
     }
 
     private float onWallAnimationCorrectionFactor = 1f;
+
     private void SetCorrectAnimationWhenCharacterIsOnWall(float directionSign)
     {
         onWallAnimationCorrectionFactor = directionSign;
@@ -263,5 +266,14 @@ public class CharacterAnimator : MonoBehaviour
     public void PlaySlashAnimation()
     {
         animator.SetTrigger(slashHash);
+    }
+
+    public void SetCanChainCombo(int canChain)
+    {
+        if(canChain == 1)
+            { animator.SetBool(canChainComboHash, true); }
+        else if(canChain == 0)
+            { animator.SetBool(canChainComboHash, false); }
+
     }
 }
