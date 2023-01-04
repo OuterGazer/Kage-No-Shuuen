@@ -34,6 +34,7 @@ public class CharacterAnimator : MonoBehaviour
     int dodgingHash;
     int isBlockingHash;
     int changeWeaponHash;
+    int slashHash;
 
     Vector3 oldPosition;
 
@@ -72,6 +73,7 @@ public class CharacterAnimator : MonoBehaviour
         dodgingState.MakeCharacterDodge.AddListener(PlayDodgeAnimation);
         blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
+        weaponController.onSlash.AddListener(PlaySlashAnimation);
     }    
 
     private void OnDestroy()
@@ -91,6 +93,7 @@ public class CharacterAnimator : MonoBehaviour
         dodgingState.MakeCharacterDodge.RemoveListener(PlayDodgeAnimation);
         blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
+        weaponController.onSlash.RemoveListener(PlaySlashAnimation);
     }
 
     private void Start()
@@ -113,6 +116,7 @@ public class CharacterAnimator : MonoBehaviour
         dodgingHash = Animator.StringToHash("Dodging");
         isBlockingHash = Animator.StringToHash("isBlocking");
         changeWeaponHash = Animator.StringToHash("ChangeWeapon");
+        slashHash = Animator.StringToHash("Slash");
     }
 
     private void Update()
@@ -254,5 +258,10 @@ public class CharacterAnimator : MonoBehaviour
     public void PlayChangeWeaponAnimation()
     {
         animator.SetTrigger(changeWeaponHash);
+    }
+
+    public void PlaySlashAnimation()
+    {
+        animator.SetTrigger(slashHash);
     }
 }

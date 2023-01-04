@@ -40,9 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7700200428258383946}
-  - component: {fileID: 6334877191155451428}
   - component: {fileID: 7783045320843792185}
   - component: {fileID: 2615766303545825683}
+  - component: {fileID: 5993922507323044281}
   m_Layer: 0
   m_Name: Samurai Wakizashi
   m_TagString: Untagged
@@ -68,21 +68,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6334877191155451428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2738501279144325565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34a5bbbafb52ac0478460e5b4472f140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToBindTo: {fileID: 0}
-  localPositionOffset: {x: 0, y: 0, z: 0}
-  localRotationOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &7783045320843792185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +102,28 @@ MonoBehaviour:
   damageableLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
+--- !u!1773428102 &5993922507323044281
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738501279144325565}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationAtRest: {x: 270, y: 0, z: 0}
+  m_TranslationOffsets: []
+  m_RotationOffsets: []
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 0
+  m_IsLocked: 0
+  m_Sources: []
 --- !u!1 &7008548350563206721
 GameObject:
   m_ObjectHideFlags: 0

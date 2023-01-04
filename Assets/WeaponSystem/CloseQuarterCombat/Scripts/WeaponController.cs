@@ -20,11 +20,11 @@ public class WeaponController : MonoBehaviour
 
     CharacterAnimator characterAnimator;
     [HideInInspector] public UnityEvent onWeaponChange;
+    [HideInInspector] public UnityEvent onSlash;
 
     private void Awake()
     {
         weapons = weaponsParent.GetComponentsInChildren<Weapon>();
-        characterAnimator= GetComponentInChildren<CharacterAnimator>();
     }
 
     private void Start()
@@ -101,8 +101,7 @@ public class WeaponController : MonoBehaviour
     {
         if (slash)
         {
-            // TODO: esta línea es para cuando implmentemos animación de ataque
-            //characterAnimator.PerformSlash();
+            onSlash.Invoke();
             slash = false;
         }
     }

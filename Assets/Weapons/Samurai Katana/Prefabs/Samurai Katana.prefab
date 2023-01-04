@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1603580918466960325}
   - component: {fileID: 9168892290387326685}
   - component: {fileID: 1010987025541087777}
-  - component: {fileID: 7873045531690992153}
+  - component: {fileID: 9120884314293276116}
   m_Layer: 0
   m_Name: Samurai Katana
   m_TagString: Untagged
@@ -71,21 +71,28 @@ MonoBehaviour:
   damageableLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
---- !u!114 &7873045531690992153
-MonoBehaviour:
+--- !u!1773428102 &9120884314293276116
+ParentConstraint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464856861251414047}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34a5bbbafb52ac0478460e5b4472f140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToBindTo: {fileID: 0}
-  localPositionOffset: {x: 0.00813293, y: 0.12622745, z: 0.0072585996}
-  localRotationOffset: {x: 0.69588846, y: 0.010429986, z: -0.71681166, w: 0.04256681}
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationAtRest: {x: 270, y: 0, z: 0}
+  m_TranslationOffsets: []
+  m_RotationOffsets: []
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 0
+  m_IsLocked: 0
+  m_Sources: []
 --- !u!1 &1956230559337071323
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1589896498835771576}
-  - component: {fileID: 8373787084303105753}
+  - component: {fileID: 7488081552038980102}
   - component: {fileID: 747640680396730171}
   - component: {fileID: 3040037165312648422}
   m_Layer: 0
@@ -37,21 +37,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
---- !u!114 &8373787084303105753
-MonoBehaviour:
+--- !u!1773428102 &7488081552038980102
+ParentConstraint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1589896498835771577}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34a5bbbafb52ac0478460e5b4472f140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToBindTo: {fileID: 0}
-  localPositionOffset: {x: 0.1979112, y: 0.14132182, z: 0.016283575}
-  localRotationOffset: {x: 0.4619681, y: 0.5142374, z: -0.49948728, w: 0.5221667}
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationAtRest: {x: 270, y: 0, z: 0}
+  m_TranslationOffsets: []
+  m_RotationOffsets: []
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 0
+  m_IsLocked: 0
+  m_Sources: []
 --- !u!114 &747640680396730171
 MonoBehaviour:
   m_ObjectHideFlags: 0
