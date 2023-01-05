@@ -146,4 +146,9 @@ public class WeaponController : MonoBehaviour
     private void OnShoot() { shoot = true; }
     private void OnSlash() { slash = true; }
     private void OnHeavySlash() { heavySlash = true; }
+
+    public void SetIsSlashing(int isSlashing)
+    {
+        currentWeapon.closeCombatWeaponBase.SendMessage("SetIsSlashing", isSlashing);
+    }
 }

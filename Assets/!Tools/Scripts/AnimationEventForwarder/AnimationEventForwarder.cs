@@ -5,7 +5,8 @@ using UnityEngine.Animations;
 
 public class AnimationEventForwarder : MonoBehaviour
 {
-    
+    // TODO: Arreglar todo esto con eventos más limpios
+
     public void ForwardHookHasArrivedAtTarget()
     {
         SendMessageUpwards("HookHasArrivedAtTarget");
@@ -29,5 +30,10 @@ public class AnimationEventForwarder : MonoBehaviour
     public void ForwardSetCanChainCombo(int canChain)
     {
         SendMessageUpwards("SetCanChainCombo", canChain);
+    }
+
+    public void ForwardSetIsSlashing(int isSlashing)
+    {
+        SendMessageUpwards("SetIsSlashing", isSlashing);
     }
 }
