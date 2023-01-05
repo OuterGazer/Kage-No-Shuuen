@@ -92,7 +92,7 @@ public class WeaponController : MonoBehaviour
             // Aqui falta decirle al animator que active la animacion de disparo.
             // También falta poner un método que active la animación de apuntado con el resto de eventos en la parte baja del script.
             // Ahora mismo se dispara sin apuntar primero y sale el raycast al suelo, debo añadir un evento de animación para que se dispare en el momento apropiado.
-            currentWeapon.fireArm?.Shoot();
+            currentWeapon.shootingWeapon?.Shoot();
             shoot= false;
         }
     }

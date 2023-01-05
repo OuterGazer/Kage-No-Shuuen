@@ -5,12 +5,12 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public AnimatorOverrideController animatorOverride;
-    public FireArm fireArm;
+    public ShootingWeapon shootingWeapon;
     public CloseCombatWeaponBase closeCombatWeaponBase;
 
     private void Reset()
     {
-        fireArm = GetComponent<FireArm>();
+        shootingWeapon = GetComponent<ShootingWeapon>();
         closeCombatWeaponBase= GetComponent<CloseCombatWeaponBase>();
     }
 }
