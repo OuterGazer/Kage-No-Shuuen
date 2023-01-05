@@ -15,6 +15,7 @@ public class WeaponController : MonoBehaviour
     public bool shoot;
     public bool slash;
     public bool heavySlash;
+    public bool aim;
 
     Weapon[] weapons;
     Weapon currentWeapon;
@@ -23,6 +24,8 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public UnityEvent onWeaponChange;
     [HideInInspector] public UnityEvent onSlash;
     [HideInInspector] public UnityEvent onHeavySlash;
+    [HideInInspector] public UnityEvent<bool> onAim;
+
     private void Awake()
     {
         weapons = weaponsParent.GetComponentsInChildren<Weapon>();
@@ -46,6 +49,7 @@ public class WeaponController : MonoBehaviour
     {
         UpdateShoot();
         UpdateSlash();
+        UpdateAim();
     }    
 
     // Gets called from an animation event
@@ -111,6 +115,15 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    private void UpdateAim()
+    {
+        if (aim)
+        {
+            onAim.Invoke(aim);
+            aim = false;
+        }
+    }
+
     internal void DamageStart()
     {
         currentWeapon.closeCombatWeaponBase?.DamageStart();
@@ -143,9 +156,12 @@ public class WeaponController : MonoBehaviour
     {
         return !prevWeapon && !nextWeapon;
     }
+
+    // TODO: change this system to work fully on events instead of in Update()
     private void OnShoot() { shoot = true; }
     private void OnSlash() { slash = true; }
     private void OnHeavySlash() { heavySlash = true; }
+    private void OnAim() { aim = true; }
 
     public void SetIsSlashing(int isSlashing)
     {

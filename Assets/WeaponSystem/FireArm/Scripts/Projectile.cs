@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] float damage = 50f;
+    [SerializeField] float damage = 0.51f;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        collision.collider.GetComponent<IDamagereceiver>()?.ReceiveDamage(damage);
+        other.GetComponent<IDamagereceiver>()?.ReceiveDamage(damage);
         Destroy(gameObject);
     }
 }

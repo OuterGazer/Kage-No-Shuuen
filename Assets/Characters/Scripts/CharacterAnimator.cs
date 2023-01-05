@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
@@ -38,6 +39,7 @@ public class CharacterAnimator : MonoBehaviour
     int slashHash;
     int canChainComboHash;
     int heavySlashHash;
+    int isAimingHash;
 
     Vector3 oldPosition;
 
@@ -77,7 +79,8 @@ public class CharacterAnimator : MonoBehaviour
         blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
         weaponController.onSlash.AddListener(PlaySlashAnimation);
-        weaponController.onHeavySlash.AddListener(PlayHeavySlashAnimation); 
+        weaponController.onHeavySlash.AddListener(PlayHeavySlashAnimation);
+        weaponController.onAim.AddListener(PlayAimingAnimation);
     }    
 
     private void OnDestroy()
@@ -99,6 +102,7 @@ public class CharacterAnimator : MonoBehaviour
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
         weaponController.onSlash.RemoveListener(PlaySlashAnimation);
         weaponController.onHeavySlash.RemoveListener(PlayHeavySlashAnimation);
+        weaponController.onAim.RemoveListener(PlayAimingAnimation);
     }
 
     private void Start()
@@ -125,6 +129,7 @@ public class CharacterAnimator : MonoBehaviour
         slashHash = Animator.StringToHash("Slash");
         canChainComboHash = Animator.StringToHash("canChainCombo");
         heavySlashHash = Animator.StringToHash("HeavySlash");
+        isAimingHash = Animator.StringToHash("isAiming");
     }
 
     public void ApplyAnimatorController(Weapon weapon)
@@ -309,5 +314,23 @@ public class CharacterAnimator : MonoBehaviour
     public void PlayHeavySlashAnimation()
     {
         animator.SetTrigger(heavySlashHash);
+    }
+
+    private bool isAiming;
+    [SerializeField] Rig aimingRig;
+    public void PlayAimingAnimation(bool isAiming)
+    {
+        if (!this.isAiming)
+        {
+            this.isAiming = isAiming;
+            aimingRig.weight= 1f;
+        }
+        else
+        {
+            this.isAiming = false;
+            aimingRig.weight = 0f;
+        }            
+
+        animator.SetBool(isAimingHash, this.isAiming);
     }
 }
