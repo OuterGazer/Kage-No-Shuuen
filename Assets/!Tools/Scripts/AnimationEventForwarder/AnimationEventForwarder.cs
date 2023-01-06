@@ -41,4 +41,24 @@ public class AnimationEventForwarder : MonoBehaviour
     {
         SendMessageUpwards("DamageEnd");
     }
+
+    public void ForwardPullBowstring()
+    {
+        SendMessageUpwards("PullBowstring");
+    }
+
+    public void ForwardReleaseBowstring()
+    {
+        SendMessageUpwards("ReleaseBowstring");
+    }
+
+    public void ForwardShootBow()
+    {
+        SendMessageUpwards("ShootBow");
+    }
+
+    public void ForwardExitShooting()
+    {
+        SendMessageUpwards("ExitShooting");
+    }
 }

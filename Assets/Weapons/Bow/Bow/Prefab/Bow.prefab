@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5064175263633922028}
   m_Layer: 0
   m_Name: Bow
-  m_TagString: Untagged
+  m_TagString: Bow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212f8cdab30a3f040a972004e6655518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorOverride: {fileID: 0}
+  animatorOverride: {fileID: 22100000, guid: 36fd5c2e771a9bb4ca98f7474380fa16, type: 2}
   shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 0}
 --- !u!114 &5972805745461565220

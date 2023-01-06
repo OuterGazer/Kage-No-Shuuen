@@ -40,6 +40,7 @@ public class CharacterAnimator : MonoBehaviour
     int canChainComboHash;
     int heavySlashHash;
     int isAimingHash;
+    int shootHash;
 
     Vector3 oldPosition;
 
@@ -81,6 +82,7 @@ public class CharacterAnimator : MonoBehaviour
         weaponController.onSlash.AddListener(PlaySlashAnimation);
         weaponController.onHeavySlash.AddListener(PlayHeavySlashAnimation);
         weaponController.onAim.AddListener(PlayAimingAnimation);
+        weaponController.onShoot.AddListener(PlayShootingAnimation);
     }    
 
     private void OnDestroy()
@@ -103,6 +105,7 @@ public class CharacterAnimator : MonoBehaviour
         weaponController.onSlash.RemoveListener(PlaySlashAnimation);
         weaponController.onHeavySlash.RemoveListener(PlayHeavySlashAnimation);
         weaponController.onAim.RemoveListener(PlayAimingAnimation);
+        weaponController.onShoot.RemoveListener(PlayShootingAnimation);
     }
 
     private void Start()
@@ -130,6 +133,7 @@ public class CharacterAnimator : MonoBehaviour
         canChainComboHash = Animator.StringToHash("canChainCombo");
         heavySlashHash = Animator.StringToHash("HeavySlash");
         isAimingHash = Animator.StringToHash("isAiming");
+        shootHash = Animator.StringToHash("Shoot");
     }
 
     public void ApplyAnimatorController(Weapon weapon)
@@ -320,5 +324,11 @@ public class CharacterAnimator : MonoBehaviour
     public void PlayAimingAnimation(bool isAiming)
     {
         animator.SetBool(isAimingHash, isAiming);
+    }
+
+    public void PlayShootingAnimation()
+    {
+        animator.SetTrigger(shootHash);
+        animator.SetBool(isAimingHash, false);
     }
 }
