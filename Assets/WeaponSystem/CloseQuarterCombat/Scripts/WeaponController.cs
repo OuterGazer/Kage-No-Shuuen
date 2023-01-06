@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
@@ -49,6 +50,7 @@ public class WeaponController : MonoBehaviour
     {
         UpdateShoot();
         UpdateSlash();
+        UpdateAim();
     }    
 
     // Gets called from an animation event
@@ -88,15 +90,6 @@ public class WeaponController : MonoBehaviour
         characterAnimator.ApplyAnimatorController(weapons[currentWeaponIndex]);
     }
 
-    private void UpdateShoot()
-    {
-        if (shoot && aim)
-        {
-            currentWeapon.shootingWeapon?.Shoot();
-            shoot= false;
-        }
-    }
-
     private void UpdateSlash()
     {
         if (slash)
@@ -108,6 +101,29 @@ public class WeaponController : MonoBehaviour
         {
             onHeavySlash.Invoke();
             heavySlash = false;
+        }
+    }
+    
+    private void UpdateShoot()
+    {
+        if (shoot && aim)
+        {
+            currentWeapon.shootingWeapon?.Shoot();
+            shoot= false;
+        }
+    }
+
+    [SerializeField] float animAcc = 0.05f;
+    [SerializeField] Rig aimingRig;
+    private void UpdateAim()
+    {
+        if (aim)
+        {
+            aimingRig.weight = (aimingRig.weight >= 1f) ? 1f : (aimingRig.weight += animAcc * Time.deltaTime);
+        }
+        else
+        {
+            aimingRig.weight = (aimingRig.weight <= 0f) ? 0f : (aimingRig.weight -= animAcc * Time.deltaTime);
         }
     }
 
