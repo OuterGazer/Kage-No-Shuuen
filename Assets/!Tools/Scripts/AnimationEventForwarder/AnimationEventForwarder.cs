@@ -32,8 +32,13 @@ public class AnimationEventForwarder : MonoBehaviour
         SendMessageUpwards("SetCanChainCombo", canChain);
     }
 
-    public void ForwardSetIsSlashing(int isSlashing)
+    public void ForwardDamageStart()
     {
-        SendMessageUpwards("SetIsSlashing", isSlashing);
+        SendMessageUpwards("DamageStart");
+    }
+
+    public void ForwardDamageEnd()
+    {
+        SendMessageUpwards("DamageEnd");
     }
 }

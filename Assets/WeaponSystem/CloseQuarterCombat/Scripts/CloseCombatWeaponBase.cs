@@ -20,12 +20,4 @@ public abstract class CloseCombatWeaponBase : MonoBehaviour
     {
         damageReceiver?.ReceiveDamage(damage);
     }
-
-    protected void SetIsSlashing(int isSlashing)
-    {
-        if (isSlashing == 1)
-            IsSlashing = true;
-        else if (isSlashing == 0)
-            IsSlashing = false;
-    }
 }
