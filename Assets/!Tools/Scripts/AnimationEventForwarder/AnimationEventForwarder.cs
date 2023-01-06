@@ -42,9 +42,15 @@ public class AnimationEventForwarder : MonoBehaviour
         SendMessageUpwards("DamageEnd");
     }
 
+    public void ForwardSpawnArrowInHand()
+    {
+        SendMessageUpwards("SpawnArrowInHand");
+    }
+
     public void ForwardPullBowstring()
     {
         SendMessageUpwards("PullBowstring");
+        SendMessageUpwards("SpawnArrowInBow");
     }
 
     public void ForwardReleaseBowstring()

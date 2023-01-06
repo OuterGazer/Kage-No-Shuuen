@@ -177,6 +177,21 @@ public class WeaponController : MonoBehaviour
     }
 
     // Called from Animation Event
+    [SerializeField] GameObject quiverArrow;
+    internal void SpawnArrowInHand()
+    {
+        quiverArrow.SetActive(true);
+    }
+
+    // Called from Animation Event
+    [SerializeField] GameObject loadedArrow;
+    internal void SpawnArrowInBow()
+    {
+        quiverArrow.SetActive(false);
+        loadedArrow.SetActive(true);
+    }
+
+    // Called from Animation Event
     private bool isPullingBowstring = false;
     internal void PullBowstring()
     {
@@ -186,6 +201,7 @@ public class WeaponController : MonoBehaviour
     internal void ReleaseBowstring()
     {
         isPullingBowstring = false;
+        loadedArrow.SetActive(false);
     }
 
     // Called from Animation Event
@@ -221,5 +237,5 @@ public class WeaponController : MonoBehaviour
     private void OnShoot() { shoot = true; }
     private void OnSlash() { slash = true; }
     private void OnHeavySlash() { heavySlash = true; }
-    private void OnAim() { aim = !aim; onAim.Invoke(aim); }
+    private void OnAim() { aim = !aim; onAim.Invoke(aim); if (loadedArrow.activeInHierarchy) { loadedArrow.SetActive(false); } }
 }
