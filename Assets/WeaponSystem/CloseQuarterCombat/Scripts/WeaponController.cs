@@ -10,12 +10,12 @@ public class WeaponController : MonoBehaviour
     [SerializeField] Transform weaponsParent;
     int currentWeaponIndex;
 
-    public bool prevWeapon;
-    public bool nextWeapon;
-    public bool shoot;
-    public bool slash;
-    public bool heavySlash;
-    public bool aim;
+    public bool prevWeapon = false;
+    public bool nextWeapon = false;
+    public bool shoot = false;
+    public bool slash = false;
+    public bool heavySlash = false;
+    public bool aim = false;
 
     Weapon[] weapons;
     Weapon currentWeapon;
@@ -49,7 +49,6 @@ public class WeaponController : MonoBehaviour
     {
         UpdateShoot();
         UpdateSlash();
-        UpdateAim();
     }    
 
     // Gets called from an animation event
@@ -91,11 +90,8 @@ public class WeaponController : MonoBehaviour
 
     private void UpdateShoot()
     {
-        if (shoot)
+        if (shoot && aim)
         {
-            // Aqui falta decirle al animator que active la animacion de disparo.
-            // También falta poner un método que active la animación de apuntado con el resto de eventos en la parte baja del script.
-            // Ahora mismo se dispara sin apuntar primero y sale el raycast al suelo, debo añadir un evento de animación para que se dispare en el momento apropiado.
             currentWeapon.shootingWeapon?.Shoot();
             shoot= false;
         }
@@ -112,15 +108,6 @@ public class WeaponController : MonoBehaviour
         {
             onHeavySlash.Invoke();
             heavySlash = false;
-        }
-    }
-
-    private void UpdateAim()
-    {
-        if (aim)
-        {
-            onAim.Invoke(aim);
-            aim = false;
         }
     }
 
@@ -157,9 +144,9 @@ public class WeaponController : MonoBehaviour
         return !prevWeapon && !nextWeapon;
     }
 
-    // TODO: change this system to work fully on events instead of in Update()
+    
     private void OnShoot() { shoot = true; }
     private void OnSlash() { slash = true; }
     private void OnHeavySlash() { heavySlash = true; }
-    private void OnAim() { aim = true; }
+    private void OnAim() { aim = !aim; onAim.Invoke(aim); }
 }

@@ -316,21 +316,10 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetTrigger(heavySlashHash);
     }
 
-    private bool isAiming;
     [SerializeField] Rig aimingRig;
     public void PlayAimingAnimation(bool isAiming)
     {
-        if (!this.isAiming)
-        {
-            this.isAiming = isAiming;
-            aimingRig.weight= 1f;
-        }
-        else
-        {
-            this.isAiming = false;
-            aimingRig.weight = 0f;
-        }            
-
-        animator.SetBool(isAimingHash, this.isAiming);
+        aimingRig.weight = isAiming ? 1f : 0f;
+        animator.SetBool(isAimingHash, isAiming);
     }
 }
