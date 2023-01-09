@@ -49,6 +49,37 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8082367727697544278, guid: b9bf6212b71d8de46993f18a661a1756,
     type: 3}
   launchSpeed: 5
+--- !u!1 &1818906328791548596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6655133161190804634}
+  m_Layer: 0
+  m_Name: Edge Notch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6655133161190804634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818906328791548596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.093, z: -0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1658607786657790789}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4009335483697925733
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +123,7 @@ GameObject:
   - component: {fileID: 1658607786657790789}
   - component: {fileID: 5592065084083124890}
   - component: {fileID: 5972805745461565220}
+  - component: {fileID: 7460529999902915179}
   - component: {fileID: 5064175263633922028}
   m_Layer: 0
   m_Name: Bow
@@ -114,6 +146,8 @@ Transform:
   m_Children:
   - {fileID: 313676329030999661}
   - {fileID: 5794926228577160202}
+  - {fileID: 6655133161190804634}
+  - {fileID: 5867705990702930577}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -130,8 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 22100000, guid: 36fd5c2e771a9bb4ca98f7474380fa16, type: 2}
-  shootingWeapon: {fileID: 0}
-  closeCombatWeaponBase: {fileID: 0}
+  shootingWeapon: {fileID: 5972805745461565220}
+  closeCombatWeaponBase: {fileID: 7460529999902915179}
 --- !u!114 &5972805745461565220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +184,25 @@ MonoBehaviour:
   debugReload: 0
   continuousShooting: 0
   maxShootsPerSecond: 0
+--- !u!114 &7460529999902915179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4336689242532011679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcf5d7319f38d943a634537f17dea32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0.51
+  edgeNotch: {fileID: 6655133161190804634}
+  tip: {fileID: 5867705990702930577}
+  raysPerDistance: 30
+  damageableLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
 --- !u!1773428102 &5064175263633922028
 ParentConstraint:
   m_ObjectHideFlags: 0
@@ -172,6 +225,37 @@ ParentConstraint:
   m_IsContraintActive: 0
   m_IsLocked: 0
   m_Sources: []
+--- !u!1 &6329624854946572033
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5867705990702930577}
+  m_Layer: 0
+  m_Name: Tip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5867705990702930577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329624854946572033}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.052, z: 0.014}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1658607786657790789}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6929916357736878713
 GameObject:
   m_ObjectHideFlags: 0

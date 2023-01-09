@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4631615124222633292}
   - component: {fileID: 1056175732553971540}
   - component: {fileID: 7575006519025007521}
+  - component: {fileID: 202765857944326426}
   - component: {fileID: 5581508258741858333}
   m_Layer: 0
   m_Name: Fukiya
@@ -33,6 +34,8 @@ Transform:
   m_Children:
   - {fileID: 77411448164776490}
   - {fileID: 981460066604272264}
+  - {fileID: 2382308189416632696}
+  - {fileID: 3152010855734515113}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,9 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212f8cdab30a3f040a972004e6655518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorOverride: {fileID: 0}
+  animatorOverride: {fileID: 22100000, guid: ce233adfe996c5940a7391d37a58e648, type: 2}
   shootingWeapon: {fileID: 7575006519025007521}
-  closeCombatWeaponBase: {fileID: 0}
+  closeCombatWeaponBase: {fileID: 202765857944326426}
 --- !u!114 &7575006519025007521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +72,25 @@ MonoBehaviour:
   debugReload: 0
   continuousShooting: 0
   maxShootsPerSecond: 0
+--- !u!114 &202765857944326426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603547801169861115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcf5d7319f38d943a634537f17dea32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0.51
+  edgeNotch: {fileID: 2382308189416632696}
+  tip: {fileID: 3152010855734515113}
+  raysPerDistance: 60
+  damageableLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
 --- !u!1773428102 &5581508258741858333
 ParentConstraint:
   m_ObjectHideFlags: 0
@@ -91,6 +113,37 @@ ParentConstraint:
   m_IsContraintActive: 0
   m_IsLocked: 0
   m_Sources: []
+--- !u!1 &3240621729393149171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2382308189416632696}
+  m_Layer: 0
+  m_Name: Edge Notch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2382308189416632696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3240621729393149171}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.146, y: 0, z: 0.198}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4631615124222633292}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &5116227801405361676
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +192,37 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6153514481982044, guid: ecfcf02473b997247a24efd1d66ad389,
     type: 3}
   launchSpeed: 5
+--- !u!1 &6744801359940563677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3152010855734515113}
+  m_Layer: 0
+  m_Name: Tip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3152010855734515113
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744801359940563677}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.019, y: 0, z: 0.375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4631615124222633292}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &7394224479465270653
 GameObject:
   m_ObjectHideFlags: 0
