@@ -2954,6 +2954,11 @@ PrefabInstance:
       propertyPath: m_Sources.Array.data[1].sourceTransform
       value: 
       objectReference: {fileID: 4323827797085878704}
+    - target: {fileID: 2336569475683405071, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: closeCombatWeaponBase
+      value: 
+      objectReference: {fileID: 2095471913000195762}
     - target: {fileID: 2773656592634856902, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform
@@ -3441,6 +3446,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1733d861d8b94ef41921179374cdf107, type: 3}
+--- !u!114 &2095471913000195762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2933028495153888041, guid: 1733d861d8b94ef41921179374cdf107,
+    type: 3}
+  m_PrefabInstance: {fileID: 3864274822314962331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcf5d7319f38d943a634537f17dea32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3413141248556956164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1944781652499224479, guid: 1733d861d8b94ef41921179374cdf107,
