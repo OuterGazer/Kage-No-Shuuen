@@ -233,9 +233,15 @@ public class WeaponController : MonoBehaviour
     {
         if (throwing)
         {
-            currentWeapon.ThrowingWeaponBase?.ThrowWeapon();
+            onThrowing.Invoke();
             throwing = false;
         }
+    }
+
+    // Called from aniamtion event
+    private void ThrowWeapon()
+    {
+        currentWeapon.ThrowingWeaponBase?.Throw();
     }
 
     
@@ -266,4 +272,5 @@ public class WeaponController : MonoBehaviour
     private void OnSlash() { slash = true; }
     private void OnHeavySlash() { heavySlash = true; }
     private void OnAim() { aim = !aim; onAim.Invoke(aim); if (loadedArrow.activeInHierarchy) { loadedArrow.SetActive(false); } }
+    private void OnWeaponThrow() { throwing = true; }
 }

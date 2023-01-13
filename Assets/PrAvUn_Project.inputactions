@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "WeaponThrow",
+                    "type": "Button",
+                    "id": "e78d08ae-faab-42ad-8f8a-61827449ec2a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Crouch",
                     "type": "Value",
                     "id": "5c275bfd-707a-439f-8621-13ff8d932dc3",
@@ -431,6 +440,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Slash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "014411ab-72f4-43f3-8c93-f4a389a4b901",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WeaponThrow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

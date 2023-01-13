@@ -6,11 +6,13 @@ public abstract class ThrowingWeaponBase : MonoBehaviour
 {
     [SerializeField] protected GameObject projectilePrefab;
     [SerializeField] protected float throwingStrength = 5f;
+    [SerializeField] protected Transform hand;
+    [SerializeField] protected Transform player;
 
     public bool IsThrowing { get; private set; }
 
     public void StartThrowing() { IsThrowing = true; }
     public void EndThrowing() { IsThrowing = false; }
 
-    public abstract void ThrowWeapon();
+    public abstract void Throw();
 }

@@ -5,18 +5,41 @@ using UnityEngine;
 public class HorizontalThrow : ThrowingWeaponBase
 {
     [SerializeField] float range = 10f;
-    [SerializeField] Vector3 hand;
+    [SerializeField] float spinSpeed = 10f;
+
+    Rigidbody projectileRB;
+    private Vector3 throwPosition= Vector3.zero;
 
     // Called from animation event
-    public override void ThrowWeapon()
+    public override void Throw()
     {
-        GameObject shotProjectile = Instantiate(projectilePrefab, hand, Quaternion.identity);
+        GameObject shotProjectile = Instantiate(projectilePrefab, hand.position, player.rotation);
 
-        Rigidbody projectileRB = shotProjectile.GetComponent<Rigidbody>();
+        projectileRB = shotProjectile.GetComponent<Rigidbody>();
 
         if (projectileRB)
-        { projectileRB.velocity = shotProjectile.transform.forward * throwingStrength; }
+        { 
+            projectileRB.velocity = shotProjectile.transform.forward * throwingStrength;
+            projectileRB.maxAngularVelocity = float.PositiveInfinity;
+            projectileRB.AddRelativeTorque(transform.up * spinSpeed, ForceMode.Impulse);
+        }
 
-        //TODO: use range to activate gravity in the projectile's rigidbody to have it fall down
+        throwPosition = transform.position;
+    }
+
+    private void Update()
+    {
+        if (projectileRB)
+        {
+            Vector3 currentPosition = projectileRB.transform.position;
+
+            if (HasProjectileReachedMaxRange(currentPosition))
+                projectileRB.useGravity = true;
+        }
+    }
+
+    private bool HasProjectileReachedMaxRange(Vector3 currentPosition)
+    {
+        return (currentPosition - throwPosition).sqrMagnitude >= range * range;
     }
 }
