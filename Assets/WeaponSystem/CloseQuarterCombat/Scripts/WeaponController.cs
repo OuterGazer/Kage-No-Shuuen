@@ -110,10 +110,16 @@ public class WeaponController : MonoBehaviour
     {
         if (shoot && aim)
         {
-            if (currentWeapon.CompareTag("Fukiya"))
-                currentWeapon.shootingWeapon?.Shoot();
+            if (currentWeapon.CompareTag("Fukiya") || currentWeapon.CompareTag("Gauntlet"))
+            {
+                currentWeapon.shootingWeapon?.Shoot();                
+            }
+            else if (currentWeapon.CompareTag("Bow"))
+            {
+                bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
+            }               
+
             onShoot.Invoke();
-            bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
             shoot = false;
         }
     }
@@ -124,10 +130,17 @@ public class WeaponController : MonoBehaviour
         currentWeapon.shootingWeapon?.Shoot();
     }
 
+    // Called from Animation Event
+    internal void ExitShooting()
+    {
+        aim = false;
+    }
+
     // TODO: refactor this in its own state classes
     [SerializeField] float animAcc = 0.05f;
     [SerializeField] Rig aimingFukiyaRig;
     [SerializeField] Rig aimingBowRig;
+    [SerializeField] Rig aimingGauntletRig;
     [SerializeField] Transform bowstring;
     [SerializeField] Transform leftHand;
     [SerializeField] Vector3 initialBowstringPosition;
@@ -161,6 +174,15 @@ public class WeaponController : MonoBehaviour
         else
         {
             bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
+        }
+
+        if (aim && currentWeapon.CompareTag("Gauntlet"))
+        {
+            aimingGauntletRig.weight = (aimingGauntletRig.weight >= 1f) ? 1f : (aimingGauntletRig.weight += animAcc * Time.deltaTime);
+        }
+        else if (!aim && currentWeapon.CompareTag("Gauntlet"))
+        {
+            aimingGauntletRig.weight = (aimingGauntletRig.weight <= 0f) ? 0f : (aimingGauntletRig.weight -= animAcc * Time.deltaTime);
         }
     }
 
@@ -202,12 +224,6 @@ public class WeaponController : MonoBehaviour
     {
         isPullingBowstring = false;
         loadedArrow.SetActive(false);
-    }
-
-    // Called from Animation Event
-    internal void ExitShooting()
-    {
-        aim = false; 
     }
 
     

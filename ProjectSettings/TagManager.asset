@@ -8,6 +8,7 @@ TagManager:
   - HookTarget
   - Fukiya
   - Bow
+  - Gauntlet
   layers:
   - Default
   - TransparentFX
