@@ -41,6 +41,7 @@ public class CharacterAnimator : MonoBehaviour
     int heavySlashHash;
     int isAimingHash;
     int shootHash;
+    int throwingHash;
 
     Vector3 oldPosition;
 
@@ -83,6 +84,7 @@ public class CharacterAnimator : MonoBehaviour
         weaponController.onHeavySlash.AddListener(PlayHeavySlashAnimation);
         weaponController.onAim.AddListener(PlayAimingAnimation);
         weaponController.onShoot.AddListener(PlayShootingAnimation);
+        weaponController.onThrowing.AddListener(PlayThrowingAnimation);
     }    
 
     private void OnDestroy()
@@ -106,6 +108,7 @@ public class CharacterAnimator : MonoBehaviour
         weaponController.onHeavySlash.RemoveListener(PlayHeavySlashAnimation);
         weaponController.onAim.RemoveListener(PlayAimingAnimation);
         weaponController.onShoot.RemoveListener(PlayShootingAnimation);
+        weaponController.onThrowing.AddListener(PlayThrowingAnimation);
     }
 
     private void Start()
@@ -134,13 +137,14 @@ public class CharacterAnimator : MonoBehaviour
         heavySlashHash = Animator.StringToHash("HeavySlash");
         isAimingHash = Animator.StringToHash("isAiming");
         shootHash = Animator.StringToHash("Shoot");
+        throwingHash = Animator.StringToHash("Throw");
     }
 
     public void ApplyAnimatorController(Weapon weapon)
     {
-        if (weapon.animatorOverride)
-            animator.runtimeAnimatorController = weapon.animatorOverride;
-        else if(!weapon.animatorOverride)
+        if (weapon.AnimatorOverride)
+            animator.runtimeAnimatorController = weapon.AnimatorOverride;
+        else if(!weapon.AnimatorOverride)
             animator.runtimeAnimatorController = standardAnimatorController;
 
         CorrectIsGroundedBug(); // TODO: look for the actual reason this happens and fix it
@@ -330,5 +334,10 @@ public class CharacterAnimator : MonoBehaviour
     {
         animator.SetTrigger(shootHash);
         animator.SetBool(isAimingHash, false);
+    }
+
+    public void PlayThrowingAnimation()
+    {
+        animator.SetTrigger(throwingHash);
     }
 }

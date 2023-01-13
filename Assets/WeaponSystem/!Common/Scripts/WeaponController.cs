@@ -18,6 +18,7 @@ public class WeaponController : MonoBehaviour
     public bool slash = false;
     public bool heavySlash = false;
     public bool aim = false;
+    public bool throwing = false;
 
     Weapon[] weapons;
     Weapon currentWeapon;
@@ -28,6 +29,7 @@ public class WeaponController : MonoBehaviour
     [HideInInspector] public UnityEvent onHeavySlash;
     [HideInInspector] public UnityEvent<bool> onAim;
     [HideInInspector] public UnityEvent onShoot;
+    [HideInInspector] public UnityEvent onThrowing;
 
     private void Awake()
     {
@@ -53,6 +55,7 @@ public class WeaponController : MonoBehaviour
         UpdateShoot();
         UpdateSlash();
         UpdateAim();
+        UpdateThrow();
     }    
 
     // Gets called from an animation event
@@ -112,7 +115,7 @@ public class WeaponController : MonoBehaviour
         {
             if (currentWeapon.CompareTag("Fukiya") || currentWeapon.CompareTag("Gauntlet"))
             {
-                currentWeapon.shootingWeapon?.Shoot();                
+                currentWeapon.ShootingWeapon?.Shoot();                
             }
             else if (currentWeapon.CompareTag("Bow"))
             {
@@ -127,7 +130,7 @@ public class WeaponController : MonoBehaviour
     // Called from an animation event
     internal void ShootBow()
     {
-        currentWeapon.shootingWeapon?.Shoot();
+        currentWeapon.ShootingWeapon?.Shoot();
     }
 
     // Called from Animation Event
@@ -189,13 +192,13 @@ public class WeaponController : MonoBehaviour
     // Called from Animation Event
     internal void DamageStart()
     {
-        currentWeapon.closeCombatWeaponBase?.DamageStart();
+        currentWeapon.CloseCombatWeaponBase?.DamageStart();
     }
 
     // Called from Animation Event
     internal void DamageEnd()
     {
-        currentWeapon.closeCombatWeaponBase?.DamageEnd();
+        currentWeapon.CloseCombatWeaponBase?.DamageEnd();
     }
 
     // Called from Animation Event
@@ -224,6 +227,15 @@ public class WeaponController : MonoBehaviour
     {
         isPullingBowstring = false;
         loadedArrow.SetActive(false);
+    }
+
+    private void UpdateThrow()
+    {
+        if (throwing)
+        {
+            currentWeapon.ThrowingWeaponBase?.ThrowWeapon();
+            throwing = false;
+        }
     }
 
     
