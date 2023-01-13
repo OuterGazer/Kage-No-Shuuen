@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamageableWithLife : MonoBehaviour, IDamagereceiver
 {
+    // TODO: implement multiple hit avoiding through event system (specially for multiple raycast weapons)
     [SerializeField] float life;
     public float Life => life;
     [SerializeField] float coolDownTime = 0.5f;
