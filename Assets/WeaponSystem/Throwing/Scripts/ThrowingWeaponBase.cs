@@ -9,6 +9,8 @@ public abstract class ThrowingWeaponBase : MonoBehaviour
     [SerializeField] protected Transform hand;
     [SerializeField] protected Transform player;
 
+    protected Rigidbody projectileRB;
+
     public bool IsThrowing { get; private set; }
 
     public void StartThrowing() { IsThrowing = true; }

@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6306572161963118585}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: -22.352001, y: -5.616, z: -15.359001}
 --- !u!33 &6306572161962114419
 MeshFilter:
@@ -127,6 +127,7 @@ Transform:
   - {fileID: 1331287548626534400}
   - {fileID: 1015616097211072821}
   - {fileID: 9149444692867951400}
+  - {fileID: 8270673852211398339}
   - {fileID: 6306572162941419319}
   - {fileID: 6306572161962114417}
   m_Father: {fileID: 0}
@@ -163,7 +164,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6306572161963118585}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: -31.367, y: -3.5270002, z: -15.786001}
 --- !u!33 &6306572162941419313
 MeshFilter:
@@ -215,6 +216,81 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &203746443880341444
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6306572161963118585}
+    m_Modifications:
+    - target: {fileID: 1489028081647296834, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_Name
+      value: Bomb Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.383
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2738be90e8003374faa29e08b80f006d, type: 3}
+--- !u!4 &8270673852211398339 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8076234254890080519, guid: 2738be90e8003374faa29e08b80f006d,
+    type: 3}
+  m_PrefabInstance: {fileID: 203746443880341444}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &494180785723324904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1775,6 +1851,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Windmill Shuriken Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3246125885150869276, guid: d29a974e79dfc084d815ea8f81e3edc6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d29a974e79dfc084d815ea8f81e3edc6, type: 3}

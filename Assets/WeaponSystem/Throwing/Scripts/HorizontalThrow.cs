@@ -7,7 +7,6 @@ public class HorizontalThrow : ThrowingWeaponBase
     [SerializeField] float range = 10f;
     [SerializeField] float spinSpeed = 10f;
 
-    Rigidbody projectileRB;
     private Vector3 throwPosition= Vector3.zero;
 
     // Called from animation event
