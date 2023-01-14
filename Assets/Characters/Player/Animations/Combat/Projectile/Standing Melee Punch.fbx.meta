@@ -60,7 +60,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.27240142
+      - time: 0.17003922
         functionName: ForwardDamageStart
         data: 
         objectReferenceParameter: {instanceID: 0}

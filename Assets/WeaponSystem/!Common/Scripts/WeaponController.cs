@@ -233,6 +233,7 @@ public class WeaponController : MonoBehaviour
     {
         if (throwing)
         {
+            // TODO: pasar un parámetro para determinar la velocidad de animación en CharacterAnimator
             onThrowing.Invoke();
             throwing = false;
         }

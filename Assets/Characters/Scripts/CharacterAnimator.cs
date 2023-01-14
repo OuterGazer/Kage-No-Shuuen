@@ -338,6 +338,7 @@ public class CharacterAnimator : MonoBehaviour
 
     public void PlayThrowingAnimation()
     {
+        // TODO: desde WeaponController pasar un parámetro para aquí usar animator.speed y establecer la velocidad de animación.
         animator.SetTrigger(throwingHash);
     }
 }
