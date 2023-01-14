@@ -21,7 +21,7 @@ public class HorizontalThrow : ThrowingWeaponBase
         { 
             projectileRB.velocity = shotProjectile.transform.forward * throwingStrength;
             projectileRB.maxAngularVelocity = float.PositiveInfinity;
-            projectileRB.AddRelativeTorque(transform.up * spinSpeed, ForceMode.Impulse);
+            projectileRB.AddRelativeTorque(shotProjectile.transform.up * spinSpeed, ForceMode.Impulse);
         }
 
         throwPosition = transform.position;

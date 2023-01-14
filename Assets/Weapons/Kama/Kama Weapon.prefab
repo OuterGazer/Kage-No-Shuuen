@@ -68,7 +68,7 @@ MonoBehaviour:
   throwingStrength: 5
   hand: {fileID: 0}
   player: {fileID: 0}
-  range: 10
+  range: 3
   spinSpeed: 25
 --- !u!1773428102 &8869162149172040187
 ParentConstraint:
