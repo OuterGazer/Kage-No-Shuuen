@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5794926228577160202}
   - component: {fileID: 1325102131975710775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6655133161190804634}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Edge Notch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 313676329030999661}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 5972805745461565220}
   - component: {fileID: 7460529999902915179}
   - component: {fileID: 5064175263633922028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bow
   m_TagString: Bow
   m_Icon: {fileID: 0}
@@ -166,6 +166,7 @@ MonoBehaviour:
   animatorOverride: {fileID: 22100000, guid: 36fd5c2e771a9bb4ca98f7474380fa16, type: 2}
   shootingWeapon: {fileID: 5972805745461565220}
   closeCombatWeaponBase: {fileID: 7460529999902915179}
+  throwingWeaponBase: {fileID: 0}
 --- !u!114 &5972805745461565220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5867705990702930577}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7660566719453689968}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shootpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,9 +295,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 313676329030999661}
     m_Modifications:
+    - target: {fileID: 100000, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
       propertyPath: m_Name
       value: Samurai_Bow_Rigged
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
       propertyPath: m_RootOrder

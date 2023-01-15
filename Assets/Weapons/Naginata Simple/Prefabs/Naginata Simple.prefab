@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2343333356529858118}
   - component: {fileID: 4559380146080296082}
   - component: {fileID: 1915077317073524414}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Naginata Simple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,8 +72,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 22100000, guid: 01013df5b092ccc409289b42f4be85d2, type: 2}
-  fireArm: {fileID: 0}
+  shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 1915077317073524414}
+  throwingWeaponBase: {fileID: 0}
 --- !u!114 &1915077317073524414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2753811262770824096}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7654727129847740488}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Edge Notch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4303502281886252911}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,6 +269,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Naginata01
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 391456c01d270e34f84a6d82c3612706,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5716681864270162303, guid: 391456c01d270e34f84a6d82c3612706, type: 3}

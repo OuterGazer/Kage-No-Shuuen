@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7452688469541039346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7783045320843792185}
   - component: {fileID: 2615766303545825683}
   - component: {fileID: 5993922507323044281}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Samurai Wakizashi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,8 +81,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 0}
-  fireArm: {fileID: 0}
+  shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 2615766303545825683}
+  throwingWeaponBase: {fileID: 0}
 --- !u!114 &2615766303545825683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5077042525544532891}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5464905163828316728}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Edge Notch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,6 +198,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d185165653b0d774db1dbd266a4104e6, type: 3}
       propertyPath: m_Name
       value: Samurai_Wakisashi
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d185165653b0d774db1dbd266a4104e6, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d185165653b0d774db1dbd266a4104e6, type: 3}
       propertyPath: m_RootOrder

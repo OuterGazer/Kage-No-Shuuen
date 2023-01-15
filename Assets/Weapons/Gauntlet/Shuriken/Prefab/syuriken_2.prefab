@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6476785960165756169}
   - component: {fileID: 97796453038608514}
   - component: {fileID: -7737018648197100143}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: syuriken_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

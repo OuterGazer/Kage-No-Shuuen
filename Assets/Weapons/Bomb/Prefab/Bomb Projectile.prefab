@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8076234254890080519}
   - component: {fileID: 897672852054125443}
   - component: {fileID: 13090402707324898}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bomb Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5857707995188586674}
   - component: {fileID: 6809496801567675734}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4590956147895677978}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,6 +232,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bomb_low
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ef206d378cc2104c96f0fa2c86502ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ef206d378cc2104c96f0fa2c86502ed, type: 3}

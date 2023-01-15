@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -8212022238718021427}
   - component: {fileID: 815330055763269745}
   - component: {fileID: 1631609539964169502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ninja-to
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,8 +69,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 0}
-  fireArm: {fileID: 0}
+  shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: -8212022238718021427}
+  throwingWeaponBase: {fileID: 0}
 --- !u!1773428102 &1631609539964169502
 ParentConstraint:
   m_ObjectHideFlags: 0
@@ -106,7 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3260033428410383646}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +140,7 @@ GameObject:
   - component: {fileID: 7560582962762544589}
   - component: {fileID: 2485047836380289116}
   - component: {fileID: 4659750399568053568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 174527793446815894}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2041615148944659748}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Edge Notch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

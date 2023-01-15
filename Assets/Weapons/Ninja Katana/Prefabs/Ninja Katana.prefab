@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3040037165312648422}
   - component: {fileID: 7488081552038980102}
   - component: {fileID: 8137380919347254800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ninja Katana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,8 +110,10 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1589896498835771577, guid: 5a8406e67e75b064fb22b1daf966858b,
     type: 3}
   throwingStrength: 5
+  spinSpeed: 10
   hand: {fileID: 0}
   player: {fileID: 0}
+  throwAngle: 0
 --- !u!1 &3589631586740236783
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8707297907688913339}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5600832104836389662}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +188,7 @@ GameObject:
   - component: {fileID: 6051838491195660526}
   - component: {fileID: 8085088926750733726}
   - component: {fileID: 1913242059151645944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5080442817784660538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EdgeNotch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

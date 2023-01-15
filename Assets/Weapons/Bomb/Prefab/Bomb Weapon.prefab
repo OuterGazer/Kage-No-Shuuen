@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8535081411845676313}
   - component: {fileID: 6591054496825632791}
   - component: {fileID: 6106689463649448897}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bomb Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,8 +107,10 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1489028081647296834, guid: 5037fa9b9750bcb49ab83c22c64c4577,
     type: 3}
   throwingStrength: 20
+  spinSpeed: 10
   hand: {fileID: 0}
   player: {fileID: 0}
+  throwAngle: 0
 --- !u!114 &6106689463649448897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4590956147895677978}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 286713537788673207}
   - component: {fileID: 4645912420854205738}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,6 +292,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bomb_low
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2ef206d378cc2104c96f0fa2c86502ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ef206d378cc2104c96f0fa2c86502ed, type: 3}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9168892290387326685}
   - component: {fileID: 1010987025541087777}
   - component: {fileID: 9120884314293276116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Samurai Katana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,8 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 0}
-  fireArm: {fileID: 0}
+  shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 1010987025541087777}
+  throwingWeaponBase: {fileID: 0}
 --- !u!114 &1010987025541087777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4386466821001509405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5546111872332700057}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1758862609425611067}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Edge Notch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,6 +198,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: cc2af85207c74444fb244ec5811ffa79, type: 3}
       propertyPath: m_Name
       value: Samurai_Katana
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cc2af85207c74444fb244ec5811ffa79, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc2af85207c74444fb244ec5811ffa79, type: 3}
       propertyPath: m_RootOrder

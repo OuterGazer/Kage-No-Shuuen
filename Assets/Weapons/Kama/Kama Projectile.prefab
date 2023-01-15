@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2717970473439218024}
   - component: {fileID: -8374143730859650614}
   - component: {fileID: -4164160659279091891}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Kama Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5917654249214594180}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collisions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4510698774548046253}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 356465492114470432}
   - component: {fileID: 8078552826069761811}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,6 +254,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Kama
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: fbe24389a3d60f646863351ce99e2ae6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5716681864270162303, guid: fbe24389a3d60f646863351ce99e2ae6, type: 3}
