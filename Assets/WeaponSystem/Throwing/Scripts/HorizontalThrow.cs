@@ -5,7 +5,6 @@ using UnityEngine;
 public class HorizontalThrow : ThrowingWeaponBase
 {
     [SerializeField] float range = 10f;
-    [SerializeField] float spinSpeed = 10f;
 
     private Vector3 throwPosition= Vector3.zero;
 

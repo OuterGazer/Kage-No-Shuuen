@@ -15,6 +15,7 @@ public class ArchThrow : ThrowingWeaponBase
         {
             // TODO: have arch projectiles come at an angle. Right now bomb and makibisi spawn perfectly horizontal and get pushed horizontally.
             projectileRB.AddForce(shotProjectile.transform.forward * throwingStrength, ForceMode.Impulse);
+            projectileRB.AddTorque(shotProjectile.transform.right * spinSpeed, ForceMode.Impulse);
         }
     }
 }
