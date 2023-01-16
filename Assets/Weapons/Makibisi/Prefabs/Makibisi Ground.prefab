@@ -29,6 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3213762404827794318}
+  - {fileID: 1118380640545699944}
   m_Father: {fileID: 2394201886511184671}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -110,6 +111,52 @@ Transform:
   m_Father: {fileID: 2394201886511184671}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8185548933358806593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1118380640545699944}
+  - component: {fileID: 6161872756098196864}
+  m_Layer: 8
+  m_Name: Mesh Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1118380640545699944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8185548933358806593}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0.0015, y: 0.0463, z: 0.0001}
+  m_LocalScale: {x: 6.326, y: 6.326, z: 6.326}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7025014041383720157}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
+--- !u!64 &6161872756098196864
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8185548933358806593}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: e024629dc36cd4df29f3239ce820706d, type: 3}
 --- !u!1 &8979358493309922898
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,9 +167,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2394201886511184671}
   - component: {fileID: 8159548441002551490}
-  - component: {fileID: 4758644318567012649}
+  - component: {fileID: 3050065467197542328}
   m_Layer: 8
-  m_Name: Makibisi Projectile
+  m_Name: Makibisi Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,7 +208,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &4758644318567012649
+--- !u!114 &3050065467197542328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,17 +217,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8979358493309922898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8484a66e48975d640b0cc77588f80865, type: 3}
+  m_Script: {fileID: 11500000, guid: 282e148cd260813429c29ad69368cdd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.51
-  extraMakibisiPrefab: {fileID: 8979358493309922898, guid: 7358ef09f41dcb746b8489d519099e23,
-    type: 3}
-  amountThrown: 25
-  maxForce: 5
-  minForce: 2
-  maxAngle: 30
-  minAngle: -30
 --- !u!1001 &2900929095170875855
 PrefabInstance:
   m_ObjectHideFlags: 0
