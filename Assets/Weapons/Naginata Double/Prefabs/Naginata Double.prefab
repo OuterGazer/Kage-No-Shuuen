@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 6541779998333858209}
   - component: {fileID: 1110673141510652983}
   - component: {fileID: 9152998118714896883}
+  - component: {fileID: 2903649069967796079}
   m_Layer: 8
   m_Name: Naginata Double
   m_TagString: Untagged
@@ -114,10 +115,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 212f8cdab30a3f040a972004e6655518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorOverride: {fileID: 0}
+  animatorOverride: {fileID: 22100000, guid: 8168fc69998ecdd439fdd1aaa04802a1, type: 2}
   shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 0}
-  throwingWeaponBase: {fileID: 0}
+  throwingWeaponBase: {fileID: 2903649069967796079}
 --- !u!114 &6541779998333858209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +179,25 @@ ParentConstraint:
   m_IsContraintActive: 0
   m_IsLocked: 0
   m_Sources: []
+--- !u!114 &2903649069967796079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738837542286908987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e337f725d15674fa3dc17d9451854e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 738837542286908987, guid: 809b286b37cf7194e9c8e3da6fcf66b1,
+    type: 3}
+  throwingStrength: 7
+  spinSpeed: 15
+  hand: {fileID: 0}
+  player: {fileID: 0}
+  throwAngle: 20
 --- !u!1 &1712211218191314747
 GameObject:
   m_ObjectHideFlags: 0
