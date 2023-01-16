@@ -12,10 +12,5 @@ public abstract class ThrowingWeaponBase : MonoBehaviour
 
     protected Rigidbody projectileRB;
 
-    public bool IsThrowing { get; private set; }
-
-    public void StartThrowing() { IsThrowing = true; }
-    public void EndThrowing() { IsThrowing = false; }
-
     public abstract void Throw();
 }
