@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,20 @@ public class CharacterEngine : MonoBehaviour
 {
     // TODO: I must implement all exit state conditions here, for example so I can't throw hook while blocking, or change to running or crouching while rolling
 
-    [SerializeField] private CharacterStateBase[] allStates = { }; // Serialized for testing purposes
-    [SerializeField] private CharacterBlockingState blockingState;
-    [SerializeField] private CharacterDodgingState dodgingState;
-
-    [SerializeField] private CharacterStateBase[] allowedStatesForBlocking = { };
-    [SerializeField] private CharacterStateBase[] allowedStatesForDodging = { };
-
+    private CharacterStateBase[] allStates;
     private CharacterStateBase currentMovementState;
     private CharacterStateBase currentCombatState;
+
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToIdle;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToRunning;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToCrouching;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToOnWall;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToOnHook;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToOnAir;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToBlocking;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToDodging;
+
+    
 
 
     private void Awake()
@@ -27,9 +33,6 @@ public class CharacterEngine : MonoBehaviour
             allStates[i].onMovementStateChange.AddListener(UpdateCurrentMovementState);
             allStates[i].onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
         }
-
-        //blockingState.onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
-        //dodgingState.onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
     }
 
     private void OnDestroy()
@@ -37,28 +40,50 @@ public class CharacterEngine : MonoBehaviour
         for (int i = 0; i < allStates.Length; i++)
         {
             allStates[i].onMovementStateChange.RemoveListener(UpdateCurrentMovementState);
+            allStates[i].onCombatStateEnablingOrDisabling.RemoveListener(UpdateCurrentCombatState);
         }
-
-        blockingState.onCombatStateEnablingOrDisabling.RemoveListener(UpdateCurrentCombatState);
-        dodgingState.onCombatStateEnablingOrDisabling.RemoveListener(UpdateCurrentCombatState);
 
         currentMovementState = null;
         currentCombatState = null;
     }
 
-    private void UpdateCurrentMovementState(CharacterStateBase enablingState)
+    // Event called OnEnbale() of movement states
+    private void UpdateCurrentMovementState(CharacterStateBase stateCharacterJustTransitionedTo)
     {
-        currentMovementState = enablingState;
+        currentMovementState = stateCharacterJustTransitionedTo;
     }
 
-    private void UpdateCurrentCombatState(CharacterStateBase enablingState)
+    // Event called OnEnable() and OnDisable() of combat states
+    private void UpdateCurrentCombatState(CharacterStateBase stateCharacterJustTransitionedTo)
     {
-        currentCombatState = enablingState;
+        currentCombatState = stateCharacterJustTransitionedTo;
+    }
+
+    private bool IsCurrentStateAllowedToTransitionToDesiredState(CharacterStateBase[] allowedCurrentStates)
+    {
+        foreach (CharacterStateBase state in allowedCurrentStates)
+        {
+            if (state.Equals(currentMovementState) && currentCombatState == null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void TransitionToDesiredState(Type state)
+    {
+        CharacterStateBase stateToTransition = allStates.First(x => x.GetType() == state);
+        stateToTransition.enabled = true;
     }
 
     public void OnDodge()
     {
-        EnableCombatStateIfInAllowedMovementState(allowedStatesForDodging, dodgingState);
+        if (IsCurrentStateAllowedToTransitionToDesiredState(statesAllowedToTransitionToDodging))
+        {
+            TransitionToDesiredState(typeof(CharacterDodgingState));
+        }
+        
     }
 
     public void OnBlock(InputValue inputValue)
@@ -67,16 +92,10 @@ public class CharacterEngine : MonoBehaviour
 
         if (temp > 0f)
         {
-            EnableCombatStateIfInAllowedMovementState(allowedStatesForBlocking, blockingState);
-        }
-    }
-
-    private void EnableCombatStateIfInAllowedMovementState(CharacterStateBase[] allowedStates, CharacterStateBase combatStateToEnable)
-    {
-        foreach (CharacterStateBase state in allowedStates)
-        {
-            if (state.Equals(currentMovementState) && currentCombatState == null)
-                combatStateToEnable.enabled = true;
+            if (IsCurrentStateAllowedToTransitionToDesiredState(statesAllowedToTransitionToBlocking))
+            {
+                TransitionToDesiredState(typeof(CharacterBlockingState));
+            }
         }
     }
 }
