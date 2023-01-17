@@ -5,7 +5,7 @@ using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class CharacterBlockingState : CharacterMovementBase
+public class CharacterBlockingState : CharacterStateBase
 {
     // TODO: implement moving very slow while state is active
 

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterIdleState))]
-public class CharacterDodgingState : CharacterMovementBase
+public class CharacterDodgingState : CharacterStateBase
 {
     [SerializeField] float speedDeceleration = 0.05f;
 

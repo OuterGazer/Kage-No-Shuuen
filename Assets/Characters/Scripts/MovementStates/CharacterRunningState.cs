@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterIdleState), typeof(CharacterCrouchingState), typeof(CharacterOnAirState))]
 [RequireComponent(typeof(CharacterDodgingState))]
-public class CharacterRunningState : CharacterMovementBase
+public class CharacterRunningState : CharacterStateBase
 {
     [Header("Exit Scripts")]
     [SerializeField] CharacterIdleState idleState;

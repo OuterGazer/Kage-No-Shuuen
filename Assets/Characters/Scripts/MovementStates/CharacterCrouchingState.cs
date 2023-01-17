@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterRunningState), typeof(CharacterIdleState))]
 [RequireComponent(typeof(CharacterOnWallState), typeof(CharacterOnAirState))]
-public class CharacterCrouchingState : CharacterMovementBase
+public class CharacterCrouchingState : CharacterStateBase
 {
     [Header("Exit Scripts")]
     [SerializeField] CharacterRunningState runningState;

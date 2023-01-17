@@ -6,7 +6,7 @@ using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterOnAirState), typeof(CharacterIdleState))]
-public class CharacterOnHookState : CharacterMovementBase
+public class CharacterOnHookState : CharacterStateBase
 {
     // TODO: pensar en si quiero que el jugador pueda lanzar el gancho estando OnWall
     // TODO: arreglar bug raro donde si aprieto el boton de agacharse durante la animación de lanzar pasan cosas raras

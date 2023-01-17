@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
 
-public class CharacterMovementBase : MonoBehaviour
+public class CharacterStateBase : MonoBehaviour
 {
     [Header("Movement Characteristics")]
     [SerializeField] protected float speed = 6f;
@@ -18,8 +18,8 @@ public class CharacterMovementBase : MonoBehaviour
 
     private static float velocityY = 0f;
 
-    [HideInInspector] public UnityEvent<CharacterMovementBase> onMovementStateChange;
-    [HideInInspector] public UnityEvent<CharacterMovementBase> onCombatStateEnablingOrDisabling;
+    [HideInInspector] public UnityEvent<CharacterStateBase> onMovementStateChange;
+    [HideInInspector] public UnityEvent<CharacterStateBase> onCombatStateEnablingOrDisabling;
 
     protected void SetCameraAndCharController(CharacterController characterController)
     {

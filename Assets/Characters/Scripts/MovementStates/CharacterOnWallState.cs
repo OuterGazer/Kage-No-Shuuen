@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using DG.Tweening;
 
 [RequireComponent(typeof(CharacterCrouchingState))]
-public class CharacterOnWallState : CharacterMovementBase
+public class CharacterOnWallState : CharacterStateBase
 {
     [Header("Exit States")]
     [SerializeField] CharacterCrouchingState crouchingState;

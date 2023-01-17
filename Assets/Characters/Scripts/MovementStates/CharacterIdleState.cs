@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterCrouchingState), typeof(CharacterRunningState), typeof(CharacterOnHookState))]
 [RequireComponent(typeof(PlayerInput), typeof(CharacterController))]
-public class CharacterIdleState : CharacterMovementBase
+public class CharacterIdleState : CharacterStateBase
 {
     [Header("Exit Scripts")]
     [SerializeField] CharacterRunningState runningState;

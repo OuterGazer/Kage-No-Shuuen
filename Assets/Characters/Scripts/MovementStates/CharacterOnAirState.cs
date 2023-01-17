@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CharacterIdleState))]
-public class CharacterOnAirState : CharacterMovementBase
+public class CharacterOnAirState : CharacterStateBase
 {
     [Header("Exit States")]
     [SerializeField] CharacterIdleState idleState;

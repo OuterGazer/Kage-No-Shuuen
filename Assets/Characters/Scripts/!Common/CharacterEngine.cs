@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,33 +8,35 @@ public class CharacterEngine : MonoBehaviour
 {
     // TODO: I must implement all exit state conditions here, for example so I can't throw hook while blocking, or change to running or crouching while rolling
 
-    [SerializeField] private CharacterMovementBase[] movementStates = { };
+    [SerializeField] private CharacterStateBase[] allStates = { }; // Serialized for testing purposes
     [SerializeField] private CharacterBlockingState blockingState;
     [SerializeField] private CharacterDodgingState dodgingState;
 
-    [SerializeField] private CharacterMovementBase[] allowedStatesForBlocking = { };
-    [SerializeField] private CharacterMovementBase[] allowedStatesForDodging = { };
+    [SerializeField] private CharacterStateBase[] allowedStatesForBlocking = { };
+    [SerializeField] private CharacterStateBase[] allowedStatesForDodging = { };
 
-    private CharacterMovementBase currentMovementState;
-    private CharacterMovementBase currentCombatState;
+    private CharacterStateBase currentMovementState;
+    private CharacterStateBase currentCombatState;
 
 
     private void Awake()
     {
-        for (int i = 0; i < movementStates.Length; i++)
+        allStates = GetComponents<CharacterStateBase>();
+        for (int i = 0; i < allStates.Length; i++)
         {
-            movementStates[i].onMovementStateChange.AddListener(UpdateCurrentMovementState);
+            allStates[i].onMovementStateChange.AddListener(UpdateCurrentMovementState);
+            allStates[i].onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
         }
 
-        blockingState.onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
-        dodgingState.onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
+        //blockingState.onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
+        //dodgingState.onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
     }
 
     private void OnDestroy()
     {
-        for (int i = 0; i < movementStates.Length; i++)
+        for (int i = 0; i < allStates.Length; i++)
         {
-            movementStates[i].onMovementStateChange.RemoveListener(UpdateCurrentMovementState);
+            allStates[i].onMovementStateChange.RemoveListener(UpdateCurrentMovementState);
         }
 
         blockingState.onCombatStateEnablingOrDisabling.RemoveListener(UpdateCurrentCombatState);
@@ -45,12 +46,12 @@ public class CharacterEngine : MonoBehaviour
         currentCombatState = null;
     }
 
-    private void UpdateCurrentMovementState(CharacterMovementBase enablingState)
+    private void UpdateCurrentMovementState(CharacterStateBase enablingState)
     {
         currentMovementState = enablingState;
     }
 
-    private void UpdateCurrentCombatState(CharacterMovementBase enablingState)
+    private void UpdateCurrentCombatState(CharacterStateBase enablingState)
     {
         currentCombatState = enablingState;
     }
@@ -70,9 +71,9 @@ public class CharacterEngine : MonoBehaviour
         }
     }
 
-    private void EnableCombatStateIfInAllowedMovementState(CharacterMovementBase[] allowedStates, CharacterMovementBase combatStateToEnable)
+    private void EnableCombatStateIfInAllowedMovementState(CharacterStateBase[] allowedStates, CharacterStateBase combatStateToEnable)
     {
-        foreach (CharacterMovementBase state in allowedStates)
+        foreach (CharacterStateBase state in allowedStates)
         {
             if (state.Equals(currentMovementState) && currentCombatState == null)
                 combatStateToEnable.enabled = true;
