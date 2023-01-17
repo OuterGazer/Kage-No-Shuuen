@@ -20,6 +20,10 @@ public class CharacterIdleState : CharacterStateBase
     public InputAction move;
 
     private bool isMovingAfterDodging = true;
+    //public bool IsMovingAfterDodging { 
+    //    get { return isMovingAfterDodging;}
+    //    set { isMovingAfterDodging = value; }
+    //}
 
     private void Awake()
     {
@@ -35,6 +39,11 @@ public class CharacterIdleState : CharacterStateBase
         onMovementStateChange.Invoke(this);
 
         movementDirection = Vector3.zero;          
+    }
+
+    private void OnDisable()
+    {
+        //this.isMovingAfterDodging = true;
     }
 
     // Called from CharacterDodgingState OnDisable
@@ -62,24 +71,10 @@ public class CharacterIdleState : CharacterStateBase
 
     private void Update()
     {
-        if (!isMovingAfterDodging)
-            movingSpeed = 0f;
+        //if (!isMovingAfterDodging)
+        //    movingSpeed = 0f;
 
         UpdateMovement(speed, movementDirection, Vector3.up);
-    }
-
-    public void OnMove(InputValue inputValue)
-    {
-        if (this.enabled)
-        {
-            if (inputValue.Get<Vector2>() != Vector2.zero)
-            {
-                runningState.enabled = true;
-                this.enabled = false;
-
-                this.isMovingAfterDodging = true;
-            }
-        }
     }
 
     public void OnCrouch()

@@ -47,9 +47,11 @@ public class CharacterEngine : MonoBehaviour
         currentCombatState = null;
     }
 
-    // Event called OnEnbale() of movement states
+    // Event called OnEnable() of movement states
     private void UpdateCurrentMovementState(CharacterStateBase stateCharacterJustTransitionedTo)
     {
+        if(currentMovementState)
+            currentMovementState.enabled = false;
         currentMovementState = stateCharacterJustTransitionedTo;
     }
 
@@ -75,6 +77,25 @@ public class CharacterEngine : MonoBehaviour
     {
         CharacterStateBase stateToTransition = allStates.First(x => x.GetType() == state);
         stateToTransition.enabled = true;
+
+    }
+
+    public void OnMove(InputValue inputValue)
+    {
+        if (inputValue.Get<Vector2>() != Vector2.zero)
+        {
+            if (IsCurrentStateAllowedToTransitionToDesiredState(statesAllowedToTransitionToRunning))
+            {
+                TransitionToDesiredState(typeof(CharacterRunningState));
+            }
+        }
+        else
+        {
+            if (IsCurrentStateAllowedToTransitionToDesiredState(statesAllowedToTransitionToIdle))
+            {
+                TransitionToDesiredState(typeof(CharacterIdleState));
+            }
+        }
     }
 
     public void OnDodge()

@@ -43,35 +43,35 @@ public class CharacterRunningState : CharacterStateBase
     }
 
     // TODO: refactor this OnMove repeated code from CharacterRunningState
-    void OnMove(InputValue inputValue)
-    {
-        if (this.enabled)
-        {
-            Vector3 inputBuffer = inputValue.Get<Vector2>();
+    //void OnMove(InputValue inputValue)
+    //{
+    //    if (this.enabled)
+    //    {
+    //        Vector3 inputBuffer = inputValue.Get<Vector2>();
 
-            // Movement from Input Module sends only Vector3.up and Vector3.down movement and it needs to be corrected into forward and backward.
-            if (inputBuffer != Vector3.zero)
-            {
-                if(inputBuffer.y != 0f)
-                    inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
+    //        // Movement from Input Module sends only Vector3.up and Vector3.down movement and it needs to be corrected into forward and backward.
+    //        if (inputBuffer != Vector3.zero)
+    //        {
+    //            if(inputBuffer.y != 0f)
+    //                inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
 
-                movementDirection = inputBuffer;
-            }
-            else
-            {
-                ChangeToIdleStateOnStoppingMovement(inputBuffer);
-            }
-        }     
-    }
+    //            movementDirection = inputBuffer;
+    //        }
+    //        else
+    //        {
+    //            ChangeToIdleStateOnStoppingMovement(inputBuffer);
+    //        }
+    //    }     
+    //}
 
-    private void ChangeToIdleStateOnStoppingMovement(Vector3 inputBuffer)
-    {
-        if (inputBuffer == Vector3.zero)
-        {
-            idleState.enabled = true;
-            this.enabled = false;
-        }
-    }
+    //private void ChangeToIdleStateOnStoppingMovement(Vector3 inputBuffer)
+    //{
+    //    if (inputBuffer == Vector3.zero)
+    //    {
+    //        idleState.enabled = true;
+    //        this.enabled = false;
+    //    }
+    //}
 
     private void OnCrouch(InputValue inputValue)
     {

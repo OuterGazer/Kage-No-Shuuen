@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class CharacterStateBase : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class CharacterStateBase : MonoBehaviour
 
     private static float velocityY = 0f;
 
+    [HideInInspector] public UnityEvent<Vector3> onMovementSpeedChange;
     [HideInInspector] public UnityEvent<CharacterStateBase> onMovementStateChange;
     [HideInInspector] public UnityEvent<CharacterStateBase> onCombatStateEnablingOrDisabling;
 
@@ -105,5 +107,21 @@ public class CharacterStateBase : MonoBehaviour
         //Vector3 forwardVectorToLookAtThisFrame = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
         //Vector3 angleToOrientateCharacterThisFrame = Vector3.RotateTowards(transform.forward, forwardVectorToLookAtThisFrame, forwardOrientationSpeed * Time.deltaTime, 0f);
         //transform.rotation = Quaternion.LookRotation(angleToOrientateCharacterThisFrame, Vector3.up);
+    }
+
+    private void OnMove(InputValue inputValue)
+    {
+        Vector3 inputBuffer = inputValue.Get<Vector2>();
+
+        // Movement from Input Module sends only Vector3.up and Vector3.down movement and it needs to be corrected into forward and backward.
+        if (inputBuffer != Vector3.zero)
+        {
+            if (inputBuffer.y != 0f)
+                inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
+
+            movementDirection = inputBuffer;
+
+            onMovementSpeedChange.Invoke(movementDirection);
+        }
     }
 }

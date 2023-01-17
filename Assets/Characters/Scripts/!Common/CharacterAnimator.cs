@@ -14,6 +14,7 @@ public class CharacterAnimator : MonoBehaviour
 
     private Animator animator;
 
+    private CharacterStateBase stateBase;
     private CharacterCrouchingState crouchingState;
     private CharacterOnWallState onWallState;
     private CharacterOnHookState onHookState;
@@ -59,6 +60,7 @@ public class CharacterAnimator : MonoBehaviour
 
         runningSpeed = GetComponent<CharacterRunningState>().Speed;
 
+        stateBase = GetComponent<CharacterStateBase>();
         crouchingState = GetComponent<CharacterCrouchingState>();
         onWallState = GetComponent<CharacterOnWallState>();
         onHookState = GetComponent<CharacterOnHookState>();
@@ -70,6 +72,7 @@ public class CharacterAnimator : MonoBehaviour
 
     private void AddNecessaryListeners()
     {
+        stateBase.onMovementSpeedChange.AddListener(SetMovementDirection);
         crouchingState.AttachCharacterToWall.AddListener(AttachCharacterToWall);
         onWallState.RemoveCharacterFromWall.AddListener(RemoveCharacterFromWall);
         onWallState.CorrectCharacterAnimationWhenCameraIsNearWall.AddListener(SetCorrectAnimationWhenCharacterIsOnWall);
@@ -94,6 +97,7 @@ public class CharacterAnimator : MonoBehaviour
 
     private void RemoveListeners()
     {
+        stateBase.onMovementSpeedChange.RemoveListener(SetMovementDirection);
         crouchingState.AttachCharacterToWall.RemoveListener(AttachCharacterToWall);
         onWallState.RemoveCharacterFromWall.RemoveListener(RemoveCharacterFromWall);
         onWallState.CorrectCharacterAnimationWhenCameraIsNearWall.RemoveListener(SetCorrectAnimationWhenCharacterIsOnWall);
@@ -138,6 +142,11 @@ public class CharacterAnimator : MonoBehaviour
         isAimingHash = Animator.StringToHash("isAiming");
         shootHash = Animator.StringToHash("Shoot");
         throwingHash = Animator.StringToHash("Throw");
+    }
+
+    private void SetMovementDirection(Vector3 movementDirection)
+    {
+        this.movementDirection = movementDirection;
     }
 
     public void ApplyAnimatorController(Weapon weapon)
@@ -238,19 +247,19 @@ public class CharacterAnimator : MonoBehaviour
         isAnimationCorrectedWhenOnWall = true;
     }
     
-    void OnMove(InputValue inputValue)
-    {
-        Vector3 inputBuffer = inputValue.Get<Vector2>();
+    //void OnMove(InputValue inputValue)
+    //{
+    //    Vector3 inputBuffer = inputValue.Get<Vector2>();
 
-        // Movement from Input Module sends only Vector3.up and Vector3.down movement and it needs to be corrected into forward and backward.
-        if (inputBuffer != Vector3.zero)
-        {
-            if (inputBuffer.y != 0f)
-                inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
+    //    // Movement from Input Module sends only Vector3.up and Vector3.down movement and it needs to be corrected into forward and backward.
+    //    if (inputBuffer != Vector3.zero)
+    //    {
+    //        if (inputBuffer.y != 0f)
+    //            inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
 
-            movementDirection = inputBuffer;
-        }
-    }
+    //        movementDirection = inputBuffer;
+    //    }
+    //}
 
     public void AttachCharacterToWall()
     {
