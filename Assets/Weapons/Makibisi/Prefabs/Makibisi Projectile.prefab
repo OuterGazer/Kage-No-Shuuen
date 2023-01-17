@@ -176,11 +176,12 @@ MonoBehaviour:
   damage: 0.51
   extraMakibisiPrefab: {fileID: 8979358493309922898, guid: 7358ef09f41dcb746b8489d519099e23,
     type: 3}
-  amountThrown: 25
+  amountThrown: 50
   maxForce: 5
   minForce: 2
   maxAngle: 30
   minAngle: -30
+  lifeSpan: 3
 --- !u!1001 &2900929095170875855
 PrefabInstance:
   m_ObjectHideFlags: 0
