@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,7 +23,7 @@ public class CharacterEngine : MonoBehaviour
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToBlocking;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToDodging;
 
-    
+    private bool isCrouching = false;
 
 
     private void Awake()
@@ -50,8 +51,8 @@ public class CharacterEngine : MonoBehaviour
     // Event called OnEnable() of movement states
     private void UpdateCurrentMovementState(CharacterStateBase stateCharacterJustTransitionedTo)
     {
-        if(currentMovementState)
-            currentMovementState.enabled = false;
+        if (currentMovementState) { currentMovementState.enabled = false; }
+            
         currentMovementState = stateCharacterJustTransitionedTo;
     }
 
@@ -59,6 +60,14 @@ public class CharacterEngine : MonoBehaviour
     private void UpdateCurrentCombatState(CharacterStateBase stateCharacterJustTransitionedTo)
     {
         currentCombatState = stateCharacterJustTransitionedTo;
+    }
+
+    private void ManageStateTransition(CharacterStateBase[] allowedCurrentStates, Type state)
+    {
+        if (IsCurrentStateAllowedToTransitionToDesiredState(allowedCurrentStates))
+        {
+            TransitionToDesiredState(state);
+        }
     }
 
     private bool IsCurrentStateAllowedToTransitionToDesiredState(CharacterStateBase[] allowedCurrentStates)
@@ -84,27 +93,58 @@ public class CharacterEngine : MonoBehaviour
     {
         if (inputValue.Get<Vector2>() != Vector2.zero)
         {
-            if (IsCurrentStateAllowedToTransitionToDesiredState(statesAllowedToTransitionToRunning))
-            {
-                TransitionToDesiredState(typeof(CharacterRunningState));
-            }
+            if (currentMovementState.GetType() == typeof(CharacterCrouchingState)) { return; } // Keep crouching if we were alredy crouching
+
+            if(!isCrouching)
+                ManageStateTransition(statesAllowedToTransitionToRunning, typeof(CharacterRunningState));
+            else
+                ManageStateTransition(statesAllowedToTransitionToCrouching, typeof(CharacterCrouchingState)); // We were in idle
         }
         else
         {
-            if (IsCurrentStateAllowedToTransitionToDesiredState(statesAllowedToTransitionToIdle))
-            {
-                TransitionToDesiredState(typeof(CharacterIdleState));
-            }
+            ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
         }
+    }
+
+    private void OnCrouch(InputValue inputValue)
+    {
+        if (IsCrouchButtonPressed(inputValue))
+        {
+            ManageStateTransition(statesAllowedToTransitionToCrouching, typeof(CharacterCrouchingState));
+            isCrouching = true;
+        }
+        else if (IsCrouchButtonReleased(inputValue))
+        {
+            if (IsCharacterStill())
+            {
+                ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
+            }
+            else
+            {
+                ManageStateTransition(statesAllowedToTransitionToRunning, typeof(CharacterRunningState));
+            }
+            isCrouching = false;
+        }
+    }
+
+    private bool IsCharacterStill()
+    {
+        return CharacterStateBase.MovementDirection == Vector3.zero;
+    }
+
+    private static bool IsCrouchButtonPressed(InputValue inputValue)
+    {
+        return !Mathf.Approximately(inputValue.Get<float>(), 0f);
+    }
+
+    private static bool IsCrouchButtonReleased(InputValue inputValue)
+    {
+        return Mathf.Approximately(inputValue.Get<float>(), 0f);
     }
 
     public void OnDodge()
     {
-        if (IsCurrentStateAllowedToTransitionToDesiredState(statesAllowedToTransitionToDodging))
-        {
-            TransitionToDesiredState(typeof(CharacterDodgingState));
-        }
-        
+        ManageStateTransition(statesAllowedToTransitionToDodging, typeof(CharacterDodgingState));
     }
 
     public void OnBlock(InputValue inputValue)
@@ -113,10 +153,7 @@ public class CharacterEngine : MonoBehaviour
 
         if (temp > 0f)
         {
-            if (IsCurrentStateAllowedToTransitionToDesiredState(statesAllowedToTransitionToBlocking))
-            {
-                TransitionToDesiredState(typeof(CharacterBlockingState));
-            }
+            ManageStateTransition(statesAllowedToTransitionToBlocking, typeof(CharacterBlockingState));
         }
     }
 }

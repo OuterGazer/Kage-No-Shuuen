@@ -77,14 +77,14 @@ public class CharacterIdleState : CharacterStateBase
         UpdateMovement(speed, movementDirection, Vector3.up);
     }
 
-    public void OnCrouch()
-    {
-        if (this.enabled)
-        {
-            crouchingState.enabled = true;
-            this.enabled = false;
-        }
-    }
+    //public void OnCrouch()
+    //{
+    //    if (this.enabled)
+    //    {
+    //        crouchingState.enabled = true;
+    //        this.enabled = false;
+    //    }
+    //}
 
     public void OnHookThrow()
     {

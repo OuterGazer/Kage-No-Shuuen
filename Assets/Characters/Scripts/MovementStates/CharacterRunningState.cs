@@ -73,23 +73,23 @@ public class CharacterRunningState : CharacterStateBase
     //    }
     //}
 
-    private void OnCrouch(InputValue inputValue)
-    {
-        ChangeToCrouchingStateOnCrouchButtonPress(inputValue);
-    }
+    //private void OnCrouch(InputValue inputValue)
+    //{
+    //    ChangeToCrouchingStateOnCrouchButtonPress(inputValue);
+    //}
 
-    private void ChangeToCrouchingStateOnCrouchButtonPress(InputValue inputValue)
-    {
-        if (this.enabled &&
-            IsCrouchButtonPressed(inputValue))
-        {
-            crouchingState.enabled = true;
-            this.enabled = false;
-        }
-    }
+    //private void ChangeToCrouchingStateOnCrouchButtonPress(InputValue inputValue)
+    //{
+    //    if (this.enabled &&
+    //        IsCrouchButtonPressed(inputValue))
+    //    {
+    //        crouchingState.enabled = true;
+    //        this.enabled = false;
+    //    }
+    //}
 
-    private static bool IsCrouchButtonPressed(InputValue inputValue)
-    {
-        return !Mathf.Approximately(inputValue.Get<float>(), 0f);
-    }
+    //private static bool IsCrouchButtonPressed(InputValue inputValue)
+    //{
+    //    return !Mathf.Approximately(inputValue.Get<float>(), 0f);
+    //}
 }
