@@ -142,6 +142,15 @@ public class CharacterEngine : MonoBehaviour
         return Mathf.Approximately(inputValue.Get<float>(), 0f);
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("Cover"))
+        {
+            CharacterOnWallState.SetNormalToWallPlane(hit.normal);
+            ManageStateTransition(statesAllowedToTransitionToOnWall, typeof(CharacterOnWallState));
+        }
+    }
+
     public void OnDodge()
     {
         ManageStateTransition(statesAllowedToTransitionToDodging, typeof(CharacterDodgingState));

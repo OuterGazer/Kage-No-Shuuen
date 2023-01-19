@@ -123,5 +123,9 @@ public class CharacterStateBase : MonoBehaviour
 
             onMovementSpeedChange.Invoke(movementDirection);
         }
+        else
+        {
+            movementDirection = Vector3.zero;
+        }
     }
 }

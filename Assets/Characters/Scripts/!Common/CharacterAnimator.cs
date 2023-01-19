@@ -15,7 +15,6 @@ public class CharacterAnimator : MonoBehaviour
     private Animator animator;
 
     private CharacterStateBase stateBase;
-    private CharacterCrouchingState crouchingState;
     private CharacterOnWallState onWallState;
     private CharacterOnHookState onHookState;
     private CharacterOnAirState onAirState;
@@ -61,7 +60,6 @@ public class CharacterAnimator : MonoBehaviour
         runningSpeed = GetComponent<CharacterRunningState>().Speed;
 
         stateBase = GetComponent<CharacterStateBase>();
-        crouchingState = GetComponent<CharacterCrouchingState>();
         onWallState = GetComponent<CharacterOnWallState>();
         onHookState = GetComponent<CharacterOnHookState>();
         onAirState = GetComponent<CharacterOnAirState>();
@@ -73,7 +71,7 @@ public class CharacterAnimator : MonoBehaviour
     private void AddNecessaryListeners()
     {
         stateBase.onMovementSpeedChange.AddListener(SetMovementDirection);
-        crouchingState.AttachCharacterToWall.AddListener(AttachCharacterToWall);
+        onWallState.AttachCharacterToWall.AddListener(AttachCharacterToWall);
         onWallState.RemoveCharacterFromWall.AddListener(RemoveCharacterFromWall);
         onWallState.CorrectCharacterAnimationWhenCameraIsNearWall.AddListener(SetCorrectAnimationWhenCharacterIsOnWall);
         onHookState.throwHook.AddListener(HaveCharacterThrowHook);
@@ -98,7 +96,7 @@ public class CharacterAnimator : MonoBehaviour
     private void RemoveListeners()
     {
         stateBase.onMovementSpeedChange.RemoveListener(SetMovementDirection);
-        crouchingState.AttachCharacterToWall.RemoveListener(AttachCharacterToWall);
+        onWallState.AttachCharacterToWall.RemoveListener(AttachCharacterToWall);
         onWallState.RemoveCharacterFromWall.RemoveListener(RemoveCharacterFromWall);
         onWallState.CorrectCharacterAnimationWhenCameraIsNearWall.RemoveListener(SetCorrectAnimationWhenCharacterIsOnWall);
         onHookState.throwHook.RemoveListener(HaveCharacterThrowHook);

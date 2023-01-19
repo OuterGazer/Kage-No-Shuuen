@@ -7,13 +7,11 @@ using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterCrouchingState), typeof(CharacterRunningState), typeof(CharacterOnHookState))]
+[RequireComponent(typeof(CharacterOnHookState))]
 [RequireComponent(typeof(PlayerInput), typeof(CharacterController))]
 public class CharacterIdleState : CharacterStateBase
 {
     [Header("Exit Scripts")]
-    [SerializeField] CharacterRunningState runningState;
-    [SerializeField] CharacterCrouchingState crouchingState;
     [SerializeField] CharacterOnHookState onHookState;
 
     private PlayerInput playerInput;
@@ -76,15 +74,6 @@ public class CharacterIdleState : CharacterStateBase
 
         UpdateMovement(speed, movementDirection, Vector3.up);
     }
-
-    //public void OnCrouch()
-    //{
-    //    if (this.enabled)
-    //    {
-    //        crouchingState.enabled = true;
-    //        this.enabled = false;
-    //    }
-    //}
 
     public void OnHookThrow()
     {
