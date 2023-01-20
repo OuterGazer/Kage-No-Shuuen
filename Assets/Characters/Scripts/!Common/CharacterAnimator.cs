@@ -21,6 +21,7 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterDodgingState dodgingState;
     private CharacterBlockingState blockingState;
     private CharacterCloseCombatState closeCombatState;
+    private CharacterAimingState aimingState;
 
     private Vector3 movementDirection;
     private float runningSpeed;
@@ -67,9 +68,9 @@ public class CharacterAnimator : MonoBehaviour
         onAirState = GetComponent<CharacterOnAirState>();
         dodgingState = GetComponent<CharacterDodgingState>();
         blockingState = GetComponent<CharacterBlockingState>();
-        closeCombatState= GetComponent<CharacterCloseCombatState>();
-
         weaponController = GetComponent<WeaponController>();
+        closeCombatState = GetComponent<CharacterCloseCombatState>();
+        aimingState= GetComponent<CharacterAimingState>();
     }
 
     private void AddNecessaryListeners()
@@ -87,7 +88,7 @@ public class CharacterAnimator : MonoBehaviour
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
         closeCombatState.onSlash.AddListener(PlaySlashAnimation);
         closeCombatState.onHeavySlash.AddListener(PlayHeavySlashAnimation);
-        weaponController.onAim.AddListener(PlayAimingAnimation);
+        aimingState.onAim.AddListener(PlayAimingAnimation);
         weaponController.onShoot.AddListener(PlayShootingAnimation);
         weaponController.onThrowing.AddListener(PlayThrowingAnimation);
     }    
@@ -112,7 +113,7 @@ public class CharacterAnimator : MonoBehaviour
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
         closeCombatState.onSlash.RemoveListener(PlaySlashAnimation);
         closeCombatState.onHeavySlash.RemoveListener(PlayHeavySlashAnimation);
-        weaponController.onAim.RemoveListener(PlayAimingAnimation);
+        aimingState.onAim.RemoveListener(PlayAimingAnimation);
         weaponController.onShoot.RemoveListener(PlayShootingAnimation);
         weaponController.onThrowing.AddListener(PlayThrowingAnimation);
     }

@@ -16,7 +16,7 @@ public class WeaponController : MonoBehaviour
     public bool nextWeapon = false;
     public bool shoot = false;
     
-    public bool aim = false;
+    
     public bool throwing = false;
 
     Weapon[] weapons;
@@ -25,7 +25,7 @@ public class WeaponController : MonoBehaviour
     CharacterAnimator characterAnimator; // TODO: preguntar a Kike si esto lo dejo así o aplico animator override a través de evento
     [HideInInspector] public UnityEvent onWeaponChange;
     
-    [HideInInspector] public UnityEvent<bool> onAim;
+    
     [HideInInspector] public UnityEvent onShoot;
     [HideInInspector] public UnityEvent onThrowing;
 
@@ -52,7 +52,7 @@ public class WeaponController : MonoBehaviour
     {
         UpdateShoot();
         
-        UpdateAim();
+        
         UpdateThrow();
     }    
 
@@ -95,7 +95,7 @@ public class WeaponController : MonoBehaviour
     
     private void UpdateShoot()
     {
-        if (shoot && aim)
+        if (shoot)// && aim)
         {
             if (currentWeapon.CompareTag("Fukiya") || currentWeapon.CompareTag("Gauntlet"))
             {
@@ -103,7 +103,7 @@ public class WeaponController : MonoBehaviour
             }
             else if (currentWeapon.CompareTag("Bow"))
             {
-                bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
+                //bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
             }               
 
             onShoot.Invoke();
@@ -120,57 +120,7 @@ public class WeaponController : MonoBehaviour
     // Called from Animation Event
     internal void ExitShooting()
     {
-        aim = false;
-    }
-
-    // TODO: refactor this in its own state classes
-    [SerializeField] float animAcc = 0.05f;
-    [SerializeField] Rig aimingFukiyaRig;
-    [SerializeField] Rig aimingBowRig;
-    [SerializeField] Rig aimingGauntletRig;
-    [SerializeField] Transform bowstring;
-    [SerializeField] Transform leftHand;
-    [SerializeField] Vector3 initialBowstringPosition;
-    private void UpdateAim()
-    {
-        if (aim && currentWeapon.CompareTag("Fukiya"))
-        {
-            aimingFukiyaRig.weight = (aimingFukiyaRig.weight >= 1f) ? 1f : (aimingFukiyaRig.weight += animAcc * Time.deltaTime);
-        }
-        else if(!aim && currentWeapon.CompareTag("Fukiya"))
-        {
-            aimingFukiyaRig.weight = (aimingFukiyaRig.weight <= 0f) ? 0f : (aimingFukiyaRig.weight -= animAcc * Time.deltaTime);
-        }
-
-        if (aim && currentWeapon.CompareTag("Bow"))
-        {
-            
-            aimingBowRig.weight = (aimingBowRig.weight >= 1f) ? 1f : (aimingBowRig.weight += animAcc * Time.deltaTime);
-        }
-        else if (!aim && currentWeapon.CompareTag("Bow"))
-        {
-            aimingBowRig.weight = (aimingBowRig.weight <= 0f) ? 0f : (aimingBowRig.weight -= animAcc * Time.deltaTime);
-            isPullingBowstring = false;
-            bowstring.localPosition = initialBowstringPosition;
-        }
-
-        if (isPullingBowstring)
-        {
-            bowstring.localPosition += bowstring.InverseTransformPoint(leftHand.TransformPoint(leftHand.localPosition));
-        }
-        else
-        {
-            bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
-        }
-
-        if (aim && currentWeapon.CompareTag("Gauntlet"))
-        {
-            aimingGauntletRig.weight = (aimingGauntletRig.weight >= 1f) ? 1f : (aimingGauntletRig.weight += animAcc * Time.deltaTime);
-        }
-        else if (!aim && currentWeapon.CompareTag("Gauntlet"))
-        {
-            aimingGauntletRig.weight = (aimingGauntletRig.weight <= 0f) ? 0f : (aimingGauntletRig.weight -= animAcc * Time.deltaTime);
-        }
+        //aim = false;
     }
 
     // Called from Animation Event
@@ -183,34 +133,6 @@ public class WeaponController : MonoBehaviour
     internal void DamageEnd()
     {
         currentWeapon.CloseCombatWeaponBase?.DamageEnd();
-    }
-
-    // Called from Animation Event
-    [SerializeField] GameObject quiverArrow;
-    internal void SpawnArrowInHand()
-    {
-        quiverArrow.SetActive(true);
-    }
-
-    // Called from Animation Event
-    [SerializeField] GameObject loadedArrow;
-    internal void SpawnArrowInBow()
-    {
-        quiverArrow.SetActive(false);
-        loadedArrow.SetActive(true);
-    }
-
-    // Called from Animation Event
-    private bool isPullingBowstring = false;
-    internal void PullBowstring()
-    {
-        isPullingBowstring = true;
-    }
-    // Called from Animation Event
-    internal void ReleaseBowstring()
-    {
-        isPullingBowstring = false;
-        loadedArrow.SetActive(false);
     }
 
     private void UpdateThrow()
@@ -255,6 +177,6 @@ public class WeaponController : MonoBehaviour
     
     private void OnShoot() { shoot = true; }
     
-    private void OnAim() { aim = !aim; onAim.Invoke(aim); if (loadedArrow.activeInHierarchy) { loadedArrow.SetActive(false); } }
+    
     private void OnWeaponThrow() { throwing = true; }
 }
