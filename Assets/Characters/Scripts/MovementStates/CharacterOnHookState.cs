@@ -5,19 +5,15 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(CharacterOnAirState), typeof(CharacterIdleState))]
+[RequireComponent(typeof(CharacterIdleState))]
 public class CharacterOnHookState : CharacterStateBase
 {
-    // TODO: pensar en si quiero que el jugador pueda lanzar el gancho estando OnWall
-    // TODO: arreglar bug raro donde si aprieto el boton de agacharse durante la animación de lanzar pasan cosas raras
-
     [SerializeField] float hookThrowRadius = 10f;
     [SerializeField] float hookReachThreshold = 4f;
     private Transform hookTarget;
 
 
     [Header("Exit States")]
-    [SerializeField] CharacterOnAirState onAirState;
     [SerializeField] CharacterIdleState idleState;
 
     [Header("Rig Characteristics")]
@@ -42,13 +38,13 @@ public class CharacterOnHookState : CharacterStateBase
 
     private void Awake()
     {
-        this.enabled = false;
-
         characterAnimator = GetComponent<CharacterAnimator>();
         characterAnimator.hookHasArrivedAtTarget.AddListener(MoveCharacterToHookTarget);
         spineToFingerRig = GetComponentInChildren<Rig>();
         spineToFingerRig.weight = 0f;
         hookTargetMask = LayerMask.GetMask("HookTarget");
+
+        this.enabled = false;
     }
 
     private void OnDestroy()
@@ -80,7 +76,8 @@ public class CharacterOnHookState : CharacterStateBase
 
         if (hookTargets.Length == 0)
         {
-            StartCoroutine(ExitToIdle());
+            onNeedingToTransitionToIdle.Invoke();
+            //StartCoroutine(ExitToIdle());
         }
         else
         {
@@ -96,7 +93,8 @@ public class CharacterOnHookState : CharacterStateBase
 
         if (!hits[0].collider.CompareTag("HookTarget"))
         {
-            StartCoroutine(ExitToIdle());
+            onNeedingToTransitionToIdle.Invoke();
+            //StartCoroutine(ExitToIdle());
         }
         else
         {
@@ -113,9 +111,8 @@ public class CharacterOnHookState : CharacterStateBase
 
     private IEnumerator ExitToIdle()
     {
-        this.enabled = false;
         yield return new WaitForEndOfFrame();
-        idleState.enabled = true;        
+        onNeedingToTransitionToIdle.Invoke(); //Event for CharacterEngine to transition to Idle if there isn't any hook target around or it's blocked
     }
 
     private void SetTargetToRigChain()
@@ -180,10 +177,9 @@ public class CharacterOnHookState : CharacterStateBase
     private void ExitState()
     {
         ChangeToHangingAnimation.Invoke(false);
-
-        onAirState.enabled = true;
         spineToFingerRig.weight = 0f;
-        this.enabled = false;
+
+        onBeingOnAir.Invoke();
     }
 
     // Called through an animation event

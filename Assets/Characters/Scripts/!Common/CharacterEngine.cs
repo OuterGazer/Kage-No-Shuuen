@@ -8,7 +8,8 @@ using UnityEngine.InputSystem;
 
 public class CharacterEngine : MonoBehaviour
 {
-    // TODO: I must implement all exit state conditions here, for example so I can't throw hook while blocking, or change to running or crouching while rolling
+    // TODO: Have moving after dodging or OnAir logic here somehow,
+    //       as of now Crouching, Running, OnHook, OnAir and Dodging are couple directly to Idle because of this.
 
     private CharacterStateBase[] allStates;
     private CharacterStateBase currentMovementState;
@@ -33,6 +34,8 @@ public class CharacterEngine : MonoBehaviour
         {
             allStates[i].onMovementStateChange.AddListener(UpdateCurrentMovementState);
             allStates[i].onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
+            allStates[i].onNeedingToTransitionToIdle.AddListener(TransitionToIdle);
+            allStates[i].onBeingOnAir.AddListener(TransitionToOnAir);
         }
     }
 
@@ -89,6 +92,18 @@ public class CharacterEngine : MonoBehaviour
 
     }
 
+    // Specific method called from event to transition to idle when failing a hook throw or coming from OnAir state
+    private void TransitionToIdle()
+    {
+        ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
+    }
+
+    // Specific method called from event to transition to OnAir when after hook throwing or falling off a ledge
+    private void TransitionToOnAir()
+    {
+        ManageStateTransition(statesAllowedToTransitionToOnAir, typeof(CharacterOnAirState));
+    }
+    
     public void OnMove(InputValue inputValue)
     {
         if (inputValue.Get<Vector2>() != Vector2.zero)
@@ -98,10 +113,12 @@ public class CharacterEngine : MonoBehaviour
             if(!isCrouching)
                 ManageStateTransition(statesAllowedToTransitionToRunning, typeof(CharacterRunningState));
             else
-                ManageStateTransition(statesAllowedToTransitionToCrouching, typeof(CharacterCrouchingState)); // We were in idle
+                ManageStateTransition(statesAllowedToTransitionToCrouching, typeof(CharacterCrouchingState)); // Enable transitioning from idle to crouching
         }
         else
         {
+            if (currentMovementState.GetType() == typeof(CharacterOnAirState)) { return; } // Has to do with moving right after landing, try to decouple this!!
+
             ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
         }
     }
@@ -149,6 +166,11 @@ public class CharacterEngine : MonoBehaviour
             CharacterOnWallState.SetNormalToWallPlane(hit.normal);
             ManageStateTransition(statesAllowedToTransitionToOnWall, typeof(CharacterOnWallState));
         }
+    }
+
+    public void OnHookThrow()
+    {
+        ManageStateTransition(statesAllowedToTransitionToOnHook, typeof(CharacterOnHookState));
     }
 
     public void OnDodge()

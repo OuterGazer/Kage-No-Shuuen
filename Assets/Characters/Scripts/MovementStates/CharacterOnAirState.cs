@@ -38,12 +38,16 @@ public class CharacterOnAirState : CharacterStateBase
 
         if(charController.isGrounded)
         {
-            IsCharacterTouchingGround.Invoke(true);
-            idleState.enabled = true;
-            this.enabled = false;
-
-            idleState.EnableMovement();
+            ExitState();
         }
+    }
+
+    private void ExitState()
+    {
+        IsCharacterTouchingGround.Invoke(true);
+        idleState.EnableMovement();
+
+        onNeedingToTransitionToIdle.Invoke();        
     }
 
     private void FixedUpdate()

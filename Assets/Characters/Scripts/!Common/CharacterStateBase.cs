@@ -21,6 +21,8 @@ public class CharacterStateBase : MonoBehaviour
 
     [HideInInspector] public UnityEvent<Vector3> onMovementSpeedChange;
     [HideInInspector] public UnityEvent<CharacterStateBase> onMovementStateChange;
+    [HideInInspector] public UnityEvent onNeedingToTransitionToIdle;
+    [HideInInspector] public UnityEvent onBeingOnAir;
     [HideInInspector] public UnityEvent<CharacterStateBase> onCombatStateEnablingOrDisabling;
 
     protected void SetCameraAndCharController(CharacterController characterController)

@@ -154,7 +154,7 @@ public class CharacterAnimator : MonoBehaviour
         else if(!weapon.AnimatorOverride)
             animator.runtimeAnimatorController = standardAnimatorController;
 
-        CorrectIsGroundedBug(); // TODO: look for the actual reason this happens and fix it
+        //CorrectIsGroundedBug(); // TODO: look for the actual reason this happens and fix it
     }
 
     private void CorrectIsGroundedBug()

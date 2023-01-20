@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8076234254890080519}
   - component: {fileID: 897672852054125443}
   - component: {fileID: -2399148768885965796}
-  - component: {fileID: -9024856857380771215}
   m_Layer: 8
   m_Name: Bomb Projectile
   m_TagString: Untagged
@@ -66,18 +65,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0.51
   explosionRange: 5
---- !u!114 &-9024856857380771215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1489028081647296834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2276e4c4b6962ff469840ea5b31cdbd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1790420198163297569
 GameObject:
   m_ObjectHideFlags: 0

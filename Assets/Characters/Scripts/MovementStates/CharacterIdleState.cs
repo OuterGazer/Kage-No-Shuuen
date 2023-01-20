@@ -7,13 +7,9 @@ using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterOnHookState))]
 [RequireComponent(typeof(PlayerInput), typeof(CharacterController))]
 public class CharacterIdleState : CharacterStateBase
 {
-    [Header("Exit Scripts")]
-    [SerializeField] CharacterOnHookState onHookState;
-
     private PlayerInput playerInput;
     public InputAction move;
 
@@ -25,9 +21,7 @@ public class CharacterIdleState : CharacterStateBase
 
     private void Awake()
     {
-        this.enabled = true;
-        SetCameraAndCharController(GetComponent<CharacterController>());
-        
+        SetCameraAndCharController(GetComponent<CharacterController>());        
         playerInput = GetComponent<PlayerInput>();
         move = playerInput.actions["Move"];
     }
@@ -41,7 +35,7 @@ public class CharacterIdleState : CharacterStateBase
 
     private void OnDisable()
     {
-        //this.isMovingAfterDodging = true;
+        this.isMovingAfterDodging = true;
     }
 
     // Called from CharacterDodgingState OnDisable
@@ -69,18 +63,9 @@ public class CharacterIdleState : CharacterStateBase
 
     private void Update()
     {
-        //if (!isMovingAfterDodging)
-        //    movingSpeed = 0f;
+        if (!isMovingAfterDodging)
+            movingSpeed = 0f;
 
         UpdateMovement(speed, movementDirection, Vector3.up);
-    }
-
-    public void OnHookThrow()
-    {
-        if (this.enabled)
-        {
-            onHookState.enabled = true;
-            this.enabled = false;
-        }
     }
 }

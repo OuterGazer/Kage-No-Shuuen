@@ -4,13 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterIdleState), typeof(CharacterCrouchingState), typeof(CharacterOnAirState))]
+[RequireComponent(typeof(CharacterIdleState))]
 public class CharacterRunningState : CharacterStateBase
 {
     [Header("Exit Scripts")]
     [SerializeField] CharacterIdleState idleState;
-    [SerializeField] CharacterCrouchingState crouchingState;
-    [SerializeField] CharacterOnAirState onAirState;
 
     private void Awake()
     {
@@ -34,9 +32,7 @@ public class CharacterRunningState : CharacterStateBase
 
     private void ChangeToOnAirState()
     {
-        onAirState.enabled = true;
-        this.enabled = false;
-
+        onBeingOnAir.Invoke();
         idleState.move.Disable();
     }
 }

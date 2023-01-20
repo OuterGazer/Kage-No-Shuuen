@@ -106,11 +106,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 1489028081647296834, guid: 5037fa9b9750bcb49ab83c22c64c4577,
     type: 3}
-  throwingStrength: 20
+  throwingStrength: 8
   spinSpeed: 10
   hand: {fileID: 0}
   player: {fileID: 0}
-  throwAngle: 0
+  throwAngle: 45
 --- !u!114 &6106689463649448897
 MonoBehaviour:
   m_ObjectHideFlags: 0
