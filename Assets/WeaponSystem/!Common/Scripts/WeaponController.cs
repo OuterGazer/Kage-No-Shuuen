@@ -15,8 +15,7 @@ public class WeaponController : MonoBehaviour
     public bool prevWeapon = false;
     public bool nextWeapon = false;
     public bool shoot = false;
-    public bool slash = false;
-    public bool heavySlash = false;
+    
     public bool aim = false;
     public bool throwing = false;
 
@@ -25,8 +24,7 @@ public class WeaponController : MonoBehaviour
 
     CharacterAnimator characterAnimator; // TODO: preguntar a Kike si esto lo dejo así o aplico animator override a través de evento
     [HideInInspector] public UnityEvent onWeaponChange;
-    [HideInInspector] public UnityEvent onSlash;
-    [HideInInspector] public UnityEvent onHeavySlash;
+    
     [HideInInspector] public UnityEvent<bool> onAim;
     [HideInInspector] public UnityEvent onShoot;
     [HideInInspector] public UnityEvent onThrowing;
@@ -53,7 +51,7 @@ public class WeaponController : MonoBehaviour
     private void Update()
     {
         UpdateShoot();
-        UpdateSlash();
+        
         UpdateAim();
         UpdateThrow();
     }    
@@ -93,20 +91,6 @@ public class WeaponController : MonoBehaviour
         nextWeapon = false;
 
         characterAnimator.ApplyAnimatorController(weapons[currentWeaponIndex]);
-    }
-
-    private void UpdateSlash()
-    {
-        if (slash)
-        {
-            onSlash.Invoke();
-            slash = false;
-        }
-        else if (heavySlash)
-        {
-            onHeavySlash.Invoke();
-            heavySlash = false;
-        }
     }
     
     private void UpdateShoot()
@@ -270,8 +254,7 @@ public class WeaponController : MonoBehaviour
 
     
     private void OnShoot() { shoot = true; }
-    private void OnSlash() { slash = true; }
-    private void OnHeavySlash() { heavySlash = true; }
+    
     private void OnAim() { aim = !aim; onAim.Invoke(aim); if (loadedArrow.activeInHierarchy) { loadedArrow.SetActive(false); } }
     private void OnWeaponThrow() { throwing = true; }
 }

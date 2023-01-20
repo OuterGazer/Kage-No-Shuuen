@@ -2245,6 +2245,7 @@ GameObject:
   - component: {fileID: 7367104688647257543}
   - component: {fileID: 8832969203320372516}
   - component: {fileID: 7367104688647257542}
+  - component: {fileID: 7325442263440269981}
   - component: {fileID: 7367104688647257540}
   - component: {fileID: 7367104688647257538}
   - component: {fileID: 7367104688647257541}
@@ -2253,7 +2254,7 @@ GameObject:
   - component: {fileID: 7367104688647257547}
   - component: {fileID: 834020474160094199}
   - component: {fileID: 4128263669422437884}
-  - component: {fileID: 7325442263440269981}
+  - component: {fileID: 6662072654649892864}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -2368,6 +2369,8 @@ MonoBehaviour:
   statesAllowedToTransitionToDodging:
   - {fileID: 7367104688647257541}
   - {fileID: 7367104688647257538}
+  statesAllowedToTransitionToCloseCombat:
+  - {fileID: 7367104688647257540}
 --- !u!114 &7367104688647257542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2383,6 +2386,45 @@ MonoBehaviour:
   hookHasArrivedAtTarget:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7325442263440269981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367104688647257537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fede8cf5dbeb3c49869968dd6441e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponsParent: {fileID: 7072296892553257570}
+  prevWeapon: 0
+  nextWeapon: 0
+  shoot: 0
+  aim: 0
+  throwing: 0
+  onWeaponChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onAim:
+    m_PersistentCalls:
+      m_Calls: []
+  onShoot:
+    m_PersistentCalls:
+      m_Calls: []
+  onThrowing:
+    m_PersistentCalls:
+      m_Calls: []
+  animAcc: 4
+  aimingFukiyaRig: {fileID: 1375444489}
+  aimingBowRig: {fileID: 1950536391}
+  aimingGauntletRig: {fileID: 1278787773749181164}
+  bowstring: {fileID: 5610469249938796932}
+  leftHand: {fileID: 5337826623202544238}
+  initialBowstringPosition: {x: 0.082736455, y: 0.0053369883, z: 0.0063904556}
+  quiverArrow: {fileID: 3753142652396763249}
+  loadedArrow: {fileID: 3413141248556956164}
 --- !u!114 &7367104688647257540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2666,7 +2708,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   weightChangeAcceleration: 4
---- !u!114 &7325442263440269981
+--- !u!114 &6662072654649892864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2675,44 +2717,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 7367104688647257537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fede8cf5dbeb3c49869968dd6441e84, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dcd266b00a80fd439fec574df2fe6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponsParent: {fileID: 7072296892553257570}
-  prevWeapon: 0
-  nextWeapon: 0
-  shoot: 0
-  slash: 0
-  heavySlash: 0
-  aim: 0
-  throwing: 0
-  onWeaponChange:
+  speed: 6
+  onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  onMovementStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onNeedingToTransitionToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeingOnAir:
+    m_PersistentCalls:
+      m_Calls: []
+  onCombatStateEnteringOrExiting:
+    m_PersistentCalls:
+      m_Calls: []
+  slash: 0
+  heavySlash: 0
   onSlash:
     m_PersistentCalls:
       m_Calls: []
   onHeavySlash:
     m_PersistentCalls:
       m_Calls: []
-  onAim:
-    m_PersistentCalls:
-      m_Calls: []
-  onShoot:
-    m_PersistentCalls:
-      m_Calls: []
-  onThrowing:
-    m_PersistentCalls:
-      m_Calls: []
-  animAcc: 4
-  aimingFukiyaRig: {fileID: 1375444489}
-  aimingBowRig: {fileID: 1950536391}
-  aimingGauntletRig: {fileID: 1278787773749181164}
-  bowstring: {fileID: 5610469249938796932}
-  leftHand: {fileID: 5337826623202544238}
-  initialBowstringPosition: {x: 0.082736455, y: 0.0053369883, z: 0.0063904556}
-  quiverArrow: {fileID: 3753142652396763249}
-  loadedArrow: {fileID: 3413141248556956164}
 --- !u!1 &7367104688910039843
 GameObject:
   m_ObjectHideFlags: 0

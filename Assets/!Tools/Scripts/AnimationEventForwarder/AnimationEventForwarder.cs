@@ -42,6 +42,11 @@ public class AnimationEventForwarder : MonoBehaviour
         SendMessageUpwards("DamageEnd");
     }
 
+    public void ForwardExitCloseCombatState()
+    {
+        SendMessageUpwards("ExitCloseCombatState");
+    }
+
     public void ForwardSpawnArrowInHand()
     {
         SendMessageUpwards("SpawnArrowInHand");

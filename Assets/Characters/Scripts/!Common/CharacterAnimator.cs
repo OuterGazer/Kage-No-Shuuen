@@ -20,6 +20,8 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterOnAirState onAirState;
     private CharacterDodgingState dodgingState;
     private CharacterBlockingState blockingState;
+    private CharacterCloseCombatState closeCombatState;
+
     private Vector3 movementDirection;
     private float runningSpeed;
 
@@ -65,6 +67,8 @@ public class CharacterAnimator : MonoBehaviour
         onAirState = GetComponent<CharacterOnAirState>();
         dodgingState = GetComponent<CharacterDodgingState>();
         blockingState = GetComponent<CharacterBlockingState>();
+        closeCombatState= GetComponent<CharacterCloseCombatState>();
+
         weaponController = GetComponent<WeaponController>();
     }
 
@@ -81,8 +85,8 @@ public class CharacterAnimator : MonoBehaviour
         dodgingState.MakeCharacterDodge.AddListener(PlayDodgeAnimation);
         blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
-        weaponController.onSlash.AddListener(PlaySlashAnimation);
-        weaponController.onHeavySlash.AddListener(PlayHeavySlashAnimation);
+        closeCombatState.onSlash.AddListener(PlaySlashAnimation);
+        closeCombatState.onHeavySlash.AddListener(PlayHeavySlashAnimation);
         weaponController.onAim.AddListener(PlayAimingAnimation);
         weaponController.onShoot.AddListener(PlayShootingAnimation);
         weaponController.onThrowing.AddListener(PlayThrowingAnimation);
@@ -106,8 +110,8 @@ public class CharacterAnimator : MonoBehaviour
         dodgingState.MakeCharacterDodge.RemoveListener(PlayDodgeAnimation);
         blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
-        weaponController.onSlash.RemoveListener(PlaySlashAnimation);
-        weaponController.onHeavySlash.RemoveListener(PlayHeavySlashAnimation);
+        closeCombatState.onSlash.RemoveListener(PlaySlashAnimation);
+        closeCombatState.onHeavySlash.RemoveListener(PlayHeavySlashAnimation);
         weaponController.onAim.RemoveListener(PlayAimingAnimation);
         weaponController.onShoot.RemoveListener(PlayShootingAnimation);
         weaponController.onThrowing.AddListener(PlayThrowingAnimation);

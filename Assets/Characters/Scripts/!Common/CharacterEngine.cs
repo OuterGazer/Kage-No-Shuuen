@@ -24,6 +24,7 @@ public class CharacterEngine : MonoBehaviour
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToOnAir;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToBlocking;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToDodging;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToCloseCombat;
 
     private bool isCrouching = false;
 
@@ -202,5 +203,14 @@ public class CharacterEngine : MonoBehaviour
         {
             currentCombatState?.ExitState();
         }
+    }
+
+    private void OnSlash() 
+    {
+        ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));
+    }
+    private void OnHeavySlash() 
+    {
+        ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));
     }
 }

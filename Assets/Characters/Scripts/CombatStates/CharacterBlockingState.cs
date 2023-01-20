@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 public class CharacterBlockingState : CharacterStateBase
 {

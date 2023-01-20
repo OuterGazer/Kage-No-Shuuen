@@ -60,12 +60,26 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.4157706
+        functionName: ForwardDamageStart
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.5878136
         functionName: ForwardSetCanChainCombo
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 1
+        messageOptions: 0
+      - time: 0.6702509
+        functionName: ForwardDamageEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
         messageOptions: 0
       - time: 0.67741936
         functionName: ForwardSetCanChainCombo
@@ -74,15 +88,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4157706
-        functionName: ForwardDamageStart
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.6702509
-        functionName: ForwardDamageEnd
+      - time: 1.0035912
+        functionName: ForwardExitCloseCombatState
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
