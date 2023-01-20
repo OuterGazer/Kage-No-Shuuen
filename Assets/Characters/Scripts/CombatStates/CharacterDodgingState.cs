@@ -24,7 +24,7 @@ public class CharacterDodgingState : CharacterStateBase
 
     private void OnEnable()
     {
-        onCombatStateEnablingOrDisabling.Invoke(this);
+        onCombatStateEnteringOrExiting.Invoke(this);
 
         SetDodgeFacingDirection(currentHorizontalMovement.normalized);
 
@@ -36,9 +36,8 @@ public class CharacterDodgingState : CharacterStateBase
 
     private void OnDisable()
     {
-        onCombatStateEnablingOrDisabling.Invoke(null);
-
-        idleState.EnableMovement();
+        if(gameObject.activeInHierarchy)
+            idleState.EnableMovement();
     }
 
     private void Update()
@@ -67,7 +66,7 @@ public void SetDodgeFacingDirection(Vector3 facingDirection)
     {
         OrientateCharacterForward();
 
-        idleState.enabled = true;
-        this.enabled = false;
+        onCombatStateEnteringOrExiting.Invoke(null);
+        onNeedingToTransitionToIdle.Invoke();
     }
 }

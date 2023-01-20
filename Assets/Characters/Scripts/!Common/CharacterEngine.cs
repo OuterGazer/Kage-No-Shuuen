@@ -33,7 +33,7 @@ public class CharacterEngine : MonoBehaviour
         for (int i = 0; i < allStates.Length; i++)
         {
             allStates[i].onMovementStateChange.AddListener(UpdateCurrentMovementState);
-            allStates[i].onCombatStateEnablingOrDisabling.AddListener(UpdateCurrentCombatState);
+            allStates[i].onCombatStateEnteringOrExiting.AddListener(UpdateCurrentCombatState);
             allStates[i].onNeedingToTransitionToIdle.AddListener(TransitionToIdle);
             allStates[i].onBeingOnAir.AddListener(TransitionToOnAir);
         }
@@ -44,7 +44,7 @@ public class CharacterEngine : MonoBehaviour
         for (int i = 0; i < allStates.Length; i++)
         {
             allStates[i].onMovementStateChange.RemoveListener(UpdateCurrentMovementState);
-            allStates[i].onCombatStateEnablingOrDisabling.RemoveListener(UpdateCurrentCombatState);
+            allStates[i].onCombatStateEnteringOrExiting.RemoveListener(UpdateCurrentCombatState);
         }
 
         currentMovementState = null;
@@ -55,13 +55,16 @@ public class CharacterEngine : MonoBehaviour
     private void UpdateCurrentMovementState(CharacterStateBase stateCharacterJustTransitionedTo)
     {
         if (currentMovementState) { currentMovementState.enabled = false; }
-            
+
         currentMovementState = stateCharacterJustTransitionedTo;
     }
 
-    // Event called OnEnable() and OnDisable() of combat states
+    // Event called on entering or exiting combat states
     private void UpdateCurrentCombatState(CharacterStateBase stateCharacterJustTransitionedTo)
     {
+        if (stateCharacterJustTransitionedTo == null)
+            { currentCombatState.enabled = false; }
+        
         currentCombatState = stateCharacterJustTransitionedTo;
     }
 

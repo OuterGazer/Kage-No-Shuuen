@@ -21,7 +21,7 @@ public class CharacterBlockingState : CharacterStateBase
 
     private void OnEnable()
     {
-        onCombatStateEnablingOrDisabling.Invoke(this);
+        onCombatStateEnteringOrExiting.Invoke(this);
 
         UpdateBlockingStatus.Invoke(true);
         isBlocking = true;
@@ -29,7 +29,7 @@ public class CharacterBlockingState : CharacterStateBase
 
     private void OnDisable()
     {
-        onCombatStateEnablingOrDisabling.Invoke(null);
+        onCombatStateEnteringOrExiting.Invoke(null);
     }
 
     private void Update()

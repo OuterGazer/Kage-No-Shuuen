@@ -2347,6 +2347,7 @@ MonoBehaviour:
   - {fileID: 7367104688647257541}
   - {fileID: 7367104688647257544}
   - {fileID: 7367104688647257547}
+  - {fileID: 834020474160094199}
   statesAllowedToTransitionToRunning:
   - {fileID: 7367104688647257540}
   - {fileID: 7367104688647257538}
@@ -2401,12 +2402,15 @@ MonoBehaviour:
   onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
+  onNeedingToTransitionToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeingOnAir:
+    m_PersistentCalls:
+      m_Calls: []
   onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
-  runningState: {fileID: 7367104688647257541}
-  crouchingState: {fileID: 7367104688647257538}
-  onHookState: {fileID: 7367104688647257544}
   move:
     m_Name: Move
     m_Type: 0
@@ -2435,16 +2439,16 @@ MonoBehaviour:
   onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
+  onNeedingToTransitionToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeingOnAir:
+    m_PersistentCalls:
+      m_Calls: []
   onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
-  runningState: {fileID: 7367104688647257541}
   idleState: {fileID: 7367104688647257540}
-  onWallState: {fileID: 7367104688647257545}
-  onAirState: {fileID: 7367104688647257547}
-  AttachCharacterToWall:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &7367104688647257541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2464,13 +2468,16 @@ MonoBehaviour:
   onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
+  onNeedingToTransitionToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeingOnAir:
+    m_PersistentCalls:
+      m_Calls: []
   onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
   idleState: {fileID: 7367104688647257540}
-  crouchingState: {fileID: 7367104688647257538}
-  onAirState: {fileID: 7367104688647257547}
-  rollingState: {fileID: 834020474160094199}
 --- !u!114 &7367104688647257545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2490,10 +2497,18 @@ MonoBehaviour:
   onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
+  onNeedingToTransitionToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeingOnAir:
+    m_PersistentCalls:
+      m_Calls: []
   onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
-  crouchingState: {fileID: 7367104688647257538}
+  AttachCharacterToWall:
+    m_PersistentCalls:
+      m_Calls: []
   RemoveCharacterFromWall:
     m_PersistentCalls:
       m_Calls: []
@@ -2522,12 +2537,17 @@ MonoBehaviour:
   onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
+  onNeedingToTransitionToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeingOnAir:
+    m_PersistentCalls:
+      m_Calls: []
   onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
   hookThrowRadius: 10
   hookReachThreshold: 4
-  onAirState: {fileID: 7367104688647257547}
   idleState: {fileID: 7367104688647257540}
   rigAlignmentToHookTargetAcceleration: 1
   rigBuilder: {fileID: 4418708312322543643}
@@ -2563,6 +2583,12 @@ MonoBehaviour:
   onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
+  onNeedingToTransitionToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeingOnAir:
+    m_PersistentCalls:
+      m_Calls: []
   onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
@@ -2593,6 +2619,12 @@ MonoBehaviour:
   onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
+  onNeedingToTransitionToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeingOnAir:
+    m_PersistentCalls:
+      m_Calls: []
   onCombatStateEnablingOrDisabling:
     m_PersistentCalls:
       m_Calls: []
@@ -2618,6 +2650,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onMovementStateChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onNeedingToTransitionToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
   onCombatStateEnablingOrDisabling:
