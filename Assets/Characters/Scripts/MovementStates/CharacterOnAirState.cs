@@ -42,7 +42,7 @@ public class CharacterOnAirState : CharacterStateBase
         }
     }
 
-    private void ExitState()
+    private new void ExitState()
     {
         IsCharacterTouchingGround.Invoke(true);
         idleState.EnableMovement();

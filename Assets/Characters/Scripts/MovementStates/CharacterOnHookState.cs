@@ -171,7 +171,7 @@ public class CharacterOnHookState : CharacterStateBase
         return (hookTarget.position - transform.position).sqrMagnitude <= hookReachThreshold;
     }
 
-    private void ExitState()
+    private new void ExitState()
     {
         ChangeToHangingAnimation.Invoke(false);
         spineToFingerRig.weight = 0f;

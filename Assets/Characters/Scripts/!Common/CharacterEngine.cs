@@ -10,6 +10,7 @@ public class CharacterEngine : MonoBehaviour
 {
     // TODO: Have moving after dodging or OnAir logic here somehow,
     //       as of now Crouching, Running, OnHook, OnAir and Dodging are couple directly to Idle because of this.
+    //       Due to this there is some spaghetti in idle
 
     private CharacterStateBase[] allStates;
     private CharacterStateBase currentMovementState;
@@ -193,9 +194,13 @@ public class CharacterEngine : MonoBehaviour
     {
         float temp = inputValue.Get<float>();
 
-        if (temp > 0f)
+        if (!Mathf.Approximately(temp, 0f))
         {
             ManageStateTransition(statesAllowedToTransitionToBlocking, typeof(CharacterBlockingState));
+        }
+        else
+        {
+            currentCombatState?.ExitState();
         }
     }
 }

@@ -14,10 +14,6 @@ public class CharacterIdleState : CharacterStateBase
     public InputAction move;
 
     private bool isMovingAfterDodging = true;
-    //public bool IsMovingAfterDodging { 
-    //    get { return isMovingAfterDodging;}
-    //    set { isMovingAfterDodging = value; }
-    //}
 
     private void Awake()
     {
@@ -30,7 +26,10 @@ public class CharacterIdleState : CharacterStateBase
     {
         onMovementStateChange.Invoke(this);
 
-        movementDirection = Vector3.zero;          
+        // If I'm setting movementDirection to zero direct in the OnMove() in the parent
+        // when there is no movement, I probably don't need to do it here as well
+
+        //movementDirection = Vector3.zero;          
     }
 
     private void OnDisable()

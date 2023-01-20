@@ -7,12 +7,10 @@ using UnityEngine.InputSystem;
 
 public class CharacterBlockingState : CharacterStateBase
 {
-    // TODO: implement moving very slow while state is active
-
     [SerializeField] Rig blockingRig;
     private bool isBlocking = false;
 
-    [HideInInspector] public UnityEvent<bool> UpdateBlockingStatus;
+    [HideInInspector] public UnityEvent<bool> UpdateBlockingStatus; // Event for the animator
 
     private void Awake()
     {
@@ -25,15 +23,13 @@ public class CharacterBlockingState : CharacterStateBase
 
         UpdateBlockingStatus.Invoke(true);
         isBlocking = true;
-    }
 
-    private void OnDisable()
-    {
-        onCombatStateEnteringOrExiting.Invoke(null);
+        combatStateSpeedModifier = speed;
     }
 
     private void Update()
     {
+        movingSpeed = speed;
         ChangeBlockingRiggingWeight();
     }
 
@@ -56,25 +52,19 @@ public class CharacterBlockingState : CharacterStateBase
         }
     }
 
-    void OnBlock(InputValue inputValue)
+    public override void ExitState()
     {
-        if (IsBlockButtonReleased(inputValue))
-        {
-            UpdateBlockingStatus.Invoke(false);
-            isBlocking = false;
-            StartCoroutine(DisableScript());
-        }
+        StartCoroutine(OnExitState());
     }
 
-    private static bool IsBlockButtonReleased(InputValue inputValue)
+    private IEnumerator OnExitState()
     {
-        return Mathf.Approximately(inputValue.Get<float>(), 0f);
-    }
+        UpdateBlockingStatus.Invoke(false);
+        isBlocking = false;
+        combatStateSpeedModifier = 0f;
 
-    private IEnumerator DisableScript()
-    {
         yield return new WaitUntil(() => blockingRig.weight <= 0f);
 
-        this.enabled = false;
+        onCombatStateEnteringOrExiting.Invoke(null);
     }
 }
