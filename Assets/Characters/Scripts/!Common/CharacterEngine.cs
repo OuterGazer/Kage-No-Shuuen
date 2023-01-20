@@ -134,6 +134,8 @@ public class CharacterEngine : MonoBehaviour
         {
             if (IsCharacterStill())
             {
+                if (IsCharacterOnHookOrOnAir()) { return; }
+                
                 ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
             }
             else
@@ -142,6 +144,12 @@ public class CharacterEngine : MonoBehaviour
             }
             isCrouching = false;
         }
+    }
+
+    private bool IsCharacterOnHookOrOnAir()
+    {
+        return currentMovementState.GetType() == typeof(CharacterOnHookState) ||
+               currentMovementState.GetType() == typeof(CharacterOnAirState);
     }
 
     private bool IsCharacterStill()

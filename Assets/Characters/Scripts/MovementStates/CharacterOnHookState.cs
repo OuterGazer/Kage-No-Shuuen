@@ -76,8 +76,7 @@ public class CharacterOnHookState : CharacterStateBase
 
         if (hookTargets.Length == 0)
         {
-            onNeedingToTransitionToIdle.Invoke();
-            //StartCoroutine(ExitToIdle());
+            ExitToIdle();
         }
         else
         {
@@ -93,8 +92,7 @@ public class CharacterOnHookState : CharacterStateBase
 
         if (!hits[0].collider.CompareTag("HookTarget"))
         {
-            onNeedingToTransitionToIdle.Invoke();
-            //StartCoroutine(ExitToIdle());
+            ExitToIdle();
         }
         else
         {
@@ -109,9 +107,8 @@ public class CharacterOnHookState : CharacterStateBase
         ThrowHook();
     }
 
-    private IEnumerator ExitToIdle()
+    private void ExitToIdle()
     {
-        yield return new WaitForEndOfFrame();
         onNeedingToTransitionToIdle.Invoke(); //Event for CharacterEngine to transition to Idle if there isn't any hook target around or it's blocked
     }
 

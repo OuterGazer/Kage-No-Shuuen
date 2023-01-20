@@ -1982,7 +1982,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.0046970174, y: 1.1257711e-24, z: -5.506089e-27, w: 0.999989}
+  m_LocalRotation: {x: 0.004697015, y: 8.8639013e-10, z: -4.1634344e-12, w: 0.999989}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3127,7 +3127,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.03333581, y: -0, z: -0, w: 0.99944425}
+  m_LocalRotation: {x: 0.03333581, y: -1e-45, z: -0, w: 0.99944425}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4384,7 +4384,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.06213743, y: -0.000000017787794, z: 0.0000000011074277, w: 0.9980676}
+  m_LocalRotation: {x: 0.06213745, y: -0.000000017176252, z: 0.0000000010693548, w: 0.9980676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5731,6 +5731,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8832969203320372516, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}
+      propertyPath: statesAllowedToTransitionToOnAir.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8832969203320372516, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
       propertyPath: statesAllowedToTransitionToOnWall.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -5739,6 +5744,11 @@ PrefabInstance:
       propertyPath: statesAllowedToTransitionToIdle.Array.data[4]
       value: 
       objectReference: {fileID: 4128263669422437879}
+    - target: {fileID: 8832969203320372516, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: statesAllowedToTransitionToOnAir.Array.data[3]
+      value: 
+      objectReference: {fileID: 4128263669422437882}
     - target: {fileID: 8832969203320372516, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}
       propertyPath: statesAllowedToTransitionToOnWall.Array.data[1]
