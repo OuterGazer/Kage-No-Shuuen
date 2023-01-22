@@ -309,9 +309,10 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetBool(isBlockingHash, isBlocking);
     }
 
-    public void PlayChangeWeaponAnimation()
+    public void PlayChangeWeaponAnimation(Weapon weapon)
     {
-        animator.SetTrigger(changeWeaponHash);
+        if (!weapon)
+        { animator.SetTrigger(changeWeaponHash); }
     }
 
     //TODO: Have character correctly grab 2-Hand weapons with both hands

@@ -23,7 +23,8 @@ public class WeaponController : MonoBehaviour
     Weapon currentWeapon;
 
     CharacterAnimator characterAnimator; // TODO: preguntar a Kike si esto lo dejo así o aplico animator override a través de evento
-    [HideInInspector] public UnityEvent onWeaponChange;
+    [HideInInspector] public UnityEvent<Weapon> onWeaponChange;
+    [HideInInspector] public UnityEvent onAimingShootingWeapon;
     
     
     [HideInInspector] public UnityEvent onShoot;
@@ -46,6 +47,7 @@ public class WeaponController : MonoBehaviour
         // Se podría hacer un check para saber que weapons.Length no sea cero.
         currentWeapon = weapons[0];
         characterAnimator.ApplyAnimatorController(weapons[0]);
+        onWeaponChange.Invoke(currentWeapon);
     }
 
     private void Update()
@@ -68,6 +70,8 @@ public class WeaponController : MonoBehaviour
         {
             SelectWeaponInDirection(+1);
         }
+
+        onWeaponChange.Invoke(currentWeapon);
     }
 
     private void SelectWeaponInDirection(int direction) // +1 -1
@@ -157,7 +161,7 @@ public class WeaponController : MonoBehaviour
         if (IsWeaponCurrentlyNotBeingChanged())
         {
             prevWeapon = true;
-            onWeaponChange.Invoke();
+            onWeaponChange.Invoke(null);
         }
     }
 
@@ -166,14 +170,13 @@ public class WeaponController : MonoBehaviour
         if (IsWeaponCurrentlyNotBeingChanged())
         {
             nextWeapon = true;
-            onWeaponChange.Invoke();
+            onWeaponChange.Invoke(null);
         }
     }
     private bool IsWeaponCurrentlyNotBeingChanged()
     {
         return !prevWeapon && !nextWeapon;
     }
-
     
     private void OnShoot() { shoot = true; }
     

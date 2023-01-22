@@ -25,8 +25,13 @@ public class CharacterEngine : MonoBehaviour
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToBlocking;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToDodging;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToCloseCombat;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToAiming;
+
+    private WeaponController weaponController;
+    private Weapon currentWeapon;
 
     private bool isCrouching = false;
+    private bool isAiming = false;
 
 
     private void Awake()
@@ -39,6 +44,9 @@ public class CharacterEngine : MonoBehaviour
             allStates[i].onNeedingToTransitionToIdle.AddListener(TransitionToIdle);
             allStates[i].onBeingOnAir.AddListener(TransitionToOnAir);
         }
+
+        weaponController = GetComponent<WeaponController>();
+        weaponController.onWeaponChange.AddListener(SetCurrentWeapon);
     }
 
     private void OnDestroy()
@@ -51,6 +59,11 @@ public class CharacterEngine : MonoBehaviour
 
         currentMovementState = null;
         currentCombatState = null;
+    }
+
+    private void SetCurrentWeapon(Weapon weapon)
+    {
+        currentWeapon = weapon;
     }
 
     // Event called OnEnable() of movement states
@@ -205,12 +218,30 @@ public class CharacterEngine : MonoBehaviour
         }
     }
 
-    private void OnSlash() 
+    public void OnSlash() 
     {
         ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));
     }
-    private void OnHeavySlash() 
+    public void OnHeavySlash() 
     {
         ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));
+    }
+
+    public void OnAim()
+    {
+        if (currentWeapon?.AimingRig)
+        {
+            if (!isAiming)
+            {
+                CharacterAimingState.SetAimingRig(currentWeapon.AimingRig);
+                ManageStateTransition(statesAllowedToTransitionToAiming, typeof(CharacterAimingState));
+                isAiming = true;
+            }
+            else
+            {
+                currentCombatState?.ExitState();
+                isAiming = false;
+            }
+        }
     }
 }

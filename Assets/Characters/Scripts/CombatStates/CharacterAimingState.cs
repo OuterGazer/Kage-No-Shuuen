@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Claims;
-using Unity.Burst.Intrinsics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
@@ -20,44 +20,62 @@ public class CharacterAimingState : CharacterStateBase
     private void OnEnable()
     {
         onCombatStateEnteringOrExiting.Invoke(this);
+
+        aim = true;
+        onAim.Invoke(true);
+
+        combatStateSpeedModifier = speed;
     }
 
     public override void ExitState()
     {
-        onCombatStateEnteringOrExiting.Invoke(this);
+        StartCoroutine(OnExitState());
+    }
+
+    private IEnumerator OnExitState()
+    {
+        aim = false;
+        onAim.Invoke(false);
+        combatStateSpeedModifier = 0f;
+
+        if (loadedArrow.activeInHierarchy)
+        {
+            loadedArrow.SetActive(false);
+        }
+
+        yield return new WaitUntil(() => aimingRig.weight <= 0f);
+
+        aimingRig = null;
+        onCombatStateEnteringOrExiting.Invoke(null);
+    }
+
+    public static void SetAimingRig(Rig inAimingRig)
+    {
+        aimingRig = inAimingRig;
     }
 
     private void Update()
     {
         UpdateAim();
+
+        OrientateCharacterForward();
     }
 
     [SerializeField] float animAcc = 0.05f;
-    [SerializeField] Rig aimingFukiyaRig;
-    [SerializeField] Rig aimingBowRig;
-    [SerializeField] Rig aimingGauntletRig;
+    private static Rig aimingRig;
     [SerializeField] Transform bowstring;
     [SerializeField] Transform leftHand;
     [SerializeField] Vector3 initialBowstringPosition;
     private void UpdateAim()
     {
-        if (aim && this.CompareTag("Fukiya"))
+        if (aim)
         {
-            aimingFukiyaRig.weight = (aimingFukiyaRig.weight >= 1f) ? 1f : (aimingFukiyaRig.weight += animAcc * Time.deltaTime);
+            aimingRig.weight = (aimingRig.weight >= 1f) ? 1f : (aimingRig.weight += animAcc * Time.deltaTime);
         }
-        else if (!aim && this.CompareTag("Fukiya"))
+        else if (!aim)
         {
-            aimingFukiyaRig.weight = (aimingFukiyaRig.weight <= 0f) ? 0f : (aimingFukiyaRig.weight -= animAcc * Time.deltaTime);
-        }
+            aimingRig.weight = (aimingRig.weight <= 0f) ? 0f : (aimingRig.weight -= animAcc * Time.deltaTime);
 
-        if (aim && this.CompareTag("Bow"))
-        {
-
-            aimingBowRig.weight = (aimingBowRig.weight >= 1f) ? 1f : (aimingBowRig.weight += animAcc * Time.deltaTime);
-        }
-        else if (!aim && this.CompareTag("Bow"))
-        {
-            aimingBowRig.weight = (aimingBowRig.weight <= 0f) ? 0f : (aimingBowRig.weight -= animAcc * Time.deltaTime);
             isPullingBowstring = false;
             bowstring.localPosition = initialBowstringPosition;
         }
@@ -69,15 +87,6 @@ public class CharacterAimingState : CharacterStateBase
         else
         {
             bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
-        }
-
-        if (aim && this.CompareTag("Gauntlet"))
-        {
-            aimingGauntletRig.weight = (aimingGauntletRig.weight >= 1f) ? 1f : (aimingGauntletRig.weight += animAcc * Time.deltaTime);
-        }
-        else if (!aim && this.CompareTag("Gauntlet"))
-        {
-            aimingGauntletRig.weight = (aimingGauntletRig.weight <= 0f) ? 0f : (aimingGauntletRig.weight -= animAcc * Time.deltaTime);
         }
     }
 
@@ -102,12 +111,11 @@ public class CharacterAimingState : CharacterStateBase
     {
         isPullingBowstring = true;
     }
+
     // Called from Animation Event
     internal void ReleaseBowstring()
     {
         isPullingBowstring = false;
         loadedArrow.SetActive(false);
     }
-
-    private void OnAim() { aim = !aim; onAim.Invoke(aim); if (loadedArrow.activeInHierarchy) { loadedArrow.SetActive(false); } }
 }

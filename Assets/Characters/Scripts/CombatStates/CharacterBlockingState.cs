@@ -28,7 +28,6 @@ public class CharacterBlockingState : CharacterStateBase
 
     private void Update()
     {
-        movingSpeed = speed;
         ChangeBlockingRiggingWeight();
     }
 
