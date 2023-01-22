@@ -21,7 +21,7 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterDodgingState dodgingState;
     private CharacterBlockingState blockingState;
     private CharacterCloseCombatState closeCombatState;
-    private CharacterAimingState aimingState;
+    private CharacterShootingState shootingState;
 
     private Vector3 movementDirection;
     private float runningSpeed;
@@ -70,7 +70,7 @@ public class CharacterAnimator : MonoBehaviour
         blockingState = GetComponent<CharacterBlockingState>();
         weaponController = GetComponent<WeaponController>();
         closeCombatState = GetComponent<CharacterCloseCombatState>();
-        aimingState= GetComponent<CharacterAimingState>();
+        shootingState= GetComponent<CharacterShootingState>();
     }
 
     private void AddNecessaryListeners()
@@ -88,8 +88,8 @@ public class CharacterAnimator : MonoBehaviour
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
         closeCombatState.onSlash.AddListener(PlaySlashAnimation);
         closeCombatState.onHeavySlash.AddListener(PlayHeavySlashAnimation);
-        aimingState.onAim.AddListener(PlayAimingAnimation);
-        weaponController.onShoot.AddListener(PlayShootingAnimation);
+        shootingState.onAim.AddListener(PlayAimingAnimation);
+        shootingState.onShoot.AddListener(PlayShootingAnimation);
         weaponController.onThrowing.AddListener(PlayThrowingAnimation);
     }    
 
@@ -113,8 +113,8 @@ public class CharacterAnimator : MonoBehaviour
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
         closeCombatState.onSlash.RemoveListener(PlaySlashAnimation);
         closeCombatState.onHeavySlash.RemoveListener(PlayHeavySlashAnimation);
-        aimingState.onAim.RemoveListener(PlayAimingAnimation);
-        weaponController.onShoot.RemoveListener(PlayShootingAnimation);
+        shootingState.onAim.RemoveListener(PlayAimingAnimation);
+        shootingState.onShoot.RemoveListener(PlayShootingAnimation);
         weaponController.onThrowing.AddListener(PlayThrowingAnimation);
     }
 
@@ -346,7 +346,6 @@ public class CharacterAnimator : MonoBehaviour
     public void PlayShootingAnimation()
     {
         animator.SetTrigger(shootHash);
-        animator.SetBool(isAimingHash, false);
     }
 
     public void PlayThrowingAnimation()

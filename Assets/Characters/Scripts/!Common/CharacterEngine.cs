@@ -233,8 +233,8 @@ public class CharacterEngine : MonoBehaviour
         {
             if (!isAiming)
             {
-                CharacterAimingState.SetAimingRig(currentWeapon.AimingRig);
-                ManageStateTransition(statesAllowedToTransitionToAiming, typeof(CharacterAimingState));
+                CharacterShootingState.SetCurrentWeapon(currentWeapon);
+                ManageStateTransition(statesAllowedToTransitionToAiming, typeof(CharacterShootingState));
                 isAiming = true;
             }
             else

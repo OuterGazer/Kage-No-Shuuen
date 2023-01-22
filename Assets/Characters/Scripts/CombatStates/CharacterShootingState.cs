@@ -6,23 +6,32 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 
-public class CharacterAimingState : CharacterStateBase
+public class CharacterShootingState : CharacterStateBase
 {
+    // TODO: fix bug where changing weapon while aiming changes current weapon in CharacterEngine and disallows me to stop aiming.
+
     private bool aim = false;
+    public bool shoot = false;
+
+    private static Weapon currentWeapon;
 
     [HideInInspector] public UnityEvent<bool> onAim;
+    [HideInInspector] public UnityEvent onShoot;
 
     private void Awake()
     {
         this.enabled = false;
     }
 
+    [SerializeField] Transform bowstring;
+    private Vector3 initialBowstringPosition;
     private void OnEnable()
     {
         onCombatStateEnteringOrExiting.Invoke(this);
 
         aim = true;
         onAim.Invoke(true);
+        initialBowstringPosition = bowstring.localPosition;
 
         combatStateSpeedModifier = speed;
     }
@@ -32,6 +41,7 @@ public class CharacterAimingState : CharacterStateBase
         StartCoroutine(OnExitState());
     }
 
+    [SerializeField] GameObject loadedArrow;
     private IEnumerator OnExitState()
     {
         aim = false;
@@ -49,23 +59,24 @@ public class CharacterAimingState : CharacterStateBase
         onCombatStateEnteringOrExiting.Invoke(null);
     }
 
-    public static void SetAimingRig(Rig inAimingRig)
+    public static void SetCurrentWeapon(Weapon weapon)
     {
-        aimingRig = inAimingRig;
+        currentWeapon = weapon;
+        aimingRig = currentWeapon.AimingRig;
     }
 
     private void Update()
     {
         UpdateAim();
 
-        OrientateCharacterForward();
+        UpdateShoot();
+
+        OrientateCharacterForward(); 
     }
 
     [SerializeField] float animAcc = 0.05f;
     private static Rig aimingRig;
-    [SerializeField] Transform bowstring;
     [SerializeField] Transform leftHand;
-    [SerializeField] Vector3 initialBowstringPosition;
     private void UpdateAim()
     {
         if (aim)
@@ -90,6 +101,18 @@ public class CharacterAimingState : CharacterStateBase
         }
     }
 
+    private void UpdateShoot()
+    {
+        if (shoot && aim)
+        {
+            if (!currentWeapon.CompareTag("Bow"))
+            { currentWeapon.ShootingWeapon?.Shoot(); }
+
+            onShoot.Invoke();
+            shoot = false;
+        }
+    }
+
     // Called from Animation Event
     [SerializeField] GameObject quiverArrow;
     internal void SpawnArrowInHand()
@@ -98,7 +121,6 @@ public class CharacterAimingState : CharacterStateBase
     }
 
     // Called from Animation Event
-    [SerializeField] GameObject loadedArrow;
     internal void SpawnArrowInBow()
     {
         quiverArrow.SetActive(false);
@@ -117,5 +139,24 @@ public class CharacterAimingState : CharacterStateBase
     {
         isPullingBowstring = false;
         loadedArrow.SetActive(false);
+    }
+
+    // Called from an animation event
+    internal void ShootBow()
+    {
+        currentWeapon.ShootingWeapon?.Shoot();
+    }
+
+    // Called from Animation Event
+    internal void ReloadBow()
+    {
+        onAim.Invoke(true);
+        initialBowstringPosition = bowstring.localPosition;
+    }
+
+    private void OnShoot() 
+    {
+        if (this.enabled)
+        { shoot = true; }
     }
 }

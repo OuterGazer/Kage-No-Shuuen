@@ -9,12 +9,17 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
+    // TODO: Think about weapon changing as a state, right now I can change whenever I want
+    //       but if I change while aiming it breaks. Ad-hoc solution applied for now.
+
+
     [SerializeField] Transform weaponsParent;
     int currentWeaponIndex;
 
     public bool prevWeapon = false;
     public bool nextWeapon = false;
-    public bool shoot = false;
+    public bool aim = false;
+    
     
     
     public bool throwing = false;
@@ -24,10 +29,9 @@ public class WeaponController : MonoBehaviour
 
     CharacterAnimator characterAnimator; // TODO: preguntar a Kike si esto lo dejo así o aplico animator override a través de evento
     [HideInInspector] public UnityEvent<Weapon> onWeaponChange;
-    [HideInInspector] public UnityEvent onAimingShootingWeapon;
     
     
-    [HideInInspector] public UnityEvent onShoot;
+    
     [HideInInspector] public UnityEvent onThrowing;
 
     private void Awake()
@@ -52,9 +56,6 @@ public class WeaponController : MonoBehaviour
 
     private void Update()
     {
-        UpdateShoot();
-        
-        
         UpdateThrow();
     }    
 
@@ -96,36 +97,6 @@ public class WeaponController : MonoBehaviour
 
         characterAnimator.ApplyAnimatorController(weapons[currentWeaponIndex]);
     }
-    
-    private void UpdateShoot()
-    {
-        if (shoot)// && aim)
-        {
-            if (currentWeapon.CompareTag("Fukiya") || currentWeapon.CompareTag("Gauntlet"))
-            {
-                currentWeapon.ShootingWeapon?.Shoot();                
-            }
-            else if (currentWeapon.CompareTag("Bow"))
-            {
-                //bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
-            }               
-
-            onShoot.Invoke();
-            shoot = false;
-        }
-    }
-
-    // Called from an animation event
-    internal void ShootBow()
-    {
-        currentWeapon.ShootingWeapon?.Shoot();
-    }
-
-    // Called from Animation Event
-    internal void ExitShooting()
-    {
-        //aim = false;
-    }
 
     // Called from Animation Event
     internal void DamageStart()
@@ -149,7 +120,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    // Called from aniamtion event
+    // Called from animation event
     private void ThrowWeapon()
     {
         currentWeapon.ThrowingWeaponBase?.Throw();
@@ -176,10 +147,7 @@ public class WeaponController : MonoBehaviour
     private bool IsWeaponCurrentlyNotBeingChanged()
     {
         return !prevWeapon && !nextWeapon;
-    }
-    
-    private void OnShoot() { shoot = true; }
-    
-    
+    } 
+
     private void OnWeaponThrow() { throwing = true; }
 }

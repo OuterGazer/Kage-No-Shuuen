@@ -2255,7 +2255,7 @@ GameObject:
   - component: {fileID: 834020474160094199}
   - component: {fileID: 4128263669422437884}
   - component: {fileID: 6662072654649892864}
-  - component: {fileID: 7605295633962430398}
+  - component: {fileID: 8219717195397346131}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -2371,6 +2371,8 @@ MonoBehaviour:
   - {fileID: 7367104688647257538}
   statesAllowedToTransitionToCloseCombat:
   - {fileID: 7367104688647257540}
+  statesAllowedToTransitionToAiming:
+  - {fileID: 7367104688647257540}
 --- !u!114 &7367104688647257542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2401,12 +2403,11 @@ MonoBehaviour:
   weaponsParent: {fileID: 7072296892553257570}
   prevWeapon: 0
   nextWeapon: 0
-  shoot: 0
   throwing: 0
   onWeaponChange:
     m_PersistentCalls:
       m_Calls: []
-  onShoot:
+  onAimingShootingWeapon:
     m_PersistentCalls:
       m_Calls: []
   onThrowing:
@@ -2729,7 +2730,7 @@ MonoBehaviour:
   onHeavySlash:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7605295633962430398
+--- !u!114 &8219717195397346131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2738,7 +2739,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7367104688647257537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 611b76164923d3740b9fb06956f2b29a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c97053491c84e4418d913c112b05350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.75
@@ -2757,16 +2758,16 @@ MonoBehaviour:
   onCombatStateEnteringOrExiting:
     m_PersistentCalls:
       m_Calls: []
+  shoot: 0
   onAim:
     m_PersistentCalls:
       m_Calls: []
-  animAcc: 0.05
-  aimingFukiyaRig: {fileID: 0}
-  aimingBowRig: {fileID: 0}
-  aimingGauntletRig: {fileID: 0}
+  onShoot:
+    m_PersistentCalls:
+      m_Calls: []
+  animAcc: 4
   bowstring: {fileID: 5610469249938796932}
   leftHand: {fileID: 4323827797085878704}
-  initialBowstringPosition: {x: 0.082736455, y: 0.0053369883, z: 0.0063904556}
   quiverArrow: {fileID: 3753142652396763249}
   loadedArrow: {fileID: 3413141248556956164}
 --- !u!1 &7367104688962466102
@@ -3117,6 +3118,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.y
       value: 0.0000011254709
       objectReference: {fileID: 0}
+    - target: {fileID: 123143246529975786, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: m_Name
+      value: Quiver Arrow
+      objectReference: {fileID: 0}
     - target: {fileID: 180659674195147180, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -3262,6 +3268,11 @@ PrefabInstance:
       propertyPath: m_Sources.Array.data[1].sourceTransform
       value: 
       objectReference: {fileID: 4323827797085878704}
+    - target: {fileID: 1944781652499224479, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: m_Name
+      value: Loaded Arrow
+      objectReference: {fileID: 0}
     - target: {fileID: 2013399030824403487, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: hand
@@ -3282,6 +3293,11 @@ PrefabInstance:
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
       objectReference: {fileID: 9189764798064759739}
+    - target: {fileID: 2336569475683405071, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: aimingRig
+      value: 
+      objectReference: {fileID: 1278787773749181164}
     - target: {fileID: 2400474960730732724, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform
@@ -3322,6 +3338,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 3070630125332686044, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: aimingRig
+      value: 
+      objectReference: {fileID: 1375444489}
     - target: {fileID: 3082191237428683230, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: hand
@@ -3837,6 +3858,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 7537856264547284510, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: aimingRig
+      value: 
+      objectReference: {fileID: 1950536391}
     - target: {fileID: 7584303525184840597, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform
