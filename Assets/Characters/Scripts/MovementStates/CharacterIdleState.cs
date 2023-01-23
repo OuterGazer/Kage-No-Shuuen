@@ -24,12 +24,7 @@ public class CharacterIdleState : CharacterStateBase
 
     private void OnEnable()
     {
-        onMovementStateChange.Invoke(this);
-
-        // If I'm setting movementDirection to zero direct in the OnMove() in the parent
-        // when there is no movement, I probably don't need to do it here as well
-
-        //movementDirection = Vector3.zero;          
+        onMovementStateChange.Invoke(this);         
     }
 
     private void OnDisable()
@@ -37,7 +32,7 @@ public class CharacterIdleState : CharacterStateBase
         this.isMovingAfterDodging = true;
     }
 
-    // Called from CharacterDodgingState OnDisable
+    // Called from CharacterDodgingState and CharacterOnAir OnDisable()
     public void EnableMovement()
     {
         if (!move.enabled)
