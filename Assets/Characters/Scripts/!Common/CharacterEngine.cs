@@ -26,6 +26,7 @@ public class CharacterEngine : MonoBehaviour
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToDodging;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToCloseCombat;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToAiming;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToThrowing;
 
     private WeaponController weaponController;
     private Weapon currentWeapon;
@@ -55,7 +56,11 @@ public class CharacterEngine : MonoBehaviour
         {
             allStates[i].onMovementStateChange.RemoveListener(UpdateCurrentMovementState);
             allStates[i].onCombatStateEnteringOrExiting.RemoveListener(UpdateCurrentCombatState);
+            allStates[i].onNeedingToTransitionToIdle.RemoveListener(TransitionToIdle);
+            allStates[i].onBeingOnAir.RemoveListener(TransitionToOnAir);
         }
+
+        weaponController.onWeaponChange.RemoveListener(SetCurrentWeapon);
 
         currentMovementState = null;
         currentCombatState = null;
@@ -242,6 +247,15 @@ public class CharacterEngine : MonoBehaviour
                 currentCombatState?.ExitState();
                 isAiming = false;
             }
+        }
+    }
+
+    private void OnWeaponThrow() 
+    {
+        if (currentWeapon?.ThrowingWeaponBase)
+        {
+            CharacterThrowingState.SetCurrentWeapon(currentWeapon);
+            ManageStateTransition(statesAllowedToTransitionToThrowing, typeof(CharacterThrowingState));
         }
     }
 }

@@ -19,20 +19,12 @@ public class WeaponController : MonoBehaviour
     public bool prevWeapon = false;
     public bool nextWeapon = false;
     public bool aim = false;
-    
-    
-    
-    public bool throwing = false;
 
     Weapon[] weapons;
     Weapon currentWeapon;
 
     CharacterAnimator characterAnimator; // TODO: preguntar a Kike si esto lo dejo así o aplico animator override a través de evento
     [HideInInspector] public UnityEvent<Weapon> onWeaponChange;
-    
-    
-    
-    [HideInInspector] public UnityEvent onThrowing;
 
     private void Awake()
     {
@@ -50,15 +42,11 @@ public class WeaponController : MonoBehaviour
         // Es mucho asumir que tendremos un arma inicial, pero peor es robar.
         // Se podría hacer un check para saber que weapons.Length no sea cero.
         currentWeapon = weapons[0];
-        characterAnimator.ApplyAnimatorController(weapons[0]);
+        characterAnimator.ApplyAnimatorController(currentWeapon);
         onWeaponChange.Invoke(currentWeapon);
     }
 
-    private void Update()
-    {
-        UpdateThrow();
-    }    
-
+    
     // Gets called from an animation event
     private void ChangeCurrentWeapon()
     {
@@ -95,6 +83,7 @@ public class WeaponController : MonoBehaviour
         prevWeapon = false;
         nextWeapon = false;
 
+        // TODO: have ApplyAnimatorController() to be called by an avent here and pplied internally in CharacterAnimator
         characterAnimator.ApplyAnimatorController(weapons[currentWeaponIndex]);
     }
 
@@ -109,23 +98,6 @@ public class WeaponController : MonoBehaviour
     {
         currentWeapon.CloseCombatWeaponBase?.DamageEnd();
     }
-
-    private void UpdateThrow()
-    {
-        if (throwing)
-        {
-            // TODO: pasar un parámetro para determinar la velocidad de animación en CharacterAnimator
-            onThrowing.Invoke();
-            throwing = false;
-        }
-    }
-
-    // Called from animation event
-    private void ThrowWeapon()
-    {
-        currentWeapon.ThrowingWeaponBase?.Throw();
-    }
-
     
     private void OnPrevWeapon()
     {
@@ -147,7 +119,5 @@ public class WeaponController : MonoBehaviour
     private bool IsWeaponCurrentlyNotBeingChanged()
     {
         return !prevWeapon && !nextWeapon;
-    } 
-
-    private void OnWeaponThrow() { throwing = true; }
+    }
 }

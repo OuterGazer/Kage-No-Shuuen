@@ -77,4 +77,9 @@ public class AnimationEventForwarder : MonoBehaviour
     {
         SendMessageUpwards("ThrowWeapon");
     }
+
+    public void ForwardExitThrowingState()
+    {
+        SendMessageUpwards("ExitThrowingState");
+    }
 }

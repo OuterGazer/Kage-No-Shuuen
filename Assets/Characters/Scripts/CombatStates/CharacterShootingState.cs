@@ -95,7 +95,7 @@ public class CharacterShootingState : CharacterStateBase
         {
             bowstring.localPosition += bowstring.InverseTransformPoint(leftHand.TransformPoint(leftHand.localPosition));
         }
-        else
+        else if(!isPullingBowstring)
         {
             bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
         }

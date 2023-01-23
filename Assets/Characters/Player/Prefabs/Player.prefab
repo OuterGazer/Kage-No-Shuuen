@@ -2256,6 +2256,7 @@ GameObject:
   - component: {fileID: 4128263669422437884}
   - component: {fileID: 6662072654649892864}
   - component: {fileID: 8219717195397346131}
+  - component: {fileID: 2174158107220845152}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -2403,11 +2404,9 @@ MonoBehaviour:
   weaponsParent: {fileID: 7072296892553257570}
   prevWeapon: 0
   nextWeapon: 0
+  aim: 0
   throwing: 0
   onWeaponChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onAimingShootingWeapon:
     m_PersistentCalls:
       m_Calls: []
   onThrowing:
@@ -2765,11 +2764,23 @@ MonoBehaviour:
   onShoot:
     m_PersistentCalls:
       m_Calls: []
-  animAcc: 4
   bowstring: {fileID: 5610469249938796932}
+  loadedArrow: {fileID: 3413141248556956164}
+  animAcc: 4
   leftHand: {fileID: 4323827797085878704}
   quiverArrow: {fileID: 3753142652396763249}
-  loadedArrow: {fileID: 3413141248556956164}
+--- !u!114 &2174158107220845152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367104688647257537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb91ef41c940fc4c8980e2e6acafcf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7367104688962466102
 GameObject:
   m_ObjectHideFlags: 0

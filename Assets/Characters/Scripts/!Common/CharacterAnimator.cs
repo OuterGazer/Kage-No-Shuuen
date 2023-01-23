@@ -22,6 +22,7 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterBlockingState blockingState;
     private CharacterCloseCombatState closeCombatState;
     private CharacterShootingState shootingState;
+    private CharacterThrowingState throwingState;
 
     private Vector3 movementDirection;
     private float runningSpeed;
@@ -71,6 +72,7 @@ public class CharacterAnimator : MonoBehaviour
         weaponController = GetComponent<WeaponController>();
         closeCombatState = GetComponent<CharacterCloseCombatState>();
         shootingState= GetComponent<CharacterShootingState>();
+        throwingState= GetComponent<CharacterThrowingState>();
     }
 
     private void AddNecessaryListeners()
@@ -90,7 +92,7 @@ public class CharacterAnimator : MonoBehaviour
         closeCombatState.onHeavySlash.AddListener(PlayHeavySlashAnimation);
         shootingState.onAim.AddListener(PlayAimingAnimation);
         shootingState.onShoot.AddListener(PlayShootingAnimation);
-        weaponController.onThrowing.AddListener(PlayThrowingAnimation);
+        throwingState.onThrowing.AddListener(PlayThrowingAnimation);
     }    
 
     private void OnDestroy()
@@ -109,13 +111,13 @@ public class CharacterAnimator : MonoBehaviour
         onAirState.ChangeToLandingAnimation.RemoveListener(TriggerLandingAnimation);
         onAirState.IsCharacterTouchingGround.RemoveListener(TransitionToOrFromAir);
         dodgingState.MakeCharacterDodge.RemoveListener(PlayDodgeAnimation);
-        blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
-        weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
+        blockingState.UpdateBlockingStatus.RemoveListener(UpdateBlocking);
+        weaponController.onWeaponChange.RemoveListener(PlayChangeWeaponAnimation);
         closeCombatState.onSlash.RemoveListener(PlaySlashAnimation);
         closeCombatState.onHeavySlash.RemoveListener(PlayHeavySlashAnimation);
         shootingState.onAim.RemoveListener(PlayAimingAnimation);
         shootingState.onShoot.RemoveListener(PlayShootingAnimation);
-        weaponController.onThrowing.AddListener(PlayThrowingAnimation);
+        throwingState.onThrowing.RemoveListener(PlayThrowingAnimation);
     }
 
     private void Start()
@@ -158,18 +160,6 @@ public class CharacterAnimator : MonoBehaviour
             animator.runtimeAnimatorController = weapon.AnimatorOverride;
         else if(!weapon.AnimatorOverride)
             animator.runtimeAnimatorController = standardAnimatorController;
-
-        //CorrectIsGroundedBug(); // TODO: look for the actual reason this happens and fix it
-    }
-
-    private void CorrectIsGroundedBug()
-    {
-        if (!animator.GetBool(isGroundedHash))
-        {
-            animator.SetTrigger(landingHash);
-            animator.SetBool(isGroundedHash, true);
-        }
-            
     }
 
     private void Update()
@@ -249,20 +239,6 @@ public class CharacterAnimator : MonoBehaviour
         onWallAnimationCorrectionFactor = directionSign;
         isAnimationCorrectedWhenOnWall = true;
     }
-    
-    //void OnMove(InputValue inputValue)
-    //{
-    //    Vector3 inputBuffer = inputValue.Get<Vector2>();
-
-    //    // Movement from Input Module sends only Vector3.up and Vector3.down movement and it needs to be corrected into forward and backward.
-    //    if (inputBuffer != Vector3.zero)
-    //    {
-    //        if (inputBuffer.y != 0f)
-    //            inputBuffer = new Vector3(inputBuffer.x, 0f, inputBuffer.y);
-
-    //        movementDirection = inputBuffer;
-    //    }
-    //}
 
     public void AttachCharacterToWall()
     {
@@ -309,6 +285,7 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetBool(isBlockingHash, isBlocking);
     }
 
+    // TODO: have ApplyAnimatorController() here, that would decouple better WeaponController and this script
     public void PlayChangeWeaponAnimation(Weapon weapon)
     {
         if (!weapon)
