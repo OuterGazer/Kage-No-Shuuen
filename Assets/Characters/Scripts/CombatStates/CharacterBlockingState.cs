@@ -18,16 +18,14 @@ public class CharacterBlockingState : CharacterStateBase
 
     private void OnEnable()
     {
-        onCombatStateEnteringOrExiting.Invoke(this);
-
         UpdateBlockingStatus.Invoke(true);
         isBlocking = true;
-
-        combatStateSpeedModifier = speed;
     }
 
     private void Update()
     {
+        UpdateMovement(speed, movementDirection, Vector3.up);
+
         ChangeBlockingRiggingWeight();
     }
 
@@ -52,17 +50,23 @@ public class CharacterBlockingState : CharacterStateBase
 
     public override void ExitState()
     {
-        StartCoroutine(OnExitState());
-    }
-
-    private IEnumerator OnExitState()
-    {
         UpdateBlockingStatus.Invoke(false);
         isBlocking = false;
-        combatStateSpeedModifier = 0f;
+        // StartCoroutine(OnExitState());
+    }
 
-        yield return new WaitUntil(() => blockingRig.weight <= 0f);
+    // Method necessary to make unblocking animation look better
+    //private IEnumerator OnExitState() 
+    //{
+    //    UpdateBlockingStatus.Invoke(false);
+    //    isBlocking = false;
+    //    combatStateSpeedModifier = 0f;
 
-        onCombatStateEnteringOrExiting.Invoke(null);
+    //    yield return new WaitUntil(() => blockingRig.weight <= 0f);
+    //}
+
+    private void OnDisable()
+    {
+        blockingRig.weight = 0;
     }
 }

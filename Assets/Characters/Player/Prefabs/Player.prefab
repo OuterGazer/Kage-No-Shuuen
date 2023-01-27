@@ -1485,7 +1485,7 @@ Transform:
   m_GameObject: {fileID: 1982431027}
   m_LocalRotation: {x: 0.000000052639507, y: 0.000000002757588, z: 0.00000007445854,
     w: 1}
-  m_LocalPosition: {x: 0.125, y: 1.639, z: 0.068}
+  m_LocalPosition: {x: -0.17, y: 1.803, z: 0.132}
   m_LocalScale: {x: 0.10000001, y: 0.10000002, z: 0.100000024}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2350,6 +2350,10 @@ MonoBehaviour:
   - {fileID: 7367104688647257544}
   - {fileID: 7367104688647257547}
   - {fileID: 834020474160094199}
+  - {fileID: 4128263669422437884}
+  - {fileID: 6662072654649892864}
+  - {fileID: 8219717195397346131}
+  - {fileID: 2174158107220845152}
   statesAllowedToTransitionToRunning:
   - {fileID: 7367104688647257540}
   - {fileID: 7367104688647257538}
@@ -2432,9 +2436,6 @@ MonoBehaviour:
   onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
-  onCombatStateEnteringOrExiting:
-    m_PersistentCalls:
-      m_Calls: []
   move:
     m_Name: Move
     m_Type: 0
@@ -2466,9 +2467,6 @@ MonoBehaviour:
   onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
-  onCombatStateEnteringOrExiting:
-    m_PersistentCalls:
-      m_Calls: []
   idleState: {fileID: 7367104688647257540}
 --- !u!114 &7367104688647257541
 MonoBehaviour:
@@ -2492,9 +2490,6 @@ MonoBehaviour:
   onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
-  onCombatStateEnteringOrExiting:
-    m_PersistentCalls:
-      m_Calls: []
   idleState: {fileID: 7367104688647257540}
 --- !u!114 &7367104688647257545
 MonoBehaviour:
@@ -2516,9 +2511,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeingOnAir:
-    m_PersistentCalls:
-      m_Calls: []
-  onCombatStateEnteringOrExiting:
     m_PersistentCalls:
       m_Calls: []
   AttachCharacterToWall:
@@ -2553,9 +2545,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeingOnAir:
-    m_PersistentCalls:
-      m_Calls: []
-  onCombatStateEnteringOrExiting:
     m_PersistentCalls:
       m_Calls: []
   hookThrowRadius: 10
@@ -2598,9 +2587,6 @@ MonoBehaviour:
   onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
-  onCombatStateEnteringOrExiting:
-    m_PersistentCalls:
-      m_Calls: []
   idleState: {fileID: 7367104688647257540}
   groundDistanceThreshold: 0.6
   IsCharacterTouchingGround:
@@ -2631,9 +2617,6 @@ MonoBehaviour:
   onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
-  onCombatStateEnteringOrExiting:
-    m_PersistentCalls:
-      m_Calls: []
   speedDeceleration: 3.5
   idleState: {fileID: 7367104688647257540}
   MakeCharacterDodge:
@@ -2659,9 +2642,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeingOnAir:
-    m_PersistentCalls:
-      m_Calls: []
-  onCombatStateEnteringOrExiting:
     m_PersistentCalls:
       m_Calls: []
   blockingRig: {fileID: 1307412388}
@@ -2691,9 +2671,6 @@ MonoBehaviour:
   onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
-  onCombatStateEnteringOrExiting:
-    m_PersistentCalls:
-      m_Calls: []
   onSlash:
     m_PersistentCalls:
       m_Calls: []
@@ -2720,9 +2697,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeingOnAir:
-    m_PersistentCalls:
-      m_Calls: []
-  onCombatStateEnteringOrExiting:
     m_PersistentCalls:
       m_Calls: []
   shoot: 0
@@ -2757,9 +2731,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeingOnAir:
-    m_PersistentCalls:
-      m_Calls: []
-  onCombatStateEnteringOrExiting:
     m_PersistentCalls:
       m_Calls: []
   onThrowing:

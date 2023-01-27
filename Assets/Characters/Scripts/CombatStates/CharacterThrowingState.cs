@@ -18,8 +18,6 @@ public class CharacterThrowingState : CharacterStateBase
 
     private void OnEnable()
     {
-        onCombatStateEnteringOrExiting.Invoke(this);
-
         throwing = true;
     }
 
@@ -46,11 +44,5 @@ public class CharacterThrowingState : CharacterStateBase
     private void ThrowWeapon()
     {
         currentWeapon.ThrowingWeaponBase?.Throw();
-    }
-
-    // Called from animation event
-    public void ExitThrowingState()
-    {
-        onCombatStateEnteringOrExiting.Invoke(null);
     }
 }

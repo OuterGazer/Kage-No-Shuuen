@@ -13,8 +13,7 @@ public class CharacterEngine : MonoBehaviour
     //       Due to this there is some spaghetti in idle
 
     private CharacterStateBase[] allStates;
-    private CharacterStateBase currentMovementState;
-    private CharacterStateBase currentCombatState;
+    private CharacterStateBase currentState;
 
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToIdle;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToRunning;
@@ -40,7 +39,6 @@ public class CharacterEngine : MonoBehaviour
         allStates = GetComponents<CharacterStateBase>();
         for (int i = 0; i < allStates.Length; i++)
         {
-            allStates[i].onCombatStateEnteringOrExiting.AddListener(UpdateCurrentCombatState);
             allStates[i].onNeedingToTransitionToIdle.AddListener(TransitionToIdle);
             allStates[i].onBeingOnAir.AddListener(TransitionToOnAir);
         }
@@ -53,34 +51,23 @@ public class CharacterEngine : MonoBehaviour
     {
         for (int i = 0; i < allStates.Length; i++)
         {
-            allStates[i].onCombatStateEnteringOrExiting.RemoveListener(UpdateCurrentCombatState);
             allStates[i].onNeedingToTransitionToIdle.RemoveListener(TransitionToIdle);
             allStates[i].onBeingOnAir.RemoveListener(TransitionToOnAir);
         }
 
         weaponController.onWeaponChange.RemoveListener(SetCurrentWeapon);
 
-        currentMovementState = null;
-        currentCombatState = null;
+        currentState = null;
     }
 
     private void OnEnable()
     {
-        currentMovementState = allStates.First(x => x.GetType() == typeof(CharacterIdleState));
+        currentState = allStates.First(x => x.GetType() == typeof(CharacterIdleState));
     }
 
     private void SetCurrentWeapon(Weapon weapon)
     {
         currentWeapon = weapon;
-    }
-
-    // Event called on entering or exiting combat states
-    private void UpdateCurrentCombatState(CharacterStateBase stateCharacterJustTransitionedTo)
-    {
-        if (stateCharacterJustTransitionedTo == null)
-            { currentCombatState.enabled = false; }
-        
-        currentCombatState = stateCharacterJustTransitionedTo;
     }
 
     private void ManageStateTransition(CharacterStateBase[] allowedCurrentStates, Type state)
@@ -95,7 +82,7 @@ public class CharacterEngine : MonoBehaviour
     {
         foreach (CharacterStateBase state in allowedCurrentStates)
         {
-            if (state.Equals(currentMovementState) && currentCombatState == null)
+            if (state.Equals(currentState))
             {
                 return true;
             }
@@ -108,8 +95,8 @@ public class CharacterEngine : MonoBehaviour
         CharacterStateBase stateToTransition = allStates.First(x => x.GetType() == state);
         stateToTransition.enabled = true;
         
-        currentMovementState.enabled = false;
-        currentMovementState = stateToTransition;
+        currentState.enabled = false;
+        currentState = stateToTransition;
     }
 
     // Specific method called from event to transition to idle when failing a hook throw or coming from OnAir state
@@ -128,7 +115,7 @@ public class CharacterEngine : MonoBehaviour
     {
         if (inputValue.Get<Vector2>() != Vector2.zero)
         {
-            if (currentMovementState.GetType() == typeof(CharacterCrouchingState)) { return; } // Keep crouching if we were alredy crouching
+            if (currentState.GetType() == typeof(CharacterCrouchingState)) { return; } // Keep crouching if we were alredy crouching
 
             if(!isCrouching)
                 ManageStateTransition(statesAllowedToTransitionToRunning, typeof(CharacterRunningState));
@@ -137,7 +124,9 @@ public class CharacterEngine : MonoBehaviour
         }
         else
         {
-            if (currentMovementState.GetType() == typeof(CharacterOnAirState)) { return; } // Has to do with moving right after landing, try to decouple this!!
+            if (currentState.GetType() == typeof(CharacterOnAirState)) { return; } // Has to do with moving right after landing, try to decouple this!!
+            if (currentState.GetType() == typeof(CharacterBlockingState) ||
+                currentState.GetType() == typeof(CharacterShootingState)) { return; } // Keep blocking/aiming if we were so already
 
             ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
         }
@@ -168,8 +157,8 @@ public class CharacterEngine : MonoBehaviour
 
     private bool IsCharacterOnHookOrOnAir()
     {
-        return currentMovementState.GetType() == typeof(CharacterOnHookState) ||
-               currentMovementState.GetType() == typeof(CharacterOnAirState);
+        return currentState.GetType() == typeof(CharacterOnHookState) ||
+               currentState.GetType() == typeof(CharacterOnAirState);
     }
 
     private bool IsCharacterStill()
@@ -206,6 +195,12 @@ public class CharacterEngine : MonoBehaviour
         ManageStateTransition(statesAllowedToTransitionToDodging, typeof(CharacterDodgingState));
     }
 
+    // Called from an animation event in the rolling animation
+    public void ExitDodgingState()
+    {
+        ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
+    }
+
     public void OnBlock(InputValue inputValue)
     {
         float temp = inputValue.Get<float>();
@@ -216,7 +211,8 @@ public class CharacterEngine : MonoBehaviour
         }
         else
         {
-            currentCombatState?.ExitState();
+            currentState?.ExitState();
+            ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
         }
     }
 
@@ -227,6 +223,12 @@ public class CharacterEngine : MonoBehaviour
     public void OnHeavySlash() 
     {
         ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));
+    }
+
+    // Called from animation event in all attacking animations
+    public void ExitCloseCombatState()
+    {
+        ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
     }
 
     public void OnAim()
@@ -241,7 +243,8 @@ public class CharacterEngine : MonoBehaviour
             }
             else
             {
-                currentCombatState?.ExitState();
+                currentState?.ExitState();
+                ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
                 isAiming = false;
             }
         }
@@ -254,5 +257,11 @@ public class CharacterEngine : MonoBehaviour
             CharacterThrowingState.SetCurrentWeapon(currentWeapon);
             ManageStateTransition(statesAllowedToTransitionToThrowing, typeof(CharacterThrowingState));
         }
+    }
+
+    // Called from animation event of all throwing animations
+    public void ExitThrowingState()
+    {
+        ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
     }
 }

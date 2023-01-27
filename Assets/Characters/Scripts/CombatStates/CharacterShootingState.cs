@@ -27,37 +27,49 @@ public class CharacterShootingState : CharacterStateBase
     private Vector3 initialBowstringPosition;
     private void OnEnable()
     {
-        onCombatStateEnteringOrExiting.Invoke(this);
-
         aim = true;
         onAim.Invoke(true);
         initialBowstringPosition = bowstring.localPosition;
-
-        combatStateSpeedModifier = speed;
     }
 
-    public override void ExitState()
+    private void OnDisable()
     {
-        StartCoroutine(OnExitState());
+        aimingRig = null;
     }
 
     [SerializeField] GameObject loadedArrow;
-    private IEnumerator OnExitState()
+    public override void ExitState()
     {
         aim = false;
         onAim.Invoke(false);
-        combatStateSpeedModifier = 0f;
 
         if (loadedArrow.activeInHierarchy)
         {
             loadedArrow.SetActive(false);
         }
 
-        yield return new WaitUntil(() => aimingRig.weight <= 0f);
+        aimingRig.weight = 0f;
+        bowstring.localPosition = initialBowstringPosition;
 
-        aimingRig = null;
-        onCombatStateEnteringOrExiting.Invoke(null);
+        //StartCoroutine(OnExitState());
     }
+
+    // Method necessary to make the unaim animation look better
+    //private IEnumerator OnExitState()
+    //{
+    //    aim = false;
+    //    onAim.Invoke(false);
+    //    combatStateSpeedModifier = 0f;
+
+    //    if (loadedArrow.activeInHierarchy)
+    //    {
+    //        loadedArrow.SetActive(false);
+    //    }
+
+    //    yield return new WaitUntil(() => aimingRig.weight <= 0f);
+
+    //    aimingRig = null;
+    //}
 
     public static void SetCurrentWeapon(Weapon weapon)
     {
@@ -67,6 +79,8 @@ public class CharacterShootingState : CharacterStateBase
 
     private void Update()
     {
+        UpdateMovement(speed, movementDirection, Vector3.up);
+
         UpdateAim();
 
         UpdateShoot();
