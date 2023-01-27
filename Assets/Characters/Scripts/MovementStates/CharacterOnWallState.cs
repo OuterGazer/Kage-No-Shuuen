@@ -28,7 +28,6 @@ public class CharacterOnWallState : CharacterStateBase
 
     private void OnEnable()
     {
-        onMovementStateChange.Invoke(this);
         AttachCharacterToWall.Invoke();
         SetNormalToWallPlane(Vector3.forward);
     }

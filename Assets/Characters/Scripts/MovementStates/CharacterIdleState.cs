@@ -22,11 +22,6 @@ public class CharacterIdleState : CharacterStateBase
         move = playerInput.actions["Move"];
     }
 
-    private void OnEnable()
-    {
-        onMovementStateChange.Invoke(this);         
-    }
-
     private void OnDisable()
     {
         this.isMovingAfterDodging = true;

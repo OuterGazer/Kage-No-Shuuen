@@ -15,11 +15,6 @@ public class CharacterRunningState : CharacterStateBase
         this.enabled = false;
     }
 
-    private void OnEnable()
-    {
-        onMovementStateChange.Invoke(this);
-    }
-
     void Update()
     {
         UpdateMovement(speed, movementDirection, Vector3.up);

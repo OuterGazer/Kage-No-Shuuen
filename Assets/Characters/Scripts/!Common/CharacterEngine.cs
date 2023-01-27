@@ -40,7 +40,6 @@ public class CharacterEngine : MonoBehaviour
         allStates = GetComponents<CharacterStateBase>();
         for (int i = 0; i < allStates.Length; i++)
         {
-            allStates[i].onMovementStateChange.AddListener(UpdateCurrentMovementState);
             allStates[i].onCombatStateEnteringOrExiting.AddListener(UpdateCurrentCombatState);
             allStates[i].onNeedingToTransitionToIdle.AddListener(TransitionToIdle);
             allStates[i].onBeingOnAir.AddListener(TransitionToOnAir);
@@ -54,7 +53,6 @@ public class CharacterEngine : MonoBehaviour
     {
         for (int i = 0; i < allStates.Length; i++)
         {
-            allStates[i].onMovementStateChange.RemoveListener(UpdateCurrentMovementState);
             allStates[i].onCombatStateEnteringOrExiting.RemoveListener(UpdateCurrentCombatState);
             allStates[i].onNeedingToTransitionToIdle.RemoveListener(TransitionToIdle);
             allStates[i].onBeingOnAir.RemoveListener(TransitionToOnAir);
@@ -66,17 +64,14 @@ public class CharacterEngine : MonoBehaviour
         currentCombatState = null;
     }
 
+    private void OnEnable()
+    {
+        currentMovementState = allStates.First(x => x.GetType() == typeof(CharacterIdleState));
+    }
+
     private void SetCurrentWeapon(Weapon weapon)
     {
         currentWeapon = weapon;
-    }
-
-    // Event called OnEnable() of movement states
-    private void UpdateCurrentMovementState(CharacterStateBase stateCharacterJustTransitionedTo)
-    {
-        if (currentMovementState) { currentMovementState.enabled = false; }
-
-        currentMovementState = stateCharacterJustTransitionedTo;
     }
 
     // Event called on entering or exiting combat states
@@ -112,7 +107,9 @@ public class CharacterEngine : MonoBehaviour
     {
         CharacterStateBase stateToTransition = allStates.First(x => x.GetType() == state);
         stateToTransition.enabled = true;
-
+        
+        currentMovementState.enabled = false;
+        currentMovementState = stateToTransition;
     }
 
     // Specific method called from event to transition to idle when failing a hook throw or coming from OnAir state

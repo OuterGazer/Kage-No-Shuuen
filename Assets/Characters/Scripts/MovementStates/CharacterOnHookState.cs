@@ -54,8 +54,6 @@ public class CharacterOnHookState : CharacterStateBase
 
     private void OnEnable()
     {
-        onMovementStateChange.Invoke(this);
-
         ManageHookThrowing();
     }
 

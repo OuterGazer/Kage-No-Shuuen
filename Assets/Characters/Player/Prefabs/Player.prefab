@@ -2374,6 +2374,8 @@ MonoBehaviour:
   - {fileID: 7367104688647257540}
   statesAllowedToTransitionToAiming:
   - {fileID: 7367104688647257540}
+  statesAllowedToTransitionToThrowing:
+  - {fileID: 7367104688647257540}
 --- !u!114 &7367104688647257542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2405,11 +2407,7 @@ MonoBehaviour:
   prevWeapon: 0
   nextWeapon: 0
   aim: 0
-  throwing: 0
   onWeaponChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onThrowing:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7367104688647257540
@@ -2426,9 +2424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
   onNeedingToTransitionToIdle:
@@ -2465,9 +2460,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  onMovementStateChange:
-    m_PersistentCalls:
-      m_Calls: []
   onNeedingToTransitionToIdle:
     m_PersistentCalls:
       m_Calls: []
@@ -2494,9 +2486,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  onMovementStateChange:
-    m_PersistentCalls:
-      m_Calls: []
   onNeedingToTransitionToIdle:
     m_PersistentCalls:
       m_Calls: []
@@ -2521,9 +2510,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
   onNeedingToTransitionToIdle:
@@ -2561,9 +2547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
   onNeedingToTransitionToIdle:
@@ -2609,9 +2592,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  onMovementStateChange:
-    m_PersistentCalls:
-      m_Calls: []
   onNeedingToTransitionToIdle:
     m_PersistentCalls:
       m_Calls: []
@@ -2645,9 +2625,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  onMovementStateChange:
-    m_PersistentCalls:
-      m_Calls: []
   onNeedingToTransitionToIdle:
     m_PersistentCalls:
       m_Calls: []
@@ -2678,9 +2655,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  onMovementStateChange:
-    m_PersistentCalls:
-      m_Calls: []
   onNeedingToTransitionToIdle:
     m_PersistentCalls:
       m_Calls: []
@@ -2707,11 +2681,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dcd266b00a80fd439fec574df2fe6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 0
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
   onNeedingToTransitionToIdle:
@@ -2743,9 +2714,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.75
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onMovementStateChange:
     m_PersistentCalls:
       m_Calls: []
   onNeedingToTransitionToIdle:
@@ -2781,6 +2749,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb91ef41c940fc4c8980e2e6acafcf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
+  onMovementSpeedChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onNeedingToTransitionToIdle:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeingOnAir:
+    m_PersistentCalls:
+      m_Calls: []
+  onCombatStateEnteringOrExiting:
+    m_PersistentCalls:
+      m_Calls: []
+  onThrowing:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7367104688962466102
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,6 @@ public class CharacterStateBase : MonoBehaviour
     private static float velocityY = 0f;
 
     [HideInInspector] public UnityEvent<Vector3> onMovementSpeedChange;
-    [HideInInspector] public UnityEvent<CharacterStateBase> onMovementStateChange;
     [HideInInspector] public UnityEvent onNeedingToTransitionToIdle;
     [HideInInspector] public UnityEvent onBeingOnAir;
     [HideInInspector] public UnityEvent<CharacterStateBase> onCombatStateEnteringOrExiting;
