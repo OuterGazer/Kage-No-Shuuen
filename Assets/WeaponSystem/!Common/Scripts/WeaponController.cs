@@ -9,16 +9,12 @@ using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
-    // TODO: Think about weapon changing as a state, right now I can change whenever I want
-    //       but if I change while aiming it breaks. Ad-hoc solution applied for now.
-
-
     [SerializeField] Transform weaponsParent;
     int currentWeaponIndex;
 
-    public bool prevWeapon = false;
-    public bool nextWeapon = false;
-    public bool aim = false;
+    private bool prevWeapon = false;
+    private bool nextWeapon = false;
+    private bool aim = false;
 
     Weapon[] weapons;
     Weapon currentWeapon;
@@ -101,23 +97,35 @@ public class WeaponController : MonoBehaviour
     
     private void OnPrevWeapon()
     {
-        if (IsWeaponCurrentlyNotBeingChanged())
+        if (!aim)
         {
-            prevWeapon = true;
-            onWeaponChange.Invoke(null);
+            if (IsWeaponCurrentlyNotBeingChanged())
+            {
+                prevWeapon = true;
+                onWeaponChange.Invoke(null);
+            }
         }
     }
 
     private void OnNextWeapon()
     {
-        if (IsWeaponCurrentlyNotBeingChanged())
+        if (!aim)
         {
-            nextWeapon = true;
-            onWeaponChange.Invoke(null);
+            if (IsWeaponCurrentlyNotBeingChanged())
+            {
+                nextWeapon = true;
+                onWeaponChange.Invoke(null);
+            }
         }
     }
     private bool IsWeaponCurrentlyNotBeingChanged()
     {
         return !prevWeapon && !nextWeapon;
+    }
+
+    // Event from PlayerInput
+    private void OnAim()
+    {
+        if (currentWeapon?.AimingRig) { aim = !aim; }
     }
 }

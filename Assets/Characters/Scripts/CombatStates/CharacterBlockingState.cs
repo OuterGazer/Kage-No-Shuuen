@@ -22,6 +22,13 @@ public class CharacterBlockingState : CharacterStateBase
         isBlocking = true;
     }
 
+    private void OnDisable()
+    {
+        UpdateBlockingStatus.Invoke(false);
+        isBlocking = false;
+        blockingRig.weight = 0;
+    }
+
     private void Update()
     {
         UpdateMovement(speed, movementDirection, Vector3.up);
@@ -50,8 +57,6 @@ public class CharacterBlockingState : CharacterStateBase
 
     public override void ExitState()
     {
-        UpdateBlockingStatus.Invoke(false);
-        isBlocking = false;
         // StartCoroutine(OnExitState());
     }
 
@@ -64,9 +69,4 @@ public class CharacterBlockingState : CharacterStateBase
 
     //    yield return new WaitUntil(() => blockingRig.weight <= 0f);
     //}
-
-    private void OnDisable()
-    {
-        blockingRig.weight = 0;
-    }
 }

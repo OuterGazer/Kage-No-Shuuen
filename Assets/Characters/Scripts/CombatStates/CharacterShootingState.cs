@@ -8,8 +8,6 @@ using UnityEngine.Events;
 
 public class CharacterShootingState : CharacterStateBase
 {
-    // TODO: fix bug where changing weapon while aiming changes current weapon in CharacterEngine and disallows me to stop aiming.
-
     private bool aim = false;
     public bool shoot = false;
 
@@ -32,13 +30,8 @@ public class CharacterShootingState : CharacterStateBase
         initialBowstringPosition = bowstring.localPosition;
     }
 
-    private void OnDisable()
-    {
-        aimingRig = null;
-    }
-
     [SerializeField] GameObject loadedArrow;
-    public override void ExitState()
+    private void OnDisable()
     {
         aim = false;
         onAim.Invoke(false);
@@ -47,12 +40,22 @@ public class CharacterShootingState : CharacterStateBase
         {
             loadedArrow.SetActive(false);
         }
+        
+        if (aimingRig)
+            { aimingRig.weight = 0f; }
 
-        aimingRig.weight = 0f;
         bowstring.localPosition = initialBowstringPosition;
-
-        //StartCoroutine(OnExitState());
+        isPullingBowstring = false;
+        aimingRig = null;
     }
+
+    
+    //public override void ExitState()
+    //{
+        
+
+    //    StartCoroutine(OnExitState());
+    //}
 
     // Method necessary to make the unaim animation look better
     //private IEnumerator OnExitState()

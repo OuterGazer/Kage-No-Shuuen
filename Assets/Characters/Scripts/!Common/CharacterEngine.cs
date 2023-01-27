@@ -211,7 +211,7 @@ public class CharacterEngine : MonoBehaviour
         }
         else
         {
-            currentState?.ExitState();
+            //currentState?.ExitState();
             ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
         }
     }
@@ -243,7 +243,7 @@ public class CharacterEngine : MonoBehaviour
             }
             else
             {
-                currentState?.ExitState();
+                //currentState?.ExitState();
                 ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
                 isAiming = false;
             }
