@@ -21,6 +21,7 @@ public class CharacterOnHookState : CharacterStateBase
     [HideInInspector] public UnityEvent throwHook;
     [HideInInspector] public UnityEvent<bool> ChangeToHangingAnimation;
     [HideInInspector] public UnityEvent CanNotFindHookTarget;
+
     private CharacterAnimator characterAnimator;
     private Rig spineToFingerRig;
     private LayerMask hookTargetMask;
@@ -39,8 +40,6 @@ public class CharacterOnHookState : CharacterStateBase
         spineToFingerRig = GetComponentInChildren<Rig>();
         spineToFingerRig.weight = 0f;
         hookTargetMask = LayerMask.GetMask("HookTarget");
-
-        this.enabled = false;
     }
 
     private void OnDestroy()
@@ -163,7 +162,7 @@ public class CharacterOnHookState : CharacterStateBase
         return (hookTarget.position - transform.position).sqrMagnitude <= hookReachThreshold;
     }
 
-    private new void ExitState()
+    private void ExitState()
     {
         ChangeToHangingAnimation.Invoke(false);
         spineToFingerRig.weight = 0f;

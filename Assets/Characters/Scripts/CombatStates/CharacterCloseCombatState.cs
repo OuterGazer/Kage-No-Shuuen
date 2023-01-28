@@ -12,11 +12,6 @@ public class CharacterCloseCombatState : CharacterStateBase
     [HideInInspector] public UnityEvent onSlash;
     [HideInInspector] public UnityEvent onHeavySlash;
 
-    private void Awake()
-    {
-        this.enabled = false;
-    }
-
     private void Update()
     {
         UpdateSlash();

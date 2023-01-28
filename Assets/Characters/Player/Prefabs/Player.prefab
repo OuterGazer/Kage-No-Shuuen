@@ -2259,7 +2259,7 @@ GameObject:
   - component: {fileID: 2174158107220845152}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2408,9 +2408,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsParent: {fileID: 7072296892553257570}
-  prevWeapon: 0
-  nextWeapon: 0
-  aim: 0
   onWeaponChange:
     m_PersistentCalls:
       m_Calls: []
@@ -2428,12 +2425,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
   move:
@@ -2461,13 +2452,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
-    m_PersistentCalls:
-      m_Calls: []
-  idleState: {fileID: 7367104688647257540}
 --- !u!114 &7367104688647257541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2484,13 +2468,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
-    m_PersistentCalls:
-      m_Calls: []
-  idleState: {fileID: 7367104688647257540}
 --- !u!114 &7367104688647257545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2505,12 +2482,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
   AttachCharacterToWall:
@@ -2541,15 +2512,8 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
-    m_PersistentCalls:
-      m_Calls: []
   hookThrowRadius: 10
   hookReachThreshold: 4
-  idleState: {fileID: 7367104688647257540}
   rigAlignmentToHookTargetAcceleration: 1
   rigBuilder: {fileID: 4418708312322543643}
   shoulderToFingerConstraints:
@@ -2563,6 +2527,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ChangeToHangingAnimation:
+    m_PersistentCalls:
+      m_Calls: []
+  CanNotFindHookTarget:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7367104688647257547
@@ -2579,12 +2546,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
   idleState: {fileID: 7367104688647257540}
@@ -2611,12 +2572,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
-    m_PersistentCalls:
-      m_Calls: []
   speedDeceleration: 3.5
   idleState: {fileID: 7367104688647257540}
   MakeCharacterDodge:
@@ -2636,12 +2591,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.75
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
   blockingRig: {fileID: 1307412388}
@@ -2665,12 +2614,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
-    m_PersistentCalls:
-      m_Calls: []
   onSlash:
     m_PersistentCalls:
       m_Calls: []
@@ -2691,12 +2634,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.75
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
   shoot: 0
@@ -2725,12 +2662,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   onMovementSpeedChange:
-    m_PersistentCalls:
-      m_Calls: []
-  onNeedingToTransitionToIdle:
-    m_PersistentCalls:
-      m_Calls: []
-  onBeingOnAir:
     m_PersistentCalls:
       m_Calls: []
   onThrowing:

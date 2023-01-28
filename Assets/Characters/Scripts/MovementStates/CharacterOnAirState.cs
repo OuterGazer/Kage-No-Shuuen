@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(CharacterIdleState))]
 public class CharacterOnAirState : CharacterStateBase
 {
-    [Header("Exit States")]
-    [SerializeField] CharacterIdleState idleState;
-
     [Header("State Parameters")]
     [SerializeField] float groundDistanceThreshold = 1.0f;
 
@@ -20,13 +16,10 @@ public class CharacterOnAirState : CharacterStateBase
     private void Awake()
     {
         IsCharacterTouchingGround.Invoke(true);
-        this.enabled = false;
     }
 
     private void OnEnable()
     {
-        idleState.move.Disable();
-
         transform.up = Vector3.up;
         hasCharacterLanded = false;
         IsCharacterTouchingGround.Invoke(false);
@@ -42,10 +35,9 @@ public class CharacterOnAirState : CharacterStateBase
         }
     }
 
-    private new void ExitState()
+    private void ExitState()
     {
         IsCharacterTouchingGround.Invoke(true);
-        idleState.EnableMovement();
     }
 
     private void FixedUpdate()

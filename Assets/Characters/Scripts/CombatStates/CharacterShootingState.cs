@@ -16,11 +16,6 @@ public class CharacterShootingState : CharacterStateBase
     [HideInInspector] public UnityEvent<bool> onAim;
     [HideInInspector] public UnityEvent onShoot;
 
-    private void Awake()
-    {
-        this.enabled = false;
-    }
-
     [SerializeField] Transform bowstring;
     private Vector3 initialBowstringPosition;
     private void OnEnable()

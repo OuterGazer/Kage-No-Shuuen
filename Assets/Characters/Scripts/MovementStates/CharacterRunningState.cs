@@ -6,11 +6,6 @@ using UnityEngine.InputSystem;
 
 public class CharacterRunningState : CharacterStateBase
 {
-    private void Awake()
-    {
-        this.enabled = false;
-    }
-
     void Update()
     {
         UpdateMovement(speed, movementDirection, Vector3.up);

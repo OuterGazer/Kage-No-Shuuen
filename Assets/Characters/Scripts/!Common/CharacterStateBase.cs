@@ -21,8 +21,6 @@ public class CharacterStateBase : MonoBehaviour
 
     [HideInInspector] public UnityEvent<Vector3> onMovementSpeedChange;
 
-    public virtual void ExitState() { }
-
     protected void SetCameraAndCharController(CharacterController characterController)
     {
         mainCamera = Camera.main;
@@ -31,7 +29,7 @@ public class CharacterStateBase : MonoBehaviour
 
     protected static float movingSpeed;
     protected static Vector3 currentHorizontalMovement = Vector3.zero;
-    protected static float accMovementDir = 1.5f; // m/s2
+    private float accMovementDir = 1.5f; // m/s2
     protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
         UpdateCharacterSpeed(speed);

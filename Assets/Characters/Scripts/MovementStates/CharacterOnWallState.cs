@@ -15,11 +15,6 @@ public class CharacterOnWallState : CharacterStateBase
     private static Vector3 normalToWallPlane;
     private float charControllerHorizontalBound;
 
-    private void Awake()
-    {
-        this.enabled = false;
-    }
-
     private void Start()
     {
         coverMask = LayerMask.GetMask("Cover");

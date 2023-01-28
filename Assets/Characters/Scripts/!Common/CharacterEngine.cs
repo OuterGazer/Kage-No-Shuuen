@@ -2,15 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CharacterEngine : MonoBehaviour
 {
-    // TODO: Have moving after dodging or OnAir logic here somehow,
-    //       as of now Crouching, Running, OnHook, OnAir and Dodging are couple directly to Idle because of this.
-    //       Due to this there is some spaghetti in idle
+    // TODO: Refactor teh code relating to keep moving after falling or dodging somewhere else?
 
     private CharacterStateBase[] allStates;
     private CharacterStateBase currentState;
@@ -29,6 +26,9 @@ public class CharacterEngine : MonoBehaviour
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToAiming;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToThrowing;
 
+    private PlayerInput playerInput;
+    private InputAction move;
+
     private CharacterController charController;
     private WeaponController weaponController;
     private Weapon currentWeapon;
@@ -42,9 +42,26 @@ public class CharacterEngine : MonoBehaviour
         allStates = GetComponents<CharacterStateBase>();
         weaponController = GetComponent<WeaponController>();
         charController = GetComponent<CharacterController>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void OnEnable()
+    {
+        GetReferenceToOnHookState();
+        onHookState.CanNotFindHookTarget.AddListener(TransitionToIdle);
+        weaponController.onWeaponChange.AddListener(SetCurrentWeapon);
+
+        move = playerInput.actions["Move"];
+
+        foreach (CharacterStateBase state in allStates)
+        {
+            state.enabled = false;
+        }
+        currentState = allStates.First(x => x.GetType() == typeof(CharacterIdleState));
+        currentState.enabled = true;
+    }
+
+    private void GetReferenceToOnHookState()
     {
         for (int i = 0; i < allStates.Length; i++)
         {
@@ -54,11 +71,6 @@ public class CharacterEngine : MonoBehaviour
                 onHookState = tempState as CharacterOnHookState;
             }
         }
-
-        onHookState.CanNotFindHookTarget.AddListener(TransitionToIdle);
-        weaponController.onWeaponChange.AddListener(SetCurrentWeapon);
-
-        currentState = allStates.First(x => x.GetType() == typeof(CharacterIdleState));
     }
 
     private void OnDestroy()
@@ -72,9 +84,15 @@ public class CharacterEngine : MonoBehaviour
     private void Update()
     {
         if (IsCharacterFallingDown())
-        { TransitionToOnAir(); }
+        {
+            TransitionToOnAir();
+            move.Disable();
+        }
         else if (HasCharacterJustLandedOnGround())
-        { TransitionToIdle(); }
+        {
+            TransitionToIdle();
+            move.Enable();
+        }
     }
 
     private bool IsCharacterFallingDown()
@@ -216,14 +234,18 @@ public class CharacterEngine : MonoBehaviour
     public void OnDodge()
     {
         ManageStateTransition(statesAllowedToTransitionToDodging, typeof(CharacterDodgingState));
+        if (currentState.GetType() == typeof(CharacterDodgingState))
+        { move.Disable(); }
     }
 
     // Called from an animation event in the rolling animation
     public void ExitDodgingState()
     {
         ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
+        move.Enable();
     }
 
+    // TODO: fix weird blocking animation with 2H weapons
     public void OnBlock(InputValue inputValue)
     {
         float temp = inputValue.Get<float>();

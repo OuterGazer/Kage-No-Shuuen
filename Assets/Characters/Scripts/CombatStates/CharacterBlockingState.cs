@@ -11,11 +11,6 @@ public class CharacterBlockingState : CharacterStateBase
 
     [HideInInspector] public UnityEvent<bool> UpdateBlockingStatus; // Event for the animator
 
-    private void Awake()
-    {
-        this.enabled = false;
-    }
-
     private void OnEnable()
     {
         UpdateBlockingStatus.Invoke(true);
@@ -55,10 +50,10 @@ public class CharacterBlockingState : CharacterStateBase
         }
     }
 
-    public override void ExitState()
-    {
-        // StartCoroutine(OnExitState());
-    }
+    //public override void ExitState()
+    //{
+    //    StartCoroutine(OnExitState());
+    //}
 
     // Method necessary to make unblocking animation look better
     //private IEnumerator OnExitState() 

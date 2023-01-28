@@ -7,11 +7,6 @@ using UnityEngine.InputSystem;
 
 public class CharacterCrouchingState : CharacterStateBase
 {
-    private void Awake()
-    {
-        this.enabled = false;
-    }
-
     void Update()
     {
         UpdateMovement(speed, movementDirection, Vector3.up);

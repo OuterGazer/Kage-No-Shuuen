@@ -4,29 +4,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(CharacterIdleState))]
 public class CharacterDodgingState : CharacterStateBase
 {
     [SerializeField] float speedDeceleration = 0.05f;
-
-    [Header("Exit States")]
-    [SerializeField] CharacterIdleState idleState;
 
     [HideInInspector] public UnityEvent MakeCharacterDodge;
 
     private Vector3 dodgeFacingDirection;
     private float currentSpeed;
 
-    private void Awake()
-    {
-        this.enabled = false;
-    }
-
     private void OnEnable()
     {
         SetDodgeFacingDirection(currentHorizontalMovement.normalized);
-
-        idleState.move.Disable();
 
         MakeCharacterDodge.Invoke();
         currentSpeed = speed;
@@ -35,9 +24,6 @@ public class CharacterDodgingState : CharacterStateBase
     private void OnDisable()
     {
         OrientateCharacterForward();
-
-        if (gameObject.activeInHierarchy)
-            idleState.EnableMovement();
     }
 
     private void Update()

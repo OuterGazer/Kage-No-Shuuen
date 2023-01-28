@@ -11,11 +11,6 @@ public class CharacterThrowingState : CharacterStateBase
 
     [HideInInspector] public UnityEvent onThrowing;
 
-    private void Awake()
-    {
-        this.enabled = false;
-    }
-
     private void OnEnable()
     {
         throwing = true;
