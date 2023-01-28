@@ -96,7 +96,6 @@ public class CharacterStateBase : MonoBehaviour
         return movement;
     }
 
-    // TODO: put it in its own class?
     private static float timeToOrientateCharacterForward = 0.25f;
     protected void OrientateCharacterForward()
     {
@@ -123,7 +122,7 @@ public class CharacterStateBase : MonoBehaviour
 
             movementDirection = inputBuffer;
 
-            onMovementSpeedChange.Invoke(movementDirection);
+            onMovementSpeedChange.Invoke(movementDirection); //Tells CharacterAnimator current direction of movement
         }
         else
         {

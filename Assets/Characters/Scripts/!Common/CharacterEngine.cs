@@ -37,14 +37,8 @@ public class CharacterEngine : MonoBehaviour
     private void Awake()
     {
         allStates = GetComponents<CharacterStateBase>();
-        for (int i = 0; i < allStates.Length; i++)
-        {
-            allStates[i].onNeedingToTransitionToIdle.AddListener(TransitionToIdle);
-            allStates[i].onBeingOnAir.AddListener(TransitionToOnAir);
-        }
-
         weaponController = GetComponent<WeaponController>();
-        weaponController.onWeaponChange.AddListener(SetCurrentWeapon);
+        
     }
 
     private void OnDestroy()
@@ -62,6 +56,14 @@ public class CharacterEngine : MonoBehaviour
 
     private void OnEnable()
     {
+        for (int i = 0; i < allStates.Length; i++)
+        {
+            allStates[i].onNeedingToTransitionToIdle.AddListener(TransitionToIdle);
+            allStates[i].onBeingOnAir.AddListener(TransitionToOnAir);
+        }
+
+        weaponController.onWeaponChange.AddListener(SetCurrentWeapon);
+
         currentState = allStates.First(x => x.GetType() == typeof(CharacterIdleState));
     }
 
@@ -93,10 +95,9 @@ public class CharacterEngine : MonoBehaviour
     private void TransitionToDesiredState(Type state)
     {
         CharacterStateBase stateToTransition = allStates.First(x => x.GetType() == state);
-        stateToTransition.enabled = true;
-        
-        currentState.enabled = false;
+        currentState.enabled = false;        
         currentState = stateToTransition;
+        stateToTransition.enabled = true;
     }
 
     // Specific method called from event to transition to idle when failing a hook throw or coming from OnAir state
@@ -125,6 +126,7 @@ public class CharacterEngine : MonoBehaviour
         else
         {
             if (currentState.GetType() == typeof(CharacterOnAirState)) { return; } // Has to do with moving right after landing, try to decouple this!!
+            if (currentState.GetType() == typeof(CharacterDodgingState)) { return; } // Has to do with moving right after landing, try to decouple this!!
             if (currentState.GetType() == typeof(CharacterBlockingState) ||
                 currentState.GetType() == typeof(CharacterShootingState)) { return; } // Keep blocking/aiming if we were so already
 

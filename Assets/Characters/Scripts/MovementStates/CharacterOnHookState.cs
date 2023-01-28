@@ -54,7 +54,7 @@ public class CharacterOnHookState : CharacterStateBase
 
     private void OnEnable()
     {
-        ManageHookThrowing();
+        ManageHookThrowing(); 
     }
 
     private void OnDisable()
@@ -94,7 +94,7 @@ public class CharacterOnHookState : CharacterStateBase
         }
         else
         {
-            idleState.move.Disable(); // This goes here instead OnEnable() in OnAirState because if I press direction buttons while flying I transition to running and break things.
+            //idleState.move.Disable(); // This goes here instead OnEnable() in OnAirState because if I press direction buttons while flying I transition to running and break things.
             PerformHookThrowing();
         }
     }
