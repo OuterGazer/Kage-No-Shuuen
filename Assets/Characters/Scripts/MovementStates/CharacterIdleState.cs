@@ -11,7 +11,7 @@ using UnityEngine.InputSystem;
 public class CharacterIdleState : CharacterStateBase
 {
     private PlayerInput playerInput;
-    public InputAction move;
+    [HideInInspector] public InputAction move;
 
     private bool isMovingAfterDodging = true;
 

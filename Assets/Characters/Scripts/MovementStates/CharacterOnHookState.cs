@@ -5,16 +5,11 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(CharacterIdleState))]
 public class CharacterOnHookState : CharacterStateBase
 {
     [SerializeField] float hookThrowRadius = 10f;
     [SerializeField] float hookReachThreshold = 4f;
     private Transform hookTarget;
-
-
-    [Header("Exit States")]
-    [SerializeField] CharacterIdleState idleState;
 
     [Header("Rig Characteristics")]
     [SerializeField] float rigAlignmentToHookTargetAcceleration = 0.01f;
@@ -94,7 +89,6 @@ public class CharacterOnHookState : CharacterStateBase
         }
         else
         {
-            //idleState.move.Disable(); // This goes here instead OnEnable() in OnAirState because if I press direction buttons while flying I transition to running and break things.
             PerformHookThrowing();
         }
     }
@@ -173,8 +167,7 @@ public class CharacterOnHookState : CharacterStateBase
     {
         ChangeToHangingAnimation.Invoke(false);
         spineToFingerRig.weight = 0f;
-
-        onBeingOnAir.Invoke();
+        currentOnHookSpeed = -0.1f; // Needed to trigger state change to OnAir in CharacterEngine upon reaching target
     }
 
     // Called through an animation event

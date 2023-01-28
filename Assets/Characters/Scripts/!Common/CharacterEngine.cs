@@ -27,6 +27,7 @@ public class CharacterEngine : MonoBehaviour
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToAiming;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToThrowing;
 
+    private CharacterController charController;
     private WeaponController weaponController;
     private Weapon currentWeapon;
 
@@ -38,20 +39,7 @@ public class CharacterEngine : MonoBehaviour
     {
         allStates = GetComponents<CharacterStateBase>();
         weaponController = GetComponent<WeaponController>();
-        
-    }
-
-    private void OnDestroy()
-    {
-        for (int i = 0; i < allStates.Length; i++)
-        {
-            allStates[i].onNeedingToTransitionToIdle.RemoveListener(TransitionToIdle);
-            allStates[i].onBeingOnAir.RemoveListener(TransitionToOnAir);
-        }
-
-        weaponController.onWeaponChange.RemoveListener(SetCurrentWeapon);
-
-        currentState = null;
+        charController = GetComponent<CharacterController>();
     }
 
     private void OnEnable()
@@ -59,12 +47,42 @@ public class CharacterEngine : MonoBehaviour
         for (int i = 0; i < allStates.Length; i++)
         {
             allStates[i].onNeedingToTransitionToIdle.AddListener(TransitionToIdle);
-            allStates[i].onBeingOnAir.AddListener(TransitionToOnAir);
         }
 
         weaponController.onWeaponChange.AddListener(SetCurrentWeapon);
 
         currentState = allStates.First(x => x.GetType() == typeof(CharacterIdleState));
+    }
+
+    private void OnDestroy()
+    {
+        for (int i = 0; i < allStates.Length; i++)
+        {
+            allStates[i].onNeedingToTransitionToIdle.RemoveListener(TransitionToIdle);
+        }
+
+        weaponController.onWeaponChange.RemoveListener(SetCurrentWeapon);
+
+        currentState = null;
+    }
+
+    private void Update()
+    {
+        if (IsCharacterFallingDown())
+        { TransitionToOnAir(); }
+        else if (HasCharacterJustLandedOnGround())
+        { TransitionToIdle(); }
+
+    }
+
+    private bool IsCharacterFallingDown()
+    {
+        return (!charController.isGrounded) && (charController.velocity.y < 0f);
+    }
+
+    private bool HasCharacterJustLandedOnGround()
+    {
+        return (charController.isGrounded) && (currentState.GetType() == typeof(CharacterOnAirState));
     }
 
     private void SetCurrentWeapon(Weapon weapon)
@@ -100,13 +118,12 @@ public class CharacterEngine : MonoBehaviour
         stateToTransition.enabled = true;
     }
 
-    // Specific method called from event to transition to idle when failing a hook throw or coming from OnAir state
+    // Specific method called from event to transition to idle when failing a hook throw
     private void TransitionToIdle()
     {
         ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
     }
 
-    // Specific method called from event to transition to OnAir when after hook throwing or falling off a ledge
     private void TransitionToOnAir()
     {
         ManageStateTransition(statesAllowedToTransitionToOnAir, typeof(CharacterOnAirState));
@@ -125,8 +142,10 @@ public class CharacterEngine : MonoBehaviour
         }
         else
         {
-            if (currentState.GetType() == typeof(CharacterOnAirState)) { return; } // Has to do with moving right after landing, try to decouple this!!
-            if (currentState.GetType() == typeof(CharacterDodgingState)) { return; } // Has to do with moving right after landing, try to decouple this!!
+            if (currentState.GetType() == typeof(CharacterOnAirState) ||
+                currentState.GetType() == typeof(CharacterDodgingState) ||
+                currentState.GetType() == typeof(CharacterOnHookState)) { return; } // Has to do with moving right after landing, try to decouple this!!
+            
             if (currentState.GetType() == typeof(CharacterBlockingState) ||
                 currentState.GetType() == typeof(CharacterShootingState)) { return; } // Keep blocking/aiming if we were so already
 

@@ -25,6 +25,8 @@ public class CharacterOnAirState : CharacterStateBase
 
     private void OnEnable()
     {
+        idleState.move.Disable();
+
         transform.up = Vector3.up;
         hasCharacterLanded = false;
         IsCharacterTouchingGround.Invoke(false);
@@ -44,8 +46,6 @@ public class CharacterOnAirState : CharacterStateBase
     {
         IsCharacterTouchingGround.Invoke(true);
         idleState.EnableMovement();
-
-        onNeedingToTransitionToIdle.Invoke();        
     }
 
     private void FixedUpdate()

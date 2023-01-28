@@ -5,12 +5,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterIdleState))]
 public class CharacterCrouchingState : CharacterStateBase
 {
-    [Header("Exit Scripts")]
-    [SerializeField] CharacterIdleState idleState;
-
     private void Awake()
     {
         this.enabled = false;
@@ -22,14 +18,5 @@ public class CharacterCrouchingState : CharacterStateBase
 
         if(movementDirection != Vector3.zero)
             OrientateCharacterForward();
-
-        if (!charController.isGrounded)
-            ChangeToOnAirState();
-    }
-
-    private void ChangeToOnAirState()
-    {
-        onBeingOnAir.Invoke();
-        idleState.move.Disable();
     }
 }
