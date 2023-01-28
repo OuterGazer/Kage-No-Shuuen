@@ -15,6 +15,8 @@ public class CharacterEngine : MonoBehaviour
     private CharacterStateBase[] allStates;
     private CharacterStateBase currentState;
 
+    private CharacterOnHookState onHookState;
+
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToIdle;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToRunning;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToCrouching;
@@ -46,9 +48,14 @@ public class CharacterEngine : MonoBehaviour
     {
         for (int i = 0; i < allStates.Length; i++)
         {
-            allStates[i].onNeedingToTransitionToIdle.AddListener(TransitionToIdle);
+            CharacterStateBase tempState = allStates[i];
+            if (tempState.GetType() == typeof(CharacterOnHookState))
+            {
+                onHookState = tempState as CharacterOnHookState;
+            }
         }
 
+        onHookState.CanNotFindHookTarget.AddListener(TransitionToIdle);
         weaponController.onWeaponChange.AddListener(SetCurrentWeapon);
 
         currentState = allStates.First(x => x.GetType() == typeof(CharacterIdleState));
@@ -56,11 +63,7 @@ public class CharacterEngine : MonoBehaviour
 
     private void OnDestroy()
     {
-        for (int i = 0; i < allStates.Length; i++)
-        {
-            allStates[i].onNeedingToTransitionToIdle.RemoveListener(TransitionToIdle);
-        }
-
+        onHookState.CanNotFindHookTarget.RemoveListener(TransitionToIdle);
         weaponController.onWeaponChange.RemoveListener(SetCurrentWeapon);
 
         currentState = null;
@@ -72,7 +75,6 @@ public class CharacterEngine : MonoBehaviour
         { TransitionToOnAir(); }
         else if (HasCharacterJustLandedOnGround())
         { TransitionToIdle(); }
-
     }
 
     private bool IsCharacterFallingDown()

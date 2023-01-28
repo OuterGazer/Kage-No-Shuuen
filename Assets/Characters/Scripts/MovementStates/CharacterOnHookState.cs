@@ -20,6 +20,7 @@ public class CharacterOnHookState : CharacterStateBase
 
     [HideInInspector] public UnityEvent throwHook;
     [HideInInspector] public UnityEvent<bool> ChangeToHangingAnimation;
+    [HideInInspector] public UnityEvent CanNotFindHookTarget;
     private CharacterAnimator characterAnimator;
     private Rig spineToFingerRig;
     private LayerMask hookTargetMask;
@@ -81,9 +82,9 @@ public class CharacterOnHookState : CharacterStateBase
     private void CheckIfObstaclesBetweenCharacterAndTarget()
     {
         Vector3 tempHookDir = (hookTarget.position - transform.position).normalized;
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, tempHookDir, hookThrowRadius + 1f, obstaclesMask);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, tempHookDir, hookThrowRadius, obstaclesMask);
 
-        if (!hits[0].collider.CompareTag("HookTarget"))
+        if (hits.Length > 1) // Just one element is hook target
         {
             ExitToIdle();
         }
@@ -101,7 +102,7 @@ public class CharacterOnHookState : CharacterStateBase
 
     private void ExitToIdle()
     {
-        onNeedingToTransitionToIdle.Invoke(); //Event for CharacterEngine to transition to Idle if there isn't any hook target around or it's blocked
+        CanNotFindHookTarget.Invoke(); //Event for CharacterEngine to transition to Idle if there isn't any hook target around or it's blocked
     }
 
     private void SetTargetToRigChain()
@@ -129,7 +130,6 @@ public class CharacterOnHookState : CharacterStateBase
         throwHook.Invoke();
 
         isHookThrown = false;
-        currentOnHookSpeed = 0f;
         hangingDirection = Vector3.zero;
     }
 
