@@ -1485,7 +1485,7 @@ Transform:
   m_GameObject: {fileID: 1982431027}
   m_LocalRotation: {x: 0.000000052639507, y: 0.000000002757588, z: 0.00000007445854,
     w: 1}
-  m_LocalPosition: {x: -0.17, y: 1.803, z: 0.132}
+  m_LocalPosition: {x: -0.761, y: 2.034, z: 0.239}
   m_LocalScale: {x: 0.10000001, y: 0.10000002, z: 0.100000024}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2427,15 +2427,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  move:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c87d01fe-5a26-47b4-9c8b-0946d8a85093
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!114 &7367104688647257538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2548,7 +2539,6 @@ MonoBehaviour:
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
-  idleState: {fileID: 7367104688647257540}
   groundDistanceThreshold: 0.6
   IsCharacterTouchingGround:
     m_PersistentCalls:
@@ -2573,7 +2563,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   speedDeceleration: 3.5
-  idleState: {fileID: 7367104688647257540}
   MakeCharacterDodge:
     m_PersistentCalls:
       m_Calls: []
