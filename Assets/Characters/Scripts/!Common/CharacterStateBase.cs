@@ -21,10 +21,9 @@ public class CharacterStateBase : MonoBehaviour
     protected static Vector3 movementDirection;
     public static Vector3 MovementDirection => movementDirection;
 
-    private static float velocityY = 0f;
+    private static float velocityY = 0f; // No se usa
 
     protected static float movingSpeed;
-    protected static Vector3 currentHorizontalMovement = Vector3.zero;
 
     protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {

@@ -110,7 +110,7 @@ public class CharacterOnWallState : CharacterStateBase
     [SerializeField] float stoppingDistanceToCoverEdge = 3.75f;
     private bool HasCoverEdgeBeenReached()
     {
-        float characterMovementDirectionOnWall = Mathf.Sign(Vector3.Dot(transform.right, currentHorizontalMovement));
+        float characterMovementDirectionOnWall = Mathf.Sign(Vector3.Dot(transform.right, charController.velocity.normalized));
 
         Vector3 raycastOriginPoint = transform.position + charControllerHorizontalBound * characterMovementDirectionOnWall *
                                                           stoppingDistanceToCoverEdge * transform.right;

@@ -20,13 +20,12 @@ public class MovementProperties
         set { if (value.GetType() == typeof(CharacterController)) { charController = value; } }
     }
 
-    protected static Vector3 movementDirection;
-    public static Vector3 MovementDirection => movementDirection;
+    private Vector3 movementDirection;
 
     private static float velocityY = 0f;
 
-    protected static float movingSpeed;
-    protected static Vector3 currentHorizontalMovement = Vector3.zero;
+    private float movingSpeed;
+    private Vector3 currentHorizontalMovement = Vector3.zero;
     private float accMovementDir = 1.5f; // m/s2
     public void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
@@ -48,7 +47,7 @@ public class MovementProperties
         currentHorizontalMovement += direction.normalized * speedChangeToApply;
     }
 
-    private float moveAcceleration = 5;    // m/s2
+    private float moveAcceleration = 5f;    // m/s2
     private void UpdateCharacterSpeed(float targetSpeed)
     {
         if (movingSpeed < targetSpeed)

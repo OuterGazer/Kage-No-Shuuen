@@ -15,7 +15,7 @@ public class CharacterDodgingState : CharacterStateBase
 
     private void OnEnable()
     {
-        SetDodgeFacingDirection(currentHorizontalMovement.normalized);
+        SetDodgeFacingDirection(charController.velocity.normalized);
 
         MakeCharacterDodge.Invoke();
         currentSpeed = speed;
