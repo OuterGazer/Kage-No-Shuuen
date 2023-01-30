@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AIPatrollingState : AIBaseState
 {
     [SerializeField] Transform patrolParent;
-    [SerializeField] int startPatrolPoint = 0;
+    [SerializeField] int startPatrolPointIndex = 0;
     [SerializeField] float reachThreshold = 0.25f;
 
     PatrolPoint[] patrolPoints;
@@ -24,7 +24,7 @@ public class AIPatrollingState : AIBaseState
     protected override void InternalStart()
     {
         base.InternalStart();
-        currentPatrolPointIndex = startPatrolPoint;
+        currentPatrolPointIndex = startPatrolPointIndex;
     }
 
     protected override void InternalUpdate()
@@ -34,7 +34,7 @@ public class AIPatrollingState : AIBaseState
 
         navMeshAgent.destination = patrolPoints[currentPatrolPointIndex].transform.position;
 
-        if((navMeshAgent.destination - transform.position).sqrMagnitude < (reachThreshold * reachThreshold))
+        if ((navMeshAgent.destination - transform.position).sqrMagnitude < (reachThreshold * reachThreshold))
         {
             currentPatrolPointIndex++;
 

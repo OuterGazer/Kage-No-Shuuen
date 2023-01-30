@@ -21,7 +21,7 @@ public class CharacterStateBase : MonoBehaviour
     protected static Vector3 movementDirection;
     public static Vector3 MovementDirection => movementDirection;
 
-    private static float velocityY = 0f; // No se usa
+    //private static float velocityY = 0f; // No se usa
 
     protected static float movingSpeed;
 

@@ -63,7 +63,10 @@ public class CharacterAnimator : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
 
-        runningSpeed = GetComponent<CharacterRunningState>().Speed;
+        if(CompareTag("Player"))
+            runningSpeed = GetComponent<CharacterRunningState>().Speed;
+        else 
+            runningSpeed = GetComponent<NavMeshAgent>().speed;
 
         stateBase = GetComponent<CharacterStateBase>();
         onWallState = GetComponent<CharacterOnWallState>();
@@ -207,8 +210,8 @@ public class CharacterAnimator : MonoBehaviour
 
         if (CompareTag("Soldier"))
         {
-            forwardMovementDirection = GetComponent<NavMeshAgent>().velocity.z;
-            sidewaysMovementDirection = GetComponent<NavMeshAgent>().velocity.x;
+            forwardMovementDirection = 0.5f;
+            sidewaysMovementDirection = 0f;
         }
             
 
