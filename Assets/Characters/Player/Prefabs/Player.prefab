@@ -2257,6 +2257,7 @@ GameObject:
   - component: {fileID: 6662072654649892864}
   - component: {fileID: 8219717195397346131}
   - component: {fileID: 2174158107220845152}
+  - component: {fileID: 1979967065090401228}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -2423,10 +2424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f641ec05c1502224b9c389c6bd3fc32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 0
 --- !u!114 &7367104688647257538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2439,10 +2440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb428d0dcbae9445b735db3ebb0e97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 3
 --- !u!114 &7367104688647257541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2455,10 +2456,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f57565b10c1bd458a85b35496fe8b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 6
 --- !u!114 &7367104688647257545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2471,10 +2472,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c52da3486d37542aa7e22163f0287f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 3
   AttachCharacterToWall:
     m_PersistentCalls:
       m_Calls: []
@@ -2499,10 +2500,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c0b7ef786127447885729f723babe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 10
   hookThrowRadius: 10
   hookReachThreshold: 4
   rigAlignmentToHookTargetAcceleration: 1
@@ -2535,10 +2536,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e0e5fdadce8424791f012bba75f5f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 0
   groundDistanceThreshold: 0.6
   IsCharacterTouchingGround:
     m_PersistentCalls:
@@ -2558,10 +2559,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ecb8b0dc750a346af9de2e6b1dc42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4.5
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 4.5
   speedDeceleration: 3.5
   MakeCharacterDodge:
     m_PersistentCalls:
@@ -2578,10 +2579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a1219a5554a724b94438c47b8a27ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.75
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 0.75
   blockingRig: {fileID: 1307412388}
   UpdateBlockingStatus:
     m_PersistentCalls:
@@ -2599,10 +2600,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dcd266b00a80fd439fec574df2fe6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 0
   onSlash:
     m_PersistentCalls:
       m_Calls: []
@@ -2621,10 +2622,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c97053491c84e4418d913c112b05350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.75
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 0.75
   shoot: 0
   onAim:
     m_PersistentCalls:
@@ -2649,13 +2650,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb91ef41c940fc4c8980e2e6acafcf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
   onMovementSpeedChange:
     m_PersistentCalls:
       m_Calls: []
+  speed: 0
   onThrowing:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1979967065090401228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367104688647257537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcedc601a2bf804bbc089de03b3c7bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  emissionFrequency: 5
+  radius: 10
+  listenersLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &7367104688962466102
 GameObject:
   m_ObjectHideFlags: 0

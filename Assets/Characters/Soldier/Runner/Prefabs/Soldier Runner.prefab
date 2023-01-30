@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 2795677103851904037}
   - component: {fileID: 2795677103851904036}
   - component: {fileID: 5438122774130431303}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Soldier Runner
   m_TagString: Soldier
   m_Icon: {fileID: 0}
@@ -230,11 +230,12 @@ MonoBehaviour:
   refreshFrequency: 10
   interestingTargetsLayers:
     serializedVersion: 2
-    m_Bits: 4294967291
+    m_Bits: 8
   occludingLayers:
     serializedVersion: 2
-    m_Bits: 4294967291
-  interestingTags: []
+    m_Bits: 64
+  interestingTags:
+  - Player
 --- !u!114 &2795677103851904037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolParent: {fileID: 0}
   startPatrolPointIndex: 0
-  reachThreshold: 0.25
+  reachThreshold: 0.5
 --- !u!114 &5438122774130431303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2576,9 +2577,9 @@ GameObject:
   - component: {fileID: 5415322733791157508}
   - component: {fileID: 2967258749132142366}
   - component: {fileID: 5832385808493121215}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Soldier
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

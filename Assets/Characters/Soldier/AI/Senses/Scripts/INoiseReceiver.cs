@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface INoiseReceiver
 {
-    void NotifyNoise(NoiseEmitter noiseEmitter);
+    void NotifyNoise(NoiseEmitter noiseEmitter); 
 }

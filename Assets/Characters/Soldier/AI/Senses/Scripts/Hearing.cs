@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class Hearing : MonoBehaviour, INoiseReceiver
     }
 
     public List<HeardNoise> noiseEmittersBeingHeard = new List<HeardNoise>(); // Should not be public, but offer the noises through a loop in a getter method.
-    public UnityEvent<NoiseEmitter> onHeardNoiseEmitter;
+    [HideInInspector] public UnityEvent<NoiseEmitter> onHeardNoiseEmitter;
     [SerializeField] float forgetFrequency = 5f;
     [SerializeField] float noiseLifeSpan = 1f;
 
@@ -33,16 +34,16 @@ public class Hearing : MonoBehaviour, INoiseReceiver
     {
         HeardNoise heardNoise = noiseEmittersBeingHeard.Find(x => x.noiseEmitter == noiseEmitter);
 
-        if(heardNoise != null)
-        {
-            heardNoise.timeOfEmission = Time.time;
-        }
-        else
+        if(heardNoise == null)
         {
             heardNoise = new HeardNoise();
             heardNoise.timeOfEmission = Time.time;
             heardNoise.noiseEmitter = noiseEmitter;
             noiseEmittersBeingHeard.Add(heardNoise);
+        }
+        else
+        {
+            heardNoise.timeOfEmission = Time.time;
         }
         onHeardNoiseEmitter.Invoke(noiseEmitter);
     }

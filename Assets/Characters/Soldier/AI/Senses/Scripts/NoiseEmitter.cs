@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NoiseEmitter : MonoBehaviour
 {
-    public enum Type
+    public enum Type 
     {
         Continuous,
         OnlyWhenMoving,

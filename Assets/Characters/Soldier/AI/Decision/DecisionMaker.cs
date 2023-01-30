@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DecisionMaker : MonoBehaviour
 {
@@ -67,6 +68,7 @@ public class DecisionMaker : MonoBehaviour
         {
             switch(currentTarget.tag)
             {
+                case "Player":
                 case "Coin":
                     aiGoToTargetState.SetTarget(currentTarget);
                     SetCurrentState(aiGoToTargetState);

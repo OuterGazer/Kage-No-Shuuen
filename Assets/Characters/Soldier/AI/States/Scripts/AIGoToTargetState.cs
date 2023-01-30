@@ -9,6 +9,12 @@ public class AIGoToTargetState : AIBaseState
 
     private NavMeshAgent navMeshAgent;
 
+    private void OnEnable()
+    {
+        if(navMeshAgent.isStopped)
+            navMeshAgent.isStopped = false;
+    }
+
     protected override void InternalAwake()
     {
         base.InternalAwake();
