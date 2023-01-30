@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterCrouchingState), typeof(CharacterOnWallState))]
-[RequireComponent(typeof(CharacterOnHookState), typeof(CharacterOnAirState))]
+//[RequireComponent(typeof(CharacterCrouchingState), typeof(CharacterOnWallState))]
+//[RequireComponent(typeof(CharacterOnHookState), typeof(CharacterOnAirState))]
 public class CharacterAnimator : MonoBehaviour
 {
     [HideInInspector] public UnityEvent hookHasArrivedAtTarget;
@@ -54,7 +55,8 @@ public class CharacterAnimator : MonoBehaviour
     private void Awake()
     {
         GetNecessaryComponents();
-        AddNecessaryListeners();
+        if(CompareTag("Player"))
+            AddNecessaryListeners();
     }
 
     private void GetNecessaryComponents()
@@ -97,7 +99,8 @@ public class CharacterAnimator : MonoBehaviour
 
     private void OnDestroy()
     {
-        RemoveListeners();
+        if (CompareTag("Player"))
+            RemoveListeners();
     }
 
     private void RemoveListeners()
@@ -201,6 +204,14 @@ public class CharacterAnimator : MonoBehaviour
 
         // Releasing a key keeps the last sign, avoiding that the character
         // briefly looks the other way while decelerating when sign is -1.
+
+        if (CompareTag("Soldier"))
+        {
+            forwardMovementDirection = GetComponent<NavMeshAgent>().velocity.z;
+            sidewaysMovementDirection = GetComponent<NavMeshAgent>().velocity.x;
+        }
+            
+
     }
 
     private bool IsPlayerPressingAMovementKey(float movementAxis)
