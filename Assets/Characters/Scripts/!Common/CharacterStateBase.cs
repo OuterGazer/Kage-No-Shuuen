@@ -1,12 +1,16 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class CharacterStateBase : MonoBehaviour
 {
+    private static MovementProperties movementProperties = new MovementProperties();
+
+    [HideInInspector] public UnityEvent<Vector3> onMovementSpeedChange;
+
     [Header("Movement Characteristics")]
     [SerializeField] protected float speed = 6f;
     public float Speed => speed;
@@ -19,77 +23,21 @@ public class CharacterStateBase : MonoBehaviour
 
     private static float velocityY = 0f;
 
-    [HideInInspector] public UnityEvent<Vector3> onMovementSpeedChange;
+    protected static float movingSpeed;
+    protected static Vector3 currentHorizontalMovement = Vector3.zero;
+
+    protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
+    {
+        movementProperties.UpdateMovement(speed, movementDirection, movementProjectionPlane);
+    }
 
     protected void SetCameraAndCharController(CharacterController characterController)
     {
         mainCamera = Camera.main;
         charController = characterController;
-    }
 
-    protected static float movingSpeed;
-    protected static Vector3 currentHorizontalMovement = Vector3.zero;
-    private float accMovementDir = 1.5f; // m/s2
-    protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
-    {
-        UpdateCharacterSpeed(speed);
-        ApplyAccelerationSmoothingToMovingDirection(movementDirection, movementProjectionPlane);
-
-        Vector3 horizontalMovement = movingSpeed * Time.deltaTime * currentHorizontalMovement;
-        Vector3 verticalMovement = UpdateVerticalMovement();
-        
-        charController.Move(horizontalMovement + verticalMovement);
-    }
-
-    private void ApplyAccelerationSmoothingToMovingDirection(Vector3 movementDirection, Vector3 movementProjectionPlane)
-    {
-        Vector3 desiredHorizontalMovement = UpdateHorizontalMovement(movementDirection, movementProjectionPlane);
-        Vector3 direction = desiredHorizontalMovement - currentHorizontalMovement;
-        float speedChangeToApply = accMovementDir * Time.deltaTime;
-        speedChangeToApply = Mathf.Min(speedChangeToApply, direction.magnitude);
-        currentHorizontalMovement += direction.normalized * speedChangeToApply;
-    }
-
-    protected static float moveAcceleration = 5;    // m/s2
-    private void UpdateCharacterSpeed(float targetSpeed)
-    {
-        if (movingSpeed < targetSpeed)
-        {
-            movingSpeed += moveAcceleration * Time.deltaTime;
-            if (movingSpeed > targetSpeed) { movingSpeed = targetSpeed; }
-        }
-        else if (movingSpeed > targetSpeed)
-        {
-            movingSpeed -= moveAcceleration * Time.deltaTime;
-            if (movingSpeed < targetSpeed) { movingSpeed = targetSpeed; }
-        }
-    }
-
-    private Vector3 UpdateVerticalMovement()
-    {
-        velocityY = Physics.gravity.y * Time.deltaTime;
-
-        if (charController.isGrounded)
-        {
-            velocityY = -0.1f;
-        }
-
-        return new Vector3(0, velocityY, 0);
-    }
-
-    private Vector3 UpdateHorizontalMovement(Vector3 movementDirection, Vector3 movementProjectionPlane)
-    {
-        Vector3 movement;
-        movement = ApplyMovementRelativeToCameraPosition(movementDirection, movementProjectionPlane);
-
-        return movement;
-    }
-
-    private Vector3 ApplyMovementRelativeToCameraPosition(Vector3 movementDirection, Vector3 movementProjectionPlane)
-    {
-        Vector3 movement = mainCamera.transform.TransformDirection(movementDirection);
-        movement = Vector3.ProjectOnPlane(movement, movementProjectionPlane);
-        return movement;
+        movementProperties.MainCamera = mainCamera;
+        movementProperties.CharController = charController;
     }
 
     private static float timeToOrientateCharacterForward = 0.25f;

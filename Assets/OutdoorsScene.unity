@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToDestroy: {fileID: 0}
   life: 1
   coolDownTime: 0.5
 --- !u!65 &35536844
@@ -1178,6 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToDestroy: {fileID: 0}
   life: 1
   coolDownTime: 0.5
 --- !u!65 &217673506
@@ -2134,7 +2136,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.0046970136, y: 0.000000003259593, z: -1.5310522e-11, w: 0.999989}
+  m_LocalRotation: {x: 0.0046970155, y: 7.68061e-10, z: -3.6076348e-12, w: 0.999989}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2449,6 +2451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToDestroy: {fileID: 0}
   life: 1
   coolDownTime: 0.5
 --- !u!65 &637254559
@@ -3187,6 +3190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToDestroy: {fileID: 0}
   life: 1
   coolDownTime: 0.5
 --- !u!65 &963060578
@@ -3373,7 +3377,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.03333581, y: -1e-45, z: -0, w: 0.99944425}
+  m_LocalRotation: {x: 0.033335805, y: -0, z: -0, w: 0.99944425}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3581,6 +3585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToDestroy: {fileID: 0}
   life: 1
   coolDownTime: 0.5
 --- !u!65 &1217847344
@@ -4805,8 +4810,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.062137432, y: 0.000000017173132, z: -0.0000000010691601,
-    w: 0.9980676}
+  m_LocalRotation: {x: 0.06213745, y: 0.000000017173132, z: -0.0000000010691605, w: 0.9980676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5654,6 +5658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToDestroy: {fileID: 0}
   life: 1
   coolDownTime: 0.5
 --- !u!65 &1957036618
@@ -6117,6 +6122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectToDestroy: {fileID: 0}
   life: 1
   coolDownTime: 0.5
 --- !u!65 &2137712463
@@ -6195,11 +6201,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1977086151}
     m_Modifications:
-    - target: {fileID: 1727664376108081225, guid: 144e37dabcf409d4e8a7fd512988a3cc,
-        type: 3}
-      propertyPath: speed
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 2795677103851904036, guid: 144e37dabcf409d4e8a7fd512988a3cc,
         type: 3}
       propertyPath: patrolParent

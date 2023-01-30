@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DamageableWithLife : MonoBehaviour, IDamagereceiver
 {
+    // TODO: implement this better
+    [SerializeField] GameObject objectToDestroy;
+
     // TODO: implement multiple hit avoiding through event system (specially for multiple raycast weapons)
     [SerializeField] float life;
     public float Life => life;
@@ -17,8 +20,8 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
             lastTimeDamageWasReceived = Time.time;
             life -= damage;
 
-            if(Life <= 0f) 
-                { Destroy(gameObject); }
+            if(life <= 0f) 
+                { Destroy(objectToDestroy); }
         }
     }
 }
