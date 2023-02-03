@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class DecisionMaker : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class DecisionMaker : MonoBehaviour
     AIBaseState[] allStates;
     AIGoToTargetState aiGoToTargetState;
     AIPatrollingState aiPatrollingState;
+
+    [HideInInspector] public UnityEvent<Transform> OnPlayerSeen;
 
     private void Awake()
     {
@@ -69,9 +72,11 @@ public class DecisionMaker : MonoBehaviour
             switch(currentTarget.tag)
             {
                 case "Player":
+
                 case "Coin":
-                    aiGoToTargetState.SetTarget(currentTarget);
-                    SetCurrentState(aiGoToTargetState);
+                    //aiGoToTargetState.SetTarget(currentTarget);
+                    //SetCurrentState(aiGoToTargetState);
+                    // TODO: implement event for interesting object for the BT
                     break;
                 case "Axis":
                 case "Allies":
@@ -86,13 +91,13 @@ public class DecisionMaker : MonoBehaviour
                     //        Acercate();
                     //    }
                     //}
-                    SetCurrentState(aiPatrollingState);
+                    //SetCurrentState(aiPatrollingState);
                     break;
             }
         }
         else
         {
-            SetCurrentState(aiPatrollingState);
+            //SetCurrentState(aiPatrollingState);
         }
     }
 
@@ -101,24 +106,24 @@ public class DecisionMaker : MonoBehaviour
         return sight.interestingTargets.Length <= 0 ? null : sight.interestingTargets[0].transform;
     }
 
-    private void SetCurrentState(AIBaseState newCurrentState)
-    {
-        foreach(AIBaseState item in allStates)
-        {
-            if (IsNewStateDifferentFromCurrentState(newCurrentState, item))
-                { item.enabled = true; }
-            else if (IsNewStateEqualsToCurrentState(newCurrentState, item))
-                { item.enabled = false; }
-        }
-    }
+    //private void SetCurrentState(AIBaseState newCurrentState)
+    //{
+    //    foreach(AIBaseState item in allStates)
+    //    {
+    //        if (IsNewStateDifferentFromCurrentState(newCurrentState, item))
+    //            { item.enabled = true; }
+    //        else if (IsNewStateEqualsToCurrentState(newCurrentState, item))
+    //            { item.enabled = false; }
+    //    }
+    //}
 
-    private static bool IsNewStateDifferentFromCurrentState(AIBaseState newCurrentState, AIBaseState item)
-    {
-        return (item == newCurrentState) && (item.enabled == false);
-    }
+    //private static bool IsNewStateDifferentFromCurrentState(AIBaseState newCurrentState, AIBaseState item)
+    //{
+    //    return (item == newCurrentState) && (item.enabled == false);
+    //}
 
-    private static bool IsNewStateEqualsToCurrentState(AIBaseState newCurrentState, AIBaseState item)
-    {
-        return (item != newCurrentState) && (item.enabled == true);
-    }
+    //private static bool IsNewStateEqualsToCurrentState(AIBaseState newCurrentState, AIBaseState item)
+    //{
+    //    return (item != newCurrentState) && (item.enabled == true);
+    //}
 }

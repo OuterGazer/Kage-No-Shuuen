@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class SoldierRunnerBT : BehaviourTree.Tree
 {
     // Shared Tree Properties
+    private static DecisionMaker decisionMaker;
+    public static DecisionMaker DecisionMaker => decisionMaker;
     private static NavMeshAgent navMeshAgent; // TODO: look to serialize static fields in the editor
     public static NavMeshAgent NavMeshAgent => navMeshAgent;
     private static float patrolSpeed = 3f;
