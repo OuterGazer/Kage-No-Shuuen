@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
+using System.ComponentModel.Design.Serialization;
 
 public class SoldierRunnerBT : BehaviourTree.Tree
 {
@@ -21,12 +22,23 @@ public class SoldierRunnerBT : BehaviourTree.Tree
 
     private void Awake()
     {
-        navMeshAgent= GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        decisionMaker = GetComponent<DecisionMaker>();
     }
 
     protected override Node SetUpTree()
     {
-        Node root = new TaskPatrol(patrolParent);
+        // Order is important!!! first elements will always be prioritised. In this case TaskPatrol will be the standard behaviour if all else above returns a NodeState.FAILURE
+        Node root = new Selector(new List<Node>
+        {
+            new Sequence(new List<Node>
+            {
+                new TaskCheckForInterestingThings(decisionMaker),
+                new TaskGoToTarget(),
+            }),
+            new TaskPatrol(patrolParent),
+        });
+
         return root;
     }
 }

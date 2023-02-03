@@ -17,10 +17,16 @@ public class TaskCheckForInterestingThings : Node
     {
         object t = GetData("target");
 
-        if (t == null && !interestingTransform)
+        if (t == null)
         {
-            Parent.Parent.SetData("target", interestingTransform);
-            state = NodeState.SUCCESS;
+            if (interestingTransform)
+            {
+                Parent.Parent.SetData("target", interestingTransform);
+                state = NodeState.SUCCESS;
+                return state;
+            }
+
+            state = NodeState.FAILURE;
             return state;
         }
 

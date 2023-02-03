@@ -72,7 +72,8 @@ public class DecisionMaker : MonoBehaviour
             switch(currentTarget.tag)
             {
                 case "Player":
-
+                    OnPlayerSeen.Invoke(currentTarget);
+                    break;
                 case "Coin":
                     //aiGoToTargetState.SetTarget(currentTarget);
                     //SetCurrentState(aiGoToTargetState);
