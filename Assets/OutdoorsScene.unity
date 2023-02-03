@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2159.747, g: 2263.621, b: 3286.6133, a: 1}
+  m_IndirectSpecularColor: {r: 2159.7393, g: 2263.621, b: 3286.6133, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2136,7 +2136,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.004697016, y: 4.3910947e-10, z: -2.0625272e-12, w: 0.999989}
+  m_LocalRotation: {x: 0.0046970174, y: -1.1257711e-24, z: 5.506089e-27, w: 0.999989}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4810,8 +4810,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.062137432, y: 0.000000017171862, z: -0.0000000010690813,
-    w: 0.9980676}
+  m_LocalRotation: {x: 0.06213745, y: -0.000000017173132, z: 0.0000000010691605, w: 0.9980676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6202,6 +6201,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1977086151}
     m_Modifications:
+    - target: {fileID: 1104921444622909617, guid: 144e37dabcf409d4e8a7fd512988a3cc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795677103851904036, guid: 144e37dabcf409d4e8a7fd512988a3cc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2795677103851904036, guid: 144e37dabcf409d4e8a7fd512988a3cc,
         type: 3}
       propertyPath: patrolParent
@@ -6269,6 +6278,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144e37dabcf409d4e8a7fd512988a3cc, type: 3}
+--- !u!1 &3545977893119982695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2795677103851904039, guid: 144e37dabcf409d4e8a7fd512988a3cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 3545977893119982694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3545977893119982696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545977893119982695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293e6663bcc8a0f478c7a408b4163b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrolParent: {fileID: 1187892710}
 --- !u!4 &4128263669422437873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7367104688647257536, guid: f3a501e21767747428cd4a475d9844b8,
