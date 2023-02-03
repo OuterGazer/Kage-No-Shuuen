@@ -37,9 +37,6 @@ public class TaskPatrol : Node
                 currentPatrolPointIndex = 0;
         }
 
-        Debug.Log(transform.position);
-        Debug.Log(currentPatrolPointIndex);
-
         state = NodeState.RUNNING;
         return state;
     }

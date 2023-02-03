@@ -31,7 +31,7 @@ public class SoldierMover : MonoBehaviour
         Vector3 noiseSourceDirection = (noiseEmitter.transform.position - transform.position).normalized;
         float viewAngleFromNoiseSource = Mathf.Acos(Vector3.Dot(noiseSourceDirection, transform.forward)) * Mathf.Rad2Deg;
 
-        if(viewAngleFromNoiseSource > 20f)
+        if (viewAngleFromNoiseSource > 20f)
             transform.LookAt(noiseEmitter.transform.position);
     }
 }
