@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2159.747, g: 2263.6367, b: 3286.6133, a: 1}
+  m_IndirectSpecularColor: {r: 2159.747, g: 2263.6367, b: 3286.6172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3377,7 +3377,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.033335805, y: -0, z: -0, w: 0.99944425}
+  m_LocalRotation: {x: 0.033335805, y: 1e-45, z: -0, w: 0.99944425}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4810,7 +4810,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.06213745, y: 0.000000017173157, z: -0.0000000010691622, w: 0.9980676}
+  m_LocalRotation: {x: 0.06213745, y: -0.000000017175664, z: 0.0000000010693183, w: 0.9980676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6201,41 +6201,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1977086151}
     m_Modifications:
-    - target: {fileID: 1104921444622909617, guid: 144e37dabcf409d4e8a7fd512988a3cc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2690964275003622267, guid: 144e37dabcf409d4e8a7fd512988a3cc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795677103851904032, guid: 144e37dabcf409d4e8a7fd512988a3cc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795677103851904034, guid: 144e37dabcf409d4e8a7fd512988a3cc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795677103851904035, guid: 144e37dabcf409d4e8a7fd512988a3cc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795677103851904036, guid: 144e37dabcf409d4e8a7fd512988a3cc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795677103851904036, guid: 144e37dabcf409d4e8a7fd512988a3cc,
-        type: 3}
-      propertyPath: patrolParent
-      value: 
-      objectReference: {fileID: 1187892710}
     - target: {fileID: 2795677103851904038, guid: 144e37dabcf409d4e8a7fd512988a3cc,
         type: 3}
       propertyPath: m_RootOrder
@@ -6296,32 +6261,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Runner
       objectReference: {fileID: 0}
-    - target: {fileID: 5438122774130431303, guid: 144e37dabcf409d4e8a7fd512988a3cc,
+    - target: {fileID: 3545977893119982696, guid: 144e37dabcf409d4e8a7fd512988a3cc,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: patrolParent
+      value: 
+      objectReference: {fileID: 1187892710}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144e37dabcf409d4e8a7fd512988a3cc, type: 3}
---- !u!1 &3545977893119982695 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2795677103851904039, guid: 144e37dabcf409d4e8a7fd512988a3cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 3545977893119982694}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3545977893119982696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3545977893119982695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 293e6663bcc8a0f478c7a408b4163b79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolParent: {fileID: 1187892710}
 --- !u!4 &4128263669422437873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7367104688647257536, guid: f3a501e21767747428cd4a475d9844b8,
@@ -6341,11 +6287,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2120661337}
     m_Modifications:
-    - target: {fileID: 1979967065090401228, guid: f3a501e21767747428cd4a475d9844b8,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7367104688647257536, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}
       propertyPath: m_RootOrder

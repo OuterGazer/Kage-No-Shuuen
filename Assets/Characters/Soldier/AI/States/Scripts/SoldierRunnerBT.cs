@@ -7,15 +7,25 @@ using System.ComponentModel.Design.Serialization;
 
 public class SoldierRunnerBT : BehaviourTree.Tree
 {
-    // Shared Tree Properties
+    // TODO: look to serialize static fields in the editor
+
+    // Shared Tree Cached components
+    //private static Weapon weapon;
+    //public static Weapon Weapon => weapon;
     private static DecisionMaker decisionMaker;
     public static DecisionMaker DecisionMaker => decisionMaker;
-    private static NavMeshAgent navMeshAgent; // TODO: look to serialize static fields in the editor
+    private static NavMeshAgent navMeshAgent; 
     public static NavMeshAgent NavMeshAgent => navMeshAgent;
+    private static CharacterAnimator characterAnimator;
+    public static CharacterAnimator CharacterAnimator => characterAnimator;
+
+    // Shared Tree Properties
     private static float patrolSpeed = 2f;
     public static float PatrolSpeed => patrolSpeed;
     private static float runningSpeed = 5f;
     public static float RunningSpeed => runningSpeed;
+
+    
 
     [Header("TaskPatrol Specific Properties")]
     [SerializeField] Transform patrolParent;
@@ -24,6 +34,8 @@ public class SoldierRunnerBT : BehaviourTree.Tree
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         decisionMaker = GetComponent<DecisionMaker>();
+        //weapon = GetComponent<Weapon>();
+        characterAnimator = GetComponent<CharacterAnimator>();
     }
 
     protected override Node SetUpTree()
@@ -33,7 +45,12 @@ public class SoldierRunnerBT : BehaviourTree.Tree
         {
             new Sequence(new List<Node>
             {
-                new CheckForInterestingThings(decisionMaker),
+                new CheckTargetInRange(),
+                new TaskAttack(),
+            }),
+            new Sequence(new List<Node>
+            {
+                new CheckForInterestingThings(),
                 new TaskGoToTarget(),
             }),
             new TaskPatrol(patrolParent),

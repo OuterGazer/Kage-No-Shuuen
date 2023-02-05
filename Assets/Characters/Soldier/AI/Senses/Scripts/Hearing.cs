@@ -15,6 +15,7 @@ public class Hearing : MonoBehaviour, INoiseReceiver
 
     public List<HeardNoise> noiseEmittersBeingHeard = new List<HeardNoise>(); // Should not be public, but offer the noises through a loop in a getter method.
     [HideInInspector] public UnityEvent<NoiseEmitter> onHeardNoiseEmitter;
+    [HideInInspector] public UnityEvent onForgotNoiseEmitter;
     [SerializeField] float forgetFrequency = 5f;
     [SerializeField] float noiseLifeSpan = 1f;
 
@@ -54,6 +55,7 @@ public class Hearing : MonoBehaviour, INoiseReceiver
         {
             yield return new WaitForSeconds(1f / forgetFrequency);
             noiseEmittersBeingHeard.RemoveAll(x => (Time.time - x.timeOfEmission) > noiseLifeSpan);
+            onForgotNoiseEmitter.Invoke();
         }
     }
 }

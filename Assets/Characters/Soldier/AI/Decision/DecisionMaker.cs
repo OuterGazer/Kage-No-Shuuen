@@ -10,6 +10,7 @@ public class DecisionMaker : MonoBehaviour
     Sight sight;
     Hearing hearing;
 
+    Transform noiseEmitterTransform;
     Transform currentTarget;
 
     [SerializeField] float decisionReconsiderationFrequency = 1f;
@@ -19,11 +20,13 @@ public class DecisionMaker : MonoBehaviour
     AIPatrollingState aiPatrollingState;
 
     [HideInInspector] public UnityEvent<Transform> OnPlayerSeen;
+    [HideInInspector] public UnityEvent OnTargetLost;
 
     private void Awake()
     {
         hearing = GetComponent<Hearing>();
         hearing.onHeardNoiseEmitter.AddListener(OnHeardNoiseEmitter);
+        hearing.onForgotNoiseEmitter.AddListener(OnForgotNoiseEmitter);
 
         sight = GetComponent<Sight>();
         // TODO: añadir evento de actualización de target como en hearing
@@ -61,7 +64,13 @@ public class DecisionMaker : MonoBehaviour
 
     void OnHeardNoiseEmitter(NoiseEmitter noiseEmitter)
     {
+        noiseEmitterTransform = noiseEmitter.transform;
         MakeDecision();
+    }
+
+    void OnForgotNoiseEmitter()
+    {
+        noiseEmitterTransform = null;
     }
 
     void MakeDecision()
@@ -99,12 +108,23 @@ public class DecisionMaker : MonoBehaviour
         else
         {
             //SetCurrentState(aiPatrollingState);
+            OnTargetLost.Invoke();
         }
     }
 
     private Transform DecideNewTarget()
     {
-        return sight.interestingTargets.Length <= 0 ? null : sight.interestingTargets[0].transform;
+        Transform target = null; 
+        if(sight.interestingTargets.Length > 0)
+        {
+            target = sight.interestingTargets[0].transform;
+        }
+        else if (noiseEmitterTransform)
+        {
+            target = noiseEmitterTransform;
+        }
+
+        return target;
     }
 
     //private void SetCurrentState(AIBaseState newCurrentState)

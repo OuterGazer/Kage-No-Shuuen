@@ -7,10 +7,10 @@ public class CheckForInterestingThings : Node
 {
     private DecisionMaker decisionMaker;
     private Transform interestingTransform;
-    public CheckForInterestingThings(DecisionMaker decisionMaker)
+    public CheckForInterestingThings()
     {
-        this.decisionMaker = decisionMaker;
-        this.decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);
+        decisionMaker = SoldierRunnerBT.DecisionMaker;
+        decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);
     }
 
     public override NodeState Evaluate()
@@ -19,13 +19,6 @@ public class CheckForInterestingThings : Node
 
         if (t == null)
         {
-            if (interestingTransform)
-            {
-                Parent.Parent.SetData("target", interestingTransform);
-                state = NodeState.SUCCESS;
-                return state;
-            }
-
             state = NodeState.FAILURE;
             return state;
         }
@@ -37,5 +30,7 @@ public class CheckForInterestingThings : Node
     private void SetInterestingTarget(Transform transform)
     {
         interestingTransform = transform;
+
+        Parent.Parent.SetData("target", interestingTransform);
     }
 }

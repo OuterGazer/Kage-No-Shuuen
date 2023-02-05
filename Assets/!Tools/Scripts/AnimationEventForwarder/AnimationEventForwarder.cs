@@ -44,7 +44,7 @@ public class AnimationEventForwarder : MonoBehaviour
 
     public void ForwardExitCloseCombatState()
     {
-        SendMessageUpwards("ExitCloseCombatState");
+        SendMessageUpwards("ExitCloseCombatState", SendMessageOptions.DontRequireReceiver); // Don't requirereceiver for enemies
     }
 
     public void ForwardSpawnArrowInHand()

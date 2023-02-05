@@ -4,36 +4,41 @@ using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
 
-public class TaskGoToTarget : Node
+public class CheckTargetInRange : Node
 {
+    private Transform transform;
     private NavMeshAgent navMeshAgent;
     private DecisionMaker decisionMaker;
 
-    public TaskGoToTarget()
+    private float attackThreshold = 1.5f;
+
+    public CheckTargetInRange() 
     {
         navMeshAgent = SoldierRunnerBT.NavMeshAgent;
         decisionMaker = SoldierRunnerBT.DecisionMaker;
+
         decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
+        transform = navMeshAgent.transform;
     }
 
     public override NodeState Evaluate()
     {
-        navMeshAgent.speed = SoldierRunnerBT.RunningSpeed;
-
-        Transform target = (Transform)GetData("target");
-
-        if (target)
-        {
-            navMeshAgent.destination = target.position;
-            state = NodeState.RUNNING;
-            return state;
-        }
-        else
+        Transform target = (Transform) GetData("target"); 
+        
+        if (target == null)
         {
             state = NodeState.FAILURE;
             return state;
         }
-        
+
+        if (((target.position - transform.position).sqrMagnitude < (attackThreshold * attackThreshold)))
+        {
+            state = NodeState.SUCCESS;
+            return state;
+        }
+
+        state = NodeState.FAILURE;
+        return state;
     }
 
     private void EraseInterestingTarget()
