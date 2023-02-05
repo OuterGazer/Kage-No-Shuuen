@@ -21,12 +21,12 @@ public class TaskPatrol : Node
 
         this.patrolPoints = patrolParent.GetComponentsInChildren<PatrolPoint>();
         currentPatrolPointIndex = startPatrolPointIndex;
-
-        this.navMeshAgent.speed = SoldierRunnerBT.PatrolSpeed;
     }
 
     public override NodeState Evaluate()
     {
+        navMeshAgent.speed = SoldierRunnerBT.PatrolSpeed;
+
         navMeshAgent.destination = patrolPoints[currentPatrolPointIndex].transform.position;
 
         if ((navMeshAgent.destination - transform.position).sqrMagnitude < (reachThreshold * reachThreshold))

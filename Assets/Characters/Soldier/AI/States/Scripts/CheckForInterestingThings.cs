@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
 
-public class TaskCheckForInterestingThings : Node
+public class CheckForInterestingThings : Node
 {
     private DecisionMaker decisionMaker;
     private Transform interestingTransform;
-    public TaskCheckForInterestingThings(DecisionMaker decisionMaker)
+    public CheckForInterestingThings(DecisionMaker decisionMaker)
     {
         this.decisionMaker = decisionMaker;
         this.decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);

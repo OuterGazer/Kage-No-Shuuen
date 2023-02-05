@@ -12,9 +12,9 @@ public class SoldierRunnerBT : BehaviourTree.Tree
     public static DecisionMaker DecisionMaker => decisionMaker;
     private static NavMeshAgent navMeshAgent; // TODO: look to serialize static fields in the editor
     public static NavMeshAgent NavMeshAgent => navMeshAgent;
-    private static float patrolSpeed = 3f;
+    private static float patrolSpeed = 2f;
     public static float PatrolSpeed => patrolSpeed;
-    private static float runningSpeed = 6f;
+    private static float runningSpeed = 5f;
     public static float RunningSpeed => runningSpeed;
 
     [Header("TaskPatrol Specific Properties")]
@@ -33,7 +33,7 @@ public class SoldierRunnerBT : BehaviourTree.Tree
         {
             new Sequence(new List<Node>
             {
-                new TaskCheckForInterestingThings(decisionMaker),
+                new CheckForInterestingThings(decisionMaker),
                 new TaskGoToTarget(),
             }),
             new TaskPatrol(patrolParent),
