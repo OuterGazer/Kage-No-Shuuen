@@ -27,14 +27,7 @@ public class CheckTargetInAttackRange : Node
         
         if (target == null)
         {
-            if (SoldierRunnerBT.CharacterAnimator.animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f) // Avoids soldier moving while in attack animation to return to patrol state
-            {
-                state = NodeState.FAILURE;
-                return state;
-            }
-
-            state = NodeState.RUNNING;
-            return state;
+            return CheckIfAttackAnimationHasFinished();
         }
 
         if (((target.position - transform.position).sqrMagnitude < (attackThreshold * attackThreshold)))
@@ -48,9 +41,22 @@ public class CheckTargetInAttackRange : Node
         {
             SoldierRunnerBT.IsTargetInAttackRange = false;
         }
-        
-        state = NodeState.FAILURE;
-        return state;
+
+        return CheckIfAttackAnimationHasFinished();
+    }
+
+    private NodeState CheckIfAttackAnimationHasFinished()
+    {
+        if (SoldierRunnerBT.CharacterAnimator.Animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f) // Avoids soldier moving while in attack animation to return to patrol state
+        {
+            state = NodeState.FAILURE;
+            return state;
+        }
+        else
+        {
+            state = NodeState.RUNNING;
+            return state;
+        }
     }
 
     private void EraseInterestingTarget()

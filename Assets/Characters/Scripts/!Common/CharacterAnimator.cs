@@ -13,7 +13,8 @@ public class CharacterAnimator : MonoBehaviour
 {
     [HideInInspector] public UnityEvent hookHasArrivedAtTarget;
 
-    public Animator animator;
+    private Animator animator;
+    public Animator Animator => animator;
 
     private CharacterStateBase stateBase;
     private CharacterOnWallState onWallState;
