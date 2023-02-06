@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace BehaviourTree
 {
+    [System.Serializable]
     public enum NodeState
     {
         RUNNING,
@@ -10,12 +12,13 @@ namespace BehaviourTree
         FAILURE
     }
 
+    [System.Serializable]
     public class Node
     {
-        protected NodeState state;
+        [SerializeField] protected NodeState state;
 
         public Node Parent; // useful to check for shared data among child nodes
-        protected List<Node> children = new(); // useful for managing composite nodes more easily
+        [SerializeReference] protected List<Node> children = new(); // useful for managing composite nodes more easily
         private Dictionary<string, object> dataContext= new(); // The actual collection that will hold shared data among children nodes
         public void SetData(string key, object value)
         {

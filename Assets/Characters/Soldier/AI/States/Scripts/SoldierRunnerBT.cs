@@ -24,8 +24,8 @@ public class SoldierRunnerBT : BehaviourTree.Tree
     public static float PatrolSpeed => patrolSpeed;
     private static float runningSpeed = 5f;
     public static float RunningSpeed => runningSpeed;
-
-    
+    private static bool isTargetInAttackRange = false;
+    public static bool IsTargetInAttackRange { get { return isTargetInAttackRange; } set { isTargetInAttackRange = value; } }
 
     [Header("TaskPatrol Specific Properties")]
     [SerializeField] Transform patrolParent;
@@ -45,7 +45,7 @@ public class SoldierRunnerBT : BehaviourTree.Tree
         {
             new Sequence(new List<Node>
             {
-                new CheckTargetInRange(),
+                new CheckTargetInAttackRange(),
                 new TaskAttack(),
             }),
             new Sequence(new List<Node>

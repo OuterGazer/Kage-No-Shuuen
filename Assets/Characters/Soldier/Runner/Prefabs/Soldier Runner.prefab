@@ -201,6 +201,9 @@ MonoBehaviour:
   onHeardNoiseEmitter:
     m_PersistentCalls:
       m_Calls: []
+  onForgotNoiseEmitter:
+    m_PersistentCalls:
+      m_Calls: []
   forgetFrequency: 5
   noiseLifeSpan: 1
 --- !u!114 &2795677103851904034

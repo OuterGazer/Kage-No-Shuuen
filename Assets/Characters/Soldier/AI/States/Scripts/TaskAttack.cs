@@ -9,7 +9,7 @@ public class TaskAttack : Node
     private NavMeshAgent navMeshAgent;
 
     private float attackRatePerSecond = 1f;
-    private float attackCounter = 0f;
+    private float attackCounter = 0.5f;
 
     public TaskAttack() 
     {

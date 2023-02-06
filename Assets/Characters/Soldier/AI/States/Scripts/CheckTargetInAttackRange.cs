@@ -4,7 +4,7 @@ using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
 
-public class CheckTargetInRange : Node
+public class CheckTargetInAttackRange : Node
 {
     private Transform transform;
     private NavMeshAgent navMeshAgent;
@@ -12,7 +12,7 @@ public class CheckTargetInRange : Node
 
     private float attackThreshold = 1.5f;
 
-    public CheckTargetInRange() 
+    public CheckTargetInAttackRange() 
     {
         navMeshAgent = SoldierRunnerBT.NavMeshAgent;
         decisionMaker = SoldierRunnerBT.DecisionMaker;
@@ -23,26 +23,39 @@ public class CheckTargetInRange : Node
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform) GetData("target"); 
+        Transform target = (Transform) GetData("target");
         
         if (target == null)
         {
-            state = NodeState.FAILURE;
+            if (SoldierRunnerBT.CharacterAnimator.animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f) // Avoids soldier moving while in attack animation to return to patrol state
+            {
+                state = NodeState.FAILURE;
+                return state;
+            }
+
+            state = NodeState.RUNNING;
             return state;
         }
 
         if (((target.position - transform.position).sqrMagnitude < (attackThreshold * attackThreshold)))
         {
+            SoldierRunnerBT.IsTargetInAttackRange = true;
+            transform.LookAt(target.position);
             state = NodeState.SUCCESS;
             return state;
         }
-
+        else
+        {
+            SoldierRunnerBT.IsTargetInAttackRange = false;
+        }
+        
         state = NodeState.FAILURE;
         return state;
     }
 
     private void EraseInterestingTarget()
     {
-        ClearData("target");
+        if (!SoldierRunnerBT.IsTargetInAttackRange)
+        { ClearData("target"); }
     }
 }

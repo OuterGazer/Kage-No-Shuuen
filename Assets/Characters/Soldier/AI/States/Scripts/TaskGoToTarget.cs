@@ -38,6 +38,7 @@ public class TaskGoToTarget : Node
 
     private void EraseInterestingTarget()
     {
-        ClearData("target");
+        if (!SoldierRunnerBT.IsTargetInAttackRange)
+        { ClearData("target"); }
     }
 }
