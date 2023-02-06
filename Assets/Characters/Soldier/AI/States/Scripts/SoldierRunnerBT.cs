@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
-using System.ComponentModel.Design.Serialization;
 
 public class SoldierRunnerBT : BehaviourTree.Tree
 {
-    // TODO: look to serialize static fields in the editor
+    [SerializeField] BehaviourTreeSharedData sharedData;
 
     // Shared Tree Cached components
-    //private static Weapon weapon;
-    //public static Weapon Weapon => weapon;
     private static DecisionMaker decisionMaker;
     public static DecisionMaker DecisionMaker => decisionMaker;
     private static NavMeshAgent navMeshAgent; 
@@ -20,21 +17,22 @@ public class SoldierRunnerBT : BehaviourTree.Tree
     public static CharacterAnimator CharacterAnimator => characterAnimator;
 
     // Shared Tree Properties
-    private static float patrolSpeed = 2f;
+    private static float patrolSpeed;
     public static float PatrolSpeed => patrolSpeed;
-    private static float runningSpeed = 5f;
+    private static float runningSpeed;
     public static float RunningSpeed => runningSpeed;
-    private static bool isTargetInAttackRange = false;
+    private static bool isTargetInAttackRange;
     public static bool IsTargetInAttackRange { get { return isTargetInAttackRange; } set { isTargetInAttackRange = value; } }
 
-    [Header("TaskPatrol Specific Properties")]
+    [Header("TaskPatrol Properties")]
     [SerializeField] Transform patrolParent;
 
     private void Awake()
     {
+        patrolSpeed = sharedData.patrolSpeed;
+        runningSpeed= sharedData.runningSpeed;
         navMeshAgent = GetComponent<NavMeshAgent>();
         decisionMaker = GetComponent<DecisionMaker>();
-        //weapon = GetComponent<Weapon>();
         characterAnimator = GetComponent<CharacterAnimator>();
     }
 

@@ -47,7 +47,7 @@ public class CheckTargetInAttackRange : Node
 
     private NodeState CheckIfAttackAnimationHasFinished()
     {
-        if (SoldierRunnerBT.CharacterAnimator.Animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f) // Avoids soldier moving while in attack animation to return to patrol state
+        if (SoldierRunnerBT.CharacterAnimator.Animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f) // Avoids soldier jummping to TasGoToTarget in attack animation
         {
             state = NodeState.FAILURE;
             return state;
