@@ -371,7 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   belongingTree: {fileID: 3545977893119982696}
   state: 0
-  Parent: {fileID: 0}
+  Parent: {fileID: 7738160146926745281}
   children: []
   timeBetweenAttacks: 1
   attackCounter: 0.5
