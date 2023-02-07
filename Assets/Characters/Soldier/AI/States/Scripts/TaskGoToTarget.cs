@@ -9,12 +9,24 @@ public class TaskGoToTarget : Node
     private NavMeshAgent navMeshAgent;
     private DecisionMaker decisionMaker;
 
-    public TaskGoToTarget()
+    private void Start()
     {
         navMeshAgent = SoldierRunnerBT.NavMeshAgent;
         decisionMaker = SoldierRunnerBT.DecisionMaker;
         decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
     }
+
+    private void OnDisable()
+    {
+        decisionMaker.OnTargetLost.RemoveListener(EraseInterestingTarget);
+    }
+
+    //public TaskGoToTarget()
+    //{
+    //    navMeshAgent = SoldierRunnerBT.NavMeshAgent;
+    //    decisionMaker = SoldierRunnerBT.DecisionMaker;
+    //    decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
+    //}
 
     public override NodeState Evaluate()
     {
@@ -38,7 +50,8 @@ public class TaskGoToTarget : Node
 
     private void EraseInterestingTarget()
     {
-        if (!SoldierRunnerBT.IsTargetInAttackRange)
+        //if (!SoldierRunnerBT.IsTargetInAttackRange)
+        if(state == NodeState.RUNNING)
         { ClearData("target"); }
     }
 }

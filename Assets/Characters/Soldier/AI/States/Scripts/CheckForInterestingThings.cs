@@ -7,11 +7,23 @@ public class CheckForInterestingThings : Node
 {
     private DecisionMaker decisionMaker;
     private Transform interestingTransform;
-    public CheckForInterestingThings()
+
+    private void Start()
     {
         decisionMaker = SoldierRunnerBT.DecisionMaker;
         decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);
     }
+
+    private void OnDisable()
+    {
+        decisionMaker.OnPlayerSeen.RemoveListener(SetInterestingTarget);
+    }
+
+    //public CheckForInterestingThings()
+    //{
+    //    decisionMaker = SoldierRunnerBT.DecisionMaker;
+    //    decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);
+    //}
 
     public override NodeState Evaluate()
     {

@@ -6,7 +6,8 @@ namespace BehaviourTree
 {
     public abstract class Tree : MonoBehaviour
     {
-        [SerializeField] Node root = null;
+        private Node root = null;
+
         protected void Start()
         {
             root = SetUpTree();

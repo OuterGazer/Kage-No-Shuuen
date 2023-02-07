@@ -11,10 +11,15 @@ public class TaskAttack : Node
     private float attackRatePerSecond = 1f;
     private float attackCounter = 0.5f;
 
-    public TaskAttack() 
+    private void Start()
     {
         navMeshAgent = SoldierRunnerBT.NavMeshAgent;
     }
+
+    //public TaskAttack() 
+    //{
+    //    navMeshAgent = SoldierRunnerBT.NavMeshAgent;
+    //}
 
     public override NodeState Evaluate()
     {

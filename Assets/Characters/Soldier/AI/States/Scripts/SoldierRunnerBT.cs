@@ -6,6 +6,9 @@ using UnityEngine.AI;
 
 public class SoldierRunnerBT : BehaviourTree.Tree
 {
+    [Header("Tree Sub Roots")]
+    [SerializeField] Node localMainRoot;
+
     // Shared Tree Cached components
     private static DecisionMaker decisionMaker;
     public static DecisionMaker DecisionMaker => decisionMaker;
@@ -22,9 +25,6 @@ public class SoldierRunnerBT : BehaviourTree.Tree
     private static bool isTargetInAttackRange;
     public static bool IsTargetInAttackRange { get { return isTargetInAttackRange; } set { isTargetInAttackRange = value; } }
 
-    [Header("TaskPatrol Properties")]
-    [SerializeField] Transform patrolParent;
-
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -34,22 +34,6 @@ public class SoldierRunnerBT : BehaviourTree.Tree
 
     protected override Node SetUpTree()
     {
-        // Order is important!!! first elements will always be prioritised. In this case TaskPatrol will be the standard behaviour if all else above returns a NodeState.FAILURE
-        Node root = new Selector(new List<Node>
-                    {
-                        new Sequence(new List<Node>
-                        {
-                            new CheckTargetInAttackRange(),
-                            new TaskAttack(),
-                        }),
-                        new Sequence(new List<Node>
-                        {
-                            new CheckForInterestingThings(),
-                            new TaskGoToTarget(),
-                        }),
-                        new TaskPatrol(patrolParent),
-                    });
-
-        return root;
+        return localMainRoot;
     }
 }

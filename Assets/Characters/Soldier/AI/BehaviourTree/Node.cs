@@ -12,8 +12,7 @@ namespace BehaviourTree
         FAILURE
     }
 
-    [System.Serializable]
-    public class Node
+    public abstract class Node : MonoBehaviour
     {
         [SerializeField] protected NodeState state;
 
@@ -58,25 +57,25 @@ namespace BehaviourTree
             return false;
         }
 
-        public Node() 
-        {
-            Parent = null;
-        }
+        //public Node() 
+        //{
+        //    Parent = null;
+        //}
 
-        public Node(List<Node> children)
-        {
-            foreach(Node item in children)
-            {
-                Attach(item);
-            }
-        }
+        //public Node(List<Node> children)
+        //{
+        //    foreach(Node item in children)
+        //    {
+        //        Attach(item);
+        //    }
+        //}
 
-        private void Attach(Node node)
-        {
-            node.Parent = this;
-            children.Add(node);
-        }
+        //private void Attach(Node node)
+        //{
+        //    node.Parent = this;
+        //    children.Add(node);
+        //}
 
-        public virtual NodeState Evaluate() => NodeState.FAILURE;
+        public abstract NodeState Evaluate();
     }
 }

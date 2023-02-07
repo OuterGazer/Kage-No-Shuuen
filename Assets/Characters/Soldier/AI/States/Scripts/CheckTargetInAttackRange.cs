@@ -6,20 +6,32 @@ using UnityEngine.AI;
 
 public class CheckTargetInAttackRange : Node
 {
-    private Transform transform;
     private NavMeshAgent navMeshAgent;
     private DecisionMaker decisionMaker;
 
     private float attackThreshold = 1.5f;
 
-    public CheckTargetInAttackRange() 
+
+    private void Start()
     {
         navMeshAgent = SoldierRunnerBT.NavMeshAgent;
         decisionMaker = SoldierRunnerBT.DecisionMaker;
 
         decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
-        transform = navMeshAgent.transform;
     }
+
+    private void OnDisable()
+    {
+        decisionMaker.OnTargetLost.RemoveListener(EraseInterestingTarget);
+    }
+
+    //public CheckTargetInAttackRange() 
+    //{
+    //    navMeshAgent = SoldierRunnerBT.NavMeshAgent;
+    //    decisionMaker = SoldierRunnerBT.DecisionMaker;
+
+    //    decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
+    //}
 
     public override NodeState Evaluate()
     {

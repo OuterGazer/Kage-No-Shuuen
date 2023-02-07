@@ -7,8 +7,8 @@ namespace BehaviourTree
                                  // FAILURE at any time from any child means automatic failure if this node
                                  // Previous SUCCESS before htting nodes in RUNNING will still be evaluated
     {
-        public Parallel() : base() { }
-        public Parallel(List<Node> children) : base(children) { }
+        //public Parallel() : base() { }
+        //public Parallel(List<Node> children) : base(children) { }
 
         public override NodeState Evaluate()
         {
