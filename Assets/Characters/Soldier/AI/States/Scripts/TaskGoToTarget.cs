@@ -18,7 +18,7 @@ public class TaskGoToTarget : Node
         decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         decisionMaker.OnTargetLost.RemoveListener(EraseInterestingTarget);
     }
@@ -45,7 +45,6 @@ public class TaskGoToTarget : Node
 
     private void EraseInterestingTarget()
     {
-        //if (!SoldierRunnerBT.IsTargetInAttackRange)
         if(state == NodeState.RUNNING)
         { ClearData("target"); }
     }

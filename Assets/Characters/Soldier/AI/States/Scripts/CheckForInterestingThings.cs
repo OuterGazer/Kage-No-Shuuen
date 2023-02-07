@@ -14,7 +14,7 @@ public class CheckForInterestingThings : Node
         decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         decisionMaker.OnPlayerSeen.RemoveListener(SetInterestingTarget);
     }
@@ -36,7 +36,6 @@ public class CheckForInterestingThings : Node
     private void SetInterestingTarget(Transform transform)
     {
         interestingTransform = transform;
-
         Parent.Parent.SetData("target", interestingTransform);
     }
 }

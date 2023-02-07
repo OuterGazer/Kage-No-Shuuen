@@ -10,6 +10,7 @@ public class SoldierRunnerBT : BehaviourTree.Tree
     [SerializeField] Node localMainRoot;
 
     // Shared Tree Cached components
+    [Header("Shared Tree Cached Components")]
     [SerializeField] DecisionMaker decisionMaker;
     public DecisionMaker DecisionMaker => decisionMaker;
     [SerializeField] NavMeshAgent navMeshAgent; 
