@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class TaskGoToTarget : Node
 {
     [SerializeField] float runningSpeed = 5f;
+    [SerializeField] float interactionDistanceThreshold = 1.5f;
 
     private NavMeshAgent navMeshAgent;
     private DecisionMaker decisionMaker;
@@ -25,22 +26,31 @@ public class TaskGoToTarget : Node
 
     public override NodeState Evaluate()
     {
-        navMeshAgent.speed = runningSpeed;
-
         Transform target = (Transform)GetData("target");
 
         if (target)
         {
-            navMeshAgent.destination = target.position;
-            state = NodeState.RUNNING;
-            return state;
+            if (((target.position - transform.position).sqrMagnitude > (interactionDistanceThreshold * interactionDistanceThreshold)))
+            {
+                if (GetData("interactionAnimation") == null)
+                {
+                    navMeshAgent.destination = target.position;
+                    navMeshAgent.speed = runningSpeed;
+                }
+
+                state = NodeState.RUNNING;
+                return state;
+            }
+            else
+            {
+                transform.LookAt(target.position);
+                state = NodeState.SUCCESS;
+                return state;
+            }                
         }
-        else
-        {
-            state = NodeState.FAILURE;
-            return state;
-        }
-        
+
+        state = NodeState.RUNNING;
+        return state;
     }
 
     private void EraseInterestingTarget()

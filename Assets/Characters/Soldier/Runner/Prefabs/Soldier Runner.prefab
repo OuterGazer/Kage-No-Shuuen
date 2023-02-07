@@ -103,12 +103,11 @@ GameObject:
   - component: {fileID: 5438122774130431303}
   - component: {fileID: 3545977893119982696}
   - component: {fileID: 1999922227138396701}
-  - component: {fileID: 476859984459817096}
-  - component: {fileID: 5351779940112840316}
-  - component: {fileID: 7312010900681357011}
   - component: {fileID: 1096039331825319142}
   - component: {fileID: 7255289624017873206}
   - component: {fileID: 2813919417634894560}
+  - component: {fileID: 7738160146926745281}
+  - component: {fileID: 7312010900681357011}
   - component: {fileID: 7928975561112161066}
   m_Layer: 9
   m_Name: Soldier Runner
@@ -286,62 +285,8 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 0}
   children:
-  - {fileID: 476859984459817096}
   - {fileID: 1096039331825319142}
   - {fileID: 7928975561112161066}
---- !u!114 &476859984459817096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2795677103851904039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cfd0f2d2dba79d40bf7d63d3b17c682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  belongingTree: {fileID: 3545977893119982696}
-  state: 0
-  Parent: {fileID: 1999922227138396701}
-  children:
-  - {fileID: 5351779940112840316}
-  - {fileID: 7312010900681357011}
---- !u!114 &5351779940112840316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2795677103851904039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e165f40f71147514b9b9538e8f6c79cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  belongingTree: {fileID: 3545977893119982696}
-  state: 0
-  Parent: {fileID: 476859984459817096}
-  children: []
-  attackThreshold: 1.5
---- !u!114 &7312010900681357011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2795677103851904039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7af3603d3ca11bd489f8f3651742e9ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  belongingTree: {fileID: 3545977893119982696}
-  state: 0
-  Parent: {fileID: 476859984459817096}
-  children: []
-  timeBetweenAttacks: 1
-  attackCounter: 0.5
 --- !u!114 &1096039331825319142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +305,7 @@ MonoBehaviour:
   children:
   - {fileID: 7255289624017873206}
   - {fileID: 2813919417634894560}
+  - {fileID: 7738160146926745281}
 --- !u!114 &7255289624017873206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +339,42 @@ MonoBehaviour:
   Parent: {fileID: 1096039331825319142}
   children: []
   runningSpeed: 5
+  interactionDistanceThreshold: 1.5
+--- !u!114 &7738160146926745281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 908608a8a5f9d6e43abd76748379a62b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 1096039331825319142}
+  children:
+  - {fileID: 7312010900681357011}
+--- !u!114 &7312010900681357011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af3603d3ca11bd489f8f3651742e9ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 0}
+  children: []
+  timeBetweenAttacks: 1
+  attackCounter: 0.5
 --- !u!114 &7928975561112161066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,7 +392,9 @@ MonoBehaviour:
   Parent: {fileID: 1999922227138396701}
   children: []
   patrolParent: {fileID: 0}
+  startPatrolPointIndex: 0
   patrolSpeed: 2
+  reachThreshold: 0.5
 --- !u!1 &2795677104033681616
 GameObject:
   m_ObjectHideFlags: 0

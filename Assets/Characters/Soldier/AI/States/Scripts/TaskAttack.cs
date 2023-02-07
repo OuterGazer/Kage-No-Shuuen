@@ -36,6 +36,9 @@ public class TaskAttack : Node
         {
             characterAnimator.PlaySlashAnimation();
             attackCounter = 0f;
+
+            if (GetData("interactionAnimation") == null)
+            { Parent.Parent.SetData("interactionAnimation", true); }
         }
 
         state = NodeState.RUNNING;
