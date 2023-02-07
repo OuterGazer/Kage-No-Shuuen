@@ -6,13 +6,15 @@ using UnityEngine.AI;
 
 public class TaskGoToTarget : Node
 {
+    [SerializeField] float runningSpeed = 5f;
+
     private NavMeshAgent navMeshAgent;
     private DecisionMaker decisionMaker;
 
     private void Start()
     {
-        navMeshAgent = SoldierRunnerBT.NavMeshAgent;
-        decisionMaker = SoldierRunnerBT.DecisionMaker;
+        navMeshAgent = ((SoldierRunnerBT)belongingTree).NavMeshAgent;
+        decisionMaker = ((SoldierRunnerBT)belongingTree).DecisionMaker;
         decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
     }
 
@@ -21,16 +23,9 @@ public class TaskGoToTarget : Node
         decisionMaker.OnTargetLost.RemoveListener(EraseInterestingTarget);
     }
 
-    //public TaskGoToTarget()
-    //{
-    //    navMeshAgent = SoldierRunnerBT.NavMeshAgent;
-    //    decisionMaker = SoldierRunnerBT.DecisionMaker;
-    //    decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
-    //}
-
     public override NodeState Evaluate()
     {
-        navMeshAgent.speed = SoldierRunnerBT.RunningSpeed;
+        navMeshAgent.speed = runningSpeed;
 
         Transform target = (Transform)GetData("target");
 

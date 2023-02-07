@@ -14,6 +14,9 @@ namespace BehaviourTree
 
     public abstract class Node : MonoBehaviour
     {
+        [SerializeField] protected Tree belongingTree;
+
+        [Header("Node Specific Properties")]
         [SerializeField] protected NodeState state;
 
         public Node Parent; // useful to check for shared data among child nodes
@@ -56,25 +59,6 @@ namespace BehaviourTree
             }
             return false;
         }
-
-        //public Node() 
-        //{
-        //    Parent = null;
-        //}
-
-        //public Node(List<Node> children)
-        //{
-        //    foreach(Node item in children)
-        //    {
-        //        Attach(item);
-        //    }
-        //}
-
-        //private void Attach(Node node)
-        //{
-        //    node.Parent = this;
-        //    children.Add(node);
-        //}
 
         public abstract NodeState Evaluate();
     }

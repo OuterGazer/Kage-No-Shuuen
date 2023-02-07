@@ -10,7 +10,7 @@ public class CheckForInterestingThings : Node
 
     private void Start()
     {
-        decisionMaker = SoldierRunnerBT.DecisionMaker;
+        decisionMaker = ((SoldierRunnerBT)belongingTree).DecisionMaker;
         decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);
     }
 
@@ -18,12 +18,6 @@ public class CheckForInterestingThings : Node
     {
         decisionMaker.OnPlayerSeen.RemoveListener(SetInterestingTarget);
     }
-
-    //public CheckForInterestingThings()
-    //{
-    //    decisionMaker = SoldierRunnerBT.DecisionMaker;
-    //    decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);
-    //}
 
     public override NodeState Evaluate()
     {

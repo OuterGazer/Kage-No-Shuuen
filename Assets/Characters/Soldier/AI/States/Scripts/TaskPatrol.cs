@@ -7,6 +7,7 @@ using BehaviourTree;
 public class TaskPatrol : Node
 {
     [SerializeField] Transform patrolParent;
+    [SerializeField] float patrolSpeed = 2f;
 
     private NavMeshAgent navMeshAgent;
 
@@ -17,22 +18,15 @@ public class TaskPatrol : Node
 
     private void Start()
     {
-        this.navMeshAgent = SoldierRunnerBT.NavMeshAgent;
+        this.navMeshAgent = ((SoldierRunnerBT) belongingTree).NavMeshAgent;
 
         this.patrolPoints = patrolParent.GetComponentsInChildren<PatrolPoint>();
         currentPatrolPointIndex = startPatrolPointIndex;
     }
-    //public TaskPatrol(Transform patrolParent) 
-    //{
-    //    this.navMeshAgent = SoldierRunnerBT.NavMeshAgent;
-
-    //    this.patrolPoints = patrolParent.GetComponentsInChildren<PatrolPoint>();
-    //    currentPatrolPointIndex = startPatrolPointIndex;
-    //}
 
     public override NodeState Evaluate()
     {
-        navMeshAgent.speed = SoldierRunnerBT.PatrolSpeed;
+        navMeshAgent.speed = patrolSpeed;
 
         navMeshAgent.destination = patrolPoints[currentPatrolPointIndex].transform.position;
 

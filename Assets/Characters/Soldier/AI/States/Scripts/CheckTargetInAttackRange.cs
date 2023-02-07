@@ -6,16 +6,18 @@ using UnityEngine.AI;
 
 public class CheckTargetInAttackRange : Node
 {
-    private NavMeshAgent navMeshAgent;
-    private DecisionMaker decisionMaker;
+    [SerializeField] float attackThreshold = 1.5f;
 
-    private float attackThreshold = 1.5f;
+    private DecisionMaker decisionMaker;
+    private CharacterAnimator characterAnimator;
+
+    private bool isTargetInAttackRange = false;
 
 
     private void Start()
     {
-        navMeshAgent = SoldierRunnerBT.NavMeshAgent;
-        decisionMaker = SoldierRunnerBT.DecisionMaker;
+        decisionMaker = ((SoldierRunnerBT)belongingTree).DecisionMaker;
+        characterAnimator = ((SoldierRunnerBT)belongingTree).CharacterAnimator;
 
         decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
     }
@@ -24,14 +26,6 @@ public class CheckTargetInAttackRange : Node
     {
         decisionMaker.OnTargetLost.RemoveListener(EraseInterestingTarget);
     }
-
-    //public CheckTargetInAttackRange() 
-    //{
-    //    navMeshAgent = SoldierRunnerBT.NavMeshAgent;
-    //    decisionMaker = SoldierRunnerBT.DecisionMaker;
-
-    //    decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
-    //}
 
     public override NodeState Evaluate()
     {
@@ -44,14 +38,14 @@ public class CheckTargetInAttackRange : Node
 
         if (((target.position - transform.position).sqrMagnitude < (attackThreshold * attackThreshold)))
         {
-            SoldierRunnerBT.IsTargetInAttackRange = true;
+            isTargetInAttackRange = true;
             transform.LookAt(target.position);
             state = NodeState.SUCCESS;
             return state;
         }
         else
         {
-            SoldierRunnerBT.IsTargetInAttackRange = false;
+            isTargetInAttackRange = false;
         }
 
         return CheckIfAttackAnimationHasFinished();
@@ -59,7 +53,7 @@ public class CheckTargetInAttackRange : Node
 
     private NodeState CheckIfAttackAnimationHasFinished()
     {
-        if (SoldierRunnerBT.CharacterAnimator.Animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f) // Avoids soldier jummping to TasGoToTarget in attack animation
+        if (characterAnimator.Animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f) // Avoids soldier jummping to TasGoToTarget in attack animation
         {
             state = NodeState.FAILURE;
             return state;
@@ -73,7 +67,7 @@ public class CheckTargetInAttackRange : Node
 
     private void EraseInterestingTarget()
     {
-        if (!SoldierRunnerBT.IsTargetInAttackRange)
+        if (!isTargetInAttackRange)
         { ClearData("target"); }
     }
 }

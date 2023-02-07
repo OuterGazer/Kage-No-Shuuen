@@ -6,20 +6,18 @@ using UnityEngine.AI;
 
 public class TaskAttack : Node
 {
-    private NavMeshAgent navMeshAgent;
+    [SerializeField] float timeBetweenAttacks = 1f;
+    [SerializeField] float attackCounter = 0.5f; // Serialized for testing purposes
 
-    private float attackRatePerSecond = 1f;
-    private float attackCounter = 0.5f;
+    private NavMeshAgent navMeshAgent;
+    private CharacterAnimator characterAnimator;
+    
 
     private void Start()
     {
-        navMeshAgent = SoldierRunnerBT.NavMeshAgent;
+        navMeshAgent = ((SoldierRunnerBT)belongingTree).NavMeshAgent;
+        characterAnimator = ((SoldierRunnerBT)belongingTree).CharacterAnimator;
     }
-
-    //public TaskAttack() 
-    //{
-    //    navMeshAgent = SoldierRunnerBT.NavMeshAgent;
-    //}
 
     public override NodeState Evaluate()
     {
@@ -34,9 +32,9 @@ public class TaskAttack : Node
         }
 
         attackCounter += Time.deltaTime;
-        if(attackCounter > attackRatePerSecond)
+        if(attackCounter > timeBetweenAttacks)
         {
-            SoldierRunnerBT.CharacterAnimator.PlaySlashAnimation();
+            characterAnimator.PlaySlashAnimation();
             attackCounter = 0f;
         }
 
