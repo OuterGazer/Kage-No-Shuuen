@@ -4,7 +4,8 @@ using System.Collections.Generic;
 namespace BehaviourTree
 {
     public class Parallel : Node // This node will run several children in parallel and sequence upon its own running/success states.
-                                 // Failure at any time from any child means automatic failure if this node
+                                 // FAILURE at any time from any child means automatic failure if this node
+                                 // Previous SUCCESS before htting nodes in RUNNING will still be evaluated
     {
         public Parallel() : base() { }
         public Parallel(List<Node> children) : base(children) { }

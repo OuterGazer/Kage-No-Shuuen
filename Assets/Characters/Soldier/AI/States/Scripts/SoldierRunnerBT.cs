@@ -6,8 +6,6 @@ using UnityEngine.AI;
 
 public class SoldierRunnerBT : BehaviourTree.Tree
 {
-    [SerializeField] BehaviourTreeSharedData sharedData;
-
     // Shared Tree Cached components
     private static DecisionMaker decisionMaker;
     public static DecisionMaker DecisionMaker => decisionMaker;
@@ -17,9 +15,9 @@ public class SoldierRunnerBT : BehaviourTree.Tree
     public static CharacterAnimator CharacterAnimator => characterAnimator;
 
     // Shared Tree Properties
-    private static float patrolSpeed;
+    private static float patrolSpeed = 2f;
     public static float PatrolSpeed => patrolSpeed;
-    private static float runningSpeed;
+    private static float runningSpeed = 5f;
     public static float RunningSpeed => runningSpeed;
     private static bool isTargetInAttackRange;
     public static bool IsTargetInAttackRange { get { return isTargetInAttackRange; } set { isTargetInAttackRange = value; } }
@@ -29,8 +27,6 @@ public class SoldierRunnerBT : BehaviourTree.Tree
 
     private void Awake()
     {
-        patrolSpeed = sharedData.patrolSpeed;
-        runningSpeed= sharedData.runningSpeed;
         navMeshAgent = GetComponent<NavMeshAgent>();
         decisionMaker = GetComponent<DecisionMaker>();
         characterAnimator = GetComponent<CharacterAnimator>();
@@ -40,19 +36,19 @@ public class SoldierRunnerBT : BehaviourTree.Tree
     {
         // Order is important!!! first elements will always be prioritised. In this case TaskPatrol will be the standard behaviour if all else above returns a NodeState.FAILURE
         Node root = new Selector(new List<Node>
-        {
-            new Sequence(new List<Node>
-            {
-                new CheckTargetInAttackRange(),
-                new TaskAttack(),
-            }),
-            new Sequence(new List<Node>
-            {
-                new CheckForInterestingThings(),
-                new TaskGoToTarget(),
-            }),
-            new TaskPatrol(patrolParent),
-        });
+                    {
+                        new Sequence(new List<Node>
+                        {
+                            new CheckTargetInAttackRange(),
+                            new TaskAttack(),
+                        }),
+                        new Sequence(new List<Node>
+                        {
+                            new CheckForInterestingThings(),
+                            new TaskGoToTarget(),
+                        }),
+                        new TaskPatrol(patrolParent),
+                    });
 
         return root;
     }

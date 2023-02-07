@@ -4,7 +4,8 @@ using System.Collections.Generic;
 namespace BehaviourTree
 {
     public class Sequence : Node // 'And' Node. It will run children in sequence upon its own success' states.
-                                 // Failure at any time from any child means automatic failure if this node
+                                 // FAILURE at any time from any child (currently running or previous) means automatic failure if this node
+                                 // Previous SUCCESS nodes will still be evaluated before any RUNNING node later in the list
     {
         public Sequence() : base() { }
         public Sequence(List<Node> children) : base(children) { }
