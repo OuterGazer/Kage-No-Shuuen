@@ -15,10 +15,6 @@ public class DecisionMaker : MonoBehaviour
 
     [SerializeField] float decisionReconsiderationFrequency = 1f;
 
-    AIBaseState[] allStates;
-    AIGoToTargetState aiGoToTargetState;
-    AIPatrollingState aiPatrollingState;
-
     [HideInInspector] public UnityEvent<Transform> OnPlayerSeen;
     [HideInInspector] public UnityEvent OnTargetLost;
 
@@ -31,15 +27,12 @@ public class DecisionMaker : MonoBehaviour
         sight = GetComponent<Sight>();
         // TODO: añadir evento de actualización de target como en hearing
         // TODO: reaccionar a los eventos
-
-        allStates = GetComponents<AIBaseState>();
-        aiGoToTargetState = GetComponent<AIGoToTargetState>();
-        aiPatrollingState = GetComponent<AIPatrollingState>();
     }
 
     private void OnDestroy()
     {
         hearing.onHeardNoiseEmitter.RemoveListener(OnHeardNoiseEmitter);
+        hearing.onForgotNoiseEmitter.RemoveListener(OnForgotNoiseEmitter);
     }
 
     Coroutine reconsiderDecisionsCoroutine;
@@ -126,25 +119,4 @@ public class DecisionMaker : MonoBehaviour
 
         return target;
     }
-
-    //private void SetCurrentState(AIBaseState newCurrentState)
-    //{
-    //    foreach(AIBaseState item in allStates)
-    //    {
-    //        if (IsNewStateDifferentFromCurrentState(newCurrentState, item))
-    //            { item.enabled = true; }
-    //        else if (IsNewStateEqualsToCurrentState(newCurrentState, item))
-    //            { item.enabled = false; }
-    //    }
-    //}
-
-    //private static bool IsNewStateDifferentFromCurrentState(AIBaseState newCurrentState, AIBaseState item)
-    //{
-    //    return (item == newCurrentState) && (item.enabled == false);
-    //}
-
-    //private static bool IsNewStateEqualsToCurrentState(AIBaseState newCurrentState, AIBaseState item)
-    //{
-    //    return (item != newCurrentState) && (item.enabled == true);
-    //}
 }

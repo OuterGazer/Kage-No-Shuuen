@@ -8,7 +8,6 @@ public class CheckForInterestingThings : Node
 {
     private DecisionMaker decisionMaker;
     private CharacterAnimator characterAnimator;
-    private Transform interestingTransform;
 
     private void Start()
     {
@@ -25,6 +24,7 @@ public class CheckForInterestingThings : Node
     public override NodeState Evaluate()
     {
         object t = GetData("target");
+        object s = GetData("searchTarget");
         object a = GetData("interactionAnimation");
 
         if (a != null && IsAttackAnimationFinished())
@@ -34,9 +34,15 @@ public class CheckForInterestingThings : Node
 
         if (t == null)
         {
-            if (a != null)
+            if (a != null) // is an interaction animation playing after a current target has been erased?
             {
                 state = NodeState.RUNNING;
+                return state;
+            }
+
+            if (s != null) // are we looking for a target after loosing sight of it (and is thus erased from tree)?
+            {
+                state = NodeState.SUCCESS;
                 return state;
             }
 
@@ -57,7 +63,6 @@ public class CheckForInterestingThings : Node
 
     private void SetInterestingTarget(Transform transform)
     {
-        interestingTransform = transform;
-        Parent.Parent.SetData("target", interestingTransform);
+        Parent.Parent.SetData("target", transform);
     }
 }

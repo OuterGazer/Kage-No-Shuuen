@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public class TaskGoToTarget : Node
 {
@@ -11,6 +12,9 @@ public class TaskGoToTarget : Node
 
     private NavMeshAgent navMeshAgent;
     private DecisionMaker decisionMaker;
+    private Transform currentTarget;
+    private Vector3 targetPosition = Vector3.zero;
+    private bool isSearching = false;
 
     private void Start()
     {
@@ -27,14 +31,26 @@ public class TaskGoToTarget : Node
     public override NodeState Evaluate()
     {
         Transform target = (Transform)GetData("target");
+        Transform searchTarget = (Transform)GetData("searchTarget");
 
-        if (target)
+        currentTarget = target ? target : searchTarget;
+        isSearching = searchTarget ? true : false;
+
+        if (currentTarget)
         {
-            if (((target.position - transform.position).sqrMagnitude > (interactionDistanceThreshold * interactionDistanceThreshold)))
+            targetPosition = currentTarget.position;
+
+            if ((targetPosition - transform.position).sqrMagnitude > (interactionDistanceThreshold * interactionDistanceThreshold))
             {
+                if (isSearching && !target) // Have we lost sight of target and searching it?
+                {
+                    state = NodeState.SUCCESS;
+                    return state;
+                }
+
                 if (GetData("interactionAnimation") == null)
                 {
-                    navMeshAgent.destination = target.position;
+                    navMeshAgent.destination = targetPosition;
                     navMeshAgent.speed = runningSpeed;
                 }
 
@@ -43,7 +59,7 @@ public class TaskGoToTarget : Node
             }
             else
             {
-                transform.LookAt(target.position);
+                transform.LookAt(targetPosition);
                 state = NodeState.SUCCESS;
                 return state;
             }                
@@ -55,7 +71,20 @@ public class TaskGoToTarget : Node
 
     private void EraseInterestingTarget()
     {
-        if(state == NodeState.RUNNING)
-        { ClearData("target"); }
+        object t = GetData("target");
+        if(t == null) { return; }
+
+        if (state == NodeState.RUNNING)
+        {
+            GameObject player = GameObject.FindWithTag("Player");
+
+            if (player)
+            {
+                Parent.SetData("searchTarget", (Transform)t);
+                isSearching = true;
+            }
+            
+            ClearData("target");
+        }
     }
 }

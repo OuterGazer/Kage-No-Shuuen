@@ -24,12 +24,13 @@ public class TaskAttack : Node
         navMeshAgent.speed = 0f;
 
         Transform target = (Transform) GetData("target");
-
         if (target == null)
         {
             state = NodeState.FAILURE;
             return state;
         }
+
+        ClearData("searchTarget");
 
         attackCounter += Time.deltaTime;
         if(attackCounter > timeBetweenAttacks)

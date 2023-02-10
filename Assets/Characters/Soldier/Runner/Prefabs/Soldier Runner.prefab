@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 2813919417634894560}
   - component: {fileID: 7738160146926745281}
   - component: {fileID: 7312010900681357011}
+  - component: {fileID: 6259360069907599011}
   - component: {fileID: 7928975561112161066}
   m_Layer: 9
   m_Name: Soldier Runner
@@ -226,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interestingTargets: []
-  extents: {x: 10, y: 5, z: 10}
+  extents: {x: 10, y: 1, z: 10}
   sightPoint: {fileID: 4881775705463028145}
   angle: 120
   refreshFrequency: 10
@@ -269,6 +270,7 @@ MonoBehaviour:
   decisionMaker: {fileID: 2795677103851904032}
   navMeshAgent: {fileID: 2795677103851904046}
   characterAnimator: {fileID: 5438122774130431303}
+  patrolSpeed: 2
 --- !u!114 &1999922227138396701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +359,7 @@ MonoBehaviour:
   Parent: {fileID: 1096039331825319142}
   children:
   - {fileID: 7312010900681357011}
+  - {fileID: 6259360069907599011}
 --- !u!114 &7312010900681357011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +378,25 @@ MonoBehaviour:
   children: []
   timeBetweenAttacks: 1
   attackCounter: 0.5
+--- !u!114 &6259360069907599011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbcf54a98724f9640874fd9c39695e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 7738160146926745281}
+  children: []
+  totalSearchSpots: 6
+  timeToChangeSearchSpot: 3
+  searchRadius: 5
 --- !u!114 &7928975561112161066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,8 +415,6 @@ MonoBehaviour:
   children: []
   patrolParent: {fileID: 0}
   startPatrolPointIndex: 0
-  patrolSpeed: 2
-  reachThreshold: 0.5
 --- !u!1 &2795677104033681616
 GameObject:
   m_ObjectHideFlags: 0

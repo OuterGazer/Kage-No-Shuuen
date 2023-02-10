@@ -19,7 +19,8 @@ public class SoldierRunnerBT : BehaviourTree.Tree
     public CharacterAnimator CharacterAnimator => characterAnimator;
 
     // Shared Tree Properties
-    
+    [SerializeField] float patrolSpeed = 2f;
+    public float PatrolSpeed => patrolSpeed;
 
     protected override Node SetUpTree()
     {
