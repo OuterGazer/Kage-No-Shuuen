@@ -271,7 +271,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 2795677103851904046}
   characterAnimator: {fileID: 5438122774130431303}
   player: {fileID: 0}
-  patrolSpeed: 2
+  patrolSpeed: 1.5
 --- !u!114 &1999922227138396701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,8 +341,8 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 1096039331825319142}
   children: []
-  runningSpeed: 5
-  interactionDistanceThreshold: 1.5
+  runningSpeed: 4
+  interactionDistanceThreshold: 2
 --- !u!114 &7738160146926745281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 7738160146926745281}
   children: []
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 1.2
   attackCounter: 0.5
 --- !u!114 &6259360069907599011
 MonoBehaviour:
@@ -3221,7 +3221,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 28186da4abf59b740a12c4f91cbf983c, type: 2}
+      objectReference: {fileID: 22100000, guid: 4d736b0e9b748c7478d55f9ad0f8fcca,
+        type: 2}
     - target: {fileID: 5866666021909216657, guid: 4a2ef68dde32fe34b93f2b3ec3caed65,
         type: 3}
       propertyPath: m_ApplyRootMotion
