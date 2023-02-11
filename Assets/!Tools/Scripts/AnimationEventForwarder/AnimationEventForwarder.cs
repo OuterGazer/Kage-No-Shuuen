@@ -80,6 +80,6 @@ public class AnimationEventForwarder : MonoBehaviour
 
     public void ForwardExitThrowingState()
     {
-        SendMessageUpwards("ExitThrowingState");
+        SendMessageUpwards("ExitThrowingState", SendMessageOptions.DontRequireReceiver);
     }
 }

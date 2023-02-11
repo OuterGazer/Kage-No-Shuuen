@@ -11,6 +11,8 @@ public class SoldierBehaviour : BehaviourTree.Tree
 
     // Shared Tree Cached components
     [Header("Shared Tree Cached Components")]
+    [SerializeField] WeaponController weaponController;
+    public WeaponController WeaponController => weaponController;
     [SerializeField] DecisionMaker decisionMaker;
     public DecisionMaker DecisionMaker => decisionMaker;
     [SerializeField] NavMeshAgent navMeshAgent; 
