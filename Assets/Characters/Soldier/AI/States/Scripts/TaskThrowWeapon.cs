@@ -14,6 +14,7 @@ public class TaskThrowWeapon : Node
     private CharacterAnimator characterAnimator;
 
     private float throwCounter = 5f;
+    private bool isThrowingAnimationRunning = false;
 
     private void Start()
     {
@@ -23,6 +24,12 @@ public class TaskThrowWeapon : Node
 
     public override NodeState Evaluate()
     {
+        if (isThrowingAnimationRunning) // TODO: Look if I can implement similar logic for attack animations.
+        {
+            state = NodeState.RUNNING;
+            return state;
+        }
+
         object t = GetData("target");
 
         if (t == null)
@@ -47,7 +54,9 @@ public class TaskThrowWeapon : Node
 
         navMeshAgent.speed = 0f;
         throwWeapon.gameObject.SetActive(true);
+        transform.LookAt(target);
         characterAnimator.PlayThrowingAnimation();
+        isThrowingAnimationRunning = true;
         throwCounter = 0f;
 
         state = NodeState.RUNNING;
@@ -64,5 +73,10 @@ public class TaskThrowWeapon : Node
     {
         throwWeapon?.Throw();
         throwWeapon.gameObject.SetActive(false);
+    }
+
+    public void ExitThrowingState()
+    {
+        isThrowingAnimationRunning = false;
     }
 }
