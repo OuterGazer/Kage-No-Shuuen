@@ -11,8 +11,8 @@ public class CheckForInterestingThings : Node
 
     private void Start()
     {
-        decisionMaker = ((SoldierRunnerBT)belongingTree).DecisionMaker;
-        characterAnimator = ((SoldierRunnerBT)belongingTree).CharacterAnimator;
+        decisionMaker = ((SoldierBehaviour)belongingTree).DecisionMaker;
+        characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
         decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);
     }
 

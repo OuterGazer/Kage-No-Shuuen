@@ -23,8 +23,8 @@ public class TaskPatrol : Node
 
     private void Start()
     {
-        patrolSpeed = ((SoldierRunnerBT)belongingTree).PatrolSpeed;
-        this.navMeshAgent = ((SoldierRunnerBT) belongingTree).NavMeshAgent;
+        patrolSpeed = ((SoldierBehaviour)belongingTree).PatrolSpeed;
+        this.navMeshAgent = ((SoldierBehaviour) belongingTree).NavMeshAgent;
         reachThreshold = navMeshAgent.stoppingDistance;
         currentPatrolPointIndex = startPatrolPointIndex;
     }

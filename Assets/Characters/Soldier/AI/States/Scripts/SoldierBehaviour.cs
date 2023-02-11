@@ -4,7 +4,7 @@ using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
 
-public class SoldierRunnerBT : BehaviourTree.Tree
+public class SoldierBehaviour : BehaviourTree.Tree
 {
     [Header("Tree Sub Roots")]
     [SerializeField] Node localMainRoot;

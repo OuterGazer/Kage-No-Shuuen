@@ -15,8 +15,8 @@ public class TaskAttack : Node
 
     private void Start()
     {
-        navMeshAgent = ((SoldierRunnerBT)belongingTree).NavMeshAgent;
-        characterAnimator = ((SoldierRunnerBT)belongingTree).CharacterAnimator;
+        navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
+        characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
     }
 
     public override NodeState Evaluate()

@@ -19,9 +19,9 @@ public class TaskGoToTarget : Node
 
     private void Start()
     {
-        player = ((SoldierRunnerBT)belongingTree).Player;
-        navMeshAgent = ((SoldierRunnerBT)belongingTree).NavMeshAgent;
-        decisionMaker = ((SoldierRunnerBT)belongingTree).DecisionMaker;
+        player = ((SoldierBehaviour)belongingTree).Player;
+        navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
+        decisionMaker = ((SoldierBehaviour)belongingTree).DecisionMaker;
         decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
     }
 
@@ -50,7 +50,7 @@ public class TaskGoToTarget : Node
                     return state;
                 }
 
-                if (GetData("interactionAnimation") == null)
+                if (GetData("interactionAnimation") == null) // is a full body attack/interaction animation not playing? Then we can move to target.
                 {
                     navMeshAgent.destination = targetPosition;
                     navMeshAgent.speed = runningSpeed;
@@ -83,8 +83,6 @@ public class TaskGoToTarget : Node
 
         if (state == NodeState.RUNNING)
         {
-            //GameObject player = GameObject.FindWithTag("Player");
-
             if (player)
             {
                 Parent.SetData("searchTarget", (Transform)t);

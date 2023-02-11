@@ -17,8 +17,8 @@ public class TaskSearchTarget : Node
 
     private void Start()
     {
-        patrolSpeed = ((SoldierRunnerBT)belongingTree).PatrolSpeed;
-        navMeshAgent = ((SoldierRunnerBT)belongingTree).NavMeshAgent;
+        patrolSpeed = ((SoldierBehaviour)belongingTree).PatrolSpeed;
+        navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
     }
 
     public override NodeState Evaluate()
