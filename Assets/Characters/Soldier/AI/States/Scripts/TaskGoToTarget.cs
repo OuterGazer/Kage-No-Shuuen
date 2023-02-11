@@ -10,6 +10,7 @@ public class TaskGoToTarget : Node
     [SerializeField] float runningSpeed = 5f;
     [SerializeField] float interactionDistanceThreshold = 1.5f;
 
+    private Transform player;
     private NavMeshAgent navMeshAgent;
     private DecisionMaker decisionMaker;
     private Transform currentTarget;
@@ -18,6 +19,7 @@ public class TaskGoToTarget : Node
 
     private void Start()
     {
+        player = ((SoldierRunnerBT)belongingTree).Player;
         navMeshAgent = ((SoldierRunnerBT)belongingTree).NavMeshAgent;
         decisionMaker = ((SoldierRunnerBT)belongingTree).DecisionMaker;
         decisionMaker.OnTargetLost.AddListener(EraseInterestingTarget);
@@ -40,9 +42,9 @@ public class TaskGoToTarget : Node
         {
             targetPosition = currentTarget.position;
 
-            if ((targetPosition - transform.position).sqrMagnitude > (interactionDistanceThreshold * interactionDistanceThreshold))
+            if (IsTargetWithinInteractionDistance())
             {
-                if (isSearching && !target) // Have we lost sight of target and searching it?
+                if (isSearching && !target) // Have we lost sight of target and are searching it?
                 {
                     state = NodeState.SUCCESS;
                     return state;
@@ -62,11 +64,16 @@ public class TaskGoToTarget : Node
                 transform.LookAt(targetPosition);
                 state = NodeState.SUCCESS;
                 return state;
-            }                
+            }
         }
 
         state = NodeState.RUNNING;
         return state;
+    }
+
+    private bool IsTargetWithinInteractionDistance()
+    {
+        return (targetPosition - transform.position).sqrMagnitude > (interactionDistanceThreshold * interactionDistanceThreshold);
     }
 
     private void EraseInterestingTarget()
@@ -76,7 +83,7 @@ public class TaskGoToTarget : Node
 
         if (state == NodeState.RUNNING)
         {
-            GameObject player = GameObject.FindWithTag("Player");
+            //GameObject player = GameObject.FindWithTag("Player");
 
             if (player)
             {

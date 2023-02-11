@@ -270,6 +270,7 @@ MonoBehaviour:
   decisionMaker: {fileID: 2795677103851904032}
   navMeshAgent: {fileID: 2795677103851904046}
   characterAnimator: {fileID: 5438122774130431303}
+  player: {fileID: 0}
   patrolSpeed: 2
 --- !u!114 &1999922227138396701
 MonoBehaviour:

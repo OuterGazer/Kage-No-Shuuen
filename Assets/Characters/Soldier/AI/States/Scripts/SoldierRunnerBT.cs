@@ -17,6 +17,8 @@ public class SoldierRunnerBT : BehaviourTree.Tree
     public NavMeshAgent NavMeshAgent => navMeshAgent;
     [SerializeField] CharacterAnimator characterAnimator;
     public CharacterAnimator CharacterAnimator => characterAnimator;
+    [SerializeField] Transform player;
+    public Transform Player => player;
 
     // Shared Tree Properties
     [SerializeField] float patrolSpeed = 2f;
