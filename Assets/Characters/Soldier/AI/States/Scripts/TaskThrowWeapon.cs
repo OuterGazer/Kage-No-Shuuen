@@ -31,15 +31,15 @@ public class TaskThrowWeapon : Node
         }
 
         object t = GetData("target");
+        Transform target = (Transform)t;
 
-        if (t == null)
+        if (!target)
         {
             state = NodeState.FAILURE;
             return state;
         }
 
         throwCounter += Time.deltaTime;
-        Transform target = (Transform)t;
         if (IsTargetCloserThanThrowingThreshold(target))
         {
             state = NodeState.FAILURE;
