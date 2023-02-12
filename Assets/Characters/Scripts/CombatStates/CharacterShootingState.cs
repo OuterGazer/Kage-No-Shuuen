@@ -117,7 +117,7 @@ public class CharacterShootingState : CharacterStateBase
     {
         if (shoot && aim)
         {
-            if (!currentWeapon.CompareTag("Bow"))
+            if (!currentWeapon.name.Equals("Bow"))
             { currentWeapon.ShootingWeapon?.Shoot(); }
 
             onShoot.Invoke();

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3040037165312648422}
   - component: {fileID: 7488081552038980102}
   - component: {fileID: 8137380919347254800}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Ninja Katana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,6 +73,7 @@ MonoBehaviour:
   shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 747640680396730171}
   throwingWeaponBase: {fileID: 8137380919347254800}
+  aimingRig: {fileID: 0}
 --- !u!1773428102 &7488081552038980102
 ParentConstraint:
   m_ObjectHideFlags: 0
@@ -123,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8707297907688913339}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5600832104836389662}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +189,7 @@ GameObject:
   - component: {fileID: 6051838491195660526}
   - component: {fileID: 8085088926750733726}
   - component: {fileID: 1913242059151645944}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +270,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5080442817784660538}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: EdgeNotch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

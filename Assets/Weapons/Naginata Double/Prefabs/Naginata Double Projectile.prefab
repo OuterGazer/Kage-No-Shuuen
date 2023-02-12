@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8529391837674143082}
   - component: {fileID: 3899048014572144946}
   - component: {fileID: -7074088005946090806}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Naginata Double Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3212146258592985666}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5779265956651085400}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4691082411260129461}
   - component: {fileID: 4264344801794903324}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: acb47042c38e57c4a8639903b298e164,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acb47042c38e57c4a8639903b298e164, type: 3}

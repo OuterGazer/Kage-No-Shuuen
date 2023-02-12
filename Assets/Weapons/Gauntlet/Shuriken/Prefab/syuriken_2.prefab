@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8433610188588892499}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3294388787470699800}
   - component: {fileID: -6476785960165756169}
   - component: {fileID: 97796453038608514}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: syuriken_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7297846130822749457}
   - component: {fileID: 859589172880908197}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 1779301107582539569}
   - component: {fileID: 3567127816710879722}
   - component: {fileID: 4720100355231917062}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}

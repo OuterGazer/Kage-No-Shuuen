@@ -6,9 +6,19 @@ public class ProjectileBase : MonoBehaviour
 {
     [SerializeField] protected float damage = 0.51f;
 
+    private string ownerTag;
+
+    public void SetOwnerTag(string inTag)
+    {
+        ownerTag = inTag;
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<IDamagereceiver>()?.ReceiveDamage(damage);
-        Destroy(gameObject);
+        if (!gameObject.CompareTag(ownerTag))
+        {
+            other.GetComponent<IDamagereceiver>()?.ReceiveDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

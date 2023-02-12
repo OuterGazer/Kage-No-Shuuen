@@ -6,7 +6,7 @@ public class CloseCombatWeaponPhysicsTrigger : CloseCombatWeaponBase
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (IsSlashing)
+        if(!other.CompareTag(ownerTag) && IsSlashing)
         {
             IDamagereceiver damageReceiver = other.GetComponent<IDamagereceiver>();
             PerformDamage(damageReceiver);

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9174844602390752109}
   - component: {fileID: 3824917986851599808}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9043023929914298945}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Edge Notch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8835850004032700579}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 626384373156923111}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Shootpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2988468844690223427}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 4628851348376895132}
   - component: {fileID: 8803505097543784613}
   - component: {fileID: 5252859250287839418}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Gauntlet
   m_TagString: Gauntlet
   m_Icon: {fileID: 0}
@@ -251,6 +251,7 @@ MonoBehaviour:
   shootingWeapon: {fileID: 8803505097543784613}
   closeCombatWeaponBase: {fileID: 5252859250287839418}
   throwingWeaponBase: {fileID: 0}
+  aimingRig: {fileID: 0}
 --- !u!114 &8803505097543784613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d9f5c34df5b0a1247a29ce7bd9373f39,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9f5c34df5b0a1247a29ce7bd9373f39, type: 3}

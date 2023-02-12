@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1603580918466960325}
   - component: {fileID: 5664640404129970688}
   - component: {fileID: -7367081734723305225}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Samurai Katana Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4386466821001509405}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5680653888026944916}
   - component: {fileID: 8753131037890030812}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6654151332626972261}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: cc2af85207c74444fb244ec5811ffa79, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cc2af85207c74444fb244ec5811ffa79, type: 3}
       propertyPath: m_RootOrder

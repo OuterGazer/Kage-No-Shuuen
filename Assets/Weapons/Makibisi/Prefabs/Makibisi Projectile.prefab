@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7025014041383720157}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3213762404827794318}
   - component: {fileID: 6673438079854657538}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Mesh Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6610500647215150715}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 2394201886511184671}
   - component: {fileID: 8159548441002551490}
   - component: {fileID: 4758644318567012649}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Makibisi Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: e024629dc36cd4df29f3239ce820706d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e024629dc36cd4df29f3239ce820706d, type: 3}
       propertyPath: m_RootOrder

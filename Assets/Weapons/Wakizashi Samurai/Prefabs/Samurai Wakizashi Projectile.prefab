@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7700200428258383946}
   - component: {fileID: 4662494595453634212}
   - component: {fileID: -8330985486895896344}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Samurai Wakizashi Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7325075459320371018}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5077042525544532891}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5374638739660871667}
   - component: {fileID: 908060082944217118}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d185165653b0d774db1dbd266a4104e6, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d185165653b0d774db1dbd266a4104e6, type: 3}
       propertyPath: m_RootOrder

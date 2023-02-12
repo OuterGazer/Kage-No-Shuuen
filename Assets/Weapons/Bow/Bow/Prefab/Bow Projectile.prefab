@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3564281250801159578}
   - component: {fileID: 4081151493665049298}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4896374141290363064}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 313676329030999661}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 1658607786657790789}
   - component: {fileID: 4804350436167026061}
   - component: {fileID: 3379870251789584245}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Bow Projectile
   m_TagString: Bow
   m_Icon: {fileID: 0}
@@ -182,11 +182,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
       propertyPath: m_Name
@@ -194,11 +194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ad86eccf54c6ede49a3bc65cf732cf0d, type: 3}
       propertyPath: m_RootOrder

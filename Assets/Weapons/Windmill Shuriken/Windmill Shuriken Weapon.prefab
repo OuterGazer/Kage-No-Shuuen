@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2810579375975772556}
   - component: {fileID: 8869162149172040187}
   - component: {fileID: 8423544309226616583}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Windmill Shuriken Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,6 +70,7 @@ MonoBehaviour:
   shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 8423544309226616583}
   throwingWeaponBase: {fileID: 2810579375975772556}
+  aimingRig: {fileID: 0}
 --- !u!114 &2810579375975772556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4510698774548046253}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7759265766161175385}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collisions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6656007660857297786}
   - component: {fileID: 8371533699827531220}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +303,7 @@ PrefabInstance:
     - target: {fileID: -2455781706085327004, guid: 7175e67f79edc7a4096c3f8f66348466,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1570406743547958839, guid: 7175e67f79edc7a4096c3f8f66348466,
         type: 3}
@@ -362,17 +363,17 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 7175e67f79edc7a4096c3f8f66348466,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2107924207266774369, guid: 7175e67f79edc7a4096c3f8f66348466,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5738342764872817559, guid: 7175e67f79edc7a4096c3f8f66348466,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6460372390772645084, guid: 7175e67f79edc7a4096c3f8f66348466,
         type: 3}
@@ -512,7 +513,7 @@ PrefabInstance:
     - target: {fileID: 8270548945613095441, guid: 7175e67f79edc7a4096c3f8f66348466,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5716681864270162303, guid: 7175e67f79edc7a4096c3f8f66348466, type: 3}

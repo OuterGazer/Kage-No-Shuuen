@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2952257934333906595}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8034556657262434715}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Rear Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 1110673141510652983}
   - component: {fileID: 9152998118714896883}
   - component: {fileID: 2903649069967796079}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Naginata Double
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +119,7 @@ MonoBehaviour:
   shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 0}
   throwingWeaponBase: {fileID: 2903649069967796079}
+  aimingRig: {fileID: 0}
 --- !u!114 &6541779998333858209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5779265956651085400}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8139453814234564058}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Edge Notch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6359393551609378631}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Front Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6326986694162186962}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7469271571673550680}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Edge Notch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +442,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: acb47042c38e57c4a8639903b298e164,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acb47042c38e57c4a8639903b298e164, type: 3}

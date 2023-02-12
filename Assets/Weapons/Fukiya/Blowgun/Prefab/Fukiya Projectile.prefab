@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4631615124222633292}
   - component: {fileID: -3597149121470214130}
   - component: {fileID: 846423318570943486}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Fukiya Projectile
   m_TagString: Fukiya
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4913152980933315634}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3546473154309585383}
   - component: {fileID: 9115828108369068791}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 77411448164776490}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 7077afc8bc56ee94c8b0d851727d67d9,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5716681864270162303, guid: 7077afc8bc56ee94c8b0d851727d67d9, type: 3}

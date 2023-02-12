@@ -13,6 +13,7 @@ public class HorizontalThrow : ThrowingWeaponBase
     {
         GameObject shotProjectile = Instantiate(projectilePrefab, hand.position, player.rotation);
 
+        shotProjectile.GetComponent<ProjectileBase>().SetOwnerTag(gameObject.tag);
         projectileRB = shotProjectile.GetComponent<Rigidbody>();
 
         if (projectileRB)

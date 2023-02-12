@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 202765857944326426}
   - component: {fileID: 5581508258741858333}
   - component: {fileID: -8144043814058848986}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Fukiya
   m_TagString: Fukiya
   m_Icon: {fileID: 0}
@@ -56,6 +56,7 @@ MonoBehaviour:
   shootingWeapon: {fileID: 7575006519025007521}
   closeCombatWeaponBase: {fileID: 202765857944326426}
   throwingWeaponBase: {fileID: -8144043814058848986}
+  aimingRig: {fileID: 0}
 --- !u!114 &7575006519025007521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2382308189416632696}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Edge Notch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 981460066604272264}
   - component: {fileID: 4835147081460472870}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3152010855734515113}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 77411448164776490}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +362,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 7077afc8bc56ee94c8b0d851727d67d9,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -5716681864270162303, guid: 7077afc8bc56ee94c8b0d851727d67d9, type: 3}

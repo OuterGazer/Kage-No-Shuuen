@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7025014041383720157}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3213762404827794318}
   - component: {fileID: 6673438079854657538}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Mesh Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6610500647215150715}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 7292281249207309945}
   - component: {fileID: 2405320590420036013}
   - component: {fileID: 4280076640715346285}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Makibisi Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,6 +202,7 @@ MonoBehaviour:
   shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 4280076640715346285}
   throwingWeaponBase: {fileID: 2405320590420036013}
+  aimingRig: {fileID: 0}
 --- !u!114 &2405320590420036013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: e024629dc36cd4df29f3239ce820706d, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e024629dc36cd4df29f3239ce820706d, type: 3}
       propertyPath: m_RootOrder
