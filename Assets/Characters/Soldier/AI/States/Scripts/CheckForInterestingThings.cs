@@ -25,21 +25,9 @@ public class CheckForInterestingThings : Node
     {
         object t = GetData("target");
         object s = GetData("searchTarget");
-        object a = GetData("interactionAnimation");
-
-        if (a != null && IsAttackAnimationFinished())
-        {
-            ClearData("interactionAnimation");
-        }
 
         if (t == null)
         {
-            if (a != null) // is an interaction animation playing after a current target has been erased?
-            {
-                state = NodeState.RUNNING;
-                return state;
-            }
-
             if (s != null) // are we looking for a target after loosing sight of it (and is thus erased from tree)?
             {
                 state = NodeState.SUCCESS;
@@ -52,13 +40,6 @@ public class CheckForInterestingThings : Node
 
         state = NodeState.SUCCESS;
         return state;
-    }
-
-    private bool IsAttackAnimationFinished()
-    {
-        if (!characterAnimator.Animator.GetCurrentAnimatorStateInfo(1).IsName("1st Light Attack Combo")) { return false; }
-
-        return characterAnimator.Animator.GetCurrentAnimatorStateInfo(1).normalizedTime > 1f; // Avoids soldier moving if interaction/attack animation is playing
     }
 
     private void SetInterestingTarget(Transform transform)

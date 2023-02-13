@@ -11,6 +11,8 @@ public class TaskAttack : Node
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
+
+    private bool isAttackAnimationRunning = false;
     
 
     private void Start()
@@ -38,11 +40,18 @@ public class TaskAttack : Node
             characterAnimator.PlaySlashAnimation();
             attackCounter = 0f;
 
-            if (GetData("interactionAnimation") == null)
-            { Parent.Parent.SetData("interactionAnimation", true); }
+            isAttackAnimationRunning = true;
+            Parent.Parent.SetData("interactionAnimation", isAttackAnimationRunning);
         }
 
         state = NodeState.RUNNING;
         return state;
+    }
+
+    // Called from an animation event
+    private void ExitCloseCombatState()
+    {
+        isAttackAnimationRunning = false;
+        ClearData("interactionAnimation");
     }
 }

@@ -24,7 +24,7 @@ public class TaskThrowWeapon : Node
 
     public override NodeState Evaluate()
     {
-        if (isThrowingAnimationRunning) // TODO: Look if I can implement similar logic for attack animations.
+        if (isThrowingAnimationRunning)
         {
             state = NodeState.RUNNING;
             return state;
@@ -75,6 +75,7 @@ public class TaskThrowWeapon : Node
         throwWeapon.gameObject.SetActive(false);
     }
 
+    // Called from an animation event
     public void ExitThrowingState()
     {
         isThrowingAnimationRunning = false;

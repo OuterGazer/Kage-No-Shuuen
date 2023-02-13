@@ -34,6 +34,7 @@ public class TaskGoToTarget : Node
     {
         Transform target = (Transform)GetData("target");
         Transform searchTarget = (Transform)GetData("searchTarget");
+        object isInteractionAnimationPlaying = GetData("interactionAnimation");
 
         currentTarget = target ? target : searchTarget;
         isSearching = searchTarget ? true : false;
@@ -50,11 +51,13 @@ public class TaskGoToTarget : Node
                     return state;
                 }
 
-                if (GetData("interactionAnimation") == null) // is a full body attack/interaction animation not playing? Then we can move to target.
-                {
-                    navMeshAgent.destination = targetPosition;
+                if (isInteractionAnimationPlaying == null)
+                { 
                     navMeshAgent.speed = runningSpeed;
+                    navMeshAgent.destination = targetPosition;
                 }
+                else 
+                { navMeshAgent.speed = 0f; }
 
                 state = NodeState.RUNNING;
                 return state;
