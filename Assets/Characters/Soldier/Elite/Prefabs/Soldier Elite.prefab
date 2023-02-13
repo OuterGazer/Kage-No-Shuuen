@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 5438122774130431303}
   - component: {fileID: 3545977893119982696}
   - component: {fileID: 1999922227138396701}
+  - component: {fileID: 7634925420462345060}
   - component: {fileID: 5843524774124694792}
   - component: {fileID: 1096039331825319142}
   - component: {fileID: 7255289624017873206}
@@ -273,7 +274,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 2795677103851904046}
   characterAnimator: {fileID: 5438122774130431303}
   player: {fileID: 0}
-  patrolSpeed: 1
+  patrolSpeed: 3
 --- !u!114 &1999922227138396701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,9 +291,38 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 0}
   children:
+  - {fileID: 7634925420462345060}
   - {fileID: 5843524774124694792}
   - {fileID: 1096039331825319142}
   - {fileID: 7928975561112161066}
+--- !u!114 &7634925420462345060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3b9fee3f38c3446b9ed9b42ebe6c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 1999922227138396701}
+  children: []
+  hookThrowRadius: 10
+  hookReachThreshold: 4
+  onHookSpeed: 10
+  rigAlignmentToHookTargetAcceleration: 0.01
+  rigBuilder: {fileID: 9053199391550812669}
+  shoulderToFingerConstraints:
+  - {fileID: 4679533776118764338}
+  - {fileID: 5728637037601744513}
+  - {fileID: 6151561699445721231}
+  - {fileID: 181830619288626490}
+  - {fileID: 4741737870020058896}
+  headConstraint: {fileID: 6469655896378079175}
 --- !u!114 &5843524774124694792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +395,7 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 1096039331825319142}
   children: []
-  runningSpeed: 3
+  runningSpeed: 6
   interactionDistanceThreshold: 1.5
 --- !u!114 &7738160146926745281
 MonoBehaviour:
@@ -1649,7 +1679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4679533777083798732
 Transform:
   m_ObjectHideFlags: 0
