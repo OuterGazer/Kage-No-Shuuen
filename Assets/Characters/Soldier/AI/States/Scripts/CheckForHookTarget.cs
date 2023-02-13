@@ -108,7 +108,8 @@ public class CheckForHookTarget : Node
     {
         characterAnimator.TransitionToOrFromHooked(false);
         spineToFingerRig.weight = 0f;
-        onHookSpeed = -0.1f; // Needed to trigger state change to OnAir in CharacterEngine upon reaching target
+        characterAnimator.TriggerLandingAnimation();
+        //onHookSpeed = -0.1f; // Needed to trigger state change to OnAir in CharacterEngine upon reaching target
 
         isMovingToHookTarget = false;
 
