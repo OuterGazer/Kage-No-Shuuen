@@ -11,11 +11,12 @@ public class ProjectileBase : MonoBehaviour
     public void SetOwnerTag(string inTag)
     {
         ownerTag = inTag;
+        gameObject.tag = ownerTag;
     }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (!gameObject.CompareTag(ownerTag))
+        if (!other.CompareTag(ownerTag))
         {
             other.GetComponent<IDamagereceiver>()?.ReceiveDamage(damage);
             Destroy(gameObject);
