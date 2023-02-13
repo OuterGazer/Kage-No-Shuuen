@@ -48,7 +48,7 @@ public class CheckForHookTarget : Node
         {
             PointArmTowardsHookTarget();
 
-            navMeshAgent.destination = hookTarget.position;
+            transform.position += (onHookSpeed * Time.deltaTime) * hangingDirection;
 
             if (IsHookTargetReached())
             {
@@ -78,6 +78,7 @@ public class CheckForHookTarget : Node
         else
         {
             hookTarget = hookTargets[0].transform;
+            navMeshAgent.enabled = false;
             PerformHookThrowing();
         }
 
@@ -100,7 +101,7 @@ public class CheckForHookTarget : Node
 
     private bool IsHookTargetReached()
     {
-        return (hookTarget.position - transform.position).sqrMagnitude <= hookReachThreshold;
+        return (hookTarget.position - transform.position).sqrMagnitude <= (hookReachThreshold * hookReachThreshold);
     }
 
     private void ExitState()
@@ -110,6 +111,8 @@ public class CheckForHookTarget : Node
         onHookSpeed = -0.1f; // Needed to trigger state change to OnAir in CharacterEngine upon reaching target
 
         isMovingToHookTarget = false;
+
+        navMeshAgent.enabled = true;
 
         hookTarget = null;
         SetTargetToRigChain();
@@ -147,6 +150,8 @@ public class CheckForHookTarget : Node
 
         isHookThrown = false;
         hangingDirection = Vector3.zero;
+
+        isMovingToHookTarget = true;
     }
 
     // Called from animation event
@@ -154,9 +159,8 @@ public class CheckForHookTarget : Node
     {
         hangingDirection = (hookTarget.position - transform.position).normalized;
         transform.up = hangingDirection;
-        navMeshAgent.speed = onHookSpeed;
+        //navMeshAgent.speed = onHookSpeed;
         spineToFingerRig.weight = 0f;
         characterAnimator.TransitionToOrFromHooked(true);
-        isMovingToHookTarget = true;
     }
 }

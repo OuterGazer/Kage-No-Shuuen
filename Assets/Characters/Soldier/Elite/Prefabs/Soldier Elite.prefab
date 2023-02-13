@@ -146,7 +146,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2795677103851904039}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: 1479372276
   m_Radius: 0.35
   m_Speed: 3
   m_Acceleration: 100
@@ -312,9 +312,9 @@ MonoBehaviour:
   Parent: {fileID: 1999922227138396701}
   children: []
   hookThrowRadius: 10
-  hookReachThreshold: 4
+  hookReachThreshold: 2
   onHookSpeed: 10
-  rigAlignmentToHookTargetAcceleration: 0.01
+  rigAlignmentToHookTargetAcceleration: 1
   rigBuilder: {fileID: 9053199391550812669}
   shoulderToFingerConstraints:
   - {fileID: 4679533776118764338}
