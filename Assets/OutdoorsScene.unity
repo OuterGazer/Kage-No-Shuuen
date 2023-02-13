@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2160.501, g: 2264.5625, b: 3287.5977, a: 1}
+  m_IndirectSpecularColor: {r: 2161.7666, g: 2265.6992, b: 3288.836, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2280,7 +2280,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.004649983, y: 0.14114568, z: -0.0006629695, w: 0.9899777}
+  m_LocalRotation: {x: 0.004649994, y: 0.14114557, z: -0.00066297053, w: 0.9899777}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3797,7 +3797,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.03300206, y: 0.14106879, z: -0.004705254, w: 0.9894384}
+  m_LocalRotation: {x: 0.033002064, y: 0.1410687, z: -0.004705253, w: 0.9894384}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5382,7 +5382,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.061515342, y: 0.14087448, z: -0.008770525, w: 0.98807555}
+  m_LocalRotation: {x: 0.06151535, y: 0.14087437, z: -0.008770519, w: 0.9880756}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5521,8 +5521,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823688464}
-  m_LocalRotation: {x: 0.03300207, y: 0.14106879, z: -0.0047052563, w: 0.9894384}
-  m_LocalPosition: {x: -1.1178734, y: 2, z: 15.049379}
+  m_LocalRotation: {x: 0.033002075, y: 0.14106874, z: -0.004705255, w: 0.9894384}
+  m_LocalPosition: {x: -1.1178725, y: 2, z: 15.049379}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6024,7 +6024,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888552408}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1178734, y: 2, z: 15.049379}
+  m_LocalPosition: {x: -1.1178725, y: 2, z: 15.049379}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6919,11 +6919,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1977086151}
     m_Modifications:
-    - target: {fileID: 2509863578747952400, guid: 4f51888730454934b99cf0e0aff3ce48,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.77177525
-      objectReference: {fileID: 0}
     - target: {fileID: 2795677103851904038, guid: 4f51888730454934b99cf0e0aff3ce48,
         type: 3}
       propertyPath: m_RootOrder
@@ -6984,31 +6979,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Elite
       objectReference: {fileID: 0}
-    - target: {fileID: 3299196175968880908, guid: 4f51888730454934b99cf0e0aff3ce48,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.04099989
-      objectReference: {fileID: 0}
     - target: {fileID: 3545977893119982696, guid: 4f51888730454934b99cf0e0aff3ce48,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 4128263669422437873}
-    - target: {fileID: 4881775705463028145, guid: 4f51888730454934b99cf0e0aff3ce48,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7297697423969992219, guid: 4f51888730454934b99cf0e0aff3ce48,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.6838002
-      objectReference: {fileID: 0}
-    - target: {fileID: 7433205134953188477, guid: 4f51888730454934b99cf0e0aff3ce48,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.6078002
-      objectReference: {fileID: 0}
     - target: {fileID: 7928975561112161066, guid: 4f51888730454934b99cf0e0aff3ce48,
         type: 3}
       propertyPath: patrolParent
