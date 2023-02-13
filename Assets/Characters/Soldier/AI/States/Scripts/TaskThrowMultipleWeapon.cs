@@ -4,16 +4,19 @@ using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
 
-public class TaskThrowWeapon : Node
+public class TaskThrowMultipleWeapon : Node
 {
+    [SerializeField] int amountToThrow = 3;
     [SerializeField] float distanceThresholdForThrowing = 5f;
     [SerializeField] float timeBetweenThrows = 5f;
+    [SerializeField] float timeBetweenSingleWeapons = 0.1f;
     [SerializeField] ThrowingWeaponBase throwWeapon;
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
 
     private float throwCounter = 5f;
+    private int singleWeaponsThrownCounter = 0;
     private bool isThrowingAnimationRunning = false;
 
     private void Start()
@@ -71,8 +74,21 @@ public class TaskThrowWeapon : Node
     // Called from an animation event
     public void ThrowWeapon()
     {
-        throwWeapon?.Throw();
+        StartCoroutine(ThrowInSequence());
         throwWeapon.gameObject.SetActive(false);
+    }
+
+    private IEnumerator ThrowInSequence()
+    {
+        while (isThrowingAnimationRunning)
+        {
+            if(singleWeaponsThrownCounter >= amountToThrow) { singleWeaponsThrownCounter = 0;  break; }
+
+            throwWeapon?.Throw();
+            singleWeaponsThrownCounter++;
+            yield return new WaitForSeconds(timeBetweenSingleWeapons);
+        }
+        
     }
 
     // Called from an animation event
