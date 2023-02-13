@@ -84,6 +84,7 @@ public class TaskThrowHook : Node
 
         Parent.SetData("isHookThrown", false);
         hangingDirection = Vector3.zero;
+        Parent.SetData("hangingDirection", hangingDirection);
 
         Parent.SetData("isMovingToHookTarget", true);
     }
