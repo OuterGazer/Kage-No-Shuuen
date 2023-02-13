@@ -8,6 +8,7 @@ public class TaskAttack : Node
 {
     [SerializeField] float timeBetweenAttacks = 1f;
     [SerializeField] float attackCounter = 0.5f; // Serialized for testing purposes
+    [SerializeField] bool shouldPerformHeavyAttack = false;
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
@@ -37,7 +38,10 @@ public class TaskAttack : Node
         attackCounter += Time.deltaTime;
         if(attackCounter > timeBetweenAttacks)
         {
-            characterAnimator.PlaySlashAnimation();
+            if (!shouldPerformHeavyAttack)
+            { characterAnimator.PlaySlashAnimation(); }
+            else 
+            { characterAnimator.PlayHeavySlashAnimation(); }
             attackCounter = 0f;
 
             isAttackAnimationRunning = true;

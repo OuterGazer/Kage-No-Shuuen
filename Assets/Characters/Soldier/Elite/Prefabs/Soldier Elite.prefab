@@ -312,7 +312,7 @@ MonoBehaviour:
   Parent: {fileID: 1999922227138396701}
   children: []
   hookThrowRadius: 10
-  hookReachThreshold: 2
+  hookReachThreshold: 2.85
   onHookSpeed: 10
   rigAlignmentToHookTargetAcceleration: 1
   rigBuilder: {fileID: 9053199391550812669}
@@ -433,6 +433,7 @@ MonoBehaviour:
   children: []
   timeBetweenAttacks: 1
   attackCounter: 0.5
+  shouldPerformHeavyAttack: 1
 --- !u!114 &6259360069907599011
 MonoBehaviour:
   m_ObjectHideFlags: 0
