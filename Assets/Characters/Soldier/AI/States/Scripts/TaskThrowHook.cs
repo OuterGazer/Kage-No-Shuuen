@@ -23,7 +23,6 @@ public class TaskThrowHook : Node
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
         characterAnimator.hookHasArrivedAtTarget.AddListener(MoveCharacterToHookTarget);
         spineToFingerRig = GetComponentInChildren<Rig>();
-        Parent.SetData("hangingDirection", hangingDirection);
     }
 
     private void OnDestroy()
@@ -94,6 +93,7 @@ public class TaskThrowHook : Node
     {
         hangingDirection = (hookTarget.position - transform.position).normalized;
         transform.up = hangingDirection;
+        Parent.SetData("hangingDirection", hangingDirection);
         spineToFingerRig.weight = 0f;
         characterAnimator.TransitionToOrFromHooked(true);
     }

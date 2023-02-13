@@ -91,6 +91,7 @@ public class TaskGoToHookTarget : Node
         navMeshAgent.enabled = true;
 
         ClearData("hookTarget");
+        ClearData("hangingDirection");
         SetTargetToRigChain();
     }
 
