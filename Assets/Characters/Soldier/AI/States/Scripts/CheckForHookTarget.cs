@@ -8,57 +8,24 @@ using UnityEngine.Animations.Rigging;
 public class CheckForHookTarget : Node
 {
     [SerializeField] float hookThrowRadius = 10f;
-    [SerializeField] float hookReachThreshold = 4f;
-    [SerializeField] float onHookSpeed = 10f;
     private Transform hookTarget;
 
-    [Header("Rig Characteristics")]
-    [SerializeField] float rigAlignmentToHookTargetAcceleration = 0.01f;
-    [SerializeField] RigBuilder rigBuilder;
-    [SerializeField] ChainIKConstraint[] shoulderToFingerConstraints;
-    [SerializeField] MultiAimConstraint headConstraint;
-
     private NavMeshAgent navMeshAgent;
-    private CharacterAnimator characterAnimator;
-    private Rig spineToFingerRig;
     private LayerMask hookTargetMask;
-
-    private Vector3 hangingDirection;
-    private bool isHookThrown = false;
-    private bool isMovingToHookTarget = false;
+    
 
     private void Start()
     {
         navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
-        characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
-        characterAnimator.hookHasArrivedAtTarget.AddListener(MoveCharacterToHookTarget);
-        spineToFingerRig = GetComponentInChildren<Rig>();
-        spineToFingerRig.weight = 0f;
         hookTargetMask = LayerMask.GetMask("HookTarget");
-    }
-
-    private void OnDestroy()
-    {
-        characterAnimator.hookHasArrivedAtTarget.RemoveListener(MoveCharacterToHookTarget);
     }
 
     public override NodeState Evaluate()
     {
-        if (isMovingToHookTarget)
+        object b = GetData("isMovingToHookTarget");
+        if (b != null)
         {
-            PointArmTowardsHookTarget();
-
-            transform.position += (onHookSpeed * Time.deltaTime) * hangingDirection;
-
-            if (IsHookTargetReached())
-            {
-                ExitState();
-
-                state = NodeState.SUCCESS;
-                return state;
-            }
-
-            state = NodeState.RUNNING; 
+            state = NodeState.SUCCESS;
             return state;
         }
 
@@ -78,90 +45,12 @@ public class CheckForHookTarget : Node
         else
         {
             hookTarget = hookTargets[0].transform;
+            Parent.SetData("hookTarget", hookTarget);
+
             navMeshAgent.enabled = false;
-            PerformHookThrowing();
+
+            state = NodeState.SUCCESS;
+            return state;
         }
-
-        state = NodeState.RUNNING; 
-        return state;
-    }
-
-    private void PointArmTowardsHookTarget()
-    {
-        if (spineToFingerRig.weight < 1f && !isHookThrown)
-        {
-            spineToFingerRig.weight += rigAlignmentToHookTargetAcceleration * Time.deltaTime;
-        }
-        else
-        {
-            isHookThrown = true;
-            spineToFingerRig.weight = 0f;
-        }
-    }
-
-    private bool IsHookTargetReached()
-    {
-        return (hookTarget.position - transform.position).sqrMagnitude <= (hookReachThreshold * hookReachThreshold);
-    }
-
-    private void ExitState()
-    {
-        characterAnimator.TransitionToOrFromHooked(false);
-        spineToFingerRig.weight = 0f;
-        characterAnimator.TriggerLandingAnimation();
-        //onHookSpeed = -0.1f; // Needed to trigger state change to OnAir in CharacterEngine upon reaching target
-
-        isMovingToHookTarget = false;
-
-        navMeshAgent.enabled = true;
-
-        hookTarget = null;
-        SetTargetToRigChain();
-    }
-
-    private void PerformHookThrowing()
-    {
-        SetTargetToRigChain();
-        ThrowHook();
-    }
-
-    private void SetTargetToRigChain()
-    {
-        foreach (ChainIKConstraint item in shoulderToFingerConstraints)
-        {
-            item.data.target = hookTarget;
-        }
-        AssignConstraintTargetToHead();
-        rigBuilder.Build();
-    }
-
-    private void AssignConstraintTargetToHead()
-    {
-        WeightedTransform weightedTransform = new WeightedTransform();
-        weightedTransform.transform = hookTarget;
-        weightedTransform.weight = 1.0f;
-        headConstraint.data.sourceObjects = new WeightedTransformArray() { weightedTransform };
-    }
-
-    private void ThrowHook()
-    {
-        transform.forward = Vector3.ProjectOnPlane(hookTarget.position, Vector3.up);
-
-        characterAnimator.HaveCharacterThrowHook();
-
-        isHookThrown = false;
-        hangingDirection = Vector3.zero;
-
-        isMovingToHookTarget = true;
-    }
-
-    // Called from animation event
-    public void MoveCharacterToHookTarget()
-    {
-        hangingDirection = (hookTarget.position - transform.position).normalized;
-        transform.up = hangingDirection;
-        //navMeshAgent.speed = onHookSpeed;
-        spineToFingerRig.weight = 0f;
-        characterAnimator.TransitionToOrFromHooked(true);
     }
 }

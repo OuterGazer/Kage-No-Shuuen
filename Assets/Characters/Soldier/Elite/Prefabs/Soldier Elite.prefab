@@ -103,7 +103,10 @@ GameObject:
   - component: {fileID: 5438122774130431303}
   - component: {fileID: 3545977893119982696}
   - component: {fileID: 1999922227138396701}
+  - component: {fileID: 2733294485246658134}
   - component: {fileID: 7634925420462345060}
+  - component: {fileID: 5673441438190513467}
+  - component: {fileID: 502996576129934146}
   - component: {fileID: 5843524774124694792}
   - component: {fileID: 1096039331825319142}
   - component: {fileID: 7255289624017873206}
@@ -291,10 +294,29 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 0}
   children:
-  - {fileID: 7634925420462345060}
+  - {fileID: 2733294485246658134}
   - {fileID: 5843524774124694792}
   - {fileID: 1096039331825319142}
   - {fileID: 7928975561112161066}
+--- !u!114 &2733294485246658134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cfd0f2d2dba79d40bf7d63d3b17c682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 1999922227138396701}
+  children:
+  - {fileID: 7634925420462345060}
+  - {fileID: 5673441438190513467}
+  - {fileID: 502996576129934146}
 --- !u!114 &7634925420462345060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,11 +331,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   belongingTree: {fileID: 3545977893119982696}
   state: 0
-  Parent: {fileID: 1999922227138396701}
+  Parent: {fileID: 2733294485246658134}
   children: []
   hookThrowRadius: 10
-  hookReachThreshold: 2.85
+--- !u!114 &5673441438190513467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee6dcfd4eed90346be29e3cd2e7b7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 2733294485246658134}
+  children: []
+  rigBuilder: {fileID: 9053199391550812669}
+  shoulderToFingerConstraints:
+  - {fileID: 4679533776118764338}
+  - {fileID: 5728637037601744513}
+  - {fileID: 6151561699445721231}
+  - {fileID: 181830619288626490}
+  - {fileID: 4741737870020058896}
+  headConstraint: {fileID: 6469655896378079175}
+--- !u!114 &502996576129934146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918edd73b2fa5f84598eefe9dd271ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 2733294485246658134}
+  children: []
   onHookSpeed: 10
+  hookReachThreshold: 4
   rigAlignmentToHookTargetAcceleration: 1
   rigBuilder: {fileID: 9053199391550812669}
   shoulderToFingerConstraints:
@@ -2987,7 +3049,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
   m_LocalRotation: {x: 0.00000009362675, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.711, z: 0.17199898}
+  m_LocalPosition: {x: 0, y: 1.711, z: 0.17199993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3130,7 +3192,7 @@ PrefabInstance:
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6838002
+      value: -0.68380034
       objectReference: {fileID: 0}
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
@@ -3140,7 +3202,7 @@ PrefabInstance:
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.048599243
+      value: -0.04859996
       objectReference: {fileID: 0}
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
@@ -5234,7 +5296,7 @@ PrefabInstance:
     - target: {fileID: 6384058244188620145, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.089998245
+      value: -0.08999896
       objectReference: {fileID: 0}
     - target: {fileID: 6384058244188620145, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

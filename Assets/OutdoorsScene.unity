@@ -2332,7 +2332,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.0046499935, y: 0.14114548, z: -0.0006629701, w: 0.9899777}
+  m_LocalRotation: {x: 0.00464999, y: 0.14114557, z: -0.00066297, w: 0.9899777}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4057,7 +4057,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.033002075, y: 0.1410686, z: -0.0047052507, w: 0.9894384}
+  m_LocalRotation: {x: 0.033002064, y: 0.1410687, z: -0.004705253, w: 0.9894384}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5732,7 +5732,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.061515354, y: 0.14087431, z: -0.008770516, w: 0.9880756}
+  m_LocalRotation: {x: 0.061515357, y: 0.14087439, z: -0.008770521, w: 0.9880756}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5871,8 +5871,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823688464}
-  m_LocalRotation: {x: 0.03300207, y: 0.1410686, z: -0.004705251, w: 0.9894384}
-  m_LocalPosition: {x: -1.1178718, y: 2, z: 15.049379}
+  m_LocalRotation: {x: 0.033002075, y: 0.14106874, z: -0.004705255, w: 0.9894384}
+  m_LocalPosition: {x: -1.1178725, y: 2, z: 15.049379}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6379,7 +6379,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888552408}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1178718, y: 2, z: 15.049379}
+  m_LocalPosition: {x: -1.1178725, y: 2, z: 15.049379}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7334,11 +7334,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Elite
       objectReference: {fileID: 0}
+    - target: {fileID: 3299196175968880908, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.089998245
+      objectReference: {fileID: 0}
     - target: {fileID: 3545977893119982696, guid: 4f51888730454934b99cf0e0aff3ce48,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 4128263669422437873}
+    - target: {fileID: 4881775705463028145, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.17199898
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297697423969992219, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.6838002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297697423969992219, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.048599243
+      objectReference: {fileID: 0}
     - target: {fileID: 7928975561112161066, guid: 4f51888730454934b99cf0e0aff3ce48,
         type: 3}
       propertyPath: patrolParent
