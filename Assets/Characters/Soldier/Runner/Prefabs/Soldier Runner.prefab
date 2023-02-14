@@ -150,7 +150,7 @@ NavMeshAgent:
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 360
-  m_StoppingDistance: 0.5
+  m_StoppingDistance: 0.75
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localMainRoot: {fileID: 1999922227138396701}
+  weaponController: {fileID: 0}
   decisionMaker: {fileID: 2795677103851904032}
   navMeshAgent: {fileID: 2795677103851904046}
   characterAnimator: {fileID: 5438122774130431303}
@@ -379,6 +380,7 @@ MonoBehaviour:
   children: []
   timeBetweenAttacks: 1
   attackCounter: 0.5
+  shouldPerformHeavyAttack: 0
 --- !u!114 &6259360069907599011
 MonoBehaviour:
   m_ObjectHideFlags: 0

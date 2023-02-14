@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 7255289624017873206}
   - component: {fileID: 2813919417634894560}
   - component: {fileID: 7738160146926745281}
+  - component: {fileID: 223384374432186688}
   - component: {fileID: 7312010900681357011}
   - component: {fileID: 6259360069907599011}
   - component: {fileID: 7928975561112161066}
@@ -402,8 +403,8 @@ MonoBehaviour:
   Parent: {fileID: 1999922227138396701}
   children: []
   amountToThrow: 3
-  distanceThresholdForThrowing: 5
-  timeBetweenThrows: 5
+  distanceThresholdForThrowing: 3.5
+  timeBetweenThrows: 2
   timeBetweenSingleWeapons: 0.1
   throwWeapon: {fileID: 4083383836026891600}
 --- !u!114 &1096039331825319142
@@ -458,7 +459,7 @@ MonoBehaviour:
   Parent: {fileID: 1096039331825319142}
   children: []
   runningSpeed: 6
-  interactionDistanceThreshold: 1.5
+  interactionDistanceThreshold: 2
 --- !u!114 &7738160146926745281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,8 +476,27 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 1096039331825319142}
   children:
+  - {fileID: 223384374432186688}
   - {fileID: 7312010900681357011}
   - {fileID: 6259360069907599011}
+--- !u!114 &223384374432186688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e9f299020fa4048bbc480e3b81ce6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 7738160146926745281}
+  children: []
+  dodgingDistance: 4
+  dodgingSpeed: 3
 --- !u!114 &7312010900681357011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3049,7 +3069,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
   m_LocalRotation: {x: 0.00000009362675, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.711, z: 0.17199993}
+  m_LocalPosition: {x: 0, y: 1.711, z: 0.17199898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3192,7 +3212,7 @@ PrefabInstance:
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.68380034
+      value: -0.6838002
       objectReference: {fileID: 0}
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
@@ -3202,7 +3222,7 @@ PrefabInstance:
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.04859996
+      value: -0.048599243
       objectReference: {fileID: 0}
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
@@ -3813,7 +3833,7 @@ PrefabInstance:
     - target: {fileID: -8400606896973498488, guid: 94fbebd6b3c32514394f0d9eb03d44d8,
         type: 3}
       propertyPath: range
-      value: 15
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8400606896973498488, guid: 94fbebd6b3c32514394f0d9eb03d44d8,
         type: 3}
@@ -3828,7 +3848,7 @@ PrefabInstance:
     - target: {fileID: -8400606896973498488, guid: 94fbebd6b3c32514394f0d9eb03d44d8,
         type: 3}
       propertyPath: throwingStrength
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -7103493375466633802, guid: 94fbebd6b3c32514394f0d9eb03d44d8,
         type: 3}
@@ -3836,6 +3856,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: 29f50d7707a52f445ac01b9e99e1e2f9,
         type: 2}
+    - target: {fileID: -7103493375466633802, guid: 94fbebd6b3c32514394f0d9eb03d44d8,
+        type: 3}
+      propertyPath: closeCombatWeaponBase
+      value: 
+      objectReference: {fileID: 582737931}
     - target: {fileID: 3291033460747439498, guid: 94fbebd6b3c32514394f0d9eb03d44d8,
         type: 3}
       propertyPath: m_Name
@@ -3935,6 +3960,19 @@ ParentConstraint:
   m_Sources:
   - sourceTransform: {fileID: 4573846643487289949}
     weight: 1
+--- !u!114 &582737931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192129322880358226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658ffdcb6262e1e49b21a90f2f6303e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0.51
 --- !u!114 &4083383836026891600 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -8400606896973498488, guid: 94fbebd6b3c32514394f0d9eb03d44d8,
@@ -5296,7 +5334,7 @@ PrefabInstance:
     - target: {fileID: 6384058244188620145, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.08999896
+      value: -0.089998245
       objectReference: {fileID: 0}
     - target: {fileID: 6384058244188620145, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

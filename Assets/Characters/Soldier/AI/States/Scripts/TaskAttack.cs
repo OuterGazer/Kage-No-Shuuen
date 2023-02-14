@@ -12,7 +12,8 @@ public class TaskAttack : Node
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
-    
+
+    private bool isAttackAnimationRunning = false;    
 
     private void Start()
     {
@@ -22,8 +23,16 @@ public class TaskAttack : Node
 
     public override NodeState Evaluate()
     {
-        navMeshAgent.speed = 0f;
         attackCounter += Time.deltaTime;
+
+        if (isAttackAnimationRunning)
+        { 
+            navMeshAgent.speed = 0f;
+
+            state = NodeState.RUNNING;
+            return state;
+        }
+        
 
         Transform target = (Transform) GetData("target");
         if (target == null)
@@ -42,7 +51,8 @@ public class TaskAttack : Node
             { characterAnimator.PlayHeavySlashAnimation(); }
             attackCounter = 0f;
 
-            Parent.Parent.SetData("interactionAnimation", attackCounter);
+            isAttackAnimationRunning = true;
+            Parent.Parent.SetData("interactionAnimation", true);
         }
 
         state = NodeState.RUNNING;
@@ -52,6 +62,8 @@ public class TaskAttack : Node
     // Called from an animation event
     private void ExitCloseCombatState()
     {
+        isAttackAnimationRunning = false;
         ClearData("interactionAnimation");
+        ClearData("hasDodged");
     }
 }

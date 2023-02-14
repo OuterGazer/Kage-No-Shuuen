@@ -54,7 +54,8 @@ public class TaskGoToTarget : Node
 
                 if (isInteractionAnimationPlaying != null)
                 {
-                    navMeshAgent.speed = 0f;
+                    state = NodeState.SUCCESS;
+                    return state;
                 }
                 else 
                 {

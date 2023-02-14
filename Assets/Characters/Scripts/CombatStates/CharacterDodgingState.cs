@@ -42,7 +42,7 @@ public class CharacterDodgingState : CharacterStateBase
         currentSpeed -= speedDeceleration * Time.deltaTime;
     }
 
-public void SetDodgeFacingDirection(Vector3 facingDirection)
+    public void SetDodgeFacingDirection(Vector3 facingDirection)
     {
         dodgeFacingDirection = facingDirection;
     }
