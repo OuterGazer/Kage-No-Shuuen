@@ -4,6 +4,7 @@ using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using System;
 
 public class TaskGoToTarget : Node
 {
@@ -51,13 +52,15 @@ public class TaskGoToTarget : Node
                     return state;
                 }
 
-                if (isInteractionAnimationPlaying == null)
-                { 
+                if (isInteractionAnimationPlaying != null)
+                {
+                    navMeshAgent.speed = 0f;
+                }
+                else 
+                {
                     navMeshAgent.speed = runningSpeed;
                     navMeshAgent.destination = targetPosition;
                 }
-                else 
-                { navMeshAgent.speed = 0f; }
 
                 state = NodeState.RUNNING;
                 return state;
@@ -70,7 +73,7 @@ public class TaskGoToTarget : Node
             }
         }
 
-        state = NodeState.RUNNING;
+        state = NodeState.FAILURE;
         return state;
     }
 

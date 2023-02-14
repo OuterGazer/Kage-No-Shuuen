@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2160.706, g: 2264.795, b: 3288.2422, a: 1}
+  m_IndirectSpecularColor: {r: 2161.3838, g: 2265.4043, b: 3288.5703, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2332,7 +2332,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.004649984, y: 0.14114562, z: -0.00066296925, w: 0.9899777}
+  m_LocalRotation: {x: 0.0046499935, y: 0.14114551, z: -0.00066297024, w: 0.9899777}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4057,7 +4057,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.033002064, y: 0.14106873, z: -0.004705253, w: 0.9894384}
+  m_LocalRotation: {x: 0.033002075, y: 0.14106862, z: -0.004705251, w: 0.9894384}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5732,7 +5732,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.061515354, y: 0.14087445, z: -0.008770524, w: 0.9880756}
+  m_LocalRotation: {x: 0.061515365, y: 0.14087433, z: -0.008770519, w: 0.9880756}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5871,8 +5871,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823688464}
-  m_LocalRotation: {x: 0.03300207, y: 0.14106871, z: -0.004705254, w: 0.9894384}
-  m_LocalPosition: {x: -1.117873, y: 2, z: 15.049379}
+  m_LocalRotation: {x: 0.03300207, y: 0.14106862, z: -0.0047052526, w: 0.9894384}
+  m_LocalPosition: {x: -1.117872, y: 2, z: 15.049379}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6379,7 +6379,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888552408}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.117873, y: 2, z: 15.049379}
+  m_LocalPosition: {x: -1.117872, y: 2, z: 15.049379}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7334,6 +7334,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Elite
       objectReference: {fileID: 0}
+    - target: {fileID: 2795677103851904039, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2813919417634894560, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: interactionDistanceThreshold
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3299196175968880908, guid: 4f51888730454934b99cf0e0aff3ce48,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -7769,6 +7779,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Soldier Tank
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795677103851904039, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3545977893119982696, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
         type: 3}
