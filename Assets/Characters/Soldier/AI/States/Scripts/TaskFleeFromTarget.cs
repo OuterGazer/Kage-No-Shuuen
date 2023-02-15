@@ -6,7 +6,7 @@ using BehaviourTree;
 
 public class TaskFleeFromTarget : Node
 {
-    [SerializeField] float runningSpeed = 5f;
+    [SerializeField] float fleeingSpeed = 3f;
     [SerializeField] float maxFleeDistance = 7f;
 
     private NavMeshAgent navMeshAgent;
@@ -44,7 +44,7 @@ public class TaskFleeFromTarget : Node
                 return state;
             }
 
-            navMeshAgent.speed = runningSpeed;
+            navMeshAgent.speed = fleeingSpeed;
             navMeshAgent.destination = transform.position - transform.forward;
             transform.LookAt(target.position);
 

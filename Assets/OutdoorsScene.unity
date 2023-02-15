@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2159.7373, g: 2263.621, b: 3286.6016, a: 1}
+  m_IndirectSpecularColor: {r: 2160.5244, g: 2264.5703, b: 3287.543, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2407,7 +2407,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.0035892776, y: 0.64501625, z: -0.0030296782, w: 0.7641545}
+  m_LocalRotation: {x: 0.0035892928, y: 0.645016, z: -0.0030296897, w: 0.7641546}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4133,7 +4133,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.025473978, y: 0.6446649, z: -0.021502366, w: 0.7637382}
+  m_LocalRotation: {x: 0.025473999, y: 0.64466465, z: -0.021502374, w: 0.76373833}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5992,7 +5992,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.047483124, y: 0.6437769, z: -0.0400801, w: 0.7626862}
+  m_LocalRotation: {x: 0.047483146, y: 0.6437767, z: -0.040080093, w: 0.76268643}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6131,8 +6131,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823688464}
-  m_LocalRotation: {x: 0.025473973, y: 0.6446649, z: -0.021502363, w: 0.76373816}
-  m_LocalPosition: {x: -25.183224, y: 2, z: 8.81844}
+  m_LocalRotation: {x: 0.025473993, y: 0.64466465, z: -0.021502374, w: 0.7637384}
+  m_LocalPosition: {x: -25.183222, y: 2, z: 8.818439}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6639,7 +6639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888552408}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.183224, y: 2, z: 8.81844}
+  m_LocalPosition: {x: -25.183222, y: 2, z: 8.818439}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7721,6 +7721,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1977086151}
     m_Modifications:
+    - target: {fileID: 1161198944579834120, guid: 31ad0890bae4baf4c9d5752f3e090342,
+        type: 3}
+      propertyPath: distanceThresholdForThrowing
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002939630700324989, guid: 31ad0890bae4baf4c9d5752f3e090342,
+        type: 3}
+      propertyPath: maxFleeDistance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2795677103851904038, guid: 31ad0890bae4baf4c9d5752f3e090342,
         type: 3}
       propertyPath: m_RootOrder
@@ -7781,11 +7791,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Coward
       objectReference: {fileID: 0}
+    - target: {fileID: 2813919417634894560, guid: 31ad0890bae4baf4c9d5752f3e090342,
+        type: 3}
+      propertyPath: interactionDistanceThreshold
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881775705463028145, guid: 31ad0890bae4baf4c9d5752f3e090342,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.000008583069
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881775705463028145, guid: 31ad0890bae4baf4c9d5752f3e090342,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.17326736
+      objectReference: {fileID: 0}
     - target: {fileID: 7928975561112161066, guid: 31ad0890bae4baf4c9d5752f3e090342,
         type: 3}
       propertyPath: patrolParent
       value: 
       objectReference: {fileID: 1692762450}
+    - target: {fileID: 8883793517170183496, guid: 31ad0890bae4baf4c9d5752f3e090342,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.033979416
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31ad0890bae4baf4c9d5752f3e090342, type: 3}
 --- !u!4 &5965697692597466221 stripped
@@ -8015,7 +8045,7 @@ PrefabInstance:
     - target: {fileID: 3759334776753447573, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}
       propertyPath: life
-      value: 0.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3867224545343439091, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}

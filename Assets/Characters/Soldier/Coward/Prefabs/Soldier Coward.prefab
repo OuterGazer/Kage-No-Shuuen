@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 7255289624017873206}
   - component: {fileID: 2813919417634894560}
   - component: {fileID: 2002939630700324989}
+  - component: {fileID: 703929505233680087}
   - component: {fileID: 1161198944579834120}
   - component: {fileID: 7928975561112161066}
   m_Layer: 9
@@ -309,6 +310,7 @@ MonoBehaviour:
   - {fileID: 7255289624017873206}
   - {fileID: 2813919417634894560}
   - {fileID: 2002939630700324989}
+  - {fileID: 703929505233680087}
   - {fileID: 1161198944579834120}
 --- !u!114 &7255289624017873206
 MonoBehaviour:
@@ -360,8 +362,24 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 1096039331825319142}
   children: []
-  runningSpeed: 3
+  fleeingSpeed: 3
   maxFleeDistance: 5
+--- !u!114 &703929505233680087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5352d67a69e9af741934161d601688f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 1096039331825319142}
+  children: []
 --- !u!114 &1161198944579834120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2917,7 +2935,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
   m_LocalRotation: {x: 0.00000009362675, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000008583069, y: 1.5502678, z: 0.17326736}
+  m_LocalPosition: {x: 0.000008106232, y: 1.5502678, z: 0.17326784}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3879,7 +3897,7 @@ PrefabInstance:
     - target: {fileID: 1015616097211072821, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.033979416
+      value: -0.03397894
       objectReference: {fileID: 0}
     - target: {fileID: 1015616097211072821, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
