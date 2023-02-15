@@ -38,7 +38,7 @@ public class WeaponController : MonoBehaviour
         // Es mucho asumir que tendremos un arma inicial, pero peor es robar.
         // Se podría hacer un check para saber que weapons.Length no sea cero.
         currentWeapon = weapons[0];
-        //characterAnimator.ApplyAnimatorController(currentWeapon);
+        characterAnimator.ApplyAnimatorController(currentWeapon);
         onWeaponChange.Invoke(currentWeapon);
     }
 

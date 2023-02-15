@@ -12,6 +12,7 @@ public class ArchThrow : ThrowingWeaponBase
         GameObject shotProjectile = Instantiate(projectilePrefab, hand.position,  player.rotation);
         shotProjectile.transform.localRotation *=  Quaternion.Euler(-throwAngle, 0f, 0f);
 
+        shotProjectile.GetComponent<ProjectileBase>().SetOwnerTag(gameObject.tag);
         projectileRB = shotProjectile.GetComponent<Rigidbody>();
 
         if (projectileRB)

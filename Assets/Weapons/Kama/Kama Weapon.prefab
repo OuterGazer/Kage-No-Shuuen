@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2717970473439218024}
   - component: {fileID: 6378122440359498543}
   - component: {fileID: 788122920084834568}
-  - component: {fileID: 2810579375975772556}
+  - component: {fileID: 6296582101791967315}
   - component: {fileID: 8869162149172040187}
   - component: {fileID: 792894021028395224}
   m_Layer: 0
@@ -101,9 +101,9 @@ MonoBehaviour:
   animatorOverride: {fileID: 22100000, guid: 3a8f5692e35a1cb41943ae349ee61d8a, type: 2}
   shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 792894021028395224}
-  throwingWeaponBase: {fileID: 2810579375975772556}
+  throwingWeaponBase: {fileID: 6296582101791967315}
   aimingRig: {fileID: 0}
---- !u!114 &2810579375975772556
+--- !u!114 &6296582101791967315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,16 +112,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3246125885150869276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7b468a3c7369c4192efbdcf1d86a1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 74e337f725d15674fa3dc17d9451854e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 3246125885150869276, guid: 297fa7299bc888043adf7e7ab5623ea7,
     type: 3}
   throwingStrength: 5
-  spinSpeed: 25
+  spinSpeed: 10
   hand: {fileID: 0}
   player: {fileID: 0}
-  range: 3
+  throwAngle: 30
 --- !u!1773428102 &8869162149172040187
 ParentConstraint:
   m_ObjectHideFlags: 0
@@ -186,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5398590605621907547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.123}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

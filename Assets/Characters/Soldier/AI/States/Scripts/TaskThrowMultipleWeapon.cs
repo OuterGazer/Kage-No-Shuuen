@@ -60,6 +60,7 @@ public class TaskThrowMultipleWeapon : Node
         transform.LookAt(target);
         characterAnimator.PlayThrowingAnimation();
         isThrowingAnimationRunning = true;
+        Parent.SetData("interactionAnimation", true);
         throwCounter = 0f;
 
         state = NodeState.RUNNING;
@@ -95,5 +96,6 @@ public class TaskThrowMultipleWeapon : Node
     public void ExitThrowingState()
     {
         isThrowingAnimationRunning = false;
+        ClearData("interactionAnimation");
     }
 }
