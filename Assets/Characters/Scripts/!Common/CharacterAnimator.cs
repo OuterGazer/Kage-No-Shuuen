@@ -26,6 +26,8 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterShootingState shootingState;
     private CharacterThrowingState throwingState;
 
+    private NavMeshAgent navMeshAgent;
+
     private Vector3 movementDirection;
     private float runningSpeed;
 
@@ -79,6 +81,8 @@ public class CharacterAnimator : MonoBehaviour
         closeCombatState = GetComponent<CharacterCloseCombatState>();
         shootingState= GetComponent<CharacterShootingState>();
         throwingState= GetComponent<CharacterThrowingState>();
+
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     private void AddNecessaryListeners()
@@ -211,11 +215,11 @@ public class CharacterAnimator : MonoBehaviour
 
         if (CompareTag("Soldier"))
         {
-            forwardMovementDirection = 0.5f;
-            sidewaysMovementDirection = 0f;
-        }
-            
+            Vector3 velocity = navMeshAgent.velocity;
 
+            forwardMovementDirection = 0.5f * Mathf.Sign(Vector3.Dot(transform.forward, velocity));
+            sidewaysMovementDirection = 0.5f * Mathf.Sign(Vector3.Dot(transform.right, velocity)); ;
+        }
     }
 
     private bool IsPlayerPressingAMovementKey(float movementAxis)
