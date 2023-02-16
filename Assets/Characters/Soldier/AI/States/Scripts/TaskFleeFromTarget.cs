@@ -38,12 +38,6 @@ public class TaskFleeFromTarget : Node
 
         if (IsTargetTooClose(target))
         {
-            if(isInteractionAnimationPlaying != null)
-            {
-                state = NodeState.SUCCESS;
-                return state;
-            }
-
             navMeshAgent.speed = fleeingSpeed;
             navMeshAgent.destination = transform.position - transform.forward;
             transform.LookAt(target.position);

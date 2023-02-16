@@ -25,17 +25,11 @@ public class TaskStrafeAroundTarget : Node
             return state;
         }
 
-        object isInteractionAnimationPlaying = GetData("interactionAnimation");
-        if (isInteractionAnimationPlaying != null)
-        {
-            state = NodeState.SUCCESS;
-            return state;
-        }
-
         navMeshAgent.speed = patrolSpeed;
         navMeshAgent.destination = transform.position + transform.right;
+        transform.LookAt(target);
 
-        state = NodeState.SUCCESS;
+        state = NodeState.RUNNING;
         return state;
     }
 }
