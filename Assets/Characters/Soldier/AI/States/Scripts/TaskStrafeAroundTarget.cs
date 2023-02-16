@@ -26,7 +26,7 @@ public class TaskStrafeAroundTarget : Node
         }
 
         navMeshAgent.speed = patrolSpeed;
-        navMeshAgent.destination = transform.position + -transform.right;
+        navMeshAgent.destination = transform.position + transform.right;
         transform.LookAt(target);
 
         state = NodeState.RUNNING;
