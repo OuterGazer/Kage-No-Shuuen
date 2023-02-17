@@ -7,12 +7,10 @@ using UnityEngine.AI;
 public class CheckForInterestingThings : Node
 {
     private DecisionMaker decisionMaker;
-    private CharacterAnimator characterAnimator;
 
     private void Start()
     {
         decisionMaker = ((SoldierBehaviour)belongingTree).DecisionMaker;
-        characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
         decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);
     }
 

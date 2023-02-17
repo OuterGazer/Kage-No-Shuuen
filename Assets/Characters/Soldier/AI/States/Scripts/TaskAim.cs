@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
-using System.Security.Claims;
 using UnityEngine.Animations.Rigging;
 
 public class TaskAim : Node
@@ -17,9 +16,8 @@ public class TaskAim : Node
     [SerializeField] Transform leftHand;
 
     [Header("Rig Settings")]
-    //[SerializeField] RigBuilder rigBuilder;
     [SerializeField] Rig aimingRig;
-    //[SerializeField] ChainIKConstraint chainIKConstraint;
+
     private Vector3 initialBowstringPosition = Vector3.zero;
 
     private CharacterAnimator characterAnimator;
@@ -64,17 +62,11 @@ public class TaskAim : Node
             state = NodeState.RUNNING;
             return state;
         }
-        else
-        {
-            //bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
-        }
 
+        transform.LookAt(target);
         characterAnimator.PlayAimingAnimation(true);
         isAimingAnimationPlaying = true;
         Parent.SetData("interactionAnimation", true);
-
-        //chainIKConstraint.data.target = target;
-        //rigBuilder.Build();
 
         state = NodeState.RUNNING;
         return state;
@@ -91,6 +83,7 @@ public class TaskAim : Node
         isPullingBowstring = true;
     }
 
+    // Called from animation event
     internal void ReadyToShoot()
     {
         isPullingBowstring = false;
@@ -119,5 +112,17 @@ public class TaskAim : Node
         characterAnimator.PlayAimingAnimation(true);
         isAimingAnimationPlaying = true;
         Parent.SetData("interactionAnimation", true);
+    }
+
+    private void StopAiming()
+    {
+        characterAnimator.PlayAimingAnimation(false);
+
+        if (loadedArrow.activeInHierarchy)
+        {
+            loadedArrow.SetActive(false);
+        }
+        
+        aimingRig.weight = 0f;
     }
 }

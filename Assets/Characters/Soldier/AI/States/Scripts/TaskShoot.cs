@@ -9,7 +9,7 @@ public class TaskShoot : Node
     [SerializeField] float timeBetweenShots = 3f;
     [SerializeField] GameObject loadedArrow;
 
-    private float shootingCounter = 1f;
+    private float shootingCounter = 0f;
 
     private CharacterAnimator characterAnimator;
 

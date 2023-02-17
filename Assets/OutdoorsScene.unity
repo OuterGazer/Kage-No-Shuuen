@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2159.5615, g: 2263.3516, b: 3286.3828, a: 1}
+  m_IndirectSpecularColor: {r: 2159.745, g: 2263.621, b: 3286.6133, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2447,7 +2447,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556229420}
-  m_LocalRotation: {x: 0.0035892737, y: 0.6450164, z: -0.0030296764, w: 0.7641544}
+  m_LocalRotation: {x: 0.0035892776, y: 0.64501643, z: -0.00302968, w: 0.7641543}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4435,7 +4435,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.025473973, y: 0.644665, z: -0.021502374, w: 0.76373804}
+  m_LocalRotation: {x: 0.025473975, y: 0.644665, z: -0.021502372, w: 0.7637381}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6476,7 +6476,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789184517}
-  m_LocalRotation: {x: 0.047483124, y: 0.6437771, z: -0.04008012, w: 0.7626861}
+  m_LocalRotation: {x: 0.047483094, y: 0.6437771, z: -0.040080097, w: 0.7626861}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8208,10 +8208,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Guardian
       objectReference: {fileID: 0}
-    - target: {fileID: 4086668297048375797, guid: a3582485e7d7f34459964aa32aeccd90,
+    - target: {fileID: 5140284396572523452, guid: a3582485e7d7f34459964aa32aeccd90,
         type: 3}
-      propertyPath: animationAcceleration
-      value: 4
+      propertyPath: m_LocalPosition.x
+      value: -0.030999422
+      objectReference: {fileID: 0}
+    - target: {fileID: 5140284396572523452, guid: a3582485e7d7f34459964aa32aeccd90,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.045999527
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142529811101321432, guid: a3582485e7d7f34459964aa32aeccd90,
+        type: 3}
+      propertyPath: timeBetweenShots
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810786202862428116, guid: a3582485e7d7f34459964aa32aeccd90,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0500004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810786202862428116, guid: a3582485e7d7f34459964aa32aeccd90,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.17399979
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3582485e7d7f34459964aa32aeccd90, type: 3}
@@ -8607,11 +8627,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.00000079444925
-      objectReference: {fileID: 0}
-    - target: {fileID: 3759334776753447573, guid: f3a501e21767747428cd4a475d9844b8,
-        type: 3}
-      propertyPath: life
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3867224545343439091, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}

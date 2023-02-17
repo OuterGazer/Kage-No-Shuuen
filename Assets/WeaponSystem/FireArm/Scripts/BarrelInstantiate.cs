@@ -11,6 +11,7 @@ public class BarrelInstantiate : BarrelBase
     public override void Shoot()
     {
         GameObject shotProjectile = Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
+        shotProjectile.GetComponent<ProjectileBase>().SetOwnerTag(transform.parent.tag);
 
         Rigidbody projectileRB = shotProjectile.GetComponent<Rigidbody>();
 
