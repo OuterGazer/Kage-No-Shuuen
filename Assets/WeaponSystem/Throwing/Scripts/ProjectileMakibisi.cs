@@ -19,8 +19,9 @@ public class ProjectileMakibisi : ProjectileBase
 
         for(int i = 0; i < thrownMakibisis.Length; i++)
         {
-            GameObject current = Instantiate(extraMakibisiPrefab, transform.position, transform.rotation);
+            GameObject current = Instantiate(extraMakibisiPrefab, transform.position, transform.rotation);            
             thrownMakibisis[i] = current;
+            thrownMakibisis[i].GetComponent<ProjectileBase>().SetOwnerTag(tag);
 
             float throwingStrength = Random.Range(maxForce, minForce);
             float throwingAngle = Random.Range(maxAngle, minAngle);

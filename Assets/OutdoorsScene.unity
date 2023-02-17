@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2160.4873, g: 2264.5508, b: 3287.5938, a: 1}
+  m_IndirectSpecularColor: {r: 2160.5264, g: 2264.5586, b: 3287.5312, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3483,12 +3483,17 @@ PrefabInstance:
     - target: {fileID: 2795677103851904039, guid: 5bfd7e6d97bd2834eba681e4aad767a8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2809530368573014960, guid: 5bfd7e6d97bd2834eba681e4aad767a8,
         type: 3}
       propertyPath: interactionDistanceThreshold
-      value: 1.5
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3620464842475499842, guid: 5bfd7e6d97bd2834eba681e4aad767a8,
+        type: 3}
+      propertyPath: attackCounter
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4881775705463028145, guid: 5bfd7e6d97bd2834eba681e4aad767a8,
         type: 3}
@@ -4348,7 +4353,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050924463}
-  m_LocalRotation: {x: 0.025473975, y: 0.644665, z: -0.021502372, w: 0.7637381}
+  m_LocalRotation: {x: 0.025473973, y: 0.644665, z: -0.021502374, w: 0.76373804}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7238,6 +7243,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907167016}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1952959825 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9189764798064759739, guid: f3a501e21767747428cd4a475d9844b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 6879177245332342833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1957036615
 GameObject:
   m_ObjectHideFlags: 0
@@ -8568,6 +8579,16 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 5287586322834402709, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 1952959825}
+    - target: {fileID: 5287586322834402709, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 4128263669422437873}
     - target: {fileID: 5326889679191727675, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9005,23 +9026,24 @@ PrefabInstance:
     - target: {fileID: 2795677103851904039, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3545977893119982696, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 4128263669422437873}
-    - target: {fileID: 4881775705463028145, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.000013684233
-      objectReference: {fileID: 0}
     - target: {fileID: 7928975561112161066, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
         type: 3}
       propertyPath: patrolParent
       value: 
       objectReference: {fileID: 160317168}
+    - target: {fileID: 8967726724187122892, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
+        type: 3}
+      propertyPath: animatorOverride
+      value: 
+      objectReference: {fileID: 22100000, guid: 4d736b0e9b748c7478d55f9ad0f8fcca,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc91bec68e7482f4f8c49d18a1c08ff0, type: 3}
 --- !u!4 &7348617168891627848 stripped
