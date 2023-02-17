@@ -54,8 +54,13 @@ public class AnimationEventForwarder : MonoBehaviour
 
     public void ForwardPullBowstring()
     {
-        SendMessageUpwards("PullBowstring", SendMessageOptions.DontRequireReceiver);
+        SendMessageUpwards("PullBowstring");
         SendMessageUpwards("SpawnArrowInBow");
+    }
+
+    public void ForwardReadyToShoot()
+    {
+        SendMessageUpwards("ReadyToShoot", SendMessageOptions.DontRequireReceiver);
     }
 
     public void ForwardReleaseBowstring()

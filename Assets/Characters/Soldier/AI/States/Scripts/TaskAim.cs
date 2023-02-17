@@ -20,11 +20,13 @@ public class TaskAim : Node
     //[SerializeField] RigBuilder rigBuilder;
     [SerializeField] Rig aimingRig;
     //[SerializeField] ChainIKConstraint chainIKConstraint;
-    private Vector3 initialBowstringPosition;
+    private Vector3 initialBowstringPosition = Vector3.zero;
 
     private CharacterAnimator characterAnimator;
 
     private bool isAimingAnimationPlaying = false;
+    private bool isPullingBowstring = false;
+    private bool isReadyToShoot = false;
 
     private void Start()
     {
@@ -43,7 +45,15 @@ public class TaskAim : Node
 
         if (isAimingAnimationPlaying)
         {
-            if (aimingRig.weight >= 1f)
+            aimingRig.weight = (aimingRig.weight >= 1f) ? 1f : (aimingRig.weight += animationAcceleration * Time.deltaTime);
+
+            if (isPullingBowstring)
+            {
+                bowstring.localPosition += bowstring.InverseTransformPoint(leftHand.TransformPoint(leftHand.localPosition));
+            }
+
+            if ((aimingRig.weight >= 1f) &&
+                (isReadyToShoot))
             {
                 transform.LookAt(target);
 
@@ -51,17 +61,16 @@ public class TaskAim : Node
                 return state;
             }
 
-            aimingRig.weight = (aimingRig.weight >= 1f) ? 1f : (aimingRig.weight += animationAcceleration * Time.deltaTime);
-            
-            bowstring.localPosition = bowstring.InverseTransformPoint(leftHand.TransformPoint(leftHand.localPosition));
-
             state = NodeState.RUNNING;
             return state;
+        }
+        else
+        {
+            //bowstring.localPosition = Vector3.MoveTowards(bowstring.localPosition, initialBowstringPosition, 20f * Time.deltaTime);
         }
 
         characterAnimator.PlayAimingAnimation(true);
         isAimingAnimationPlaying = true;
-        transform.LookAt(target);
         Parent.SetData("interactionAnimation", true);
 
         //chainIKConstraint.data.target = target;
@@ -77,6 +86,17 @@ public class TaskAim : Node
         quiverArrow.SetActive(true);
     }
 
+    internal void PullBowstring()
+    {
+        isPullingBowstring = true;
+    }
+
+    internal void ReadyToShoot()
+    {
+        isPullingBowstring = false;
+        isReadyToShoot = true;
+    }
+
     // Called from Animation Event
     internal void SpawnArrowInBow()
     {
@@ -87,6 +107,8 @@ public class TaskAim : Node
     // Called from Animation Event
     internal void ReleaseBowstring()
     {
+        isAimingAnimationPlaying = false;
+        isReadyToShoot= false;
         bowstring.localPosition = initialBowstringPosition;
         loadedArrow.SetActive(false);
     }
@@ -95,6 +117,7 @@ public class TaskAim : Node
     internal void ReloadBow()
     {
         characterAnimator.PlayAimingAnimation(true);
-        initialBowstringPosition = bowstring.localPosition;
+        isAimingAnimationPlaying = true;
+        Parent.SetData("interactionAnimation", true);
     }
 }
