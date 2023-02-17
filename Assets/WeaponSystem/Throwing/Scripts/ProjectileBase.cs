@@ -12,6 +12,7 @@ public class ProjectileBase : MonoBehaviour
     {
         ownerTag = inTag;
         gameObject.tag = ownerTag;
+        gameObject.GetComponentInChildren<Collider>().tag = inTag;
     }
 
     protected virtual void OnTriggerEnter(Collider other)

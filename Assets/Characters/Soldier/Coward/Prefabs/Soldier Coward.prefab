@@ -309,10 +309,11 @@ MonoBehaviour:
   Parent: {fileID: 1999922227138396701}
   children: []
   amountToThrow: 2
-  distanceThresholdForThrowing: 5
-  timeBetweenThrows: 0.04
-  timeBetweenSingleWeapons: 0.25
+  distanceThresholdForThrowing: 4
+  timeBetweenThrows: 1
+  timeBetweenSingleWeapons: 0.2
   throwWeapon: {fileID: 689134941122071667}
+  shouldWeaponDisappear: 0
 --- !u!114 &1096039331825319142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +385,7 @@ MonoBehaviour:
   Parent: {fileID: 1096039331825319142}
   children: []
   fleeingSpeed: 3
-  maxFleeDistance: 5
+  maxFleeDistance: 4
 --- !u!114 &703929505233680087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2935,7 +2936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
   m_LocalRotation: {x: 0.00000009362675, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000008106232, y: 1.5502678, z: 0.17326784}
+  m_LocalPosition: {x: 0.000008583069, y: 1.5502678, z: 0.17326736}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3897,7 +3898,7 @@ PrefabInstance:
     - target: {fileID: 1015616097211072821, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.03397894
+      value: -0.033979416
       objectReference: {fileID: 0}
     - target: {fileID: 1015616097211072821, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

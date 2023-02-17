@@ -6,18 +6,10 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WindmillShurikenAnimatorOverride
+  m_Name: Daring Soldier Animator Override
   m_Controller: {fileID: 9100000, guid: 28186da4abf59b740a12c4f91cbf983c, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: -203655887218126122, guid: a416198af4f813d4ba3f39c5d4daec03,
       type: 3}
     m_OverrideClip: {fileID: -203655887218126122, guid: c263a491ecb7a454283b0efd72a31bb7,
-      type: 3}
-  - m_OriginalClip: {fileID: -203655887218126122, guid: 9dd84e791286d0845944332c1681d093,
-      type: 3}
-    m_OverrideClip: {fileID: -203655887218126122, guid: c263a491ecb7a454283b0efd72a31bb7,
-      type: 3}
-  - m_OriginalClip: {fileID: -203655887218126122, guid: a024502ba4c461f46a6be1af885e6416,
-      type: 3}
-    m_OverrideClip: {fileID: -203655887218126122, guid: a024502ba4c461f46a6be1af885e6416,
       type: 3}

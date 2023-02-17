@@ -20,6 +20,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] Rig aimingRig;
     public Rig AimingRig => aimingRig;
 
+    public string ownerTag;
+
     private void Reset()
     {
         shootingWeapon = GetComponent<ShootingWeapon>();

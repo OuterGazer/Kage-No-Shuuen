@@ -16,7 +16,6 @@ public class CloseCombatWeaponMultipleRaycast : CloseCombatWeaponBase
     private void Start()
     {
         weaponLength = tip.transform.localPosition.z - edgeNotch.transform.localPosition.z;
-        ownerTag = transform.parent.parent.gameObject.tag; // prefab root is 2 levels above the weapon in the hierarchy.
     }
 
     void FixedUpdate()
@@ -81,7 +80,7 @@ public class CloseCombatWeaponMultipleRaycast : CloseCombatWeaponBase
         if (Physics.Raycast(origin, destination - origin, out hit, weaponLength, damageableLayerMask))
         {
             Collider colliderHit = hit.collider;
-            if (!colliderHit.CompareTag(ownerTag))
+            if (!colliderHit.CompareTag(tag))
             {
                 IDamagereceiver damageReceiver = colliderHit.GetComponent<IDamagereceiver>();
                 PerformDamage(damageReceiver);

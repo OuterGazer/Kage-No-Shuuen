@@ -8,7 +8,7 @@ public class TaskPatrol : Node
 {
     [SerializeField] Transform patrolParent;
     [SerializeField] int startPatrolPointIndex = 0;
-    private float reachThreshold;
+    [SerializeField] float reachThreshold = 0.5f;
     private float patrolSpeed;
 
     private NavMeshAgent navMeshAgent;
@@ -25,13 +25,13 @@ public class TaskPatrol : Node
     {
         patrolSpeed = ((SoldierBehaviour)belongingTree).PatrolSpeed;
         this.navMeshAgent = ((SoldierBehaviour) belongingTree).NavMeshAgent;
-        reachThreshold = navMeshAgent.stoppingDistance;
         currentPatrolPointIndex = startPatrolPointIndex;
     }
 
     public override NodeState Evaluate()
     {
         navMeshAgent.speed = patrolSpeed;
+        navMeshAgent.stoppingDistance = reachThreshold;
 
         navMeshAgent.destination = patrolPoints[currentPatrolPointIndex].transform.position;
 

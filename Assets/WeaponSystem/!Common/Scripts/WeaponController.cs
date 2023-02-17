@@ -28,6 +28,18 @@ public class WeaponController : MonoBehaviour
         characterAnimator= GetComponent<CharacterAnimator>();
     }
 
+    private void OnEnable()
+    {
+        foreach(Weapon item in weapons)
+        {
+            item.ownerTag = tag;
+            item.tag = item.ownerTag;
+            Collider temp = item.GetComponentInChildren<Collider>();
+            if(temp)
+                temp.tag = item.ownerTag;
+        }
+    }
+
     private void Start()
     {
         for(int i = 1; i < weapons.Length; i++)

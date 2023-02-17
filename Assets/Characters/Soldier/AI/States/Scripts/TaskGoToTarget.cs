@@ -43,6 +43,7 @@ public class TaskGoToTarget : Node
         if (currentTarget)
         {
             targetPosition = currentTarget.position;
+            navMeshAgent.stoppingDistance = interactionDistanceThreshold;
 
             if (IsTargetWithinInteractionDistance())
             {

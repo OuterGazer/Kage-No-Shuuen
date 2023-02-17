@@ -18,6 +18,7 @@ public class TaskThrowMultipleWeapon : Node
     private float throwCounter = 5f;
     private int singleWeaponsThrownCounter = 0;
     private bool isThrowingAnimationRunning = false;
+    [SerializeField] bool shouldWeaponDisappear = true;
 
     private void Start()
     {
@@ -56,7 +57,10 @@ public class TaskThrowMultipleWeapon : Node
         }
 
         navMeshAgent.speed = 0f;
-        throwWeapon.gameObject.SetActive(true);
+        
+        if(shouldWeaponDisappear)
+            throwWeapon.gameObject.SetActive(true);
+
         transform.LookAt(target);
         characterAnimator.PlayThrowingAnimation();
         isThrowingAnimationRunning = true;
@@ -76,23 +80,22 @@ public class TaskThrowMultipleWeapon : Node
     public void ThrowWeapon()
     {
         StartCoroutine(ThrowInSequence());
-        throwWeapon.gameObject.SetActive(false);
+        if (shouldWeaponDisappear)
+            throwWeapon.gameObject.SetActive(false);
     }
 
     private IEnumerator ThrowInSequence()
     {
         while (isThrowingAnimationRunning)
         {
-            if(singleWeaponsThrownCounter >= amountToThrow) { singleWeaponsThrownCounter = 0;  break; }
+            if(singleWeaponsThrownCounter >= amountToThrow) { break; }
 
             throwWeapon?.Throw();
             singleWeaponsThrownCounter++;
 
             yield return new WaitForSeconds(timeBetweenSingleWeapons);
-
-            singleWeaponsThrownCounter = 0;
         }
-        
+        singleWeaponsThrownCounter = 0;
     }
 
     // Called from an animation event
