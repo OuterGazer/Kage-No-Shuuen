@@ -54,7 +54,7 @@ public class AnimationEventForwarder : MonoBehaviour
 
     public void ForwardPullBowstring()
     {
-        SendMessageUpwards("PullBowstring");
+        SendMessageUpwards("PullBowstring", SendMessageOptions.DontRequireReceiver);
         SendMessageUpwards("SpawnArrowInBow");
     }
 

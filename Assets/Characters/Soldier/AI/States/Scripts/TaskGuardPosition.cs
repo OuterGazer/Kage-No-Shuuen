@@ -21,22 +21,27 @@ public class TaskGuardPosition : Node
 
     public override NodeState Evaluate()
     {
-        if(transform.position != guardingPoint.position)
-        { 
+        if (IsAgentFarAwayFromGuardingPoint())
+        {
             navMeshAgent.destination = guardingPoint.position;
-            
+
             state = NodeState.RUNNING;
             return state;
         }
 
         lookingTimeCounter += Time.deltaTime;
-        if(lookingTimeCounter >= timeToChangeLookingDirection)
+        if (lookingTimeCounter >= timeToChangeLookingDirection)
         {
             transform.rotation *= Quaternion.Euler(0f, lookingDirectionChangeAngle, 0f);
             lookingTimeCounter = 0f;
         }
 
-        state = NodeState.RUNNING; 
+        state = NodeState.RUNNING;
         return state;
+    }
+
+    private bool IsAgentFarAwayFromGuardingPoint()
+    {
+        return (guardingPoint.position - transform.position).sqrMagnitude > (navMeshAgent.stoppingDistance * navMeshAgent.stoppingDistance);
     }
 }
