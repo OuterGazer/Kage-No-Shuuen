@@ -87,7 +87,9 @@ public class TaskThrowMultipleWeapon : Node
 
             throwWeapon?.Throw();
             singleWeaponsThrownCounter++;
+
             yield return new WaitForSeconds(timeBetweenSingleWeapons);
+
             singleWeaponsThrownCounter = 0;
         }
         
