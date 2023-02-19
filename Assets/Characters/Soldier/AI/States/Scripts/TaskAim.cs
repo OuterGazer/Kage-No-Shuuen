@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.AI;
 
 public class TaskAim : Node
 {
@@ -20,6 +21,7 @@ public class TaskAim : Node
 
     private Vector3 initialBowstringPosition = Vector3.zero;
 
+    private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
 
     private bool isAimingAnimationPlaying = false;
@@ -28,6 +30,7 @@ public class TaskAim : Node
 
     private void Start()
     {
+        navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
         initialBowstringPosition = bowstring.localPosition;
     }
@@ -54,6 +57,7 @@ public class TaskAim : Node
                 (isReadyToShoot))
             {
                 transform.LookAt(target);
+                navMeshAgent.speed = 0f;
 
                 state = NodeState.SUCCESS;
                 return state;
@@ -112,17 +116,5 @@ public class TaskAim : Node
         characterAnimator.PlayAimingAnimation(true);
         isAimingAnimationPlaying = true;
         Parent.SetData("interactionAnimation", true);
-    }
-
-    private void StopAiming()
-    {
-        characterAnimator.PlayAimingAnimation(false);
-
-        if (loadedArrow.activeInHierarchy)
-        {
-            loadedArrow.SetActive(false);
-        }
-        
-        aimingRig.weight = 0f;
     }
 }

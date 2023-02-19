@@ -110,7 +110,7 @@ public class DecisionMaker : MonoBehaviour
         Transform target = null; 
         if(sight.interestingTargets.Length > 0)
         {
-            target = sight.interestingTargets[0].transform;
+            target = sight.interestingTargets[0]?.transform;
         }
         else if (noiseEmitterTransform)
         {
