@@ -117,4 +117,17 @@ public class TaskAim : Node
         isAimingAnimationPlaying = true;
         Parent.SetData("interactionAnimation", true);
     }
+
+    // TODO: implement this. Sometimes soldior stops and doesn't retirn to guarding point upon target lost.
+    private void StopAiming()
+    {
+        characterAnimator.PlayAimingAnimation(false);
+
+        if (loadedArrow.activeInHierarchy)
+        {
+            loadedArrow.SetActive(false);
+        }
+
+        aimingRig.weight = 0f;
+    }
 }

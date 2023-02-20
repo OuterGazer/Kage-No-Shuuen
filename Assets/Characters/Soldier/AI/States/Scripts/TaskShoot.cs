@@ -12,12 +12,8 @@ public class TaskShoot : Node
     [SerializeField] float timeBetweenShots = 3f;
     [SerializeField] GameObject loadedArrow;
 
-    [Header("Rig Settings")]
-    [SerializeField] Rig aimingRig;
-
     private float shootingCounter = 0f;
 
-    private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
 
     private bool isShootingAnimationPlaying = false;
@@ -25,12 +21,13 @@ public class TaskShoot : Node
 
     private void Start()
     {
-        navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
     }
 
     public override NodeState Evaluate()
     {
+        shootingCounter += Time.deltaTime;
+
         Transform target = (Transform)GetData("target");
         if (!target)
         {
@@ -38,23 +35,23 @@ public class TaskShoot : Node
             return state;
         }
 
-        shootingCounter += Time.deltaTime;
+        if (isShootingAnimationPlaying)
+        { 
+            state = NodeState.RUNNING;
+            return state;
+        }
 
-        if(shootingCounter <= timeBetweenShots)
+        if (shootingCounter <= timeBetweenShots)
         {
             state = NodeState.RUNNING;
             return state;
         }
 
-        shootingCounter = 0f;
         characterAnimator.PlayShootingAnimation();
         isShootingAnimationPlaying = true;
+        shootingCounter = 0f;
 
-        if (isShootingAnimationPlaying)
-        { state = NodeState.RUNNING; }
-        else
-        { state = NodeState.SUCCESS; }
-
+        state = NodeState.SUCCESS;
         return state;
     }
 
@@ -64,29 +61,5 @@ public class TaskShoot : Node
         shootingWeapon?.Shoot();
         ClearData("interactionAnimation");
         isShootingAnimationPlaying = false;
-    }
-
-    private void EraseInterestingTarget()
-    {
-        object t = GetData("target");
-        if (t == null) { return; }
-
-        if (state == NodeState.RUNNING)
-        {
-            ClearData("target");
-            StopAiming();
-        }
-    }
-
-    private void StopAiming()
-    {
-        characterAnimator.PlayAimingAnimation(false);
-
-        if (loadedArrow.activeInHierarchy)
-        {
-            loadedArrow.SetActive(false);
-        }
-
-        aimingRig.weight = 0f;
     }
 }
