@@ -75,6 +75,12 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+#Japanese Castle asset pack
+Assets/Japanese Castle/*
+Assets/Japanese Castle.meta
+
+#Navigation related preview assets
 Assets/Samples.meta
 Assets/Samples/AI Navigation.meta
 Assets/Samples/AI Navigation/1.0.0-exp.4.meta
