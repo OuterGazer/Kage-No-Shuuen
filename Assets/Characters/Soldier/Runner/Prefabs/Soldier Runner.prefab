@@ -378,7 +378,7 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 7738160146926745281}
   children: []
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 0.85
   attackCounter: 0.5
   shouldPerformHeavyAttack: 0
 --- !u!114 &6259360069907599011
@@ -418,6 +418,7 @@ MonoBehaviour:
   children: []
   patrolParent: {fileID: 0}
   startPatrolPointIndex: 0
+  reachThreshold: 0.5
 --- !u!1 &2795677104033681616
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,11 @@ public class AnimationEventForwarder : MonoBehaviour
         SendMessageUpwards("HookHasArrivedAtTarget");
     }
 
+    public void ForwardSetInvincibility(int isInvincible)
+    {
+        SendMessageUpwards("SetInvincibility", isInvincible, SendMessageOptions.DontRequireReceiver);
+    }
+
     public void ForwardExitDodgingState()
     {
         SendMessageUpwards("ExitDodgingState");
