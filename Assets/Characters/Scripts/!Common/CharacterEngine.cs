@@ -164,7 +164,7 @@ public class CharacterEngine : MonoBehaviour
         {
             if (currentState.GetType() == typeof(CharacterOnAirState) ||
                 currentState.GetType() == typeof(CharacterDodgingState) ||
-                currentState.GetType() == typeof(CharacterOnHookState)) { return; } // Has to do with moving right after landing, try to decouple this!!
+                currentState.GetType() == typeof(CharacterOnHookState)) { return; } // TODO: Has to do with moving right after landing, try to decouple this!!
             
             if (currentState.GetType() == typeof(CharacterBlockingState) ||
                 currentState.GetType() == typeof(CharacterShootingState)) { return; } // Keep blocking/aiming if we were so already
