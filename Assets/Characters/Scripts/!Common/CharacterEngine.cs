@@ -254,6 +254,9 @@ public class CharacterEngine : MonoBehaviour
 
             if (!Mathf.Approximately(temp, 0f))
             {
+                CharacterBlockingState blockingstate = GetComponent<CharacterBlockingState>(); // is done once, not that big of a deal
+                blockingstate.SetIs2HWeapon(currentWeapon.Is2H);
+                
                 ManageStateTransition(statesAllowedToTransitionToBlocking, typeof(CharacterBlockingState));
             }
             else

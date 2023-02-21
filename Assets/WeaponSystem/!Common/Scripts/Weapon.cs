@@ -19,6 +19,8 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] bool canBlock = true;
     public bool CanBlock => canBlock;
+    [SerializeField] bool is2H = false;
+    public bool Is2H => is2H;
 
     [SerializeField] Rig aimingRig;
     public Rig AimingRig => aimingRig;
