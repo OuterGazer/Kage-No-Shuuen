@@ -17,6 +17,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] ThrowingWeaponBase throwingWeaponBase;
     public ThrowingWeaponBase ThrowingWeaponBase => throwingWeaponBase;
 
+    [SerializeField] bool canBlock = true;
+    public bool CanBlock => canBlock;
+
     [SerializeField] Rig aimingRig;
     public Rig AimingRig => aimingRig;
 

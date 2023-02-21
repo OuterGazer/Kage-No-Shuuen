@@ -248,16 +248,19 @@ public class CharacterEngine : MonoBehaviour
     // TODO: fix weird blocking animation with 2H weapons
     public void OnBlock(InputValue inputValue)
     {
-        float temp = inputValue.Get<float>();
+        if (currentWeapon.CanBlock)
+        {
+            float temp = inputValue.Get<float>();
 
-        if (!Mathf.Approximately(temp, 0f))
-        {
-            ManageStateTransition(statesAllowedToTransitionToBlocking, typeof(CharacterBlockingState));
-        }
-        else
-        {
-            //currentState?.ExitState();
-            ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
+            if (!Mathf.Approximately(temp, 0f))
+            {
+                ManageStateTransition(statesAllowedToTransitionToBlocking, typeof(CharacterBlockingState));
+            }
+            else
+            {
+                //currentState?.ExitState();
+                ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
+            }
         }
     }
 
