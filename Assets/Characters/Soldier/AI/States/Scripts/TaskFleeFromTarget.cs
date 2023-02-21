@@ -36,6 +36,8 @@ public class TaskFleeFromTarget : Node
 
         object isInteractionAnimationPlaying = GetData("interactionAnimation");
 
+        navMeshAgent.stoppingDistance = 0.5f;
+
         if (IsTargetTooClose(target))
         {
             navMeshAgent.speed = fleeingSpeed;

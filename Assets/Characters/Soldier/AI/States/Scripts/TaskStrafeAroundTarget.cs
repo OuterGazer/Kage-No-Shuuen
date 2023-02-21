@@ -25,6 +25,8 @@ public class TaskStrafeAroundTarget : Node
             return state;
         }
 
+        navMeshAgent.stoppingDistance = 0.5f;
+
         navMeshAgent.speed = patrolSpeed;
         navMeshAgent.destination = transform.position + transform.right;
         transform.LookAt(target);
