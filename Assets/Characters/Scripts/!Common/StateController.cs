@@ -81,6 +81,11 @@ public class StateController : MonoBehaviour
         currentState = null;
     }
 
+    private void SetCurrentWeapon(Weapon weapon)
+    {
+        currentWeapon = weapon;
+    }
+
     private void Update()
     {
         if (IsCharacterFallingDown())
@@ -105,9 +110,14 @@ public class StateController : MonoBehaviour
         return (charController.isGrounded) && (currentState.GetType() == typeof(CharacterOnAirState));
     }
 
-    private void SetCurrentWeapon(Weapon weapon)
+    private void TransitionToOnAir()
     {
-        currentWeapon = weapon;
+        ManageStateTransition(statesAllowedToTransitionToOnAir, typeof(CharacterOnAirState));
+    }
+
+    private void TransitionToIdle()
+    {
+        ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
     }
 
     private void ManageStateTransition(CharacterStateBase[] allowedCurrentStates, Type state)
@@ -136,17 +146,6 @@ public class StateController : MonoBehaviour
         currentState.enabled = false;        
         currentState = stateToTransition;
         stateToTransition.enabled = true;
-    }
-
-    // Specific method called from event to transition to idle when failing a hook throw
-    private void TransitionToIdle()
-    {
-        ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
-    }
-
-    private void TransitionToOnAir()
-    {
-        ManageStateTransition(statesAllowedToTransitionToOnAir, typeof(CharacterOnAirState));
     }
     
     public void OnMove(InputValue inputValue)

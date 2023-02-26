@@ -159,7 +159,7 @@ public class CharacterOnHookState : CharacterStateBase
 
     private bool IsHookTargetReached()
     {
-        return (hookTarget.position - transform.position).sqrMagnitude <= hookReachThreshold;
+        return (hookTarget.position - transform.position).sqrMagnitude <= (hookReachThreshold * hookReachThreshold);
     }
 
     private void ExitState()
