@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class CharacterBlockingState : CharacterStateBase
 {
-    [Header("Rigging Settings")]
+    [Header("IK Rigging Settings")]
     [SerializeField] RigBuilder rigBuilder;
     [SerializeField] Rig blockingRig;
     [SerializeField] ChainIKConstraint torsoConstraint;

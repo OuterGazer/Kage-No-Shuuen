@@ -7,15 +7,23 @@ public abstract class CloseCombatWeaponBase : MonoBehaviour
     [SerializeField] float damage = 0.51f;
     public float Damage => damage;
 
+    [SerializeField] Collider col;
+
     protected bool IsSlashing { get; private set; }
 
-    // Called from an animation event
+    // Called from WeaponController from an animation event
     internal void DamageStart()
-    { IsSlashing = true; }
+    { 
+        IsSlashing = true;
+        col.enabled = true;
+    }
 
-    // Called from an animation event
+    // Called from WeaponController from an animation event
     internal void DamageEnd()
-    { IsSlashing = false; }
+    { 
+        IsSlashing = false;
+        col.enabled = false;
+    }
 
     protected void PerformDamage(IDamagereceiver damageReceiver)
     {

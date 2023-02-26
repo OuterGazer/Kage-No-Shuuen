@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,9 +9,24 @@ public class PushAttackerBackwards : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Soldier"))
+        string weaponBeingBlocked = other.transform.parent?.parent?.parent?.name;
+        if (IsBlockedWeaponAProjectile(weaponBeingBlocked)) { return; }
+
+        bool isPhysicalWeapon = weaponBeingBlocked.Contains("Weapon");
+
+        if (isPhysicalWeapon)
         {
-            other.GetComponentInParent<NavMeshAgent>()?.Move(1f*transform.forward);
+            PushAttacker(other);
         }
+    }
+
+    private static bool IsBlockedWeaponAProjectile(string weaponBeingBlocked)
+    {
+        return String.IsNullOrEmpty(weaponBeingBlocked);
+    }
+
+    private void PushAttacker(Collider other)
+    {
+        other.GetComponentInParent<NavMeshAgent>()?.Move(1f * transform.forward);
     }
 }

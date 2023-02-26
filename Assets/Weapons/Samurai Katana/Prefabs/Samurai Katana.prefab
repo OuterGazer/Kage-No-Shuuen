@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.51
+  col: {fileID: 3100991554461176355}
   edgeNotch: {fileID: 1758862609425611067}
   tip: {fileID: 5546111872332700057}
   raysPerDistance: 30
