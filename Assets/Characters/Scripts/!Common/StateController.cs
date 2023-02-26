@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class StateController : MonoBehaviour
 {
-    // TODO: Refactor teh code relating to keep moving after falling or dodging somewhere else?
+    // TODO: Refactor the code relating to keep moving after falling or dodging somewhere else?
 
     private CharacterStateBase[] allStates;
     private CharacterStateBase currentState;
