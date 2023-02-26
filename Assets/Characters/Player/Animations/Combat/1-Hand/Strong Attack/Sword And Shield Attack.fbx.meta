@@ -67,7 +67,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4909459
+      - time: 0.6594242
         functionName: ForwardDamageEnd
         data: 
         objectReferenceParameter: {instanceID: 0}

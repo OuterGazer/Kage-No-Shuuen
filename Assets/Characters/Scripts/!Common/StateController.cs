@@ -254,7 +254,6 @@ public class StateController : MonoBehaviour
         move.Enable();
     }
 
-    // TODO: fix weird blocking animation with 2H weapons
     public void OnBlock(InputValue inputValue)
     {
         if (currentWeapon.CanBlock)

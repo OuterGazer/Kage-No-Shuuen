@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class PushCharacterFromLedge : MonoBehaviour
 {
     [SerializeField] float raycastingRefreshRate = 2f;

@@ -53,6 +53,11 @@ public class CharacterStateBase : MonoBehaviour
         //transform.rotation = Quaternion.LookRotation(angleToOrientateCharacterThisFrame, Vector3.up);
     }
 
+    protected void PushCharacterForward(float stepForwardLength)
+    {
+        charController.Move(stepForwardLength * Time.deltaTime * transform.forward);
+    }
+
     private void OnMove(InputValue inputValue)
     {
         Vector3 inputBuffer = inputValue.Get<Vector2>();

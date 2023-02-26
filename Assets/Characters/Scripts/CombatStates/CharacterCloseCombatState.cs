@@ -6,8 +6,11 @@ using UnityEngine.Events;
 
 public class CharacterCloseCombatState : CharacterStateBase
 {
+    [SerializeField] float stepForwardLength = 1f;
+
     private bool slash = false;
     private bool heavySlash = false;
+    private bool shouldStepForward = false;
 
     [HideInInspector] public UnityEvent onSlash;
     [HideInInspector] public UnityEvent onHeavySlash;
@@ -15,6 +18,9 @@ public class CharacterCloseCombatState : CharacterStateBase
     private void Update()
     {
         UpdateSlash();
+
+        if (shouldStepForward) 
+        { PushCharacterForward(stepForwardLength); }
     }
 
     private void UpdateSlash()
@@ -31,6 +37,9 @@ public class CharacterCloseCombatState : CharacterStateBase
         }
     }
 
+    // Methods called from animation events
     private void OnSlash() { slash = true; }
     private void OnHeavySlash() { heavySlash = true; }
+    private void DamageStart() { shouldStepForward = true; }
+    private void DamageEnd() { shouldStepForward = false; }
 }
