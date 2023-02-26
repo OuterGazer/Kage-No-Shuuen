@@ -36,6 +36,8 @@ public class MovementProperties
         Vector3 verticalMovement = UpdateVerticalMovement();
         
         charController.Move(horizontalMovement + verticalMovement);
+
+        
     }
 
     private void ApplyAccelerationSmoothingToMovingDirection(Vector3 movementDirection, Vector3 movementProjectionPlane)

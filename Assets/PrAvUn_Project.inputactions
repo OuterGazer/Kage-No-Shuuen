@@ -24,6 +24,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Focus",
+                    "type": "Button",
+                    "id": "7b9fd293-ddc7-43be-b0a4-a54f47dd25ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Aim",
                     "type": "Button",
                     "id": "373acbef-1a15-449e-9e0b-d93d0848cec7",
@@ -451,6 +460,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "WeaponThrow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07455667-43da-405e-a550-0bd8f26c874c",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Focus",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

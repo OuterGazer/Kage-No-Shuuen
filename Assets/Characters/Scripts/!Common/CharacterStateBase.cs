@@ -14,6 +14,8 @@ public class CharacterStateBase : MonoBehaviour
     [Header("Movement Characteristics")]
     [SerializeField] protected float speed = 6f;
     public float Speed => speed;
+    private Transform target;
+    private LayerMask testLayer = 1 << 9;
 
     private static Camera mainCamera;
     protected static CharacterController charController;
@@ -25,9 +27,18 @@ public class CharacterStateBase : MonoBehaviour
 
     protected static float movingSpeed;
 
+    private static bool isFocusedOnEnemy = false;
+
     protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
         movementProperties.UpdateMovement(speed, movementDirection, movementProjectionPlane);
+
+        if (target)
+        {
+            transform.forward = target.position;
+            //Quaternion focusRot = Quaternion.LookRotation(target.position, Vector3.up);
+            //transform.rotation = focusRot;
+        }
     }
 
     protected void SetCameraAndCharController(CharacterController characterController)
@@ -75,6 +86,20 @@ public class CharacterStateBase : MonoBehaviour
         else
         {
             movementDirection = Vector3.zero;
+        }
+    }
+
+    private void OnFocus()
+    {
+        isFocusedOnEnemy = !isFocusedOnEnemy;
+
+        if (isFocusedOnEnemy)
+        {
+            target = Physics.OverlapSphere(transform.position, 10f, testLayer)[0].transform;
+        }
+        else
+        {
+            target = null;
         }
     }
 }
