@@ -15,14 +15,16 @@ public abstract class CloseCombatWeaponBase : MonoBehaviour
     internal void DamageStart()
     { 
         IsSlashing = true;
-        col.enabled = true;
+        if (col)
+        { col.enabled = true; }
     }
 
     // Called from WeaponController from an animation event
     internal void DamageEnd()
     { 
         IsSlashing = false;
-        col.enabled = false;
+        if (col)
+        { col.enabled = false; }
     }
 
     protected void PerformDamage(IDamagereceiver damageReceiver)
