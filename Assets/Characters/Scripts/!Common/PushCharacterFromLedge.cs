@@ -5,7 +5,7 @@ using UnityEngine;
 public class PushCharacterFromLedge : MonoBehaviour
 {
     [SerializeField] float raycastingRefreshRate = 2f;
-    [SerializeField] float pushingDistance = 1f;
+    [SerializeField] float pushingForce = 1f;
     private ControllerColliderHit lastContactPoint;
 
     private CharacterController charController;
@@ -26,7 +26,7 @@ public class PushCharacterFromLedge : MonoBehaviour
             {
                 Vector3 voidDirection = transform.position - lastContactPoint.point;
 
-                charController.Move(pushingDistance * Time.deltaTime * voidDirection.normalized);
+                charController.Move(pushingForce * Time.deltaTime * voidDirection.normalized);
             }
 
             yield return new WaitForSeconds(1 / raycastingRefreshRate);
