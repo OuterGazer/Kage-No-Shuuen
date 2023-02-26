@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterEngine : MonoBehaviour
+public class StateController : MonoBehaviour
 {
     // TODO: Refactor teh code relating to keep moving after falling or dodging somewhere else?
 
@@ -236,6 +236,13 @@ public class CharacterEngine : MonoBehaviour
         ManageStateTransition(statesAllowedToTransitionToDodging, typeof(CharacterDodgingState));
         if (currentState.GetType() == typeof(CharacterDodgingState))
         { move.Disable(); }
+    }
+
+    // Called from dodging animation event
+    public void SetInvincibility(int isInvincible)
+    {
+        charController.detectCollisions = (isInvincible == 1) ? false : true; // Invincible against trigger weapons with rigibody
+        gameObject.layer = (isInvincible == 1) ? 0 : LayerMask.GetMask("Player"); // Invincible against weapons with raycast
     }
 
     // Called from an animation event in the rolling animation

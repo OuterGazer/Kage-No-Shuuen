@@ -298,8 +298,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4995089, y: 0.6791824, z: 0.06140644}
-  m_Center: {x: 0, y: 0.07032459, z: 0}
+  m_Size: {x: 1.4995089, y: 0.75337356, z: 0.13847981}
+  m_Center: {x: 2.748919e-10, y: 0.033229023, z: 0.038536593}
 --- !u!114 &5252506565827048515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2929,7 +2929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToDestroy: {fileID: 7367104688647257537}
+  parentToDestroy: {fileID: 7367104688647257537}
   life: 3
   coolDownTime: 0.5
 --- !u!1 &7367104688962466102
