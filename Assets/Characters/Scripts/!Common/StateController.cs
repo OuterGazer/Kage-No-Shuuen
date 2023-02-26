@@ -241,7 +241,10 @@ public class StateController : MonoBehaviour
     public void SetInvincibility(int isInvincible)
     {
         charController.detectCollisions = (isInvincible == 1) ? false : true; // Invincible against trigger weapons with rigibody
-        gameObject.layer = (isInvincible == 1) ? 0 : LayerMask.GetMask("Player"); // Invincible against weapons with raycast
+        gameObject.layer = (isInvincible == 1) ? 0 : 3;//LayerMask.GetMask("Player"); // Invincible against weapons with raycast
+
+        // TODO: investigate weird bug. If I do GetMask() instead of assigning the number directly, raycasts don't recognize the layer properly
+        // (for example hook doesn't work because it thinks the character controller is an obstacle)
     }
 
     // Called from an animation event in the rolling animation
