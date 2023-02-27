@@ -122,7 +122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2795677103851904038
 Transform:
   m_ObjectHideFlags: 0
@@ -407,6 +407,7 @@ MonoBehaviour:
   timeBetweenThrows: 2
   timeBetweenSingleWeapons: 0.1
   throwWeapon: {fileID: 4083383836026891600}
+  shouldWeaponDisappear: 1
 --- !u!114 &1096039331825319142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,7 +460,7 @@ MonoBehaviour:
   Parent: {fileID: 1096039331825319142}
   children: []
   runningSpeed: 6
-  interactionDistanceThreshold: 2
+  interactionDistanceThreshold: 2.5
 --- !u!114 &7738160146926745281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,6 +554,7 @@ MonoBehaviour:
   children: []
   patrolParent: {fileID: 0}
   startPatrolPointIndex: 0
+  reachThreshold: 0.5
 --- !u!1 &2795677104033681616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,7 +2901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToDestroy: {fileID: 2795677103851904039}
+  parentToDestroy: {fileID: 2795677103851904039}
   life: 0.25
   coolDownTime: 0.5
 --- !u!1 &7141341213896778154
@@ -3069,7 +3071,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
   m_LocalRotation: {x: 0.00000009362675, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.711, z: 0.17199993}
+  m_LocalPosition: {x: 0, y: 1.711, z: 0.17199898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3212,7 +3214,7 @@ PrefabInstance:
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.68380034
+      value: -0.6838002
       objectReference: {fileID: 0}
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
@@ -3222,7 +3224,7 @@ PrefabInstance:
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.04859996
+      value: -0.048599243
       objectReference: {fileID: 0}
     - target: {fileID: 8225961818791605139, guid: ba2d5647d8dd89c4bb1b7254091c962f,
         type: 3}
@@ -3973,6 +3975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.51
+  col: {fileID: 0}
 --- !u!114 &4083383836026891600 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -8400606896973498488, guid: 94fbebd6b3c32514394f0d9eb03d44d8,
@@ -5025,6 +5028,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4674195627879619733, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: damageableLayerMask.m_Bits
+      value: 4294967290
+      objectReference: {fileID: 0}
     - target: {fileID: 4803322184926985973, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_Layer
@@ -5334,7 +5342,7 @@ PrefabInstance:
     - target: {fileID: 6384058244188620145, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.08999896
+      value: -0.089998245
       objectReference: {fileID: 0}
     - target: {fileID: 6384058244188620145, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

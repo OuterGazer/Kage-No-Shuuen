@@ -378,7 +378,7 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 7738160146926745281}
   children: []
-  timeBetweenAttacks: 0.85
+  timeBetweenAttacks: 1
   attackCounter: 0.5
   shouldPerformHeavyAttack: 0
 --- !u!114 &6259360069907599011
@@ -2765,7 +2765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToDestroy: {fileID: 2795677103851904039}
+  parentToDestroy: {fileID: 2795677103851904039}
   life: 0.25
   coolDownTime: 0.5
 --- !u!1 &7141341213896778154

@@ -119,7 +119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2795677103851904038
 Transform:
   m_ObjectHideFlags: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
   Parent: {fileID: 1135154530969534549}
   children: []
   runningSpeed: 5
-  interactionDistanceThreshold: 1.5
+  interactionDistanceThreshold: 1.25
 --- !u!114 &3620464842475499842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
   Parent: {fileID: 1135154530969534549}
   children: []
   timeBetweenAttacks: 1
-  attackCounter: 0
+  attackCounter: 1
   shouldPerformHeavyAttack: 0
 --- !u!114 &7119408527598662834
 MonoBehaviour:
@@ -390,6 +390,7 @@ MonoBehaviour:
   timeBetweenThrows: 5
   timeBetweenSingleWeapons: 0
   throwWeapon: {fileID: 3241000997681855406}
+  shouldWeaponDisappear: 0
 --- !u!114 &1096039331825319142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +478,7 @@ MonoBehaviour:
   children: []
   patrolParent: {fileID: 0}
   startPatrolPointIndex: 0
+  reachThreshold: 0.5
 --- !u!1 &2795677104033681616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,7 +2825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToDestroy: {fileID: 2795677103851904039}
+  parentToDestroy: {fileID: 2795677103851904039}
   life: 0.25
   coolDownTime: 0.5
 --- !u!1 &7141341213896778154
@@ -2993,7 +2995,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
   m_LocalRotation: {x: 0.00000009362675, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000013709068, y: 1.711, z: 0.15100002}
+  m_LocalPosition: {x: -0.00001390775, y: 1.711, z: 0.15100002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5471,7 +5473,7 @@ PrefabInstance:
     - target: {fileID: 8270673852211398339, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1166179
+      value: -0.11661885
       objectReference: {fileID: 0}
     - target: {fileID: 8270673852211398339, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

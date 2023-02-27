@@ -20,7 +20,8 @@ public class CharacterStateBase : MonoBehaviour
     private LayerMask testLayer = 1 << 9;
 
     private static Camera mainCamera;
-    private static CinemachineFreeLook freeLookCamera;
+    private static CinemachineFreeLook unfocusedCamera;
+    private static CinemachineFreeLook focusedCamera;
     protected static CharacterController charController;
 
     protected static Vector3 movementDirection;
@@ -39,10 +40,25 @@ public class CharacterStateBase : MonoBehaviour
     {
         mainCamera = Camera.main;
         charController = characterController;
-        freeLookCamera = FindObjectOfType<CinemachineFreeLook>();
 
         movementProperties.MainCamera = mainCamera;
         movementProperties.CharController = charController;
+
+        CinemachineFreeLook[] freeLookCameras = FindObjectsOfType<CinemachineFreeLook>();
+
+        foreach(CinemachineFreeLook item in freeLookCameras)
+        {
+            if (item.CompareTag("CamFocused"))
+            {
+                focusedCamera = item;
+            }
+            else if (item.CompareTag("CamUnfocused"))
+            {
+                unfocusedCamera = item;
+            }
+        }
+
+        focusedCamera.gameObject.SetActive(false);
     }
 
     private static float timeToOrientateCharacterForward = 0.25f;
@@ -68,12 +84,15 @@ public class CharacterStateBase : MonoBehaviour
         //transform.rotation = Quaternion.LookRotation(angleToOrientateCharacterThisFrame, Vector3.up);
     }
 
-    private static void CorrectCameraBindingModeIfFocusedOnEnemyButThereIsNoTarget()
+    private void CorrectCameraBindingModeIfFocusedOnEnemyButThereIsNoTarget()
     {
         if (isFocusedOnEnemy)
         {
             isFocusedOnEnemy = !isFocusedOnEnemy;
-            freeLookCamera.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
+            targets = null;
+            target = null;
+            unfocusedCamera.gameObject.SetActive(true);
+            focusedCamera.gameObject.SetActive(false);
         }
     }
 
@@ -109,29 +128,57 @@ public class CharacterStateBase : MonoBehaviour
         if (isFocusedOnEnemy)
         {
             targets = Physics.OverlapSphere(transform.position, 10f, testLayer);
-            foreach(Collider item in targets)
-            {
-                if (!target)
-                {
-                    target = item.transform;
-                }
-                else if(IsCurrentItemCloserThanCurrentTarget(item))
-                {
-                    target = item.transform;
-                }
-            }
-            freeLookCamera.m_BindingMode = CinemachineTransposer.BindingMode.LockToTargetWithWorldUp;
+            FilterTargetsByDistanceToPlayer();
+            unfocusedCamera.gameObject.SetActive(false);
+            focusedCamera.gameObject.SetActive(true);
         }
         else
         {
             targets = null;
             target = null;
-            freeLookCamera.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
+            focusedCamera.gameObject.SetActive(false);
+            unfocusedCamera.gameObject.SetActive(true);
+        }
+    }
+
+    private void FilterTargetsByDistanceToPlayer()
+    {
+        foreach (Collider item in targets)
+        {
+            if (!target)
+            {
+                target = item.transform;
+            }
+            else if (IsCurrentItemCloserThanCurrentTarget(item))
+            {
+                target = item.transform;
+            }
         }
     }
 
     private bool IsCurrentItemCloserThanCurrentTarget(Collider item)
     {
         return (item.transform.position - transform.position).sqrMagnitude < (target.position - transform.position).sqrMagnitude;
+    }
+
+    protected void ChangeCameraType()
+    {
+        if (isFocusedOnEnemy)
+        {
+            if (focusedCamera.gameObject.activeSelf)
+            {
+                focusedCamera.gameObject.SetActive(false);
+                unfocusedCamera.gameObject.SetActive(true);
+                focusedCamera.PreviousStateIsValid = false;
+                unfocusedCamera.PreviousStateIsValid = false;
+            }
+            else if(!focusedCamera.gameObject.activeSelf)
+            {
+                unfocusedCamera.gameObject.SetActive(false);
+                focusedCamera.gameObject.SetActive(true);
+                unfocusedCamera.PreviousStateIsValid = false;
+                focusedCamera.PreviousStateIsValid = false;
+            }
+        }
     }
 }

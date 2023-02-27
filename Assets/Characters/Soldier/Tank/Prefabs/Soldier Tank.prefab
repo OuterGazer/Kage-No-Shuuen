@@ -117,7 +117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2795677103851904038
 Transform:
   m_ObjectHideFlags: 0
@@ -2786,7 +2786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15218018da636d44e8509cb3f9231e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToDestroy: {fileID: 2795677103851904039}
+  parentToDestroy: {fileID: 2795677103851904039}
   life: 0.25
   coolDownTime: 0.5
 --- !u!1 &7141341213896778154
@@ -3850,7 +3850,8 @@ PrefabInstance:
         type: 3}
       propertyPath: animatorOverride
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 22100000, guid: 4d736b0e9b748c7478d55f9ad0f8fcca,
+        type: 2}
     - target: {fileID: 684461328869315741, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_Layer

@@ -10,6 +10,8 @@ TagManager:
   - Bow
   - Gauntlet
   - Soldier
+  - CamFocused
+  - CamUnfocused
   layers:
   - Default
   - TransparentFX
