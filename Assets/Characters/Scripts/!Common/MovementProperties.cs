@@ -20,8 +20,6 @@ public class MovementProperties
         set { if (value.GetType() == typeof(CharacterController)) { charController = value; } }
     }
 
-    private Vector3 movementDirection;
-
     private static float velocityY = 0f;
 
     private float movingSpeed;
@@ -36,8 +34,6 @@ public class MovementProperties
         Vector3 verticalMovement = UpdateVerticalMovement();
         
         charController.Move(horizontalMovement + verticalMovement);
-
-        
     }
 
     private void ApplyAccelerationSmoothingToMovingDirection(Vector3 movementDirection, Vector3 movementProjectionPlane)
