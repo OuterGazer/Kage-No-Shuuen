@@ -172,9 +172,28 @@ public class CharacterStateBase : MonoBehaviour
             }
             else if(!focusedCamera.gameObject.activeSelf)
             {
-                unfocusedCamera.gameObject.SetActive(false);
-                focusedCamera.gameObject.SetActive(true);
+                StartCoroutine(Test());
+                //unfocusedCamera.gameObject.SetActive(false);
+                //focusedCamera.gameObject.SetActive(true);
             }
         }
+    }
+
+    private IEnumerator Test()
+    {
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame(); 
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        unfocusedCamera.gameObject.SetActive(false);
+        focusedCamera.gameObject.SetActive(true);
     }
 }
