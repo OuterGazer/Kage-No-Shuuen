@@ -15,10 +15,10 @@ public class CharacterDodgingState : CharacterStateBase
 
     private void OnEnable()
     {
-        ChangeCameraType();
         SetDodgeFacingDirection(charController.velocity.normalized);
         MakeCharacterDodge.Invoke();
         currentSpeed = speed;
+        ChangeCameraType();
     }
 
     private void OnDisable()

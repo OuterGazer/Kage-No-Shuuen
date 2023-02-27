@@ -169,15 +169,11 @@ public class CharacterStateBase : MonoBehaviour
             {
                 focusedCamera.gameObject.SetActive(false);
                 unfocusedCamera.gameObject.SetActive(true);
-                focusedCamera.PreviousStateIsValid = false;
-                unfocusedCamera.PreviousStateIsValid = false;
             }
             else if(!focusedCamera.gameObject.activeSelf)
             {
                 unfocusedCamera.gameObject.SetActive(false);
                 focusedCamera.gameObject.SetActive(true);
-                unfocusedCamera.PreviousStateIsValid = false;
-                focusedCamera.PreviousStateIsValid = false;
             }
         }
     }
