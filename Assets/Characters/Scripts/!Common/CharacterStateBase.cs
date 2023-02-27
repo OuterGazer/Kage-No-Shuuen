@@ -111,7 +111,11 @@ public class CharacterStateBase : MonoBehaviour
             targets = Physics.OverlapSphere(transform.position, 10f, testLayer);
             foreach(Collider item in targets)
             {
-                if ((item.transform.position - transform.position).sqrMagnitude < (target.position - transform.position).sqrMagnitude)
+                if (!target)
+                {
+                    target = item.transform;
+                }
+                else if(IsCurrentItemCloserThanCurrentTarget(item))
                 {
                     target = item.transform;
                 }
@@ -124,5 +128,10 @@ public class CharacterStateBase : MonoBehaviour
             target = null;
             freeLookCamera.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
         }
+    }
+
+    private bool IsCurrentItemCloserThanCurrentTarget(Collider item)
+    {
+        return (item.transform.position - transform.position).sqrMagnitude < (target.position - transform.position).sqrMagnitude;
     }
 }
