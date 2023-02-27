@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8717368675256132447}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.183224, y: 2, z: 8.818442}
+  m_LocalPosition: {x: -21.24, y: 2, z: 5.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -320,7 +320,6 @@ Transform:
   m_Children:
   - {fileID: 8717368675727843732}
   - {fileID: 8717368675256132446}
-  - {fileID: 8717368675756163547}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -348,7 +347,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8717368675695832194}
-  m_LocalRotation: {x: 0.047483124, y: 0.6437771, z: -0.04008012, w: 0.7626861}
+  m_LocalRotation: {x: 0.06213745, y: 0.000000017183268, z: -0.0000000010697916, w: 0.9980676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -436,8 +435,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8717368675727843735}
-  m_LocalRotation: {x: 0.025473973, y: 0.64466506, z: -0.021502374, w: 0.76373804}
-  m_LocalPosition: {x: -25.183224, y: 2, z: 8.818442}
+  m_LocalRotation: {x: 0.033335805, y: -0, z: -0, w: 0.99944425}
+  m_LocalPosition: {x: -21.24, y: 2, z: 5.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -654,37 +653,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &8717368675756163548
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8717368675756163547}
-  m_Layer: 0
-  m_Name: 'TODO: Have character not move in circles when strafing'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8717368675756163547
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8717368675756163548}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8717368675466543341}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8717368676145825808
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,7 +931,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8717368676567790376}
-  m_LocalRotation: {x: 0.025473973, y: 0.644665, z: -0.021502374, w: 0.76373804}
+  m_LocalRotation: {x: 0.033335805, y: 1e-45, z: -0, w: 0.99944425}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1048,7 +1016,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8717368676609951147}
-  m_LocalRotation: {x: 0.0035892744, y: 0.6450164, z: -0.003029677, w: 0.7641544}
+  m_LocalRotation: {x: 0.004697014, y: -0.0000000010335444, z: 4.854628e-12, w: 0.999989}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

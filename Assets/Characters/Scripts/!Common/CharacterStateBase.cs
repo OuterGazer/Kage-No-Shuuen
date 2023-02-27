@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class CharacterStateBase : MonoBehaviour
 {
@@ -14,16 +15,16 @@ public class CharacterStateBase : MonoBehaviour
     [Header("Movement Characteristics")]
     [SerializeField] protected float speed = 6f;
     public float Speed => speed;
-    private Transform target;
+    private Collider[] targets;
+    private static Transform target;
     private LayerMask testLayer = 1 << 9;
 
     private static Camera mainCamera;
+    private static CinemachineFreeLook freeLookCamera;
     protected static CharacterController charController;
 
     protected static Vector3 movementDirection;
     public static Vector3 MovementDirection => movementDirection;
-
-    //private static float velocityY = 0f; // No se usa
 
     protected static float movingSpeed;
 
@@ -32,19 +33,13 @@ public class CharacterStateBase : MonoBehaviour
     protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
         movementProperties.UpdateMovement(speed, movementDirection, movementProjectionPlane);
-
-        if (target)
-        {
-            transform.forward = target.position;
-            //Quaternion focusRot = Quaternion.LookRotation(target.position, Vector3.up);
-            //transform.rotation = focusRot;
-        }
     }
 
     protected void SetCameraAndCharController(CharacterController characterController)
     {
         mainCamera = Camera.main;
         charController = characterController;
+        freeLookCamera = FindObjectOfType<CinemachineFreeLook>();
 
         movementProperties.MainCamera = mainCamera;
         movementProperties.CharController = charController;
@@ -53,15 +48,33 @@ public class CharacterStateBase : MonoBehaviour
     private static float timeToOrientateCharacterForward = 0.25f;
     protected void OrientateCharacterForward()
     {
-        Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
+        if (!target)
+        {
+            Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
+            DOTween.To(() => transform.forward, x => transform.forward = x, projectedForwardVector, timeToOrientateCharacterForward);
 
-        DOTween.To(() => transform.forward, x => transform.forward = x, projectedForwardVector, timeToOrientateCharacterForward);
-
+            CorrectCameraBindingModeIfFocusedOnEnemyButThereIsNoTarget();
+        }
+        else
+        {
+            Vector3 targetDirectionNormalized = (target.position - transform.position).normalized;
+            Vector3 projectedForwardVector = Vector3.ProjectOnPlane(targetDirectionNormalized, Vector3.up);
+            DOTween.To(() => transform.forward, x => transform.forward = x, projectedForwardVector, timeToOrientateCharacterForward);
+        }
         // Alternativa sin DoTween pero con un fallo
         // forwardOrientationSpeed lo tenía a 3f, sin embargo al ir en diagonal hacia atrás y mover mucho al personaje le terminaba viendo la cara.
         //Vector3 forwardVectorToLookAtThisFrame = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
         //Vector3 angleToOrientateCharacterThisFrame = Vector3.RotateTowards(transform.forward, forwardVectorToLookAtThisFrame, forwardOrientationSpeed * Time.deltaTime, 0f);
         //transform.rotation = Quaternion.LookRotation(angleToOrientateCharacterThisFrame, Vector3.up);
+    }
+
+    private static void CorrectCameraBindingModeIfFocusedOnEnemyButThereIsNoTarget()
+    {
+        if (isFocusedOnEnemy)
+        {
+            isFocusedOnEnemy = !isFocusedOnEnemy;
+            freeLookCamera.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
+        }
     }
 
     protected void PushCharacterForward(float stepForwardLength)
@@ -95,11 +108,21 @@ public class CharacterStateBase : MonoBehaviour
 
         if (isFocusedOnEnemy)
         {
-            target = Physics.OverlapSphere(transform.position, 10f, testLayer)[0].transform;
+            targets = Physics.OverlapSphere(transform.position, 10f, testLayer);
+            foreach(Collider item in targets)
+            {
+                if ((item.transform.position - transform.position).sqrMagnitude < (target.position - transform.position).sqrMagnitude)
+                {
+                    target = item.transform;
+                }
+            }
+            freeLookCamera.m_BindingMode = CinemachineTransposer.BindingMode.LockToTargetWithWorldUp;
         }
         else
         {
+            targets = null;
             target = null;
+            freeLookCamera.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
         }
     }
 }
