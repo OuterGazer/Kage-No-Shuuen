@@ -18,18 +18,17 @@ public class CharacterDodgingState : CharacterStateBase
         SetDodgeFacingDirection(charController.velocity.normalized);
         MakeCharacterDodge.Invoke();
         currentSpeed = speed;
-        //ChangeCameraType();
     }
 
     private void OnDisable()
     {
         OrientateCharacterForward();
-        //ChangeCameraType();
     }
 
     private void Update()
     {
         transform.forward = dodgeFacingDirection;
+        OrientateCameraFollowTarget();
 
         Vector3 movementOnPlane = currentSpeed * Time.deltaTime * dodgeFacingDirection;
         Vector3 verticalMovement = new Vector3(0f, Physics.gravity.y * Time.deltaTime, 0f);

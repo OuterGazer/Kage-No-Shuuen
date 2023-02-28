@@ -82,8 +82,11 @@ public class CharacterShootingState : CharacterStateBase
         UpdateAim();
 
         UpdateShoot();
+    }
 
-        OrientateCharacterForward(); 
+    private void LateUpdate()
+    {
+        OrientateCharacterForward();
     }
 
     [SerializeField] float animAcc = 0.05f;

@@ -15,8 +15,10 @@ public class CharacterStateBase : MonoBehaviour
     [Header("Movement Characteristics")]
     [SerializeField] protected float speed = 6f;
     public float Speed => speed;
+  
     private Collider[] targets;
     private static Transform target;
+    private static Transform cameraFollowTarget;
     private LayerMask testLayer = 1 << 9;
 
     private static Camera mainCamera;
@@ -34,6 +36,8 @@ public class CharacterStateBase : MonoBehaviour
     protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
         movementProperties.UpdateMovement(speed, movementDirection, movementProjectionPlane);
+
+        OrientateCameraFollowTarget();
     }
 
     protected void SetCameraAndCharController(CharacterController characterController)
@@ -58,15 +62,17 @@ public class CharacterStateBase : MonoBehaviour
             }
         }
 
+        cameraFollowTarget = focusedCamera.Follow;
         focusedCamera.gameObject.SetActive(false);
     }
 
     private static float timeToOrientateCharacterForward = 0.25f;
     protected void OrientateCharacterForward()
     {
+        Vector3 projectedForwardVector = Vector3.zero;
         if (!target)
         {
-            Vector3 projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
+            projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
             DOTween.To(() => transform.forward, x => transform.forward = x, projectedForwardVector, timeToOrientateCharacterForward);
 
             CorrectCameraBindingModeIfFocusedOnEnemyButThereIsNoTarget();
@@ -74,7 +80,7 @@ public class CharacterStateBase : MonoBehaviour
         else
         {
             Vector3 targetDirectionNormalized = (target.position - transform.position).normalized;
-            Vector3 projectedForwardVector = Vector3.ProjectOnPlane(targetDirectionNormalized, Vector3.up);
+            projectedForwardVector = Vector3.ProjectOnPlane(targetDirectionNormalized, Vector3.up);
             DOTween.To(() => transform.forward, x => transform.forward = x, projectedForwardVector, timeToOrientateCharacterForward);
         }
         // Alternativa sin DoTween pero con un fallo
@@ -89,10 +95,22 @@ public class CharacterStateBase : MonoBehaviour
         if (isFocusedOnEnemy)
         {
             isFocusedOnEnemy = !isFocusedOnEnemy;
-            targets = null;
-            target = null;
             unfocusedCamera.gameObject.SetActive(true);
             focusedCamera.gameObject.SetActive(false);
+            targets = null;
+            target = null;
+        }
+    }
+
+    protected void OrientateCameraFollowTarget()
+    {
+        if (!isFocusedOnEnemy)
+        {
+            cameraFollowTarget.forward = transform.forward;
+        }
+        else
+        {
+            cameraFollowTarget.LookAt(target, Vector3.up);
         }
     }
 
@@ -134,10 +152,10 @@ public class CharacterStateBase : MonoBehaviour
         }
         else
         {
-            targets = null;
-            target = null;
             focusedCamera.gameObject.SetActive(false);
             unfocusedCamera.gameObject.SetActive(true);
+            targets = null;
+            target = null;
         }
     }
 
@@ -159,41 +177,5 @@ public class CharacterStateBase : MonoBehaviour
     private bool IsCurrentItemCloserThanCurrentTarget(Collider item)
     {
         return (item.transform.position - transform.position).sqrMagnitude < (target.position - transform.position).sqrMagnitude;
-    }
-
-    protected void ChangeCameraType()
-    {
-        if (isFocusedOnEnemy)
-        {
-            if (focusedCamera.gameObject.activeSelf)
-            {
-                focusedCamera.gameObject.SetActive(false);
-                unfocusedCamera.gameObject.SetActive(true);
-            }
-            else if(!focusedCamera.gameObject.activeSelf)
-            {
-                StartCoroutine(Test());
-                //unfocusedCamera.gameObject.SetActive(false);
-                //focusedCamera.gameObject.SetActive(true);
-            }
-        }
-    }
-
-    private IEnumerator Test()
-    {
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame(); 
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame(); 
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        yield return new WaitForEndOfFrame();
-        unfocusedCamera.gameObject.SetActive(false);
-        focusedCamera.gameObject.SetActive(true);
     }
 }

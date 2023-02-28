@@ -9,9 +9,12 @@ public class CharacterCrouchingState : CharacterStateBase
 {
     void Update()
     {
-        UpdateMovement(speed, movementDirection, Vector3.up);
+        UpdateMovement(speed, movementDirection, Vector3.up);        
+    }
 
-        if(movementDirection != Vector3.zero)
+    private void LateUpdate()
+    {
+        if (movementDirection != Vector3.zero)
             OrientateCharacterForward();
     }
 }

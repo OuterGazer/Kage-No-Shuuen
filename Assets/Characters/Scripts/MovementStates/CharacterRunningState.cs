@@ -9,7 +9,10 @@ public class CharacterRunningState : CharacterStateBase
     void Update()
     {
         UpdateMovement(speed, movementDirection, Vector3.up);
+    }
 
+    private void LateUpdate()
+    {
         OrientateCharacterForward();
     }
 }
