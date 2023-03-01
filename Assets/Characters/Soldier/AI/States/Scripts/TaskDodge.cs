@@ -11,6 +11,7 @@ public class TaskDodge : Node
 
     CharacterAnimator characterAnimator;
     NavMeshAgent navMeshAgent;
+    DodgeStateBehaviour dodgeBehaviour;
 
     private Vector3 facingDirection = Vector3.zero;
     private Vector3 dodgingEndPoint= Vector3.zero;
@@ -20,7 +21,14 @@ public class TaskDodge : Node
     private void Start()
     {
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
-        navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
+        navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent; 
+        dodgeBehaviour = characterAnimator.Animator.GetBehaviour<DodgeStateBehaviour>();
+        dodgeBehaviour.ExitState.AddListener(ExitDodgingState);
+    }
+
+    private void OnDestroy()
+    {
+        dodgeBehaviour.ExitState.RemoveListener(ExitDodgingState);
     }
 
     public override NodeState Evaluate()

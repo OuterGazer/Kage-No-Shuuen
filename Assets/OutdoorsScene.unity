@@ -7112,11 +7112,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Elite
       objectReference: {fileID: 0}
+    - target: {fileID: 2795677103851904039, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299196175968880908, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.089998245
+      objectReference: {fileID: 0}
     - target: {fileID: 3545977893119982696, guid: 4f51888730454934b99cf0e0aff3ce48,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 4128263669422437873}
+    - target: {fileID: 4881775705463028145, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.17199898
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832385808493121215, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: life
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297697423969992219, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.6838002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297697423969992219, guid: 4f51888730454934b99cf0e0aff3ce48,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.048599243
+      objectReference: {fileID: 0}
     - target: {fileID: 7928975561112161066, guid: 4f51888730454934b99cf0e0aff3ce48,
         type: 3}
       propertyPath: patrolParent
@@ -7277,6 +7307,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Runner
       objectReference: {fileID: 0}
+    - target: {fileID: 2795677103851904039, guid: 144e37dabcf409d4e8a7fd512988a3cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3545977893119982696, guid: 144e37dabcf409d4e8a7fd512988a3cc,
         type: 3}
       propertyPath: player
@@ -7285,6 +7320,16 @@ PrefabInstance:
     - target: {fileID: 5832385808493121215, guid: 144e37dabcf409d4e8a7fd512988a3cc,
         type: 3}
       propertyPath: life
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312010900681357011, guid: 144e37dabcf409d4e8a7fd512988a3cc,
+        type: 3}
+      propertyPath: attackCounter
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312010900681357011, guid: 144e37dabcf409d4e8a7fd512988a3cc,
+        type: 3}
+      propertyPath: timeBetweenAttacks
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7928975561112161066, guid: 144e37dabcf409d4e8a7fd512988a3cc,
@@ -7544,11 +7589,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Tank
       objectReference: {fileID: 0}
+    - target: {fileID: 2795677103851904039, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3545977893119982696, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 4128263669422437873}
+    - target: {fileID: 7312010900681357011, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
+        type: 3}
+      propertyPath: attackCounter
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7312010900681357011, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7928975561112161066, guid: cc91bec68e7482f4f8c49d18a1c08ff0,
         type: 3}
       propertyPath: patrolParent
@@ -7592,12 +7652,12 @@ PrefabInstance:
     - target: {fileID: 692116379748772235, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000018823922
+      value: -0.000000018823922
       objectReference: {fileID: 0}
     - target: {fileID: 692116379748772235, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000003966648
+      value: 0.000000003966648
       objectReference: {fileID: 0}
     - target: {fileID: 2303351920574503954, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
@@ -7802,7 +7862,7 @@ PrefabInstance:
     - target: {fileID: 8717368676567790391, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.033335805
+      value: 0.03333581
       objectReference: {fileID: 0}
     - target: {fileID: 8717368676567790391, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
@@ -7817,17 +7877,17 @@ PrefabInstance:
     - target: {fileID: 8717368676609951146, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0046970136
+      value: 0.0046970155
       objectReference: {fileID: 0}
     - target: {fileID: 8717368676609951146, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000003259593
+      value: -7.68061e-10
       objectReference: {fileID: 0}
     - target: {fileID: 8717368676609951146, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.5310522e-11
+      value: 3.6076348e-12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0d3e3173129dc14099ef8bec400479c, type: 3}
