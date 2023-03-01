@@ -23,6 +23,8 @@ public class TaskAim : Node
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
+    private HitStateBehaviour hitBehaviour;
+    private DeadStateBehaviour deadBehaviour;
 
     private bool isAimingAnimationPlaying = false;
     private bool isPullingBowstring = false;
@@ -32,7 +34,19 @@ public class TaskAim : Node
     {
         navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
+        hitBehaviour = characterAnimator.Animator.GetBehaviour<HitStateBehaviour>();
+        deadBehaviour = characterAnimator.Animator.GetBehaviour<DeadStateBehaviour>();
+
+        hitBehaviour.EnterState.AddListener(StopAiming);
+        deadBehaviour.EnterState.AddListener(StopAiming);
+
         initialBowstringPosition = bowstring.localPosition;
+    }
+
+    private void OnDestroy()
+    {
+        hitBehaviour.EnterState.RemoveListener(StopAiming);
+        deadBehaviour.EnterState.RemoveListener(StopAiming);
     }
 
     public override NodeState Evaluate()
@@ -118,7 +132,7 @@ public class TaskAim : Node
         Parent.SetData("interactionAnimation", true);
     }
 
-    // TODO: implement this. Sometimes soldior stops and doesn't retirn to guarding point upon target lost.
+    // TODO: Sometimes soldier stops and doesn't return to guarding point upon target lost.
     private void StopAiming()
     {
         characterAnimator.PlayAimingAnimation(false);

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2161.7432, g: 2265.668, b: 3288.7734, a: 1}
+  m_IndirectSpecularColor: {r: 2161.7354, g: 2265.668, b: 3288.7734, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3484,6 +3484,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Soldier Daring
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795677103851904039, guid: 5bfd7e6d97bd2834eba681e4aad767a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7928975561112161066, guid: 5bfd7e6d97bd2834eba681e4aad767a8,
         type: 3}
@@ -7115,7 +7120,7 @@ PrefabInstance:
     - target: {fileID: 2795677103851904039, guid: 4f51888730454934b99cf0e0aff3ce48,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3299196175968880908, guid: 4f51888730454934b99cf0e0aff3ce48,
         type: 3}
@@ -7237,6 +7242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Soldier Guardian
+      objectReference: {fileID: 0}
+    - target: {fileID: 2795677103851904039, guid: a3582485e7d7f34459964aa32aeccd90,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3582485e7d7f34459964aa32aeccd90, type: 3}
@@ -7424,11 +7434,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Coward
       objectReference: {fileID: 0}
+    - target: {fileID: 2795677103851904039, guid: 31ad0890bae4baf4c9d5752f3e090342,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881775705463028145, guid: 31ad0890bae4baf4c9d5752f3e090342,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.000008583069
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881775705463028145, guid: 31ad0890bae4baf4c9d5752f3e090342,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.17326736
+      objectReference: {fileID: 0}
     - target: {fileID: 7928975561112161066, guid: 31ad0890bae4baf4c9d5752f3e090342,
         type: 3}
       propertyPath: patrolParent
       value: 
       objectReference: {fileID: 1692762450}
+    - target: {fileID: 8883793517170183496, guid: 31ad0890bae4baf4c9d5752f3e090342,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.033979416
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31ad0890bae4baf4c9d5752f3e090342, type: 3}
 --- !u!4 &5965697692597466221 stripped
@@ -7652,12 +7682,12 @@ PrefabInstance:
     - target: {fileID: 692116379748772235, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000018823922
+      value: 0.000000018823922
       objectReference: {fileID: 0}
     - target: {fileID: 692116379748772235, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000003966648
+      value: -0.000000003966648
       objectReference: {fileID: 0}
     - target: {fileID: 2303351920574503954, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
@@ -7727,12 +7757,12 @@ PrefabInstance:
     - target: {fileID: 4461548677356947728, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016604998
+      value: -0.000000016605004
       objectReference: {fileID: 0}
     - target: {fileID: 4461548677356947728, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000004509263
+      value: 0.000000004509265
       objectReference: {fileID: 0}
     - target: {fileID: 8717368675256132445, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
@@ -7812,17 +7842,17 @@ PrefabInstance:
     - target: {fileID: 8717368675695832193, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.06213745
+      value: 0.062137432
       objectReference: {fileID: 0}
     - target: {fileID: 8717368675695832193, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017173132
+      value: -0.000000017173132
       objectReference: {fileID: 0}
     - target: {fileID: 8717368675695832193, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000010691605
+      value: 0.0000000010691601
       objectReference: {fileID: 0}
     - target: {fileID: 8717368675727843730, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
@@ -7877,17 +7907,17 @@ PrefabInstance:
     - target: {fileID: 8717368676609951146, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0046970155
+      value: 0.0046970164
       objectReference: {fileID: 0}
     - target: {fileID: 8717368676609951146, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -7.68061e-10
+      value: 2.0093184e-10
       objectReference: {fileID: 0}
     - target: {fileID: 8717368676609951146, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 3.6076348e-12
+      value: -9.437908e-13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0d3e3173129dc14099ef8bec400479c, type: 3}

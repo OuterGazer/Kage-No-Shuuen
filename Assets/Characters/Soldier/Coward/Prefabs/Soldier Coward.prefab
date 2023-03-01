@@ -103,6 +103,9 @@ GameObject:
   - component: {fileID: 5438122774130431303}
   - component: {fileID: 3545977893119982696}
   - component: {fileID: 1999922227138396701}
+  - component: {fileID: 3404498462484560032}
+  - component: {fileID: 6565821866342795982}
+  - component: {fileID: 2591438485208147033}
   - component: {fileID: 1161198944579834120}
   - component: {fileID: 1096039331825319142}
   - component: {fileID: 7255289624017873206}
@@ -116,7 +119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2795677103851904038
 Transform:
   m_ObjectHideFlags: 0
@@ -267,11 +270,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localMainRoot: {fileID: 1999922227138396701}
-  weaponController: {fileID: 0}
+  weaponController: {fileID: 2690964275003622267}
   decisionMaker: {fileID: 2795677103851904032}
   navMeshAgent: {fileID: 2795677103851904046}
   characterAnimator: {fileID: 5438122774130431303}
   player: {fileID: 0}
+  damageable: {fileID: 5832385808493121215}
   patrolSpeed: 2
 --- !u!114 &1999922227138396701
 MonoBehaviour:
@@ -289,9 +293,60 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 0}
   children:
+  - {fileID: 3404498462484560032}
   - {fileID: 1161198944579834120}
   - {fileID: 1096039331825319142}
   - {fileID: 7928975561112161066}
+--- !u!114 &3404498462484560032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 908608a8a5f9d6e43abd76748379a62b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 1999922227138396701}
+  children:
+  - {fileID: 6565821866342795982}
+  - {fileID: 2591438485208147033}
+--- !u!114 &6565821866342795982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed8f23cd560d9044abd33b693db124c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 3404498462484560032}
+  children: []
+--- !u!114 &2591438485208147033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2795677103851904039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d051d3780c826814e94b81151606a9e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongingTree: {fileID: 3545977893119982696}
+  state: 0
+  Parent: {fileID: 3404498462484560032}
+  children: []
 --- !u!114 &1161198944579834120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2768,8 +2823,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentToDestroy: {fileID: 2795677103851904039}
+  timeToDestroyObject: 5
   life: 0.25
   coolDownTime: 0.5
+  OnGettingHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDying:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7141341213896778154
 GameObject:
   m_ObjectHideFlags: 0
