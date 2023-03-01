@@ -21,6 +21,8 @@ public class SoldierBehaviour : BehaviourTree.Tree
     public CharacterAnimator CharacterAnimator => characterAnimator;
     [SerializeField] Transform player;
     public Transform Player => player;
+    [SerializeField] DamageableWithLife damageable;
+    public DamageableWithLife DamageableWithLife => damageable;
 
     // Shared Tree Properties
     [SerializeField] float patrolSpeed = 2f;

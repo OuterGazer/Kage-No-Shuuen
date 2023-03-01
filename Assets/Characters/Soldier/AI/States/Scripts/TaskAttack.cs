@@ -12,6 +12,7 @@ public class TaskAttack : Node
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
+    private AttackStateBehaviour attackStateBehaviour;
 
     private bool isAttackAnimationRunning = false;    
 
@@ -19,6 +20,13 @@ public class TaskAttack : Node
     {
         navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
+        attackStateBehaviour = characterAnimator.Animator.GetBehaviour<AttackStateBehaviour>();
+        attackStateBehaviour.ExitState.AddListener(ExitCloseCombatState);
+    }
+
+    private void OnDestroy()
+    {
+        attackStateBehaviour.ExitState.RemoveListener(ExitCloseCombatState);
     }
 
     public override NodeState Evaluate()
@@ -26,7 +34,7 @@ public class TaskAttack : Node
         attackCounter += Time.deltaTime;
 
         if (isAttackAnimationRunning)
-        { 
+        {
             navMeshAgent.speed = 0f;
 
             state = NodeState.RUNNING;

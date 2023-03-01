@@ -2600,6 +2600,7 @@ MonoBehaviour:
   - {fileID: 6662072654649892864}
   - {fileID: 8219717195397346131}
   - {fileID: 2174158107220845152}
+  - {fileID: 2113962696668688971}
   statesAllowedToTransitionToRunning:
   - {fileID: 7367104688647257540}
   - {fileID: 7367104688647257538}
@@ -2631,6 +2632,28 @@ MonoBehaviour:
   - {fileID: 7367104688647257540}
   statesAllowedToTransitionToThrowing:
   - {fileID: 7367104688647257540}
+  statesAllowedToTransitionToGettingHit:
+  - {fileID: 7367104688647257540}
+  - {fileID: 7367104688647257541}
+  - {fileID: 7367104688647257538}
+  - {fileID: 7367104688647257545}
+  - {fileID: 7367104688647257544}
+  - {fileID: 7367104688647257547}
+  - {fileID: 6662072654649892864}
+  - {fileID: 8219717195397346131}
+  - {fileID: 2174158107220845152}
+  statesAllowedToTransitionToDying:
+  - {fileID: 7367104688647257540}
+  - {fileID: 7367104688647257541}
+  - {fileID: 7367104688647257538}
+  - {fileID: 7367104688647257545}
+  - {fileID: 7367104688647257544}
+  - {fileID: 7367104688647257547}
+  - {fileID: 834020474160094199}
+  - {fileID: 6662072654649892864}
+  - {fileID: 8219717195397346131}
+  - {fileID: 2174158107220845152}
+  - {fileID: 2113962696668688971}
 --- !u!114 &7367104688647257542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2932,6 +2955,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747691bd0c6066e4cb0763224a58becc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onMovementSpeedChange:
+    m_PersistentCalls:
+      m_Calls: []
+  speed: 0
 --- !u!114 &371915075147962900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2944,6 +2971,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d910d30da576fa247b586289a27c8eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onMovementSpeedChange:
+    m_PersistentCalls:
+      m_Calls: []
+  speed: 0
 --- !u!114 &1979967065090401228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2975,8 +3006,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentToDestroy: {fileID: 7367104688647257537}
+  timeToDestroyObject: 5
   life: 3
   coolDownTime: 0.5
+  OnGettingHit:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDying:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7367104688962466102
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,14 +29,16 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
             {
                 lastTimeDamageWasReceived = Time.time;
                 life -= damage;
-                OnGettingHit?.Invoke();
 
                 if (life <= 0f)
                 {
                     OnDying?.Invoke();
                     Destroy(parentToDestroy, timeToDestroyObject);
                     isAlive = false;
+                    return;
                 }
+
+                OnGettingHit?.Invoke();
             }
         }
     }

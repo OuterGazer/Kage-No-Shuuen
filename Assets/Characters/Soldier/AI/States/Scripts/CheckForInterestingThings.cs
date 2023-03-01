@@ -40,6 +40,7 @@ public class CheckForInterestingThings : Node
         return state;
     }
 
+    // Called from event raised in DecisionMaker
     private void SetInterestingTarget(Transform transform)
     {
         Parent.Parent.SetData("target", transform);
