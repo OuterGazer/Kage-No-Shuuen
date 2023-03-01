@@ -92,4 +92,9 @@ public class AnimationEventForwarder : MonoBehaviour
     {
         SendMessageUpwards("ExitThrowingState", SendMessageOptions.DontRequireReceiver);
     }
+
+    public void ForwardExitHitState()
+    {
+        SendMessageUpwards("ExitHitState");
+    }
 }

@@ -333,15 +333,18 @@ public class StateController : MonoBehaviour
     private void TransitionToHit()
     {
         ManageStateTransition(statesAllowedToTransitionToGettingHit, typeof(CharacterHitState));
+        playerInput.enabled = false;
     }
 
     public void ExitHitState()
     {
         ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
+        playerInput.enabled = true;
     }
 
     private void TransitionToDeath()
     {
         ManageStateTransition(statesAllowedToTransitionToDying, typeof(CharacterDeadState));
+        playerInput.enabled = false;
     }
 }

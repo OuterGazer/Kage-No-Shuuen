@@ -16,21 +16,27 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
     [SerializeField] float coolDownTime = 0.5f;
     float lastTimeDamageWasReceived= 0f;
 
+    private bool isAlive = true;
+
     [HideInInspector] public UnityEvent OnGettingHit;
     [HideInInspector] public UnityEvent OnDying;
 
     public void ReceiveDamage(float damage)
     {
-        if((Time.time - lastTimeDamageWasReceived) > coolDownTime)
+        if (isAlive)
         {
-            lastTimeDamageWasReceived = Time.time;
-            life -= damage;
-            OnGettingHit?.Invoke();
+            if ((Time.time - lastTimeDamageWasReceived) > coolDownTime)
+            {
+                lastTimeDamageWasReceived = Time.time;
+                life -= damage;
+                OnGettingHit?.Invoke();
 
-            if (life <= 0f)
-            { 
-                OnDying?.Invoke();
-                Destroy(parentToDestroy, timeToDestroyObject); 
+                if (life <= 0f)
+                {
+                    OnDying?.Invoke();
+                    Destroy(parentToDestroy, timeToDestroyObject);
+                    isAlive = false;
+                }
             }
         }
     }
