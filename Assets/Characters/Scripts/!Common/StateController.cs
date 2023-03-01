@@ -25,6 +25,8 @@ public class StateController : MonoBehaviour
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToCloseCombat;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToAiming;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToThrowing;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToGettingHit;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToDying;
 
     private PlayerInput playerInput;
     private InputAction move;
@@ -32,6 +34,7 @@ public class StateController : MonoBehaviour
     private CharacterController charController;
     private WeaponController weaponController;
     private Weapon currentWeapon;
+    private DamageableWithLife damageable;
 
     private bool isCrouching = false;
     private bool isAiming = false;
@@ -43,6 +46,7 @@ public class StateController : MonoBehaviour
         weaponController = GetComponent<WeaponController>();
         charController = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
+        damageable = GetComponent<DamageableWithLife>();
     }
 
     private void OnEnable()
@@ -50,6 +54,8 @@ public class StateController : MonoBehaviour
         GetReferenceToOnHookState();
         onHookState.CanNotFindHookTarget.AddListener(TransitionToIdle);
         weaponController.onWeaponChange.AddListener(SetCurrentWeapon);
+        damageable.OnGettingHit.AddListener(TransitionToHit);
+        damageable.OnDying.AddListener(TransitionToDeath);
 
         move = playerInput.actions["Move"];
 
@@ -90,7 +96,6 @@ public class StateController : MonoBehaviour
     {
         if (IsCharacterFallingDown())
         {
-            Debug.Log("floating!");
             TransitionToOnAir();
             move.Disable();
         }
@@ -323,5 +328,20 @@ public class StateController : MonoBehaviour
     public void ExitThrowingState()
     {
         ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
+    }
+
+    private void TransitionToHit()
+    {
+        ManageStateTransition(statesAllowedToTransitionToGettingHit, typeof(CharacterHitState));
+    }
+
+    public void ExitHitState()
+    {
+        ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
+    }
+
+    private void TransitionToDeath()
+    {
+        ManageStateTransition(statesAllowedToTransitionToDying, typeof(CharacterDeadState));
     }
 }

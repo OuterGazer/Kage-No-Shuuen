@@ -25,6 +25,9 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterCloseCombatState closeCombatState;
     private CharacterShootingState shootingState;
     private CharacterThrowingState throwingState;
+    //private CharacterHitState hitState;
+    //private CharacterDeadState deadState;
+    private DamageableWithLife damageable;
 
     private NavMeshAgent navMeshAgent;
 
@@ -50,6 +53,8 @@ public class CharacterAnimator : MonoBehaviour
     int isAimingHash;
     int shootHash;
     int throwingHash;
+    int hitHash;
+    int deadHash;
 
     Vector3 oldPosition;
 
@@ -81,6 +86,7 @@ public class CharacterAnimator : MonoBehaviour
         closeCombatState = GetComponent<CharacterCloseCombatState>();
         shootingState= GetComponent<CharacterShootingState>();
         throwingState= GetComponent<CharacterThrowingState>();
+        damageable = GetComponentInChildren<DamageableWithLife>();
 
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
@@ -103,6 +109,8 @@ public class CharacterAnimator : MonoBehaviour
         shootingState.onAim.AddListener(PlayAimingAnimation);
         shootingState.onShoot.AddListener(PlayShootingAnimation);
         throwingState.onThrowing.AddListener(PlayThrowingAnimation);
+        damageable.OnGettingHit.AddListener(PlayHitAnimation);
+        damageable.OnDying.AddListener(PlayDeathAnimation);
     }    
 
     private void OnDestroy()
@@ -129,6 +137,8 @@ public class CharacterAnimator : MonoBehaviour
         shootingState.onAim.RemoveListener(PlayAimingAnimation);
         shootingState.onShoot.RemoveListener(PlayShootingAnimation);
         throwingState.onThrowing.RemoveListener(PlayThrowingAnimation);
+        damageable.OnGettingHit.RemoveListener(PlayHitAnimation);
+        damageable.OnDying.RemoveListener(PlayDeathAnimation);
     }
 
     private void Start()
@@ -158,6 +168,8 @@ public class CharacterAnimator : MonoBehaviour
         isAimingHash = Animator.StringToHash("isAiming");
         shootHash = Animator.StringToHash("Shoot");
         throwingHash = Animator.StringToHash("Throw");
+        hitHash = Animator.StringToHash("Hit");
+        deadHash = Animator.StringToHash("Death");
     }
 
     private void SetMovementDirection(Vector3 movementDirection)
@@ -348,5 +360,15 @@ public class CharacterAnimator : MonoBehaviour
     {
         // TODO: desde WeaponController pasar un parámetro para aquí usar animator.speed y establecer la velocidad de animación.
         animator.SetTrigger(throwingHash);
+    }
+
+    public void PlayHitAnimation()
+    {
+        animator.SetTrigger(hitHash);
+    }
+
+    public void PlayDeathAnimation()
+    {
+        animator.SetTrigger(deadHash);
     }
 }

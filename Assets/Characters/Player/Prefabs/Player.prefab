@@ -47,13 +47,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Weight: 1
   m_Data:
-    m_Root: {fileID: 2994652720307673247}
-    m_Tip: {fileID: 4024842735979174171}
-    m_Target: {fileID: 1982431028}
-    m_ChainRotationWeight: 1
-    m_TipRotationWeight: 1
-    m_MaxIterations: 15
-    m_Tolerance: 0.0001
+    m_Root: {fileID: 0}
+    m_Tip: {fileID: 0}
+    m_Target: {fileID: 0}
+    m_ChainRotationWeight: 0
+    m_TipRotationWeight: 0
+    m_MaxIterations: 1
+    m_Tolerance: 0
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
 --- !u!1 &338064082
@@ -2485,6 +2485,8 @@ GameObject:
   - component: {fileID: 6662072654649892864}
   - component: {fileID: 8219717195397346131}
   - component: {fileID: 2174158107220845152}
+  - component: {fileID: 2113962696668688971}
+  - component: {fileID: 371915075147962900}
   - component: {fileID: 1979967065090401228}
   - component: {fileID: 3759334776753447573}
   m_Layer: 3
@@ -2918,6 +2920,30 @@ MonoBehaviour:
   onThrowing:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2113962696668688971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367104688647257537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 747691bd0c6066e4cb0763224a58becc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &371915075147962900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367104688647257537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d910d30da576fa247b586289a27c8eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1979967065090401228
 MonoBehaviour:
   m_ObjectHideFlags: 0
