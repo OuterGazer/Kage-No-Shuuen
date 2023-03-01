@@ -90,6 +90,7 @@ public class StateController : MonoBehaviour
     {
         if (IsCharacterFallingDown())
         {
+            Debug.Log("floating!");
             TransitionToOnAir();
             move.Disable();
         }

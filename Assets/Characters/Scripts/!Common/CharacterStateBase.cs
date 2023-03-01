@@ -33,11 +33,32 @@ public class CharacterStateBase : MonoBehaviour
 
     private static bool isFocusedOnEnemy = false;
 
+    protected void PushCharacterForward(float stepForwardLength)
+    {
+        Vector3 pushForward = Vector3.zero;
+        pushForward = stepForwardLength * Time.deltaTime * transform.forward;
+        pushForward.y = -0.1f;
+
+        charController.Move(pushForward);
+    }
+
     protected void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
         movementProperties.UpdateMovement(speed, movementDirection, movementProjectionPlane);
 
         OrientateCameraFollowTarget();
+    }
+
+    protected void OrientateCameraFollowTarget()
+    {
+        if (!isFocusedOnEnemy)
+        {
+            cameraFollowTarget.forward = transform.forward;
+        }
+        else
+        {
+            cameraFollowTarget.LookAt(target, Vector3.up);
+        }
     }
 
     protected void SetCameraAndCharController(CharacterController characterController)
@@ -48,9 +69,17 @@ public class CharacterStateBase : MonoBehaviour
         movementProperties.MainCamera = mainCamera;
         movementProperties.CharController = charController;
 
+        GetReferencesToSceneCameras();
+
+        cameraFollowTarget = focusedCamera.Follow;
+        focusedCamera.gameObject.SetActive(false);
+    }
+
+    private static void GetReferencesToSceneCameras()
+    {
         CinemachineFreeLook[] freeLookCameras = FindObjectsOfType<CinemachineFreeLook>();
 
-        foreach(CinemachineFreeLook item in freeLookCameras)
+        foreach (CinemachineFreeLook item in freeLookCameras)
         {
             if (item.CompareTag("CamFocused"))
             {
@@ -61,9 +90,6 @@ public class CharacterStateBase : MonoBehaviour
                 unfocusedCamera = item;
             }
         }
-
-        cameraFollowTarget = focusedCamera.Follow;
-        focusedCamera.gameObject.SetActive(false);
     }
 
     private static float timeToOrientateCharacterForward = 0.25f;
@@ -79,9 +105,7 @@ public class CharacterStateBase : MonoBehaviour
         }
         else
         {
-            Vector3 targetDirectionNormalized = (target.position - transform.position).normalized;
-            projectedForwardVector = Vector3.ProjectOnPlane(targetDirectionNormalized, Vector3.up);
-            DOTween.To(() => transform.forward, x => transform.forward = x, projectedForwardVector, timeToOrientateCharacterForward);
+            OrientateCharacterTowardsTarget(projectedForwardVector);
         }
         // Alternativa sin DoTween pero con un fallo
         // forwardOrientationSpeed lo tenía a 3f, sin embargo al ir en diagonal hacia atrás y mover mucho al personaje le terminaba viendo la cara.
@@ -102,21 +126,11 @@ public class CharacterStateBase : MonoBehaviour
         }
     }
 
-    protected void OrientateCameraFollowTarget()
+    private void OrientateCharacterTowardsTarget(Vector3 projectedForwardVector)
     {
-        if (!isFocusedOnEnemy)
-        {
-            cameraFollowTarget.forward = transform.forward;
-        }
-        else
-        {
-            cameraFollowTarget.LookAt(target, Vector3.up);
-        }
-    }
-
-    protected void PushCharacterForward(float stepForwardLength)
-    {
-        charController.Move(stepForwardLength * Time.deltaTime * transform.forward);
+        Vector3 targetDirectionNormalized = (target.position - transform.position).normalized;
+        projectedForwardVector = Vector3.ProjectOnPlane(targetDirectionNormalized, Vector3.up);
+        DOTween.To(() => transform.forward, x => transform.forward = x, projectedForwardVector, timeToOrientateCharacterForward);
     }
 
     private void OnMove(InputValue inputValue)
