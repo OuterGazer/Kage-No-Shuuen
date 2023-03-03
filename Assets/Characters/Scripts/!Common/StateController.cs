@@ -94,6 +94,11 @@ public class StateController : MonoBehaviour
 
     private void Update()
     {
+        UpdateIsGroundedState();
+    }
+
+    private void UpdateIsGroundedState()
+    {
         if (IsCharacterFallingDown())
         {
             TransitionToOnAir();

@@ -2489,6 +2489,7 @@ GameObject:
   - component: {fileID: 371915075147962900}
   - component: {fileID: 1979967065090401228}
   - component: {fileID: 3759334776753447573}
+  - component: {fileID: 2582851399841605954}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -2642,6 +2643,7 @@ MonoBehaviour:
   - {fileID: 6662072654649892864}
   - {fileID: 8219717195397346131}
   - {fileID: 2174158107220845152}
+  - {fileID: 834020474160094199}
   statesAllowedToTransitionToDying:
   - {fileID: 7367104688647257540}
   - {fileID: 7367104688647257541}
@@ -2717,6 +2719,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   speed: 3
+  onCrouch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1979967065090401228}
+        m_TargetAssemblyTypeName: NoiseEmitter, Assembly-CSharp
+        m_MethodName: SetIsCrouching
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7367104688647257541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2989,7 +3006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   emissionFrequency: 5
-  radius: 3
+  radius: 4
   listenersLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -3015,6 +3032,24 @@ MonoBehaviour:
   OnDying:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2582851399841605954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7367104688647257537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a6e11b9a4a8704ea7daf3a242060e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noNearbyTargetRefresRate: 1
+  nearbyTargetRefresRate: 5
+  checkRadius: 2
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &7367104688962466102
 GameObject:
   m_ObjectHideFlags: 0

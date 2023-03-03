@@ -56,6 +56,11 @@ public class NoiseEmitter : MonoBehaviour
                 case Type.OnlyWhenRunning: performEmission = ((transform.position != lastPositionOnEmmit) && !isCrouching); break;
             }
 
+            if (isCrouching)
+            {
+                lastPositionOnEmmit = transform.position;
+            }
+
             if (performEmission)
                 { EmitNoise(); Debug.Log("making noise!!"); }
         }
