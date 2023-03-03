@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2161.7354, g: 2265.668, b: 3288.7734, a: 1}
+  m_IndirectSpecularColor: {r: 2161.7354, g: 2265.668, b: 3288.8008, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7246,7 +7246,7 @@ PrefabInstance:
     - target: {fileID: 2795677103851904039, guid: a3582485e7d7f34459964aa32aeccd90,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3582485e7d7f34459964aa32aeccd90, type: 3}
@@ -7320,7 +7320,7 @@ PrefabInstance:
     - target: {fileID: 2795677103851904039, guid: 144e37dabcf409d4e8a7fd512988a3cc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3545977893119982696, guid: 144e37dabcf409d4e8a7fd512988a3cc,
         type: 3}
@@ -7722,12 +7722,12 @@ PrefabInstance:
     - target: {fileID: 2441759163032804075, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000018702586
+      value: -0.000000018702593
       objectReference: {fileID: 0}
     - target: {fileID: 2441759163032804075, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000004504157
+      value: 0.0000000045041584
       objectReference: {fileID: 0}
     - target: {fileID: 3172489649929641379, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
@@ -7892,7 +7892,7 @@ PrefabInstance:
     - target: {fileID: 8717368676567790391, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.03333581
+      value: 0.033335805
       objectReference: {fileID: 0}
     - target: {fileID: 8717368676567790391, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
@@ -7907,17 +7907,17 @@ PrefabInstance:
     - target: {fileID: 8717368676609951146, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0046970164
+      value: 0.004697017
       objectReference: {fileID: 0}
     - target: {fileID: 8717368676609951146, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 2.0093184e-10
+      value: 4.7741267e-18
       objectReference: {fileID: 0}
     - target: {fileID: 8717368676609951146, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -9.437908e-13
+      value: -8.514649e-20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0d3e3173129dc14099ef8bec400479c, type: 3}

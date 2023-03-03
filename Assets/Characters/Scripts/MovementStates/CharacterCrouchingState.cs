@@ -7,6 +7,18 @@ using UnityEngine.InputSystem;
 
 public class CharacterCrouchingState : CharacterStateBase
 {
+    public UnityEvent<bool> onCrouch;
+
+    private void OnEnable()
+    {
+        onCrouch.Invoke(true);
+    }
+
+    private void OnDisable()
+    {
+        onCrouch.Invoke(false);
+    }
+
     void Update()
     {
         UpdateMovement(speed, movementDirection, Vector3.up);        

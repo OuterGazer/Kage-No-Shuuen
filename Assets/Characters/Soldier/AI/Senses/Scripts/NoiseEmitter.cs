@@ -7,7 +7,7 @@ public class NoiseEmitter : MonoBehaviour
     public enum Type 
     {
         Continuous,
-        OnlyWhenMoving,
+        OnlyWhenRunning,
         OnDemand
     }
 
@@ -19,6 +19,13 @@ public class NoiseEmitter : MonoBehaviour
     Vector3 lastPositionOnEmmit = Vector3.zero;
 
     Coroutine noiseEmissionCoroutine;
+
+    private bool isCrouching = false;
+
+    public void SetIsCrouching (bool isCrouching)
+    {
+        this.isCrouching = isCrouching;
+    }
 
     private void OnEnable()
     {
@@ -46,11 +53,11 @@ public class NoiseEmitter : MonoBehaviour
             switch (type)
             {
                 case Type.Continuous: performEmission = true; break;
-                case Type.OnlyWhenMoving: performEmission = (transform.position != lastPositionOnEmmit); break;
+                case Type.OnlyWhenRunning: performEmission = ((transform.position != lastPositionOnEmmit) && !isCrouching); break;
             }
 
             if (performEmission)
-                { EmitNoise(); }
+                { EmitNoise(); Debug.Log("making noise!!"); }
         }
     }
 
