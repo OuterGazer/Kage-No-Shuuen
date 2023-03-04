@@ -13,6 +13,7 @@ public class StateController : MonoBehaviour
     private CharacterStateBase currentState;
 
     private CharacterOnHookState onHookState;
+    private StealthChecker stealthChecker;
 
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToIdle;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToRunning;
@@ -22,6 +23,7 @@ public class StateController : MonoBehaviour
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToOnAir;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToBlocking;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToDodging;
+    [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToStealthKill;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToCloseCombat;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToAiming;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToThrowing;
@@ -47,6 +49,7 @@ public class StateController : MonoBehaviour
         charController = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         damageable = GetComponent<DamageableWithLife>();
+        stealthChecker = GetComponent<StealthChecker>();
     }
 
     private void OnEnable()
@@ -288,7 +291,14 @@ public class StateController : MonoBehaviour
 
     public void OnSlash() 
     {
-        ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));
+        if(stealthChecker.CanPerformStealthKill)
+        {
+            ManageStateTransition(statesAllowedToTransitionToStealthKill, typeof(CharacterStealthKillState));
+        }
+        else
+        {
+            ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));
+        }
     }
     public void OnHeavySlash() 
     {

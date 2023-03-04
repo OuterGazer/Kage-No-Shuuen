@@ -16,6 +16,8 @@ public class StealthChecker : MonoBehaviour
     DecisionMaker targetDecisionMaker;
 
     private bool isSeenByTarget = false;
+    private bool canPerformStealthKill = false;
+    public bool CanPerformStealthKill => canPerformStealthKill;
 
     public void CharacterIsSeen(Transform transform)
     {
@@ -32,6 +34,7 @@ public class StealthChecker : MonoBehaviour
     private void RemoveTarget()
     {
         isSeenByTarget = false;
+        canPerformStealthKill = false;
         targetDecisionMaker.OnPlayerSeen.RemoveListener(CharacterIsSeen);
         targetDecisionMaker.OnTargetLost.RemoveListener(CharacterIsInStealth);
         targetDecisionMaker = null;
@@ -72,7 +75,14 @@ public class StealthChecker : MonoBehaviour
             }
 
             if (isStealthKillPossible())
-            { Debug.Log("Stealth Kill is possible!"); }
+            {
+                Debug.Log("Stealth Kill is possible!");
+                canPerformStealthKill = true;
+            }
+            else if (IsStealthKillNotPossible())
+            {
+                canPerformStealthKill = false;
+            }
         }
     }
 
@@ -97,5 +107,10 @@ public class StealthChecker : MonoBehaviour
     private bool isStealthKillPossible()
     {
         return !isSeenByTarget && targetDecisionMaker;
+    }
+
+    private bool IsStealthKillNotPossible()
+    {
+        return isSeenByTarget && targetDecisionMaker;
     }
 }
