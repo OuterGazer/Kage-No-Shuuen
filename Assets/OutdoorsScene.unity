@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2161.3838, g: 2265.3848, b: 3288.5703, a: 1}
+  m_IndirectSpecularColor: {r: 2161.3682, g: 2265.4043, b: 3288.5703, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7332,6 +7332,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier Runner
       objectReference: {fileID: 0}
+    - target: {fileID: 2795677103851904039, guid: 144e37dabcf409d4e8a7fd512988a3cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3545977893119982696, guid: 144e37dabcf409d4e8a7fd512988a3cc,
         type: 3}
       propertyPath: player
@@ -7463,6 +7468,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2120661337}
     m_Modifications:
+    - target: {fileID: 3098255904711361563, guid: f3a501e21767747428cd4a475d9844b8,
+        type: 3}
+      propertyPath: targetLayerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 7367104688647257536, guid: f3a501e21767747428cd4a475d9844b8,
         type: 3}
       propertyPath: m_RootOrder
@@ -7755,12 +7765,12 @@ PrefabInstance:
     - target: {fileID: 4461548677356947728, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016604998
+      value: 0.000000016605004
       objectReference: {fileID: 0}
     - target: {fileID: 4461548677356947728, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000004509263
+      value: -0.000000004509265
       objectReference: {fileID: 0}
     - target: {fileID: 8717368675256132445, guid: f0d3e3173129dc14099ef8bec400479c,
         type: 3}

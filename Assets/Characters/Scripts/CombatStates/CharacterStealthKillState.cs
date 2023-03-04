@@ -14,13 +14,16 @@ public class CharacterStealthKillState : CharacterStateBase
     private void OnEnable()
     {
         Collider[] targets = Physics.OverlapSphere(transform.position, stealthKillRadius, targetLayerMask);
+        if(targets.Length > 0)
+        {
+            CharacterAnimator targetAnimator = targets[0].GetComponentInParent<CharacterAnimator>();
+            DamageableWithLife damageable = (DamageableWithLife)targets[0]?.GetComponent<IDamagereceiver>();
+            targets[0].GetComponentInParent<SoldierBehaviour>().enabled = false;
 
-        CharacterAnimator targetAnimator = targets[0].GetComponentInParent<CharacterAnimator>();
-        DamageableWithLife damageable = (DamageableWithLife)targets[0].GetComponent<IDamagereceiver>();
-        targets[0].GetComponentInParent<SoldierBehaviour>().enabled = false;
-
-        onStealthKill.Invoke();
-        targetAnimator?.PlayStealthDeathAnimation();
-        damageable.ReceiveStealthKill();
+            onStealthKill.Invoke();
+            targetAnimator?.PlayStealthDeathAnimation();
+            damageable?.ReceiveStealthKill();
+        }
+        
     }
 }
