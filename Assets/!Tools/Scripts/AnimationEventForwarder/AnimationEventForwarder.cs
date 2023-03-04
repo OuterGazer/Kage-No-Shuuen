@@ -31,7 +31,13 @@ public class AnimationEventForwarder : MonoBehaviour
     {
         SendMessageUpwards("ResetWeaponChangeState");
     }
-    
+
+    public void ForwardExitStealthKillState()
+    {
+        SendMessageUpwards("ExitStealthKillState");
+    }
+
+
     public void ForwardSetCanChainCombo(int canChain)
     {
         SendMessageUpwards("SetCanChainCombo", canChain);

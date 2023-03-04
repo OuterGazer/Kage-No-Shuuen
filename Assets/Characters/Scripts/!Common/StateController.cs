@@ -300,6 +300,12 @@ public class StateController : MonoBehaviour
             ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));
         }
     }
+
+    public void ExitStealthKillState()
+    {
+        ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
+    }
+
     public void OnHeavySlash() 
     {
         ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));

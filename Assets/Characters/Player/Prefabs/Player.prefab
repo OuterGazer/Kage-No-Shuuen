@@ -2603,6 +2603,7 @@ MonoBehaviour:
   - {fileID: 8219717195397346131}
   - {fileID: 2174158107220845152}
   - {fileID: 2113962696668688971}
+  - {fileID: 3098255904711361563}
   statesAllowedToTransitionToRunning:
   - {fileID: 7367104688647257540}
   - {fileID: 7367104688647257538}
@@ -2910,6 +2911,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   speed: 0
+  onStealthKill:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6662072654649892864
 MonoBehaviour:
   m_ObjectHideFlags: 0

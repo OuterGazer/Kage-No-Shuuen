@@ -22,11 +22,10 @@ public class CharacterAnimator : MonoBehaviour
     private CharacterOnAirState onAirState;
     private CharacterDodgingState dodgingState;
     private CharacterBlockingState blockingState;
+    private CharacterStealthKillState stealthKillState;
     private CharacterCloseCombatState closeCombatState;
     private CharacterShootingState shootingState;
     private CharacterThrowingState throwingState;
-    //private CharacterHitState hitState;
-    //private CharacterDeadState deadState;
     private DamageableWithLife damageable;
 
     private NavMeshAgent navMeshAgent;
@@ -47,6 +46,8 @@ public class CharacterAnimator : MonoBehaviour
     int dodgingHash;
     int isBlockingHash;
     int changeWeaponHash;
+    int stealthKillHash;
+    int stealthDeathHash;
     int slashHash;
     int canChainComboHash;
     int heavySlashHash;
@@ -83,6 +84,7 @@ public class CharacterAnimator : MonoBehaviour
         dodgingState = GetComponent<CharacterDodgingState>();
         blockingState = GetComponent<CharacterBlockingState>();
         weaponController = GetComponent<WeaponController>();
+        stealthKillState = GetComponent<CharacterStealthKillState>();
         closeCombatState = GetComponent<CharacterCloseCombatState>();
         shootingState= GetComponent<CharacterShootingState>();
         throwingState= GetComponent<CharacterThrowingState>();
@@ -104,6 +106,7 @@ public class CharacterAnimator : MonoBehaviour
         dodgingState.MakeCharacterDodge.AddListener(PlayDodgeAnimation);
         blockingState.UpdateBlockingStatus.AddListener(UpdateBlocking);
         weaponController.onWeaponChange.AddListener(PlayChangeWeaponAnimation);
+        stealthKillState.onStealthKill.AddListener(PlayStealthKillAnimation);
         closeCombatState.onSlash.AddListener(PlaySlashAnimation);
         closeCombatState.onHeavySlash.AddListener(PlayHeavySlashAnimation);
         shootingState.onAim.AddListener(PlayAimingAnimation);
@@ -132,6 +135,7 @@ public class CharacterAnimator : MonoBehaviour
         dodgingState.MakeCharacterDodge.RemoveListener(PlayDodgeAnimation);
         blockingState.UpdateBlockingStatus.RemoveListener(UpdateBlocking);
         weaponController.onWeaponChange.RemoveListener(PlayChangeWeaponAnimation);
+        stealthKillState.onStealthKill.RemoveListener(PlayStealthKillAnimation);
         closeCombatState.onSlash.RemoveListener(PlaySlashAnimation);
         closeCombatState.onHeavySlash.RemoveListener(PlayHeavySlashAnimation);
         shootingState.onAim.RemoveListener(PlayAimingAnimation);
@@ -162,6 +166,8 @@ public class CharacterAnimator : MonoBehaviour
         dodgingHash = Animator.StringToHash("Dodging");
         isBlockingHash = Animator.StringToHash("isBlocking");
         changeWeaponHash = Animator.StringToHash("ChangeWeapon");
+        stealthKillHash = Animator.StringToHash("StealthKill");
+        stealthDeathHash = Animator.StringToHash("StealthDeath");
         slashHash = Animator.StringToHash("Slash");
         canChainComboHash = Animator.StringToHash("canChainCombo");
         heavySlashHash = Animator.StringToHash("HeavySlash");
@@ -323,7 +329,16 @@ public class CharacterAnimator : MonoBehaviour
         { animator.SetTrigger(changeWeaponHash); }
     }
 
-    //TODO: Have character correctly grab 2-Hand weapons with both hands
+    public void PlayStealthKillAnimation()
+    {
+        animator.SetTrigger(stealthKillHash);
+    }
+
+    public void PlayStealthDeathAnimation() // TODO: add animation clip programatically
+    {
+        animator.SetTrigger(stealthDeathHash);
+    }
+
     public void PlaySlashAnimation()
     {
         animator.SetTrigger(slashHash);
