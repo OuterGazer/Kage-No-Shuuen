@@ -5,8 +5,8 @@ using UnityEngine;
 public class StealthChecker : MonoBehaviour
 {
     [Header("Target Checking Settings")]
-    [SerializeField] float noNearbyTargetRefresRate = 1f;
-    [SerializeField] float nearbyTargetRefresRate = 5f;
+    [SerializeField] float noNearbyTargetRefreshRate = 1f;
+    [SerializeField] float nearbyTargetRefreshRate = 5f;
     [SerializeField] float checkRadius = 2f;
     [SerializeField] LayerMask targetLayerMask = Physics.DefaultRaycastLayers;
 
@@ -25,18 +25,23 @@ public class StealthChecker : MonoBehaviour
     {
         if (isSeenByTarget)
         {
-            isSeenByTarget = false;
-            targetDecisionMaker.OnPlayerSeen.RemoveListener(CharacterIsSeen);
-            targetDecisionMaker.OnTargetLost.RemoveListener(CharacterIsInStealth);
-            targetDecisionMaker = null;
-
-            targetCheckRefreshRate = noNearbyTargetRefresRate;
+            RemoveTarget();
         }
+    }
+
+    private void RemoveTarget()
+    {
+        isSeenByTarget = false;
+        targetDecisionMaker.OnPlayerSeen.RemoveListener(CharacterIsSeen);
+        targetDecisionMaker.OnTargetLost.RemoveListener(CharacterIsInStealth);
+        targetDecisionMaker = null;
+
+        targetCheckRefreshRate = noNearbyTargetRefreshRate;
     }
 
     private void Start()
     {
-        targetCheckRefreshRate = noNearbyTargetRefresRate;
+        targetCheckRefreshRate = noNearbyTargetRefreshRate;
     }
 
     
@@ -53,11 +58,15 @@ public class StealthChecker : MonoBehaviour
             if((targetCollider.Length > 0) &&
                 (!targetDecisionMaker))
             {
-                targetCheckRefreshRate = nearbyTargetRefresRate;
+                targetCheckRefreshRate = nearbyTargetRefreshRate;
 
                 targetDecisionMaker = targetCollider[0].GetComponentInParent<DecisionMaker>();
                 targetDecisionMaker.OnPlayerSeen.AddListener(CharacterIsSeen);
                 targetDecisionMaker.OnTargetLost.AddListener(CharacterIsInStealth);
+            }
+            else if (targetDecisionMaker && targetCollider.Length <= 0)
+            {
+                RemoveTarget();
             }
 
             if(!isSeenByTarget && targetDecisionMaker)
