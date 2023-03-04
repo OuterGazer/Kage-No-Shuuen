@@ -433,8 +433,8 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 7738160146926745281}
   children: []
-  timeBetweenAttacks: 1
-  attackCounter: 0.5
+  timeBetweenAttacks: 2
+  attackCounter: 2
   shouldPerformHeavyAttack: 0
 --- !u!114 &6259360069907599011
 MonoBehaviour:
@@ -2821,8 +2821,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentToDestroy: {fileID: 2795677103851904039}
-  timeToDestroyObject: 5
-  life: 1
+  timeToDestroyObject: 10
+  life: 2
   coolDownTime: 0.5
   OnGettingHit:
     m_PersistentCalls:

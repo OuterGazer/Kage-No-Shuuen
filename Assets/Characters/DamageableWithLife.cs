@@ -42,4 +42,14 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
             }
         }
     }
+
+    public void ReceiveStealthKill()
+    {
+        if (isAlive)
+        {
+            life = 0;
+            Destroy(parentToDestroy, timeToDestroyObject);
+            isAlive = false;
+        }
+    }
 }
