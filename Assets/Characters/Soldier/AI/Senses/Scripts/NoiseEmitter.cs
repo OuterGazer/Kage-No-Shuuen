@@ -24,6 +24,19 @@ public class NoiseEmitter : MonoBehaviour
 
     public void SetIsCrouching (bool isCrouching)
     {
+        if (isCrouching)
+        {
+            this.isCrouching = isCrouching;
+        }
+        else
+        {
+            StartCoroutine(DelaySetIsCrouchingToFalse(isCrouching));
+        }
+    }
+
+    private IEnumerator DelaySetIsCrouchingToFalse(bool isCrouching)
+    {
+        yield return new WaitUntil(() => transform.position == lastPositionOnEmmit); // Wait until movement smoothing comes to a halt
         this.isCrouching = isCrouching;
     }
 

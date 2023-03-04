@@ -49,30 +49,53 @@ public class StealthChecker : MonoBehaviour
     {
         checkCounter += Time.deltaTime;
 
-        if(checkCounter >= (1 / targetCheckRefreshRate))
+        CheckForNearbyTarget();
+    }
+
+    private void CheckForNearbyTarget()
+    {
+        if (checkCounter >= (1 / targetCheckRefreshRate))
         {
             checkCounter = 0f;
 
             Collider[] targetCollider = Physics.OverlapSphere(transform.position, checkRadius, targetLayerMask);
 
-            if((targetCollider.Length > 0) &&
-                (!targetDecisionMaker))
+            if (IsThereATargetNearby(targetCollider))
             {
                 targetCheckRefreshRate = nearbyTargetRefreshRate;
 
-                targetDecisionMaker = targetCollider[0].GetComponentInParent<DecisionMaker>();
-                targetDecisionMaker.OnPlayerSeen.AddListener(CharacterIsSeen);
-                targetDecisionMaker.OnTargetLost.AddListener(CharacterIsInStealth);
+                AddTarget(targetCollider);
             }
-            else if (targetDecisionMaker && targetCollider.Length <= 0)
+            else if (IsAddedTargetGoneOutOfRange(targetCollider))
             {
                 RemoveTarget();
             }
 
-            if(!isSeenByTarget && targetDecisionMaker)
+            if (isStealthKillPossible())
             { Debug.Log("Stealth Kill is possible!"); }
         }
     }
 
+    private bool IsThereATargetNearby(Collider[] targetCollider)
+    {
+        return (targetCollider.Length > 0) &&
+                        (!targetDecisionMaker);
+    }
 
+    private void AddTarget(Collider[] targetCollider)
+    {
+        targetDecisionMaker = targetCollider[0].GetComponentInParent<DecisionMaker>();
+        targetDecisionMaker.OnPlayerSeen.AddListener(CharacterIsSeen);
+        targetDecisionMaker.OnTargetLost.AddListener(CharacterIsInStealth);
+    }
+
+    private bool IsAddedTargetGoneOutOfRange(Collider[] targetCollider)
+    {
+        return targetDecisionMaker && targetCollider.Length <= 0;
+    }
+
+    private bool isStealthKillPossible()
+    {
+        return !isSeenByTarget && targetDecisionMaker;
+    }
 }
