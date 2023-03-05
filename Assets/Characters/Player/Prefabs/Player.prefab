@@ -2911,6 +2911,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   speed: 0
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  correctionCoefficientZ: -0.75
+  correctionCoefficientX: 0.15
+  stealthKillCamera: {fileID: 0}
+  normalCamera: {fileID: 0}
   onStealthKill:
     m_PersistentCalls:
       m_Calls: []

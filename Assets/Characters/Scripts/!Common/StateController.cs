@@ -195,9 +195,11 @@ public class StateController : MonoBehaviour
         }
         else if (IsCrouchButtonReleased(inputValue))
         {
+            isCrouching = false;
+
             if (IsCharacterStill())
             {
-                if (IsCharacterOnHookOrOnAir()) { return; }
+                if (IsCharacterInAnUnfinishedAnimation()) { return; }
                 
                 ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
             }
@@ -205,14 +207,14 @@ public class StateController : MonoBehaviour
             {
                 ManageStateTransition(statesAllowedToTransitionToRunning, typeof(CharacterRunningState));
             }
-            isCrouching = false;
         }
     }
 
-    private bool IsCharacterOnHookOrOnAir()
+    private bool IsCharacterInAnUnfinishedAnimation()
     {
         return currentState.GetType() == typeof(CharacterOnHookState) ||
-               currentState.GetType() == typeof(CharacterOnAirState);
+               currentState.GetType() == typeof(CharacterOnAirState) ||
+               currentState.GetType() == typeof(CharacterStealthKillState);
     }
 
     private bool IsCharacterStill()
