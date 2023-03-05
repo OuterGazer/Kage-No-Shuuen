@@ -20,6 +20,7 @@ public class CharacterStealthKillState : CharacterStateBase
     [HideInInspector] public UnityEvent onStealthKill;
 
     private static Weapon currentWeapon;
+    private CharacterAnimator targetAnimator;
     private AnimationClip originalClip;
 
     private float stealthKillRadius = 3f;
@@ -36,9 +37,8 @@ public class CharacterStealthKillState : CharacterStateBase
         Collider[] targets = Physics.OverlapSphere(transform.position, stealthKillRadius, targetLayerMask);
         if(targets.Length > 0)
         {
-            CharacterAnimator targetAnimator;
             DamageableWithLife damageable;
-            GetTargetReferences(targets, out targetAnimator, out damageable);
+            GetTargetReferences(targets, out damageable);
 
             CorrectPlayerRelativePositionToTarget(targetAnimator);
 
@@ -50,7 +50,7 @@ public class CharacterStealthKillState : CharacterStateBase
         }
     }
 
-    private void GetTargetReferences(Collider[] targets, out CharacterAnimator targetAnimator, out DamageableWithLife damageable)
+    private void GetTargetReferences(Collider[] targets, out DamageableWithLife damageable)
     {
         targetAnimator = targets[0].GetComponentInParent<CharacterAnimator>();
         damageable = (DamageableWithLife)targets[0]?.GetComponent<IDamagereceiver>();
@@ -98,7 +98,7 @@ public class CharacterStealthKillState : CharacterStateBase
     private void PlayAnimations(CharacterAnimator targetAnimator)
     {
         AnimationClip victimAnimationClip = currentWeapon.AnimatorOverride["1-Back kill with sword-Actor1"];
-        originalClip = victimAnimationClip;
+        originalClip = targetAnimator.OverrideController["1-Back kill with sword-Actor1"];
 
         onStealthKill.Invoke();
         targetAnimator?.PlayStealthDeathAnimation(victimAnimationClip);
@@ -108,7 +108,7 @@ public class CharacterStealthKillState : CharacterStateBase
     {
         if (originalClip)
         {
-            currentWeapon.AnimatorOverride["1-Back kill with sword-Actor1"] = originalClip;
+            targetAnimator.OverrideController["1-Back kill with sword-Actor1"] = originalClip;
         }
 
         SwitchToFreeLookCamera();

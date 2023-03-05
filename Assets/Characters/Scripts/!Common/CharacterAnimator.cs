@@ -36,6 +36,7 @@ public class CharacterAnimator : MonoBehaviour
     private WeaponController weaponController;
     private RuntimeAnimatorController standardAnimatorController;
     private AnimatorOverrideController overrideAnimatorController;
+    public AnimatorOverrideController OverrideController{ get { return overrideAnimatorController; } set { overrideAnimatorController = value; } }
 
     int movementForwardHash;
     int movementSidewaysHash;
