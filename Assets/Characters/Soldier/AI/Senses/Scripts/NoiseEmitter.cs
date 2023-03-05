@@ -75,7 +75,7 @@ public class NoiseEmitter : MonoBehaviour
             }
 
             if (performEmission)
-                { EmitNoise(); Debug.Log("making noise!!"); }
+                { EmitNoise(); }
         }
     }
 

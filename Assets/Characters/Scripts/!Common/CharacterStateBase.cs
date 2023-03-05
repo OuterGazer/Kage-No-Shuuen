@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using Unity.VisualScripting.Dependencies.NCalc;
+using System;
 
 public class CharacterStateBase : MonoBehaviour
 {
@@ -154,54 +155,51 @@ public class CharacterStateBase : MonoBehaviour
         }
     }
 
-    private bool hasFocusChangedLastFrame = false;
-    private static Coroutine test;
+    private static Coroutine cameraSwitchingCoroutine;
     private void OnFocus()
     {
-        if (!hasFocusChangedLastFrame && !isFocusedOnEnemy)
+        if (cameraSwitchingCoroutine == null)
         {
-            //Debug.Log("focusing!");
-            isFocusedOnEnemy = true;
-            hasFocusChangedLastFrame = true;
+            cameraSwitchingCoroutine = StartCoroutine(ChangeFocus());
+        }
+    }
 
-            //Debug.Log("Focus!");
+    private IEnumerator ChangeFocus()
+    {
+        SwitchCameras();
+       
+        yield return new WaitForSeconds(0.5f);
+        
+        StopCoroutine(cameraSwitchingCoroutine);
+        cameraSwitchingCoroutine = null;
+    }
+
+    private void SwitchCameras()
+    {
+        if (!isFocusedOnEnemy)
+        {
             targets = Physics.OverlapSphere(transform.position, 10f, soldierLayer);
             FilterTargetsByDistanceToPlayer();
+
             unfocusedCamera.gameObject.SetActive(false);
             focusedCamera.gameObject.SetActive(true);
         }
-        else if (!hasFocusChangedLastFrame && isFocusedOnEnemy)
+        else
         {
-            //Debug.Log("unfocusing!");
-            isFocusedOnEnemy = false;
-            hasFocusChangedLastFrame = true;
-
-            //Debug.Log("unfocus!");
             focusedCamera.gameObject.SetActive(false);
             unfocusedCamera.gameObject.SetActive(true);
             targets = null;
             target = null;
         }
 
-        if (test == null)
-        {
-            test = StartCoroutine(ChangeFocus());
-        }
-    }
-
-    private IEnumerator ChangeFocus()
-    {
-        Debug.Log("Here");
-        yield return new WaitForSeconds(0.5f);
-        hasFocusChangedLastFrame = false;
-        Debug.Log("here again");
+        isFocusedOnEnemy = !isFocusedOnEnemy;
     }
 
     private void FilterTargetsByDistanceToPlayer()
     {
         foreach (Collider item in targets)
         {
-            if (!target)
+            if (!target) // assign always first item in the list to target
             {
                 target = item.transform;
             }
