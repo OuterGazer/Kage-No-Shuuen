@@ -2599,11 +2599,11 @@ MonoBehaviour:
   - {fileID: 7367104688647257547}
   - {fileID: 834020474160094199}
   - {fileID: 4128263669422437884}
+  - {fileID: 3098255904711361563}
   - {fileID: 6662072654649892864}
   - {fileID: 8219717195397346131}
   - {fileID: 2174158107220845152}
   - {fileID: 2113962696668688971}
-  - {fileID: 3098255904711361563}
   statesAllowedToTransitionToRunning:
   - {fileID: 7367104688647257540}
   - {fileID: 7367104688647257538}
@@ -2914,10 +2914,13 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  correctionCoefficientZ: -0.75
-  correctionCoefficientX: 0.15
+  correctionCoefficientZOneHand: -0.55
+  correctionCoefficientXOneHand: 0.25
+  correctionCoefficientZTwoHand: -1.8
+  correctionCoefficientXTwoHand: 0.3
+  correctionCoefficientZProjectile: -1.15
+  correctionCoefficientXProjectile: -0.15
   stealthKillCamera: {fileID: 0}
-  normalCamera: {fileID: 0}
   onStealthKill:
     m_PersistentCalls:
       m_Calls: []
@@ -3827,6 +3830,11 @@ PrefabInstance:
       propertyPath: aimingRig
       value: 
       objectReference: {fileID: 1278787773749181164}
+    - target: {fileID: 2336569475683405071, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: isProjectile
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2400387083277893973, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: is2H
@@ -3836,6 +3844,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canBlock
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2400387083277893973, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: isProjectile
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2400474960730732724, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
@@ -3856,6 +3869,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canBlock
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2808679734506325727, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: isProjectile
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2850730694497149427, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
@@ -3902,6 +3920,11 @@ PrefabInstance:
       propertyPath: aimingRig
       value: 
       objectReference: {fileID: 1375444489}
+    - target: {fileID: 3070630125332686044, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: isProjectile
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3082191237428683230, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: hand
@@ -4045,7 +4068,7 @@ PrefabInstance:
     - target: {fileID: 3596082018163599465, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: is2H
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3604101515679610817, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
@@ -4182,10 +4205,15 @@ PrefabInstance:
       propertyPath: canBlock
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5885792777998068552, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: isProjectile
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6211662844226136819, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: is2H
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6306572161746325869, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
@@ -4482,6 +4510,11 @@ PrefabInstance:
       propertyPath: aimingRig
       value: 
       objectReference: {fileID: 1950536391}
+    - target: {fileID: 7537856264547284510, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: isProjectile
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7584303525184840597, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform
@@ -4576,6 +4609,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canBlock
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404113954697462493, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: isProjectile
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8762454185891478518, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

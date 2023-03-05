@@ -180,7 +180,8 @@ public class StateController : MonoBehaviour
                 currentState.GetType() == typeof(CharacterOnHookState)) { return; } // TODO: Has to do with moving right after landing, try to decouple this!!
             
             if (currentState.GetType() == typeof(CharacterBlockingState) ||
-                currentState.GetType() == typeof(CharacterShootingState)) { return; } // Keep blocking/aiming if we were so already
+                currentState.GetType() == typeof(CharacterShootingState)||
+                currentState.GetType() == typeof(CharacterStealthKillState)) { return; } // Keep blocking/aiming if we were so already
 
             ManageStateTransition(statesAllowedToTransitionToIdle, typeof(CharacterIdleState));
         }
