@@ -35,6 +35,7 @@ public class CharacterAnimator : MonoBehaviour
 
     private WeaponController weaponController;
     private RuntimeAnimatorController standardAnimatorController;
+    private AnimatorOverrideController overrideAnimatorController;
 
     int movementForwardHash;
     int movementSidewaysHash;
@@ -185,10 +186,14 @@ public class CharacterAnimator : MonoBehaviour
 
     public void ApplyAnimatorController(Weapon weapon)
     {
-        if (weapon.AnimatorOverride)
-            animator.runtimeAnimatorController = weapon.AnimatorOverride;
-        else if(!weapon.AnimatorOverride)
-            animator.runtimeAnimatorController = standardAnimatorController;
+        overrideAnimatorController = weapon.AnimatorOverride;
+        if (overrideAnimatorController)
+        {
+            overrideAnimatorController = weapon.AnimatorOverride;
+            animator.runtimeAnimatorController = overrideAnimatorController;
+        }
+        else if (!overrideAnimatorController)
+        { animator.runtimeAnimatorController = standardAnimatorController; }
     }
 
     private void Update()
@@ -334,8 +339,9 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetTrigger(stealthKillHash);
     }
 
-    public void PlayStealthDeathAnimation() // TODO: add animation clip programatically
+    public void PlayStealthDeathAnimation(AnimationClip victimAnimationClip)
     {
+        overrideAnimatorController["1-Back kill with sword-Actor1"] = victimAnimationClip;
         animator.SetTrigger(stealthDeathHash);
     }
 

@@ -15,7 +15,14 @@ public class CharacterStealthKillState : CharacterStateBase
 
     [HideInInspector] public UnityEvent onStealthKill;
 
+    private static Weapon currentWeapon; 
+
     private float stealthKillRadius = 3f;
+
+    public static void SetCurrentWeapon(Weapon weapon)
+    {
+        currentWeapon = weapon;
+    }
 
     private void OnEnable()
     {
@@ -44,8 +51,10 @@ public class CharacterStealthKillState : CharacterStateBase
 
     private void PlayAnimations(CharacterAnimator targetAnimator)
     {
+        AnimationClip victimAnimationClip = currentWeapon.AnimatorOverride["1-Back kill with sword-Actor1"];
+
         onStealthKill.Invoke();
-        targetAnimator?.PlayStealthDeathAnimation();
+        targetAnimator?.PlayStealthDeathAnimation(victimAnimationClip);
     }
 
     private void CorrectPlayerRelativePositionToTarget(CharacterAnimator targetAnimator)

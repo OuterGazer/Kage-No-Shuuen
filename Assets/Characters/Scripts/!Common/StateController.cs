@@ -295,6 +295,7 @@ public class StateController : MonoBehaviour
     {
         if(stealthChecker.CanPerformStealthKill)
         {
+            CharacterStealthKillState.SetCurrentWeapon(currentWeapon);
             ManageStateTransition(statesAllowedToTransitionToStealthKill, typeof(CharacterStealthKillState));
         }
         else
