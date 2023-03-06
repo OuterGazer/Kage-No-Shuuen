@@ -454,8 +454,8 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 7738160146926745281}
   children: []
-  timeBetweenAttacks: 1.2
-  attackCounter: 0.5
+  timeBetweenAttacks: 2
+  attackCounter: 2
   shouldPerformHeavyAttack: 0
 --- !u!114 &6259360069907599011
 MonoBehaviour:
@@ -3017,8 +3017,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
-  m_LocalRotation: {x: 0.00000009362675, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000013684233, y: 1.711, z: 0.15100002}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0000135103855, y: 1.711, z: 0.15100002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3034,10 +3034,10 @@ ParentConstraint:
   m_GameObject: {fileID: 8808660653900589869}
   m_Enabled: 1
   m_Weight: 1
-  m_TranslationAtRest: {x: -0.000013684233, y: 1.711, z: 0.151}
+  m_TranslationAtRest: {x: -0.0000135103855, y: 1.711, z: 0.15100002}
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_TranslationOffsets:
-  - {x: 0.00008177757, y: 0.14241469, z: 0.19641495}
+  - {x: -17.114016, y: 2.0532, z: -18.7658}
   m_RotationOffsets:
   - {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
@@ -3049,7 +3049,7 @@ ParentConstraint:
   m_IsContraintActive: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 8586699871187089661}
+  - sourceTransform: {fileID: 0}
     weight: 1
 --- !u!1001 &1688530540635639176
 PrefabInstance:
@@ -4557,7 +4557,7 @@ PrefabInstance:
     - target: {fileID: 3235842065376707198, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.124
+      value: -2.1239994
       objectReference: {fileID: 0}
     - target: {fileID: 3235842065376707198, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

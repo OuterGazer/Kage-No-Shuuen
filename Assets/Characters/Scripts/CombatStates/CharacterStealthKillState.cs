@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class CharacterStealthKillState : CharacterStateBase
@@ -54,10 +55,15 @@ public class CharacterStealthKillState : CharacterStateBase
     {
         targetAnimator = targets[0].GetComponentInParent<CharacterAnimator>();
         damageable = (DamageableWithLife)targets[0]?.GetComponent<IDamagereceiver>();
-        targets[0].GetComponentInParent<SoldierBehaviour>().enabled = false;
-        targets[0].enabled = false;
+        DisableEnemyMovement(targets);
     }
 
+    private static void DisableEnemyMovement(Collider[] targets)
+    {
+        targets[0].GetComponentInParent<SoldierBehaviour>().enabled = false;
+        targets[0].GetComponentInParent<NavMeshAgent>().enabled = false;
+        targets[0].enabled = false;
+    }
 
 
     private void CorrectPlayerRelativePositionToTarget(CharacterAnimator targetAnimator)

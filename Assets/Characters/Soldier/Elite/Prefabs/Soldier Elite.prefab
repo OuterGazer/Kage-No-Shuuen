@@ -2958,7 +2958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToDestroy: {fileID: 2795677103851904039}
   timeToDestroyObject: 5
-  life: 0.25
+  life: 1
   coolDownTime: 0.5
   OnGettingHit:
     m_PersistentCalls:
@@ -3132,7 +3132,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
-  m_LocalRotation: {x: 0.00000009362675, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.711, z: 0.17199898}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3149,10 +3149,10 @@ ParentConstraint:
   m_GameObject: {fileID: 8808660653900589869}
   m_Enabled: 1
   m_Weight: 1
-  m_TranslationAtRest: {x: 0, y: 1.711, z: 0.172}
+  m_TranslationAtRest: {x: 0, y: 1.711, z: 0.17199898}
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_TranslationOffsets:
-  - {x: 0.00008177757, y: 0.11867893, z: 0.18467903}
+  - {x: 0, y: 1.711, z: 0.17199898}
   m_RotationOffsets:
   - {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
@@ -3164,7 +3164,7 @@ ParentConstraint:
   m_IsContraintActive: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 8586699871187089661}
+  - sourceTransform: {fileID: 2795677103851904038}
     weight: 1
 --- !u!1001 &1688530540635639176
 PrefabInstance:
