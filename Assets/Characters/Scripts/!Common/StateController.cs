@@ -95,7 +95,7 @@ public class StateController : MonoBehaviour
         currentWeapon = weapon;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         UpdateIsGroundedState();
     }

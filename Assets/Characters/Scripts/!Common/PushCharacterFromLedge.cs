@@ -7,11 +7,12 @@ public class PushCharacterFromLedge : MonoBehaviour
 {
     [SerializeField] float raycastingRefreshRate = 2f;
     [SerializeField] float pushingForce = 1f;
+    private float checkingDownwardDistance = 0.3f;
     private ControllerColliderHit lastContactPoint;
 
     private CharacterController charController;
 
-    void Awake()
+    private void Awake()
     {
         charController = GetComponent<CharacterController>();
     }
@@ -19,9 +20,11 @@ public class PushCharacterFromLedge : MonoBehaviour
     // Start is called before the first frame update
     private IEnumerator Start()
     {
+        checkingDownwardDistance = charController.stepOffset;
+
         while (true)
         {
-            bool areFeetOnGround = Physics.Raycast(transform.position, -Vector2.up, 0.1f);
+            bool areFeetOnGround = Physics.Raycast(transform.position, -Vector2.up, checkingDownwardDistance + 0.05f);
 
             if (!areFeetOnGround && charController.isGrounded) 
             {
