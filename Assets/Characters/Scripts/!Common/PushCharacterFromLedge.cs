@@ -7,6 +7,8 @@ public class PushCharacterFromLedge : MonoBehaviour
 {
     [SerializeField] float raycastingRefreshRate = 2f;
     [SerializeField] float pushingForce = 1f;
+    [Tooltip("Margin to add to isGrounded checking distance downwards when going up/down slopes")]
+    [SerializeField] float checkMargin = 0.1f;
     private float checkingDownwardDistance = 0.3f;
     private ControllerColliderHit lastContactPoint;
 
@@ -24,7 +26,7 @@ public class PushCharacterFromLedge : MonoBehaviour
 
         while (true)
         {
-            bool areFeetOnGround = Physics.Raycast(transform.position, -Vector2.up, checkingDownwardDistance + 0.05f);
+            bool areFeetOnGround = Physics.Raycast(transform.position, -Vector2.up, checkingDownwardDistance + checkMargin);
 
             if (!areFeetOnGround && charController.isGrounded) 
             {
