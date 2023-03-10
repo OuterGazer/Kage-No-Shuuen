@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localMainRoot: {fileID: 1999922227138396701}
-  weaponController: {fileID: 0}
+  weaponController: {fileID: 2690964275003622267}
   decisionMaker: {fileID: 2795677103851904032}
   navMeshAgent: {fileID: 2795677103851904046}
   characterAnimator: {fileID: 5438122774130431303}
