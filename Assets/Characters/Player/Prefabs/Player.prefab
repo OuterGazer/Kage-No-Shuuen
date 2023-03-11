@@ -2941,7 +2941,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   speed: 0
-  stepForwardLength: 2
+  stepForwardLength: 1.25
+  pushLengthOnEnemyTouch: 0.5
   onSlash:
     m_PersistentCalls:
       m_Calls: []

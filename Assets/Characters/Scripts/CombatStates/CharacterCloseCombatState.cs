@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class CharacterCloseCombatState : CharacterStateBase
 {
     [SerializeField] float stepForwardLength = 1f;
+    [SerializeField] float pushLengthOnEnemyTouch = 0.5f;
 
     private bool slash = false;
     private bool heavySlash = false;
@@ -34,6 +36,25 @@ public class CharacterCloseCombatState : CharacterStateBase
         {
             onHeavySlash.Invoke();
             heavySlash = false;
+        }
+    }
+
+    private NavMeshAgent enemy;
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (this.enabled)
+        {
+            if (hit.collider.CompareTag("Soldier"))
+            {
+                if(!enemy)
+                    enemy = hit.gameObject.GetComponentInParent<NavMeshAgent>();
+
+                enemy?.Move(pushLengthOnEnemyTouch * transform.forward);
+            }
+        }
+        else
+        {
+            enemy = null;
         }
     }
 

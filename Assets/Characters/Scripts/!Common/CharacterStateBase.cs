@@ -98,7 +98,7 @@ public class CharacterStateBase : MonoBehaviour
     protected void OrientateCharacterForward()
     {
         Vector3 projectedForwardVector = Vector3.zero;
-        if (!target)
+        if (!target || !target.gameObject.activeSelf)
         {
             projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
             DOTween.To(() => transform.forward, x => transform.forward = x, projectedForwardVector, timeToOrientateCharacterForward);

@@ -47,6 +47,7 @@ public class TaskDie : Node
     private void SetIsDead()
     {
         Parent.SetData("isDead", true);
-        damageable.GetComponent<Collider>().enabled = false;
+        //Destroy(damageable.gameObject);
+        damageable.gameObject.SetActive(false);
     }
 }
