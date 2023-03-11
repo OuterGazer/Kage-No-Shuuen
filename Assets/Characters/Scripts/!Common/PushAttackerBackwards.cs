@@ -9,7 +9,7 @@ public class PushAttackerBackwards : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        string weaponBeingBlocked = other.transform.parent?.parent?.parent?.name;
+        string weaponBeingBlocked = other.transform.parent?.parent?.parent?.name; // Prone to error!
         if (IsBlockedWeaponAProjectile(weaponBeingBlocked)) { return; }
 
         bool isPhysicalWeapon = weaponBeingBlocked.Contains("Weapon");

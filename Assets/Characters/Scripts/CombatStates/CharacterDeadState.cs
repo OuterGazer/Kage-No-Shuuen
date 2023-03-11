@@ -8,7 +8,7 @@ public class CharacterDeadState : CharacterStateBase
     private void OnEnable()
     {
         if (charController)
-        { charController.detectCollisions = false; }
+        { charController.enabled = false; }//charController.detectCollisions = false; }
     }
 
     private void Update()

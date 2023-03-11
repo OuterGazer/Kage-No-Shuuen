@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
+using UnityEngine.AI;
 
 public class TaskGetHit : Node
 {
+    [SerializeField] float pushLengthOnHit = 1f;
+
+    private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
     private DamageableWithLife damageable;
 
@@ -12,6 +16,7 @@ public class TaskGetHit : Node
 
     private void Start()
     {
+        navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
         damageable = ((SoldierBehaviour)belongingTree).DamageableWithLife;
         damageable.OnGettingHit.AddListener(SetGettingHit);
@@ -39,6 +44,7 @@ public class TaskGetHit : Node
         
         characterAnimator.PlayHitAnimation();
         isAnimationRunning = true;
+        navMeshAgent.Move(pushLengthOnHit * -transform.forward);
         state = NodeState.SUCCESS;
         return state;
     }

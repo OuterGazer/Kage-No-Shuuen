@@ -58,7 +58,7 @@ public class CharacterStealthKillState : CharacterStateBase
         DisableEnemyMovement(targets);
     }
 
-    private static void DisableEnemyMovement(Collider[] targets)
+    private void DisableEnemyMovement(Collider[] targets)
     {
         targets[0].GetComponentInParent<SoldierBehaviour>().enabled = false;
         targets[0].GetComponentInParent<NavMeshAgent>().enabled = false;
