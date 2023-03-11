@@ -10,12 +10,17 @@ public class TaskGoToTarget : Node
 {
     [SerializeField] float runningSpeed = 5f;
     [SerializeField] float interactionDistanceThreshold = 1.5f;
+    [SerializeField] float playerFollowDelay = 1f;
+
+    private float playerFollowDelayCounter = 1f;
 
     private Transform player;
     private NavMeshAgent navMeshAgent;
     private DecisionMaker decisionMaker;
     private Transform currentTarget;
     private Vector3 targetPosition = Vector3.zero;
+
+
     private bool isSearching = false;
 
     private void Start()
@@ -45,6 +50,8 @@ public class TaskGoToTarget : Node
             targetPosition = currentTarget.position;
             navMeshAgent.stoppingDistance = interactionDistanceThreshold;
 
+            playerFollowDelayCounter += Time.deltaTime;
+
             if (IsTargetWithinInteractionDistance())
             {
                 if (isSearching && !target) // Have we lost sight of target and are searching it?
@@ -58,7 +65,7 @@ public class TaskGoToTarget : Node
                     state = NodeState.SUCCESS;
                     return state;
                 }
-                else 
+                else if(playerFollowDelayCounter >= playerFollowDelay) 
                 {
                     navMeshAgent.speed = runningSpeed;
                     navMeshAgent.destination = targetPosition;
@@ -69,6 +76,7 @@ public class TaskGoToTarget : Node
             }
             else
             {
+                playerFollowDelayCounter = 0f;
                 transform.LookAt(targetPosition);
                 state = NodeState.SUCCESS;
                 return state;

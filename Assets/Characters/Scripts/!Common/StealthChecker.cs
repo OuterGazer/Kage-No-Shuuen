@@ -68,6 +68,7 @@ public class StealthChecker : MonoBehaviour
                 targetCheckRefreshRate = nearbyTargetRefreshRate;
 
                 AddTarget(targetCollider);
+                return;
             }
             else if (IsAddedTargetGoneOutOfRange(targetCollider))
             {

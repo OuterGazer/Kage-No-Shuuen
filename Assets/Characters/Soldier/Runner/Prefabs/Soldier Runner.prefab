@@ -346,7 +346,7 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 6669078683988773474}
   children: []
-  pushLengthOnHit: 1
+  pushLengthOnHit: 0.5
 --- !u!114 &1096039331825319142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,6 +400,7 @@ MonoBehaviour:
   children: []
   runningSpeed: 5
   interactionDistanceThreshold: 1.5
+  playerFollowDelay: 0.15
 --- !u!114 &7738160146926745281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2997,8 +2998,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
-  m_LocalRotation: {x: 0.00000009362675, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000008106232, y: 1.5502682, z: 0.17326784}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.000008106232, y: 1.2550001, z: 0.17326784}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3014,10 +3015,10 @@ ParentConstraint:
   m_GameObject: {fileID: 8808660653900589869}
   m_Enabled: 1
   m_Weight: 1
-  m_TranslationAtRest: {x: 0, y: 1.711, z: 0.172}
+  m_TranslationAtRest: {x: 0.000008106232, y: 1.255, z: 0.17326784}
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_TranslationOffsets:
-  - {x: 0.00008177757, y: 0.11867893, z: 0.18467903}
+  - {x: 0.000008106232, y: 1.2550001, z: 0.17326784}
   m_RotationOffsets:
   - {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
@@ -3029,7 +3030,7 @@ ParentConstraint:
   m_IsContraintActive: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 8586699871187089661}
+  - sourceTransform: {fileID: 2795677103851904038}
     weight: 1
 --- !u!1001 &1688530540635639176
 PrefabInstance:
