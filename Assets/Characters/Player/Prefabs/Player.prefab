@@ -2941,7 +2941,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   speed: 0
-  stepForwardLength: 3
+  stepForwardLength: 2
   onSlash:
     m_PersistentCalls:
       m_Calls: []
@@ -5003,6 +5003,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ninja black
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4a2ef68dde32fe34b93f2b3ec3caed65,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 4a2ef68dde32fe34b93f2b3ec3caed65,
         type: 3}
