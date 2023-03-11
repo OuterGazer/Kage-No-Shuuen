@@ -346,6 +346,7 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 6669078683988773474}
   children: []
+  pushLengthOnHit: 1
 --- !u!114 &1096039331825319142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2823,7 +2824,7 @@ MonoBehaviour:
   parentToDestroy: {fileID: 2795677103851904039}
   timeToDestroyObject: 10
   life: 2
-  coolDownTime: 0.5
+  coolDownTime: 0.2
   OnGettingHit:
     m_PersistentCalls:
       m_Calls: []

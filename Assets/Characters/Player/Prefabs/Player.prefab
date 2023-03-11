@@ -3058,8 +3058,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentToDestroy: {fileID: 7367104688647257537}
-  timeToDestroyObject: 5
-  life: 3
+  timeToDestroyObject: 2.5
+  life: 5
   coolDownTime: 0.5
   OnGettingHit:
     m_PersistentCalls:
@@ -5018,6 +5018,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086471936633425818, guid: 4a2ef68dde32fe34b93f2b3ec3caed65,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a2ef68dde32fe34b93f2b3ec3caed65, type: 3}
