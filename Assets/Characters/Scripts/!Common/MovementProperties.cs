@@ -24,7 +24,7 @@ public class MovementProperties
 
     private float movingSpeed;
     private Vector3 currentHorizontalMovement = Vector3.zero;
-    private float accMovementDir = 1.5f; // m/s2
+    private float accMovementDir = 3f; //  1.5 m/s2
     public void UpdateMovement(float speed, Vector3 movementDirection, Vector3 movementProjectionPlane)
     {
         UpdateCharacterSpeed(speed);
@@ -45,7 +45,7 @@ public class MovementProperties
         currentHorizontalMovement += direction.normalized * speedChangeToApply;
     }
 
-    private float moveAcceleration = 5f;    // m/s2
+    private float moveAcceleration = 7.5f;    // 5 m/s2
     private void UpdateCharacterSpeed(float targetSpeed)
     {
         if (movingSpeed < targetSpeed)

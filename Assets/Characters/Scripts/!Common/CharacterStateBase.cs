@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Cinemachine;
-using Unity.VisualScripting.Dependencies.NCalc;
-using System;
 
 public class CharacterStateBase : MonoBehaviour
 {
