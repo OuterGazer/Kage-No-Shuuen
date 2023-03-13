@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localMainRoot: {fileID: 1999922227138396701}
-  weaponController: {fileID: 0}
+  weaponController: {fileID: 2690964275003622267}
   decisionMaker: {fileID: 2795677103851904032}
   navMeshAgent: {fileID: 2795677103851904046}
   characterAnimator: {fileID: 5438122774130431303}
@@ -348,6 +348,7 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 8029168344508401583}
   children: []
+  pushLengthOnHit: 0.5
 --- !u!114 &7494449293210800695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +421,7 @@ MonoBehaviour:
   children: []
   runningSpeed: 4
   interactionDistanceThreshold: 2
+  playerFollowDelay: 1
 --- !u!114 &7738160146926745281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,7 +494,7 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 1999922227138396701}
   children: []
-  patrolParent: {fileID: 0}
+  patrolParent: {fileID: 2795677103851904038}
   startPatrolPointIndex: 0
   reachThreshold: 0.5
 --- !u!1 &2795677104033681616
@@ -2844,7 +2846,7 @@ MonoBehaviour:
   parentToDestroy: {fileID: 2795677103851904039}
   timeToDestroyObject: 5
   life: 0.25
-  coolDownTime: 0.5
+  coolDownTime: 0.2
   OnGettingHit:
     m_PersistentCalls:
       m_Calls: []
@@ -3018,7 +3020,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000135103855, y: 1.711, z: 0.15100002}
+  m_LocalPosition: {x: -0.0000135103855, y: 1.2680001, z: -0.18000007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3034,10 +3036,10 @@ ParentConstraint:
   m_GameObject: {fileID: 8808660653900589869}
   m_Enabled: 1
   m_Weight: 1
-  m_TranslationAtRest: {x: -0.0000135103855, y: 1.711, z: 0.15100002}
+  m_TranslationAtRest: {x: -0.0000135103855, y: 1.268, z: -0.18}
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_TranslationOffsets:
-  - {x: -17.114016, y: 2.0532, z: -18.7658}
+  - {x: -0.000016212463, y: 1.5216002, z: -0.21600008}
   m_RotationOffsets:
   - {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
@@ -3049,7 +3051,7 @@ ParentConstraint:
   m_IsContraintActive: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 0}
+  - sourceTransform: {fileID: 2795677103851904038}
     weight: 1
 --- !u!1001 &1688530540635639176
 PrefabInstance:
@@ -4557,17 +4559,17 @@ PrefabInstance:
     - target: {fileID: 3235842065376707198, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.1239994
+      value: -2.124
       objectReference: {fileID: 0}
     - target: {fileID: 3235842065376707198, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7107376
+      value: 1.7107375
       objectReference: {fileID: 0}
     - target: {fileID: 3235842065376707198, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.027005633
+      value: 0.027005872
       objectReference: {fileID: 0}
     - target: {fileID: 3235842065376707198, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

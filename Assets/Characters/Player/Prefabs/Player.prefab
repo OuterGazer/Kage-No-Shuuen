@@ -2529,10 +2529,10 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.85
-  m_Radius: 0.32
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.275
-  m_SkinWidth: 0.015
+  m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.925, z: 0}
 --- !u!114 &96412551349989853
@@ -2915,7 +2915,7 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  correctionCoefficientZOneHand: -0.55
+  correctionCoefficientZOneHand: -0.75
   correctionCoefficientXOneHand: 0.25
   correctionCoefficientZTwoHand: -1.8
   correctionCoefficientXTwoHand: 0.3

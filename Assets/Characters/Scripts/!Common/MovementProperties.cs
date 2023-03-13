@@ -66,7 +66,7 @@ public class MovementProperties
 
         if (charController.isGrounded)
         {
-            velocityY = -0.1f;
+            velocityY = -0.75f; // -0.1f is enough to avoid unwanted !isGrounded situations, but it still steps sometimes over other capsule colliders.
         }
 
         return new Vector3(0, velocityY, 0);
