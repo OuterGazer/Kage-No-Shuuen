@@ -348,6 +348,7 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 5205854372295978630}
   children: []
+  pushLengthOnHit: 0.5
 --- !u!114 &1096039331825319142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2860,7 +2861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentToDestroy: {fileID: 2795677103851904039}
-  timeToDestroyObject: 5
+  timeToDestroyObject: 10
   life: 0.25
   coolDownTime: 0.5
   OnGettingHit:
@@ -4159,7 +4160,7 @@ PrefabInstance:
     - target: {fileID: 1087497305477649321, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0500004
+      value: -1.05
       objectReference: {fileID: 0}
     - target: {fileID: 1087497305477649321, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
@@ -4169,7 +4170,7 @@ PrefabInstance:
     - target: {fileID: 1087497305477649321, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.17399979
+      value: -0.17400002
       objectReference: {fileID: 0}
     - target: {fileID: 1087497305477649321, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
@@ -4844,7 +4845,7 @@ PrefabInstance:
     - target: {fileID: 3604101515679610817, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.030999422
+      value: -0.030999184
       objectReference: {fileID: 0}
     - target: {fileID: 3604101515679610817, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
@@ -4854,7 +4855,7 @@ PrefabInstance:
     - target: {fileID: 3604101515679610817, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.045999527
+      value: -0.045999765
       objectReference: {fileID: 0}
     - target: {fileID: 3604101515679610817, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

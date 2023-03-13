@@ -517,7 +517,7 @@ MonoBehaviour:
   children: []
   runningSpeed: 6
   interactionDistanceThreshold: 2.5
-  playerFollowDelay: 1
+  playerFollowDelay: 0.15
 --- !u!114 &7738160146926745281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2959,7 +2959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentToDestroy: {fileID: 2795677103851904039}
-  timeToDestroyObject: 5
+  timeToDestroyObject: 10
   life: 1
   coolDownTime: 0.2
   OnGettingHit:

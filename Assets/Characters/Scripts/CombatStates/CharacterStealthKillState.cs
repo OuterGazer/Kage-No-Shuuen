@@ -56,13 +56,13 @@ public class CharacterStealthKillState : CharacterStateBase
         targetAnimator = targets[0].GetComponentInParent<CharacterAnimator>();
         damageable = (DamageableWithLife)targets[0]?.GetComponent<IDamagereceiver>();
         DisableEnemyMovement(targets);
+        damageable.gameObject.SetActive(false);
     }
 
     private void DisableEnemyMovement(Collider[] targets)
     {
         targets[0].GetComponentInParent<SoldierBehaviour>().enabled = false;
         targets[0].GetComponentInParent<NavMeshAgent>().enabled = false;
-        targets[0].enabled = false;
     }
 
 
