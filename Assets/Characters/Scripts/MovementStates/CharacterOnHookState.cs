@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
@@ -83,13 +84,29 @@ public class CharacterOnHookState : CharacterStateBase
         Vector3 tempHookDir = (hookTarget.position - transform.position).normalized;
         RaycastHit[] hits = Physics.RaycastAll(transform.position, tempHookDir, hookThrowRadius, obstaclesMask);
 
-        if (hits.Length > 1) // Just one element is hook target
+        SortDetectedCollidersByDistanceToCharacter(hits);
+
+        if (!hits[0].collider.CompareTag("HookTarget"))
         {
             ExitToIdle();
         }
         else
         {
             PerformHookThrowing();
+        }
+    }
+
+    private void SortDetectedCollidersByDistanceToCharacter(RaycastHit[] hits)
+    {
+        for(int i = 1; i < hits.Length; i++)
+        {
+            if ((hits[i].point - transform.position).sqrMagnitude < (hits[i - 1].point - transform.position).sqrMagnitude)
+            {
+                RaycastHit temp = hits[i - 1];
+                hits[i - 1] = hits[i];
+                hits[i] = temp;
+                if (i > 1) { i--; }
+            }
         }
     }
 
