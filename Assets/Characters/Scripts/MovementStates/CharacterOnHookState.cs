@@ -86,7 +86,8 @@ public class CharacterOnHookState : CharacterStateBase
 
         SortDetectedCollidersByDistanceToCharacter(hits);
 
-        if (!hits[0].collider.CompareTag("HookTarget"))
+        if (hits.Length > 0 && 
+           !hits[0].collider.CompareTag("HookTarget"))
         {
             ExitToIdle();
         }
