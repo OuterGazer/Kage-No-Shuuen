@@ -48,6 +48,7 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
         if (isAlive)
         {
             life = 0;
+            GetComponent<TrackedObject>()?.SetIsIndicatorVisible(false);
             Destroy(parentToDestroy, timeToDestroyObject);
             isAlive = false;
         }

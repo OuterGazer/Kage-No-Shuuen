@@ -33,6 +33,8 @@ public class StealthChecker : MonoBehaviour
 
     private void RemoveTarget()
     {
+        targetDecisionMaker?.GetComponentInChildren<TrackedObject>()?.SetIsIndicatorVisible(false);
+
         isSeenByTarget = false;
         canPerformStealthKill = false;
         targetDecisionMaker.OnPlayerSeen.RemoveListener(CharacterIsSeen);
@@ -77,11 +79,12 @@ public class StealthChecker : MonoBehaviour
 
             if (isStealthKillPossible())
             {
-                Debug.Log("Stealth Kill is possible!");
+                targetDecisionMaker.GetComponentInChildren<TrackedObject>().SetIsIndicatorVisible(true);
                 canPerformStealthKill = true;
             }
             else if (IsStealthKillNotPossible())
             {
+                targetDecisionMaker.GetComponentInChildren<TrackedObject>().SetIsIndicatorVisible(false);
                 canPerformStealthKill = false;
             }
         }

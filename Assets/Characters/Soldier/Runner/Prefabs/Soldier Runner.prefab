@@ -2774,6 +2774,7 @@ GameObject:
   - component: {fileID: 5415322733791157508}
   - component: {fileID: 2967258749132142366}
   - component: {fileID: 5832385808493121215}
+  - component: {fileID: 512606212415427744}
   m_Layer: 9
   m_Name: Collider
   m_TagString: Soldier
@@ -2832,6 +2833,20 @@ MonoBehaviour:
   OnDying:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &512606212415427744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6409460232820446048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db8fcdf241064e43925023324d28379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicatorPrefab: {fileID: 6477267757628084164, guid: 8d5333da019200e4e906fd7557bbdd37,
+    type: 3}
 --- !u!1 &7141341213896778154
 GameObject:
   m_ObjectHideFlags: 0
@@ -4956,7 +4971,7 @@ PrefabInstance:
     - target: {fileID: 6306572162767912824, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.11651921
+      value: -0.116518974
       objectReference: {fileID: 0}
     - target: {fileID: 6306572162767912824, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
@@ -4966,7 +4981,7 @@ PrefabInstance:
     - target: {fileID: 6306572162767912824, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.09622431
+      value: -0.09622455
       objectReference: {fileID: 0}
     - target: {fileID: 6306572162767912824, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class IndicatorManager : MonoBehaviour
 {
-    [SerializeField] RectTransform indicatorPrefab = null;
     [SerializeField] RectTransform indicatorContainer = null;
     
     public static IndicatorManager manager;
@@ -25,7 +24,15 @@ public class IndicatorManager : MonoBehaviour
 
             if (!target) { continue; }
 
-            indicator.anchoredPosition = GetCanvasPositionForTarget(target);
+            if (target.IsIndicatorVisible)
+            {
+                if (!indicators[target].gameObject.activeSelf) { indicators[target].gameObject.SetActive(true); }
+
+                indicator.anchoredPosition = GetCanvasPositionForTarget(target);
+            }else
+            {
+                indicators[target].gameObject.SetActive(false);
+            }
         }
     }
 
@@ -54,7 +61,7 @@ public class IndicatorManager : MonoBehaviour
     {
         if (indicators.ContainsKey(transform)) { return; }
 
-        RectTransform indicator = Instantiate(indicatorPrefab);
+        RectTransform indicator = Instantiate(transform.IndicatorPrefab);
         indicator.name = string.Format($"Indicator for {transform.gameObject.name}");
 
         indicator.SetParent(indicatorContainer, false);
