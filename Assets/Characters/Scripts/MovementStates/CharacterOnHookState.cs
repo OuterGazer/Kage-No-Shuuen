@@ -8,9 +8,9 @@ using UnityEngine.Events;
 
 public class CharacterOnHookState : CharacterStateBase
 {
-    [SerializeField] float hookThrowRadius = 10f;
     [SerializeField] float hookReachThreshold = 4f;
     private Transform hookTarget;
+    private HookTargetChecker hookTargetChecker;
 
     [Header("Rig Characteristics")]
     [SerializeField] float rigAlignmentToHookTargetAcceleration = 0.01f;
@@ -25,8 +25,6 @@ public class CharacterOnHookState : CharacterStateBase
 
     private CharacterAnimator characterAnimator;
     private Rig spineToFingerRig;
-    private LayerMask hookTargetMask;
-    private LayerMask obstaclesMask = ~(1 << 3);
 
     private Vector3 hangingDirection;
 
@@ -36,11 +34,11 @@ public class CharacterOnHookState : CharacterStateBase
 
     private void Awake()
     {
+        hookTargetChecker = GetComponent<HookTargetChecker>();
         characterAnimator = GetComponent<CharacterAnimator>();
         characterAnimator.hookHasArrivedAtTarget.AddListener(MoveCharacterToHookTarget);
         spineToFingerRig = GetComponentInChildren<Rig>();
         spineToFingerRig.weight = 0f;
-        hookTargetMask = LayerMask.GetMask("HookTarget");
     }
 
     private void OnDestroy()
@@ -61,54 +59,18 @@ public class CharacterOnHookState : CharacterStateBase
 
     private void ManageHookThrowing()
     {
-        CheckIfThereIsHookTargetInRange();        
+        CheckIfThereIsAvailableHookTarget();        
     }
 
-    private void CheckIfThereIsHookTargetInRange()
+    private void CheckIfThereIsAvailableHookTarget()
     {
-        Collider[] hookTargets = Physics.OverlapSphere(transform.position, hookThrowRadius, hookTargetMask);
-
-        if (hookTargets.Length == 0)
-        {
-            ExitToIdle();
+        if (hookTargetChecker.CanPerformHookThrow) 
+        { 
+            hookTarget = hookTargetChecker.HookTarget;
+            PerformHookThrowing(); 
         }
-        else
-        {
-            hookTarget = hookTargets[0].transform;
-            CheckIfObstaclesBetweenCharacterAndTarget();
-        }
-    }
-
-    private void CheckIfObstaclesBetweenCharacterAndTarget()
-    {
-        Vector3 tempHookDir = (hookTarget.position - transform.position).normalized;
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, tempHookDir, hookThrowRadius, obstaclesMask);
-
-        SortDetectedCollidersByDistanceToCharacter(hits);
-
-        if (hits.Length > 0 && 
-           !hits[0].collider.CompareTag("HookTarget"))
-        {
-            ExitToIdle();
-        }
-        else
-        {
-            PerformHookThrowing();
-        }
-    }
-
-    private void SortDetectedCollidersByDistanceToCharacter(RaycastHit[] hits)
-    {
-        for(int i = 1; i < hits.Length; i++)
-        {
-            if ((hits[i].point - transform.position).sqrMagnitude < (hits[i - 1].point - transform.position).sqrMagnitude)
-            {
-                RaycastHit temp = hits[i - 1];
-                hits[i - 1] = hits[i];
-                hits[i] = temp;
-                if (i > 1) { i--; }
-            }
-        }
+        else 
+        { ExitToIdle(); }
     }
 
     private void PerformHookThrowing()

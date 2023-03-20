@@ -13,7 +13,7 @@ public class StateController : MonoBehaviour
     private CharacterStateBase currentState;
 
     private CharacterOnHookState onHookState;
-    private StealthChecker stealthChecker;
+    private StealthKillTargetChecker stealthChecker;
 
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToIdle;
     [SerializeField] private CharacterStateBase[] statesAllowedToTransitionToRunning;
@@ -49,7 +49,7 @@ public class StateController : MonoBehaviour
         charController = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         damageable = GetComponent<DamageableWithLife>();
-        stealthChecker = GetComponent<StealthChecker>();
+        stealthChecker = GetComponent<StealthKillTargetChecker>();
     }
 
     private void OnEnable()
