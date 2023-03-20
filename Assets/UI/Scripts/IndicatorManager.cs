@@ -29,7 +29,8 @@ public class IndicatorManager : MonoBehaviour
                 if (!indicators[target].gameObject.activeSelf) { indicators[target].gameObject.SetActive(true); }
 
                 indicator.anchoredPosition = GetCanvasPositionForTarget(target);
-            }else
+            }
+            else
             {
                 indicators[target].gameObject.SetActive(false);
             }

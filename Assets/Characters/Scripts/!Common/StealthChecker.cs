@@ -14,6 +14,7 @@ public class StealthChecker : MonoBehaviour
     private float checkCounter = 0f;
 
     DecisionMaker targetDecisionMaker;
+    TrackedObject stealthKillIndicator;
 
     private bool isSeenByTarget = false;
     private bool canPerformStealthKill = false;
@@ -33,7 +34,7 @@ public class StealthChecker : MonoBehaviour
 
     private void RemoveTarget()
     {
-        targetDecisionMaker?.GetComponentInChildren<TrackedObject>()?.SetIsIndicatorVisible(false);
+        stealthKillIndicator?.SetIsIndicatorVisible(false);
 
         isSeenByTarget = false;
         canPerformStealthKill = false;
@@ -79,12 +80,12 @@ public class StealthChecker : MonoBehaviour
 
             if (isStealthKillPossible())
             {
-                targetDecisionMaker.GetComponentInChildren<TrackedObject>().SetIsIndicatorVisible(true);
+                stealthKillIndicator.SetIsIndicatorVisible(true);
                 canPerformStealthKill = true;
             }
             else if (IsStealthKillNotPossible())
             {
-                targetDecisionMaker.GetComponentInChildren<TrackedObject>().SetIsIndicatorVisible(false);
+                stealthKillIndicator.SetIsIndicatorVisible(false);
                 canPerformStealthKill = false;
             }
         }
@@ -101,6 +102,8 @@ public class StealthChecker : MonoBehaviour
         targetDecisionMaker = targetCollider[0].GetComponentInParent<DecisionMaker>();
         targetDecisionMaker.OnPlayerSeen.AddListener(CharacterIsSeen);
         targetDecisionMaker.OnTargetLost.AddListener(CharacterIsInStealth);
+
+        stealthKillIndicator = targetDecisionMaker.GetComponentInChildren<TrackedObject>();
     }
 
     private bool IsAddedTargetGoneOutOfRange(Collider[] targetCollider)

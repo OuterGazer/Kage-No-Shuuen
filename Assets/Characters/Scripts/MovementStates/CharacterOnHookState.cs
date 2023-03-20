@@ -55,8 +55,6 @@ public class CharacterOnHookState : CharacterStateBase
 
     private void OnDisable()
     {
-        hookTarget?.GetComponent<TrackedObject>().SetIsIndicatorVisible(false);
-
         hookTarget = null;
         SetTargetToRigChain();
     }
@@ -77,7 +75,6 @@ public class CharacterOnHookState : CharacterStateBase
         else
         {
             hookTarget = hookTargets[0].transform;
-            hookTarget.GetComponent<TrackedObject>().SetIsIndicatorVisible(true);
             CheckIfObstaclesBetweenCharacterAndTarget();
         }
     }
