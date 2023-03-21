@@ -54,12 +54,7 @@ public class HookTargetChecker : MonoBehaviour
 
             if (IsThereATargetNearby(targetCollider))
             {
-                if(!hookTarget) 
-                {
-                    hookTarget = targetCollider[0].transform;
-                    hookTargetIndicator = hookTarget.GetComponent<TrackedObject>();
-                    targetCheckRefreshRate = nearbyTargetRefreshRate;
-                }                
+                AssignTarget(targetCollider);
                 CheckIfObstaclesBetweenCharacterAndTarget();
             }
             else if (IsAddedTargetGoneOutOfRange(targetCollider))
@@ -67,6 +62,44 @@ public class HookTargetChecker : MonoBehaviour
                 RemoveTarget();
             }
         }
+    }
+
+    private void AssignTarget(Collider[] targetCollider)
+    {
+        if(targetCollider.Length > 1)
+        {
+            FindClosestTarget(targetCollider);
+        }
+
+        if (hookTarget != targetCollider[0].transform) { RemoveTarget(); }
+        
+        if (!hookTarget)
+        {
+            
+            hookTarget = targetCollider[0].transform;
+            hookTargetIndicator = hookTarget.GetComponent<TrackedObject>();
+            targetCheckRefreshRate = nearbyTargetRefreshRate;
+        }
+    }
+
+    private void FindClosestTarget(Collider[] targetCollider)
+    {
+        for (int i = 1; i < targetCollider.Length; i++)
+        {
+            if (CurrentItemIsCloserThanPreviousItem(targetCollider, i))
+            {
+                Collider temp = targetCollider[i - 1];
+                targetCollider[i - 1] = targetCollider[i];
+                targetCollider[i] = temp;
+                if (i > 1) { i--; }
+            }
+        }
+    }
+
+    private bool CurrentItemIsCloserThanPreviousItem(Collider[] targetCollider, int i)
+    {
+        return (targetCollider[i].transform.position - transform.position).sqrMagnitude < 
+               (targetCollider[i - 1].transform.position - transform.position).sqrMagnitude;
     }
 
     private bool IsThereATargetNearby(Collider[] targetCollider)
@@ -98,7 +131,7 @@ public class HookTargetChecker : MonoBehaviour
     {
         for (int i = 1; i < hits.Length; i++)
         {
-            if ((hits[i].point - transform.position).sqrMagnitude < (hits[i - 1].point - transform.position).sqrMagnitude)
+            if (CurrentColliderIsCloserThanPreviousCollider(hits, i))
             {
                 RaycastHit temp = hits[i - 1];
                 hits[i - 1] = hits[i];
@@ -106,6 +139,11 @@ public class HookTargetChecker : MonoBehaviour
                 if (i > 1) { i--; }
             }
         }
+    }
+
+    private bool CurrentColliderIsCloserThanPreviousCollider(RaycastHit[] hits, int i)
+    {
+        return (hits[i].point - transform.position).sqrMagnitude < (hits[i - 1].point - transform.position).sqrMagnitude;
     }
 
     private bool IsAddedTargetGoneOutOfRange(Collider[] targetCollider)

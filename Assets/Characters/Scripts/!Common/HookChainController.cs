@@ -7,7 +7,6 @@ public class HookChainController : MonoBehaviour
 {
     [SerializeField] GameObject hookChainPrefab;
     [SerializeField] GameObject[] chainLinks;
-    [SerializeField] float timeToReachTarget = 0.3f;
 
     private Transform hookTarget;
     private Vector3 targetDirection = Vector3.zero;

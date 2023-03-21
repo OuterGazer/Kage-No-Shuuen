@@ -5187,7 +5187,6 @@ MonoBehaviour:
   - {fileID: 5873373058170610625}
   - {fileID: 1836297413052855836}
   - {fileID: 3308529835713694730}
-  timeToReachTarget: 0.3
 --- !u!1001 &7367104689611074675
 PrefabInstance:
   m_ObjectHideFlags: 0
