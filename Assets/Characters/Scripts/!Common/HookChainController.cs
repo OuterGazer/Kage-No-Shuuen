@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,27 @@ public class HookChainController : MonoBehaviour
     private Vector3 targetDirection = Vector3.zero;
 
     private bool isMovingTowardsTarget = false;
+    private bool hasReachedTarget = false;
 
     private void Update()
     {
         if (isMovingTowardsTarget)
         {
             hookChainPrefab.transform.position += 30f * Time.deltaTime * targetDirection;
+
+            hasReachedTarget = CheckIfChainHasReachedTarget();
+        }
+    }
+
+    private bool CheckIfChainHasReachedTarget()
+    {
+        if((hookTarget.position - hookChainPrefab.transform.position).sqrMagnitude <= 0.1f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -37,13 +53,14 @@ public class HookChainController : MonoBehaviour
 
         isMovingTowardsTarget = true;
 
-        yield return new WaitForSeconds(timeToReachTarget);
+        yield return new WaitUntil(() => hasReachedTarget);
 
         isMovingTowardsTarget = false;
     }
 
     public void ReturnChainToGauntlet()
     {
+        hasReachedTarget = false;
         hookChainPrefab.transform.SetParent(transform);
         hookChainPrefab.transform.localPosition = Vector3.zero;
         hookChainPrefab.transform.localRotation = Quaternion.identity;
