@@ -25,6 +25,7 @@ public class CharacterOnHookState : CharacterStateBase
 
     private CharacterAnimator characterAnimator;
     private Rig spineToFingerRig;
+    private HookChainController hookChainController;
 
     private Vector3 hangingDirection;
 
@@ -39,6 +40,8 @@ public class CharacterOnHookState : CharacterStateBase
         characterAnimator.hookHasArrivedAtTarget.AddListener(MoveCharacterToHookTarget);
         spineToFingerRig = GetComponentInChildren<Rig>();
         spineToFingerRig.weight = 0f;
+
+        hookChainController = GetComponentInChildren<HookChainController>();
     }
 
     private void OnDestroy()
@@ -104,12 +107,26 @@ public class CharacterOnHookState : CharacterStateBase
 
     private void ThrowHook()
     {
-        transform.forward = Vector3.ProjectOnPlane(hookTarget.position, Vector3.up);
+        Vector3 targetPosition = new Vector3(hookTarget.position.x, transform.position.y, hookTarget.position.z);
+        transform.LookAt(targetPosition, Vector3.up);
 
         throwHook.Invoke();
+        StartCoroutine(CountdownForHookChainAnimationBeginning());
 
         isHookThrown = false;
         hangingDirection = Vector3.zero;
+    }
+
+    [SerializeField] int frameCountToHookChainThrow = 24; 
+    private IEnumerator CountdownForHookChainAnimationBeginning()
+    {
+        int i = 0;
+        while(i <= frameCountToHookChainThrow)
+        {
+            i++;
+            yield return new WaitForEndOfFrame();
+        }
+        hookChainController.ShootChain(hookTarget);
     }
 
     private void Update()

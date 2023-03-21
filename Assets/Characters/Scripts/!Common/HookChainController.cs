@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class HookChainController : MonoBehaviour
 {
@@ -17,25 +16,34 @@ public class HookChainController : MonoBehaviour
     {
         if (isMovingTowardsTarget)
         {
-            hookChainPrefab.transform.DOMove(hookTarget.position, timeToReachTarget, false);
+            hookChainPrefab.transform.position += 30f * Time.deltaTime * transform.forward;
         }
     }
 
-    public void ShootChain()
+    public void ShootChain(Transform hookTarget)
     {
+        this.hookTarget = hookTarget;
         StartCoroutine(SpawnChainLinks());
     }
 
     private IEnumerator SpawnChainLinks()
     {
-        Instantiate(hookChainPrefab, transform.position, transform.rotation);
+        hookChainPrefab.SetActive(true);
+        hookChainPrefab.transform.SetParent(null, true);
+
         isMovingTowardsTarget = true;
 
-        while (true)
-        {
+        yield return new WaitForSeconds(timeToReachTarget);
 
+        isMovingTowardsTarget = false;
 
-            yield return new WaitForEndOfFrame();
-        }
+        //while(isMovingTowardsTarget)
+        //{
+            
+
+        //    yield return new WaitForEndOfFrame();
+
+        //    isMovingTowardsTarget = false;
+        //}
     }
 }
