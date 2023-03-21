@@ -41,6 +41,12 @@ public class HookChainController : MonoBehaviour
 
         isMovingTowardsTarget = false;
 
+        
+        hookChainPrefab.transform.SetParent(transform);
+        hookChainPrefab.transform.localPosition = Vector3.zero;
+        hookChainPrefab.transform.localRotation = Quaternion.identity;
+        hookChainPrefab.SetActive(false);
+
         //while(isMovingTowardsTarget)
         //{
 
