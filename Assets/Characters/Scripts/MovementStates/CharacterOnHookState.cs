@@ -107,8 +107,7 @@ public class CharacterOnHookState : CharacterStateBase
 
     private void ThrowHook()
     {
-        Vector3 targetPosition = new Vector3(hookTarget.position.x, transform.position.y, hookTarget.position.z);
-        transform.LookAt(targetPosition, Vector3.up);
+        TurnCharacterTowardsHookTarget();
 
         throwHook.Invoke();
         StartCoroutine(CountdownForHookChainAnimationBeginning());
@@ -117,15 +116,17 @@ public class CharacterOnHookState : CharacterStateBase
         hangingDirection = Vector3.zero;
     }
 
-    [SerializeField] int frameCountToHookChainThrow = 24; 
+    private void TurnCharacterTowardsHookTarget()
+    {
+        Vector3 targetPosition = new Vector3(hookTarget.position.x, transform.position.y, hookTarget.position.z);
+        transform.LookAt(targetPosition, Vector3.up);
+    }
+
+    [SerializeField] float timeCountToHookChainThrow = 1.2f; 
     private IEnumerator CountdownForHookChainAnimationBeginning()
     {
-        int i = 0;
-        while(i <= frameCountToHookChainThrow)
-        {
-            i++;
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForSeconds(timeCountToHookChainThrow);
+
         hookChainController.ShootChain(hookTarget);
     }
 
