@@ -50,6 +50,8 @@ public class HookChainController : MonoBehaviour
         hookChainPrefab.SetActive(true);
         hookChainPrefab.transform.SetParent(null, true);
 
+        CalculateTotalLinksToSpawn();
+
         isMovingTowardsTarget = true;
 
         yield return new WaitUntil(() => hasReachedTarget);
@@ -59,10 +61,42 @@ public class HookChainController : MonoBehaviour
 
     public void ReturnChainToGauntlet()
     {
-        hasReachedTarget = false;
-        hookChainPrefab.transform.SetParent(transform);
-        hookChainPrefab.transform.localPosition = Vector3.zero;
-        hookChainPrefab.transform.localRotation = Quaternion.identity;
-        hookChainPrefab.SetActive(false);
+        foreach (GameObject item in chainLinks)
+        {
+            if (item.activeSelf) { item.SetActive(false); }
+
+            hasReachedTarget = false;
+            hookChainPrefab.transform.SetParent(transform);
+            hookChainPrefab.transform.localPosition = Vector3.zero;
+            hookChainPrefab.transform.localRotation = Quaternion.identity;
+            hookChainPrefab.SetActive(false);
+        }
+    }
+
+    private void CalculateTotalLinksToSpawn()
+    {
+        float distanceToTarget = Vector3.Distance(transform.position, hookTarget.position);
+
+        int linkAmount = Mathf.CeilToInt(distanceToTarget / 0.06f); // 0.06f is approximately the size of a link
+
+        StartCoroutine(SpawnLinksInWaves(linkAmount));
+    }
+
+    [SerializeField] int linksToSpawnPerFrame = 10;
+    private IEnumerator SpawnLinksInWaves(int linkAmount)
+    {
+        chainLinks[0].SetActive(true);
+
+        for (int i = 1; i < linkAmount; i++)
+        {
+            for(int j = 0; j <= linksToSpawnPerFrame; j++)
+            {
+                chainLinks[j + i].SetActive(true);
+            }
+
+            i += linksToSpawnPerFrame;
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 }
