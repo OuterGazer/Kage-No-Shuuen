@@ -40,20 +40,13 @@ public class HookChainController : MonoBehaviour
         yield return new WaitForSeconds(timeToReachTarget);
 
         isMovingTowardsTarget = false;
+    }
 
-        
+    public void ReturnChainToGauntlet()
+    {
         hookChainPrefab.transform.SetParent(transform);
         hookChainPrefab.transform.localPosition = Vector3.zero;
         hookChainPrefab.transform.localRotation = Quaternion.identity;
         hookChainPrefab.SetActive(false);
-
-        //while(isMovingTowardsTarget)
-        //{
-
-
-        //    yield return new WaitForEndOfFrame();
-
-        //    isMovingTowardsTarget = false;
-        //}
     }
 }

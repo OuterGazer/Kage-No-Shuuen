@@ -163,6 +163,7 @@ public class CharacterOnHookState : CharacterStateBase
     private void ExitState()
     {
         ChangeToHangingAnimation.Invoke(false);
+        hookChainController.ReturnChainToGauntlet();
         spineToFingerRig.weight = 0f;
         currentOnHookSpeed = -0.1f; // Needed to trigger state change to OnAir in CharacterEngine upon reaching target
     }
