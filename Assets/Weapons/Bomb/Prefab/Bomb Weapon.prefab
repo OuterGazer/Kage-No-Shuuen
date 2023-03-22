@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8535081411845676313}
   - component: {fileID: 6591054496825632791}
   - component: {fileID: 6106689463649448897}
+  - component: {fileID: -7172283677235083855}
   m_Layer: 0
   m_Name: Bomb Weapon
   m_TagString: Untagged
@@ -92,7 +93,11 @@ MonoBehaviour:
   shootingWeapon: {fileID: 0}
   closeCombatWeaponBase: {fileID: 6106689463649448897}
   throwingWeaponBase: {fileID: 6591054496825632791}
+  canBlock: 1
+  is2H: 0
+  isProjectile: 0
   aimingRig: {fileID: 0}
+  ownerTag: 
 --- !u!114 &6591054496825632791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +130,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.51
+  col: {fileID: 0}
+--- !u!114 &-7172283677235083855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489028081647296834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1875e1a9ce2f33641899d26b250cd8b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  explosionRange: 5
+  explosionVFX: {fileID: 100004, guid: 33384af7b24a0f14cb7bbf3b795f7a2b, type: 3}
 --- !u!1 &1821625462457411055
 GameObject:
   m_ObjectHideFlags: 0

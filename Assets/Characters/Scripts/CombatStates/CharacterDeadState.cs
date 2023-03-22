@@ -9,7 +9,6 @@ public class CharacterDeadState : CharacterStateBase
     {
         if (charController)
         { 
-            //charController.enabled = false;
             charController.detectCollisions = false;
             gameObject.layer = 0;
         }
@@ -18,6 +17,7 @@ public class CharacterDeadState : CharacterStateBase
 
     private void Update()
     {
-        UpdateMovement(speed, movementDirection, Vector3.up);
+        if (charController.enabled)
+        { UpdateMovement(speed, movementDirection, Vector3.up); }
     }
 }
