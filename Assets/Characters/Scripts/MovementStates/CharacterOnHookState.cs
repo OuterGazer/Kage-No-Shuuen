@@ -176,6 +176,6 @@ public class CharacterOnHookState : CharacterStateBase
         currentOnHookSpeed = speed;
         spineToFingerRig.weight = 0f;
         ChangeToHangingAnimation.Invoke(true);
-        hookChainController.DisableLinksAsCharacterMovesTowardTarget();
+        hookChainController.DisableLinksAsCharacterMovesTowardsTarget();
     }
 }

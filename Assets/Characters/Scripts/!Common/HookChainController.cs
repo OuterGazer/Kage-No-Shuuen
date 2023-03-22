@@ -85,24 +85,24 @@ public class HookChainController : MonoBehaviour
         }
     }
 
-    public void DisableLinksAsCharacterMovesTowardTarget()
+    public void DisableLinksAsCharacterMovesTowardsTarget()
     {
-        StartCoroutine(DisableLinks());
+        StartCoroutine(DisableLinksInBatches());
     }
 
-    [SerializeField] int linksToDisablePerFrame = 2;
+    [SerializeField] int linksToDisablePerBatch = 2;
     [SerializeField] int framesToWaitToDisableNextBatch = 5;
-    private IEnumerator DisableLinks()
+    private IEnumerator DisableLinksInBatches()
     {
         for (int i = linkAmount; i > 1; i--)
         {
-            for (int j = 0; j <= linksToDisablePerFrame; j++)
+            for (int j = 0; j <= linksToDisablePerBatch; j++)
             {
                 if((i - j) < 1) { continue; }
                 chainLinks[i - j].SetActive(false);
             }
 
-            i -= linksToDisablePerFrame;
+            i -= linksToDisablePerBatch;
 
             for(int z = 0; z < framesToWaitToDisableNextBatch; z++) 
             { yield return new WaitForEndOfFrame(); }
