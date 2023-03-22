@@ -121,7 +121,7 @@ public class CharacterStateBase : MonoBehaviour
             isFocusedOnEnemy = !isFocusedOnEnemy;
             unfocusedCamera.gameObject.SetActive(true);
             focusedCamera.gameObject.SetActive(false);
-            target.GetComponent<TrackedObject>().SetIsIndicatorVisible(false);
+            target?.GetComponent<TrackedObject>()?.SetIsIndicatorVisible(false);
             targets = null;
             target = null;
         }
@@ -183,7 +183,7 @@ public class CharacterStateBase : MonoBehaviour
             unfocusedCamera.gameObject.SetActive(false);
             focusedCamera.gameObject.SetActive(true);
 
-            target.GetComponent<TrackedObject>().SetIsIndicatorVisible(true); // Only happens in one frame
+            target?.GetComponent<TrackedObject>()?.SetIsIndicatorVisible(true); // Only happens in one frame
         }
         else
         {

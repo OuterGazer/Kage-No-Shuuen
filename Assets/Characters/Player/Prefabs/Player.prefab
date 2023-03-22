@@ -6446,9 +6446,7 @@ MonoBehaviour:
   explosionForce: 100
   explosionRadius: 5
   upwardsModifier: 10
-  freeLookCameras:
-  - {fileID: 0}
-  - {fileID: 0}
+  explosionCamera: {fileID: 0}
   cameraTarget: {fileID: 3307855578588703500}
   debugRagdoll: 0
 --- !u!114 &4418708312322543643

@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0.51
   col: {fileID: 0}
+  bomb: {fileID: 1489028081647296834, guid: 5037fa9b9750bcb49ab83c22c64c4577, type: 3}
 --- !u!1 &1821625462457411055
 GameObject:
   m_ObjectHideFlags: 0
