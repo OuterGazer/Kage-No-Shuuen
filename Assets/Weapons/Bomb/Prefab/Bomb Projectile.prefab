@@ -65,6 +65,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   explosionRange: 5
+  objectsAffectedByExplosions:
+    serializedVersion: 2
+    m_Bits: 520
   explosionVFX: {fileID: 100004, guid: 33384af7b24a0f14cb7bbf3b795f7a2b, type: 3}
 --- !u!1 &1790420198163297569
 GameObject:

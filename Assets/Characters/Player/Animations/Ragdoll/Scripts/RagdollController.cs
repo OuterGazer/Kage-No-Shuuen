@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.AI;
 
 public class RagdollController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class RagdollController : MonoBehaviour
     private CharacterController charController;
     private CharacterAnimator charAnimator;
     private StateController stateController;
+    private NavMeshAgent navMeshAgent;
+    private SoldierBehaviour soldierBehaviour;
 
     [Header("Miscellanous")]
     [SerializeField] CinemachineVirtualCamera explosionCamera;
@@ -33,6 +36,8 @@ public class RagdollController : MonoBehaviour
         charController = GetComponentInParent<CharacterController>();
         charAnimator = GetComponentInParent<CharacterAnimator>();
         stateController = GetComponentInParent<StateController>();
+        navMeshAgent = GetComponentInParent<NavMeshAgent>();
+        soldierBehaviour = GetComponentInParent<SoldierBehaviour>();
         limbsRB = GetComponentsInChildren<Rigidbody>();
         limbsCol = GetComponentsInChildren<Collider>();
     }
@@ -56,10 +61,18 @@ public class RagdollController : MonoBehaviour
     public void ActivateRagdoll()
     {
         animator.enabled = false;
-        playerInput.enabled = false;
-        charController.enabled = false;
         charAnimator.enabled = false;
-        stateController.enabled = false; 
+        if (CompareTag("Player"))
+        {
+            playerInput.enabled = false;
+            charController.enabled = false;
+            stateController.enabled = false;
+        }
+        else if (CompareTag("Soldier"))
+        {
+            navMeshAgent.enabled = false;
+            soldierBehaviour.enabled = false;
+        }        
 
         foreach (Rigidbody item in limbsRB) { item.isKinematic = false; }
         foreach (Collider item in limbsCol) { item.enabled = true; }

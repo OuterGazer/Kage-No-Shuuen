@@ -5267,6 +5267,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4a2ef68dde32fe34b93f2b3ec3caed65,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 4a2ef68dde32fe34b93f2b3ec3caed65,
         type: 3}
       propertyPath: m_Controller
@@ -6445,7 +6450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionForce: 100
   explosionRadius: 5
-  upwardsModifier: 10
+  upwardsModifier: 0
   explosionCamera: {fileID: 0}
   cameraTarget: {fileID: 3307855578588703500}
   debugRagdoll: 0
