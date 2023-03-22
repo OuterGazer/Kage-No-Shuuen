@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class RagdollController : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class RagdollController : MonoBehaviour
     private CharacterController charController;
     private CharacterAnimator charAnimator;
     private StateController stateController;
+
+    [Header("Miscellanous")]
+    [SerializeField] CinemachineVirtualCamera explosionCamera;
+    [SerializeField] Transform cameraTarget;
 
     private Rigidbody[] limbsRB;
     private Collider[] limbsCol;
@@ -62,6 +67,8 @@ public class RagdollController : MonoBehaviour
 
     public void ApplyExplosionForceToRagdoll(Vector3 explosionPosition)
     {
+        if (explosionCamera) { explosionCamera.gameObject.SetActive(true); }
+
         foreach(Rigidbody item in limbsRB)
         {
             item.AddExplosionForce(explosionForce, explosionPosition, explosionRadius, upwardsModifier, ForceMode.Impulse);

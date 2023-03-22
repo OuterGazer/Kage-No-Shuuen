@@ -10,12 +10,6 @@ public class CloseCombatWeaponPhysicsTrigger : CloseCombatWeaponBase
         {
             IDamagereceiver damageReceiver = other.GetComponent<IDamagereceiver>();
             PerformDamage(damageReceiver);
-
-            //if(name.Contains("Bomb"))
-            //{
-            //    IDamagereceiver selfReceiver = gameObject.GetComponentInParent<WeaponController>().GetComponentInChildren<IDamagereceiver>();
-            //    PerformDamage(selfReceiver);
-            //}
         }
     }
 }
