@@ -190,7 +190,7 @@ public class CharacterStateBase : MonoBehaviour
             focusedCamera.gameObject.SetActive(false);
             unfocusedCamera.gameObject.SetActive(true);
 
-            target.GetComponent<TrackedObject>().SetIsIndicatorVisible(false);
+            target?.GetComponent<TrackedObject>()?.SetIsIndicatorVisible(false);
 
             targets = null;
             target = null;
