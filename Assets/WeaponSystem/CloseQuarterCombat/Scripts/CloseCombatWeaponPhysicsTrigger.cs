@@ -18,7 +18,8 @@ public class CloseCombatWeaponPhysicsTrigger : CloseCombatWeaponBase
 
             if (name.Contains("Bomb") && !hasSpawnedBomb)
             {
-                Instantiate(bomb, transform.position, Quaternion.identity);
+                GameObject bombInstance = Instantiate(bomb, transform.position, Quaternion.identity);
+                bombInstance.GetComponentInChildren<SphereCollider>().radius = 5f;
                 hasSpawnedBomb = true;
             }
         }
