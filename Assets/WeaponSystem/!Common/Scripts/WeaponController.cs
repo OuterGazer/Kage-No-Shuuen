@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using static UnityEditor.Progress;
 
 public class WeaponController : MonoBehaviour
 {
@@ -16,7 +18,7 @@ public class WeaponController : MonoBehaviour
     private bool nextWeapon = false;
     private bool aim = false;
 
-    Weapon[] weapons;
+    List<Weapon> weapons = new();
     Weapon currentWeapon;
 
     CharacterAnimator characterAnimator; // TODO: preguntar a Kike si esto lo dejo así o aplico animator override a través de evento
@@ -24,7 +26,7 @@ public class WeaponController : MonoBehaviour
 
     private void Awake()
     {
-        weapons = weaponsParent.GetComponentsInChildren<Weapon>();
+        weapons = weaponsParent.GetComponentsInChildren<Weapon>().ToList<Weapon>();
         characterAnimator= GetComponent<CharacterAnimator>();
     }
 
@@ -42,7 +44,7 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 1; i < weapons.Length; i++)
+        for(int i = 1; i < weapons.Count; i++)
         {
             weapons[i].gameObject.SetActive(false);
         }
@@ -52,6 +54,20 @@ public class WeaponController : MonoBehaviour
         currentWeapon = weapons[0];
         characterAnimator.ApplyAnimatorController(currentWeapon);
         onWeaponChange.Invoke(currentWeapon);
+    }
+
+    public void AddWeapon(Weapon weapon)
+    {
+        if (!weapons.Contains(weapon))
+        {
+            weapons.Add(weapon);
+            weapon.ownerTag = tag;
+            weapon.tag = weapon.ownerTag;
+            Collider temp = weapon.GetComponentInChildren<Collider>();
+            if (temp)
+                temp.tag = weapon.ownerTag;
+        }
+        
     }
 
     
@@ -77,8 +93,8 @@ public class WeaponController : MonoBehaviour
         currentWeaponIndex += direction;
 
         if (currentWeaponIndex < 0)
-        { currentWeaponIndex = weapons.Length - 1; }
-        if (currentWeaponIndex >= weapons.Length)
+        { currentWeaponIndex = weapons.Count - 1; }
+        if (currentWeaponIndex >= weapons.Count)
         { currentWeaponIndex = 0; }
 
         currentWeapon = weapons[currentWeaponIndex].GetComponent<Weapon>();
