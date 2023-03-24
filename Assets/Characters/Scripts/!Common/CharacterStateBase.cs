@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using System;
 
 public class CharacterStateBase : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class CharacterStateBase : MonoBehaviour
     private static Transform target;
     private static Transform cameraFollowTarget;
     private LayerMask soldierLayer = 1 << 9;
+    private LayerMask obstacleLayer = ~(1 << 3);
 
     private static Camera mainCamera;
     private static CinemachineFreeLook unfocusedCamera;
@@ -180,10 +182,13 @@ public class CharacterStateBase : MonoBehaviour
             targets = Physics.OverlapSphere(transform.position, 10f, soldierLayer);
             FilterTargetsByDistanceToPlayer();
 
-            unfocusedCamera.gameObject.SetActive(false);
-            focusedCamera.gameObject.SetActive(true);
+            if (target)
+            {
+                unfocusedCamera.gameObject.SetActive(false);
+                focusedCamera.gameObject.SetActive(true);
 
-            target?.GetComponent<TrackedObject>()?.SetIsIndicatorVisible(true); // Only happens in one frame
+                target.GetComponent<TrackedObject>()?.SetIsIndicatorVisible(true); // Only happens in one frame
+            }
         }
         else
         {
@@ -201,17 +206,41 @@ public class CharacterStateBase : MonoBehaviour
 
     private void FilterTargetsByDistanceToPlayer()
     {
-        foreach (Collider item in targets)
+        if(targets.Length < 1) { return; }
+        
+        for(int i = 1; i < targets.Length; i++)
         {
-            if (!target) // assign always first item in the list to target
+            if ((targets[i].transform.position - transform.position).sqrMagnitude < (targets[i - 1].transform.position - transform.position).sqrMagnitude)
             {
-                target = item.transform;
-            }
-            else if (IsCurrentItemCloserThanCurrentTarget(item))
-            {
-                target = item.transform;
+                Collider temp = targets[i - 1];
+                targets[i - 1] = targets[i];
+                targets[i] = temp;
+                i--;
             }
         }
+
+        foreach(Collider item in targets)
+        {
+            if (IsTargetNotObstructed(item))
+            {
+                target = item.transform;
+                break;
+            }
+        }
+    }
+
+    private bool IsTargetNotObstructed(Collider item)
+    {
+        RaycastHit hit;
+        Physics.Raycast(transform.position, (item.transform.position - transform.position).normalized, out hit, 11f, obstacleLayer);
+
+        //Debug.DrawLine(transform.position, hit.point, Color.red, 10f);
+        
+        if (hit.collider.CompareTag("Soldier"))
+        {
+            return true;
+        }
+        return false;
     }
 
     private bool IsCurrentItemCloserThanCurrentTarget(Collider item)
