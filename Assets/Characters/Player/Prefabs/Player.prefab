@@ -2730,7 +2730,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1979967065090401228}
         m_TargetAssemblyTypeName: NoiseEmitter, Assembly-CSharp
-        m_MethodName: SetIsCrouching
+        m_MethodName: SetIsInStealth
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2781,6 +2781,21 @@ MonoBehaviour:
   CorrectCharacterAnimationWhenCameraIsNearWall:
     m_PersistentCalls:
       m_Calls: []
+  onWall:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1979967065090401228}
+        m_TargetAssemblyTypeName: NoiseEmitter, Assembly-CSharp
+        m_MethodName: SetIsInStealth
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   timeToCompleteCharacterOrientation: 0.25
   cameraThresholdNearWall: 0.85
   stoppingDistanceToCoverEdge: 3.75
@@ -4837,6 +4852,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.1019938
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956604722790068096, guid: 1733d861d8b94ef41921179374cdf107,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8989728860166914062, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

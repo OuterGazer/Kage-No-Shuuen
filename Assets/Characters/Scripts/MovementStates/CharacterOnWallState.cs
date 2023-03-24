@@ -15,6 +15,10 @@ public class CharacterOnWallState : CharacterStateBase
     private static Vector3 normalToWallPlane;
     private float charControllerHorizontalBound;
 
+    public UnityEvent<bool> onWall;
+
+
+
     private void Start()
     {
         coverMask = LayerMask.GetMask("Cover");
@@ -23,13 +27,18 @@ public class CharacterOnWallState : CharacterStateBase
 
     private void OnEnable()
     {
+        onWall.Invoke(true);
         AttachCharacterToWall.Invoke();
         SetNormalToWallPlane(Vector3.forward);
     }
 
     private void OnDisable()
     {
-        RemoveCharacterFromWall.Invoke();
+        if (gameObject)
+        {
+            onWall.Invoke(false);
+            RemoveCharacterFromWall.Invoke();
+        }
     }
 
     [SerializeField] float timeToCompleteCharacterOrientation = 0.25f;

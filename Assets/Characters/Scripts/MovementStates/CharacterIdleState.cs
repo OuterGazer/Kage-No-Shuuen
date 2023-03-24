@@ -10,9 +10,21 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class CharacterIdleState : CharacterStateBase
 {
+    public UnityEvent<bool> onIdle;
+
     private void Awake()
     {
         SetCameraAndCharController(GetComponent<CharacterController>());
+    }
+
+    private void OnEnable()
+    {
+        onIdle.Invoke(true);
+    }
+
+    private void OnDisable()
+    {
+        onIdle.Invoke(false);
     }
 
     private void Update()

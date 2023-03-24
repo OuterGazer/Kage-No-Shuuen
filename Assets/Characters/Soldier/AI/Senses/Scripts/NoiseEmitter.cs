@@ -20,24 +20,11 @@ public class NoiseEmitter : MonoBehaviour
 
     Coroutine noiseEmissionCoroutine;
 
-    private bool isCrouching = false;
+    private bool isInStealth = false;
 
-    public void SetIsCrouching (bool isCrouching)
+    public void SetIsInStealth (bool isInStealth)
     {
-        if (isCrouching)
-        {
-            this.isCrouching = isCrouching;
-        }
-        else
-        {
-            StartCoroutine(DelaySetIsCrouchingToFalse(isCrouching));
-        }
-    }
-
-    private IEnumerator DelaySetIsCrouchingToFalse(bool isCrouching)
-    {
-        yield return new WaitUntil(() => transform.position == lastPositionOnEmmit); // Wait until movement smoothing comes to a halt
-        this.isCrouching = isCrouching;
+        this.isInStealth = isInStealth;
     }
 
     private void OnEnable()
@@ -66,16 +53,16 @@ public class NoiseEmitter : MonoBehaviour
             switch (type)
             {
                 case Type.Continuous: performEmission = true; break;
-                case Type.OnlyWhenRunning: performEmission = ((transform.position != lastPositionOnEmmit) && !isCrouching); break;
+                case Type.OnlyWhenRunning: performEmission = ((transform.position != lastPositionOnEmmit) && !isInStealth); break;
             }
 
-            if (isCrouching)
+            if (isInStealth)
             {
                 lastPositionOnEmmit = transform.position;
             }
 
             if (performEmission)
-                { EmitNoise(); }
+                { EmitNoise(); Debug.Log("Noise!!!!"); }
         }
     }
 
