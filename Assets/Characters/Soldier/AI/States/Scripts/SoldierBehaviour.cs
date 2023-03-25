@@ -44,11 +44,13 @@ public class SoldierBehaviour : BehaviourTree.Tree, IObjectPoolNotifier
         GetComponent<TaskDie>().SetIsAnimationRunning(false);
     }
 
-    public void OnCreatedOrDequeuedFromPool(bool isCreated)
+    public void OnCreatedOrDequeuedFromPool(bool isCreated, Transform patrolParent) //false: is created -- true: is activated
     {
         // This gets called before spawning, I may assign patrol parent here most probably and also directly the player target.
         damageable.GetComponent<Collider>().enabled = true;
         NavMeshAgent.enabled = true;
         this.enabled = true;
+        GetComponent<TaskPatrol>().SetPatrol(patrolParent);
+        NavMeshAgent.Warp(patrolParent.transform.position);
     }
 }

@@ -147,6 +147,14 @@ public class CharacterAnimator : MonoBehaviour
         damageable.OnDying.RemoveListener(PlayDeathAnimation);
     }
 
+    private void OnEnable()
+    {
+        isGroundedHash = Animator.StringToHash("isGrounded");
+        landingHash = Animator.StringToHash("Landing");
+        animator.SetTrigger(landingHash);
+        animator.SetBool(isGroundedHash, true);
+    }
+
     private void Start()
     {
         GenerateHashes();
@@ -162,9 +170,9 @@ public class CharacterAnimator : MonoBehaviour
         movementSidewaysHash = Animator.StringToHash("movementSideways");
         onWallHash = Animator.StringToHash("OnWall");
         throwHookHash = Animator.StringToHash("throwHook");
-        isGroundedHash = Animator.StringToHash("isGrounded");
+        
         isHookedHash = Animator.StringToHash("isHooked");
-        landingHash = Animator.StringToHash("Landing");
+        
         dodgingHash = Animator.StringToHash("Dodging");
         isBlockingHash = Animator.StringToHash("isBlocking");
         changeWeaponHash = Animator.StringToHash("ChangeWeapon");

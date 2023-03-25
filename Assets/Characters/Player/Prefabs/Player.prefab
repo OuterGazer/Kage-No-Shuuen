@@ -5478,7 +5478,7 @@ MonoBehaviour:
   - {fileID: 1836297413052855836}
   - {fileID: 3308529835713694730}
   linksToSpawnPerFrame: 4
-  linksToDisablePerBatch: 10
+  linksToDisablePerBatch: 5
   framesToWaitToDisableNextBatch: 5
 --- !u!1001 &7367104689611074675
 PrefabInstance:

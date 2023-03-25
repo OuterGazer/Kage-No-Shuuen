@@ -11,6 +11,11 @@ public abstract class CloseCombatWeaponBase : MonoBehaviour
 
     protected bool IsSlashing { get; private set; }
 
+    private void OnEnable()
+    {
+        if (IsSlashing) { DamageEnd(); }
+    }
+
     // Called from WeaponController from an animation event
     internal void DamageStart()
     { 

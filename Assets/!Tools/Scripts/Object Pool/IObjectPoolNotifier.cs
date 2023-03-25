@@ -6,5 +6,5 @@ public interface IObjectPoolNotifier
 {
     public void OnEnqueuedToPool();
 
-    public void OnCreatedOrDequeuedFromPool(bool isCreated);
+    public void OnCreatedOrDequeuedFromPool(bool isCreated, Transform patrolParent);
 }

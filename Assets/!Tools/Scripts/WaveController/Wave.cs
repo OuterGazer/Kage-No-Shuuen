@@ -8,4 +8,6 @@ public class Wave : ScriptableObject
     public SoldierType[] soldiers;
 
     public float timeBetweenSpawnings = 1f;
+
+    public Transform[] patrolParents;
 }

@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soldiers: 000000000000000000000000
   timeBetweenSpawnings: 1
+  patrolParents:
+  - {fileID: 4108720721966596885, guid: 3a643a329c048b74d84208c54be94542, type: 3}
+  - {fileID: 6399492638471009673, guid: 1e00687f1b81b7140911966f8f9d43c8, type: 3}
+  - {fileID: 4123562440126748132, guid: 4d30beb73fed8894e91686b357444369, type: 3}

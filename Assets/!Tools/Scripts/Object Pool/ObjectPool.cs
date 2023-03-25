@@ -10,7 +10,7 @@ public class ObjectPool : MonoBehaviour
 
     private Queue<GameObject> inactiveObjects = new();
 
-    public GameObject GetObject()
+    public GameObject GetObject(Transform patrolParent)
     {
         if(inactiveObjects.Count > 0)
         {
@@ -22,7 +22,7 @@ public class ObjectPool : MonoBehaviour
             IObjectPoolNotifier[] notifiers = dequeuedObject.GetComponents<IObjectPoolNotifier>();
             foreach (IObjectPoolNotifier item in notifiers)
             {
-                item.OnCreatedOrDequeuedFromPool(false);
+                item.OnCreatedOrDequeuedFromPool(false, patrolParent);
             }
 
             return dequeuedObject;
@@ -38,7 +38,7 @@ public class ObjectPool : MonoBehaviour
             IObjectPoolNotifier[] notifiers = newObject.GetComponents<IObjectPoolNotifier>();
             foreach (IObjectPoolNotifier item in notifiers)
             {
-                item.OnCreatedOrDequeuedFromPool(true);
+                item.OnCreatedOrDequeuedFromPool(true, patrolParent);
             }
 
             return newObject;

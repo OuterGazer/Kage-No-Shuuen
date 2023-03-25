@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using BehaviourTree;
+using Unity.VisualScripting;
 
 public class TaskPatrol : Node
 {
     [SerializeField] Transform patrolParent;
-    public void SetPatrolParent(Transform patrolParent)
+    public void SetPatrol(Transform patrolParent)
     {
         this.patrolParent = patrolParent;
+        patrolPoints = this.patrolParent.GetComponentsInChildren<PatrolPoint>();
+        currentPatrolPointIndex = startPatrolPointIndex;
     }
+
     [SerializeField] int startPatrolPointIndex = 0;
     [SerializeField] float reachThreshold = 0.5f;
     private float patrolSpeed;
@@ -20,17 +24,13 @@ public class TaskPatrol : Node
     private PatrolPoint[] patrolPoints;
     private int currentPatrolPointIndex;
 
-    private void OnEnable()
-    {
-        //this.patrolPoints = patrolParent.GetComponentsInChildren<PatrolPoint>();
-    }
-
+    
     private void Start()
     {
-        this.patrolPoints = patrolParent.GetComponentsInChildren<PatrolPoint>();
+        patrolPoints = patrolParent.GetComponentsInChildren<PatrolPoint>();
 
         patrolSpeed = ((SoldierBehaviour)belongingTree).PatrolSpeed;
-        this.navMeshAgent = ((SoldierBehaviour) belongingTree).NavMeshAgent;
+        navMeshAgent = ((SoldierBehaviour) belongingTree).NavMeshAgent;
         currentPatrolPointIndex = startPatrolPointIndex;
     }
 
