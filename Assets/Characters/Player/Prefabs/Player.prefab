@@ -3176,7 +3176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToDestroy: {fileID: 7367104688647257537}
   timeToDestroyObject: 10
-  life: 5
+  maxLife: 5
   coolDownTime: 0.5
   OnGettingHit:
     m_PersistentCalls:

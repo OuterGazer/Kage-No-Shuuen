@@ -7,6 +7,10 @@ using BehaviourTree;
 public class TaskPatrol : Node
 {
     [SerializeField] Transform patrolParent;
+    public void SetPatrolParent(Transform patrolParent)
+    {
+        this.patrolParent = patrolParent;
+    }
     [SerializeField] int startPatrolPointIndex = 0;
     [SerializeField] float reachThreshold = 0.5f;
     private float patrolSpeed;
@@ -16,13 +20,15 @@ public class TaskPatrol : Node
     private PatrolPoint[] patrolPoints;
     private int currentPatrolPointIndex;
 
-    private void Awake()
+    private void OnEnable()
     {
-        this.patrolPoints = patrolParent.GetComponentsInChildren<PatrolPoint>();
+        //this.patrolPoints = patrolParent.GetComponentsInChildren<PatrolPoint>();
     }
 
     private void Start()
     {
+        this.patrolPoints = patrolParent.GetComponentsInChildren<PatrolPoint>();
+
         patrolSpeed = ((SoldierBehaviour)belongingTree).PatrolSpeed;
         this.navMeshAgent = ((SoldierBehaviour) belongingTree).NavMeshAgent;
         currentPatrolPointIndex = startPatrolPointIndex;

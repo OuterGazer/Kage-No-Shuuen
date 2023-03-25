@@ -13,7 +13,7 @@ public class TaskDie : Node
     private void Start()
     {
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
-        damageable = ((SoldierBehaviour)belongingTree).DamageableWithLife;
+        damageable = ((SoldierBehaviour)belongingTree).Damageable;
         damageable.OnDying.AddListener(SetIsDead);
     }
 

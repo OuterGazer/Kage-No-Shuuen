@@ -2843,7 +2843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentToDestroy: {fileID: 2795677103851904039}
   timeToDestroyObject: 10
-  life: 0.25
+  maxLife: 1.49
   coolDownTime: 0.2
   OnGettingHit:
     m_PersistentCalls:
@@ -3032,7 +3032,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8808660653900589869}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0000076293945, y: 1.5502682, z: 0.17326355}
+  m_LocalPosition: {x: 0.0000076293945, y: 1.5502678, z: 0.17326736}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4860,12 +4860,12 @@ PrefabInstance:
     - target: {fileID: 1015616097211072821, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2886848
+      value: 1.2886852
       objectReference: {fileID: 0}
     - target: {fileID: 1015616097211072821, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.033981323
+      value: -0.03397894
       objectReference: {fileID: 0}
     - target: {fileID: 1015616097211072821, guid: 1733d861d8b94ef41921179374cdf107,
         type: 3}

@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
+    public GameObject Prefab => prefab;
 
     private Queue<GameObject> inactiveObjects = new();
 

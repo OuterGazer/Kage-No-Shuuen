@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Wave 0
   m_EditorClassIdentifier: 
   soldiers: 000000000000000000000000
+  timeBetweenSpawnings: 1

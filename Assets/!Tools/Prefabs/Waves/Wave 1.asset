@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ae280492fcc8b4da66fdcf017ba5bb, type: 3}
   m_Name: Wave 1
   m_EditorClassIdentifier: 
-  soldiers: 
+  soldiers: 000000000000000000000000
+  timeBetweenSpawnings: 1

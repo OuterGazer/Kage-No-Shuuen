@@ -19,7 +19,7 @@ public class TaskGetHit : Node
     {
         navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
-        damageable = ((SoldierBehaviour)belongingTree).DamageableWithLife;
+        damageable = ((SoldierBehaviour)belongingTree).Damageable;
         damageable.OnGettingHit.AddListener(SetGettingHit);
         player = ((SoldierBehaviour)belongingTree).Player;
     }

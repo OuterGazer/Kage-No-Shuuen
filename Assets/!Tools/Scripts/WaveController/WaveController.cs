@@ -1,25 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WaveController : MonoBehaviour
 {
-    // referencias a todos los object pools
+    private ObjectPool[] objectPools;
 
-    //referencias a todas las Waves
+    [SerializeField] Wave[] waves;
 
-    // Lista que contendrá la wave actual
+    [SerializeField] Transform[] patrolParents;
 
-    private void Start()
+    public List<Transform> currentWaveSoldiers = new();
+
+    private void Awake()
     {
-        // dentro de un while loop
-
-        // cojo referencia a una Wave
-            // Voy leyendo el tipo de Soldier que necesito y hago un GetObject (por string o typeof()?)
-            // Le asigno una patrulla
-            // lo agrego a una lista
-            // yield return el tiempo entre spawns y spawneo un nuevo soldier
-            // WaitUntil(() => todos los soldier muertos --> lista.Count = 0)
-            // añado un ++ a un counter y spawneo la siguiente lista
+        objectPools = GetComponentsInChildren<ObjectPool>();
     }
+
+    public void StartWaves()
+    {
+        StartCoroutine(SpawnWaves());
+    }
+
+    private IEnumerator SpawnWaves()
+    {
+        for (int i = 0; i < waves.Length; i++)
+        {
+            for(int j = 0; j < waves[i].soldiers.Length; j++)
+            {
+                SoldierType soldierType = waves[i].soldiers[j];
+                ObjectPool objectPool = objectPools.First(x => x.Prefab.GetComponent<SoldierBehaviour>().Type == soldierType);
+                GameObject soldier = objectPool.GetObject();
+
+                soldier.GetComponent<TaskPatrol>().SetPatrolParent(patrolParents[j]);
+
+                soldier.GetComponent<NavMeshAgent>().Warp(patrolParents[j].transform.position);
+
+                currentWaveSoldiers.Add(soldier.transform);
+
+                yield return new WaitForSeconds(waves[i].timeBetweenSpawnings);
+            }
+
+            yield return new WaitUntil(() => currentWaveSoldiers.Count < 1);
+        }
+    }
+
+    // TODO: hacer que ReturnToPool() se ejecute al terminar la animación de muerte
+    //       Debo volver a reactivar los collisionadores (mirar StealthState y revisar todo lo que desactivo para volverlo a activar)
+    //       De alguna manera los soldados reaparecen con vida negativa
+    //       Debo hacer bien la asignación de la patrulla pq en la reaparición se quedan quietos
 }

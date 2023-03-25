@@ -11,8 +11,9 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
     [SerializeField] float timeToDestroyObject = 5f;
 
     // TODO: implement multiple hit avoiding through event system (specially for multiple raycast weapons)
-    [SerializeField] float life;
-    public float Life => life;
+    [SerializeField] float maxLife;
+    public float Life => maxLife;
+    private float life = 0f;
     [SerializeField] float coolDownTime = 0.5f;
     float lastTimeDamageWasReceived= 0f;
 
@@ -21,6 +22,12 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
     [HideInInspector] public UnityEvent OnGettingHit;
     [HideInInspector] public UnityEvent OnDying;
 
+    void OnEnable()
+    {
+        life = maxLife;
+        isAlive = true;
+    }
+
     public void ReceiveDamage(float damage)
     {
         if (isAlive)
@@ -28,13 +35,13 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
             if ((Time.time - lastTimeDamageWasReceived) > coolDownTime)
             {
                 lastTimeDamageWasReceived = Time.time;
-                life -= damage;
+                maxLife -= damage;
 
-                if (life <= 0f)
+                if (maxLife <= 0f)
                 {
-                    OnDying?.Invoke();
-                    Destroy(parentToDestroy, timeToDestroyObject);
+                    OnDying?.Invoke();                    
                     isAlive = false;
+                    ManageDeath();
                     return;
                 }
 
@@ -47,10 +54,23 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
     {
         if (isAlive)
         {
-            life = 0;
+            maxLife = 0;
             GetComponent<TrackedObject>()?.SetIsIndicatorVisible(false);
-            Destroy(parentToDestroy, timeToDestroyObject);
+            ManageDeath();
             isAlive = false;
+        }
+    }
+
+    private void ManageDeath()
+    {
+        PooledObject belongsToPool = GetComponentInParent<PooledObject>();
+        if (belongsToPool)
+        {
+            belongsToPool.gameObject.ReturnToPool();
+        }
+        else
+        {
+            Destroy(parentToDestroy, timeToDestroyObject);
         }
     }
 }
