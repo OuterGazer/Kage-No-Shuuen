@@ -41,11 +41,14 @@ public class SoldierBehaviour : BehaviourTree.Tree, IObjectPoolNotifier
         // TODO: for example deactivate the ragdoll, set life again to full points, etc.
         FindObjectOfType<WaveController>().currentWaveSoldiers.Remove(transform);
         NavMeshAgent.Warp(Vector3.zero);
+        GetComponent<TaskDie>().SetIsAnimationRunning(false);
     }
 
     public void OnCreatedOrDequeuedFromPool(bool isCreated)
     {
         // This gets called before spawning, I may assign patrol parent here most probably and also directly the player target.
-
+        damageable.GetComponent<Collider>().enabled = true;
+        NavMeshAgent.enabled = true;
+        this.enabled = true;
     }
 }

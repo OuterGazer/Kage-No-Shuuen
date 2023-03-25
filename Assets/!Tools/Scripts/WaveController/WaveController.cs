@@ -47,8 +47,8 @@ public class WaveController : MonoBehaviour
         }
     }
 
-    // TODO: hacer que ReturnToPool() se ejecute al terminar la animación de muerte
-    //       Debo volver a reactivar los collisionadores (mirar StealthState y revisar todo lo que desactivo para volverlo a activar)
-    //       De alguna manera los soldados reaparecen con vida negativa
+    // TODO: 
+    //       
+    //       
     //       Debo hacer bien la asignación de la patrulla pq en la reaparición se quedan quietos
 }

@@ -19,6 +19,7 @@ public class CharacterStateBase : MonoBehaviour
   
     private Collider[] targets;
     private static Transform target;
+    private static Collider targetCol;
     private static Transform cameraFollowTarget;
     private LayerMask soldierLayer = 1 << 9;
     private LayerMask obstacleLayer = ~(1 << 3);
@@ -98,7 +99,7 @@ public class CharacterStateBase : MonoBehaviour
     protected void OrientateCharacterForward()
     {
         Vector3 projectedForwardVector = Vector3.zero;
-        if (!target || !target.gameObject.activeSelf)
+        if (!target || !targetCol.enabled)
         {
             projectedForwardVector = Vector3.ProjectOnPlane(mainCamera.transform.forward, Vector3.up);
             DOTween.To(() => transform.forward, x => transform.forward = x, projectedForwardVector, timeToOrientateCharacterForward);
@@ -224,6 +225,7 @@ public class CharacterStateBase : MonoBehaviour
             if (IsTargetNotObstructed(item))
             {
                 target = item.transform;
+                targetCol = item;
                 break;
             }
         }

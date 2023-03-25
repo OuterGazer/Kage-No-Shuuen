@@ -35,9 +35,9 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
             if ((Time.time - lastTimeDamageWasReceived) > coolDownTime)
             {
                 lastTimeDamageWasReceived = Time.time;
-                maxLife -= damage;
+                life -= damage;
 
-                if (maxLife <= 0f)
+                if (life <= 0f)
                 {
                     OnDying?.Invoke();                    
                     isAlive = false;
@@ -54,23 +54,30 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
     {
         if (isAlive)
         {
-            maxLife = 0;
-            GetComponent<TrackedObject>()?.SetIsIndicatorVisible(false);
-            ManageDeath();
+            life = 0;
             isAlive = false;
+            ManageDeath();
         }
     }
 
     private void ManageDeath()
     {
+        GetComponent<TrackedObject>()?.SetIsIndicatorVisible(false);
+
         PooledObject belongsToPool = GetComponentInParent<PooledObject>();
         if (belongsToPool)
         {
-            belongsToPool.gameObject.ReturnToPool();
+            StartCoroutine(ReturnSoldierToPool(belongsToPool));
         }
         else
         {
             Destroy(parentToDestroy, timeToDestroyObject);
         }
+    }
+
+    private IEnumerator ReturnSoldierToPool(PooledObject mainParent)
+    {
+        yield return new WaitForSeconds(timeToDestroyObject);
+        mainParent.gameObject.ReturnToPool();
     }
 }

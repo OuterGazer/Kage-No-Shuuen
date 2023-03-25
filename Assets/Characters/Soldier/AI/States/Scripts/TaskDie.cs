@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
+using UnityEngine.AI;
 
 public class TaskDie : Node
 {
@@ -9,6 +10,13 @@ public class TaskDie : Node
     private DamageableWithLife damageable;
 
     private bool isAnimationRunning = false;
+    public void SetIsAnimationRunning(bool isAnimationRunning)
+    {
+        this.isAnimationRunning = isAnimationRunning;
+
+        ClearAllSharedData();
+        belongingTree.enabled = false;
+    }
 
     private void Start()
     {
@@ -39,8 +47,17 @@ public class TaskDie : Node
 
         characterAnimator.PlayDeathAnimation();
         isAnimationRunning = true;
+
         state = NodeState.SUCCESS;
         return state;
+    }
+
+    private void ClearAllSharedData()
+    {
+        ClearData("isDead");
+        ClearData("target");
+        ClearData("searchTarget");
+        ClearData("interactionAnimation");
     }
 
     // Called from event raised in DamageableWithLife
@@ -48,6 +65,8 @@ public class TaskDie : Node
     {
         Parent.SetData("isDead", true);
         //Destroy(damageable.gameObject);
-        damageable.gameObject.SetActive(false);
+        //damageable.gameObject.SetActive(false);
+        damageable.gameObject.GetComponent<Collider>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
     }
 }
