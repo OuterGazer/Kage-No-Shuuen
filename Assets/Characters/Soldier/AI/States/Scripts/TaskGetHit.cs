@@ -11,6 +11,7 @@ public class TaskGetHit : Node
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
     private DamageableWithLife damageable;
+    private Transform player;
 
     private bool isAnimationRunning = false;
 
@@ -20,6 +21,7 @@ public class TaskGetHit : Node
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
         damageable = ((SoldierBehaviour)belongingTree).DamageableWithLife;
         damageable.OnGettingHit.AddListener(SetGettingHit);
+        player = ((SoldierBehaviour)belongingTree).Player;
     }
 
     private void OnDestroy()
@@ -45,6 +47,13 @@ public class TaskGetHit : Node
         characterAnimator.PlayHitAnimation();
         isAnimationRunning = true;
         navMeshAgent.Move(pushLengthOnHit * -transform.forward);
+
+        object t = GetData("target");
+        if(t == null)
+        {
+            Parent.Parent.SetData("target", player);
+        }
+
         state = NodeState.SUCCESS;
         return state;
     }

@@ -8,6 +8,9 @@ using UnityEngine.Events;
 
 public class CharacterShootingState : CharacterStateBase
 {
+    [SerializeField] float timeBetweenShots = 0.5f;
+    private float counter = 0f;
+
     private bool aim = false;
     public bool shoot = false;
 
@@ -118,13 +121,21 @@ public class CharacterShootingState : CharacterStateBase
 
     private void UpdateShoot()
     {
+        counter += Time.deltaTime;
+
         if (shoot && aim)
         {
-            if (!currentWeapon.name.Equals("Bow"))
-            { currentWeapon.ShootingWeapon?.Shoot(); }
+            if(counter >= timeBetweenShots)
+            {
 
-            onShoot.Invoke();
-            shoot = false;
+                if (!currentWeapon.name.Equals("Bow"))
+                { currentWeapon.ShootingWeapon?.Shoot(); }
+
+                onShoot.Invoke();
+                shoot = false;
+
+                counter = 0f;
+            }
         }
     }
 
