@@ -4,8 +4,10 @@ using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
 
-public class SoldierBehaviour : BehaviourTree.Tree
+public class SoldierBehaviour : BehaviourTree.Tree, IObjectPoolNotifier
 {
+    [SerializeField] SoldierType type = SoldierType.Runner;
+
     [Header("Tree Sub Roots")]
     [SerializeField] Node localMainRoot;
 
@@ -31,5 +33,15 @@ public class SoldierBehaviour : BehaviourTree.Tree
     protected override Node SetUpTree()
     {
         return localMainRoot;
+    }
+
+    public void OnEnqueuedToPool()
+    {
+        // TODO: for example deactivate the ragdoll, set life again to full points, etc.
+    }
+
+    public void OnCreatedOrDequeuedFromPool(bool isCreated)
+    {
+        // This gets called before spawning, I may assign patrol parent here most probably.
     }
 }
