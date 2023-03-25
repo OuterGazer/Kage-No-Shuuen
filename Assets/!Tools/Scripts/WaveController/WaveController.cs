@@ -10,8 +10,6 @@ public class WaveController : MonoBehaviour
 
     [SerializeField] Wave[] waves;
 
-    [SerializeField] Transform[] patrolParents;
-
     public List<Transform> currentWaveSoldiers = new();
 
     private void Awake()
@@ -32,11 +30,7 @@ public class WaveController : MonoBehaviour
             {
                 SoldierType soldierType = waves[i].soldiers[j];
                 ObjectPool objectPool = objectPools.First(x => x.Prefab.GetComponent<SoldierBehaviour>().Type == soldierType);
-                GameObject soldier = objectPool.GetObject();
-
-                soldier.GetComponent<TaskPatrol>().SetPatrolParent(patrolParents[j]);
-
-                soldier.GetComponent<NavMeshAgent>().Warp(patrolParents[j].transform.position);
+                GameObject soldier = objectPool.GetObject(waves[i].patrolParents[j]);
 
                 currentWaveSoldiers.Add(soldier.transform);
 
@@ -46,9 +40,4 @@ public class WaveController : MonoBehaviour
             yield return new WaitUntil(() => currentWaveSoldiers.Count < 1);
         }
     }
-
-    // TODO: 
-    //       
-    //       
-    //       Debo hacer bien la asignación de la patrulla pq en la reaparición se quedan quietos
 }
