@@ -44,9 +44,11 @@ public class SoldierBehaviour : BehaviourTree.Tree, IObjectPoolNotifier
         GetComponent<TaskDie>().SetIsAnimationRunning(false);
     }
 
-    public void OnCreatedOrDequeuedFromPool(bool isCreated, Transform patrolParent) //false: is created -- true: is activated
+    public void OnCreatedOrDequeuedFromPool(bool isCreated, Transform patrolParent) //true: is created first time -- false: is just activated
     {
         // This gets called before spawning, I may assign patrol parent here most probably and also directly the player target.
+        if (isCreated) { player = FindObjectOfType<StateController>().transform; }
+
         damageable.GetComponent<Collider>().enabled = true;
         NavMeshAgent.enabled = true;
         this.enabled = true;
