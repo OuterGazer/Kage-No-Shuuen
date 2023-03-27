@@ -45,7 +45,7 @@ public class CheckForHookTarget : Node
         else
         {
             hookTarget = hookTargets[0].transform;
-            Parent.SetData("hookTarget", hookTarget);
+            Parent.Parent.SetData("hookTarget", hookTarget);
 
             navMeshAgent.enabled = false;
 

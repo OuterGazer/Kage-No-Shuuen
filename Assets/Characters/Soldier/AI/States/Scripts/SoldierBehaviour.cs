@@ -52,9 +52,7 @@ public class SoldierBehaviour : BehaviourTree.Tree, IObjectPoolNotifier
         // This gets called before spawning, I may assign patrol parent here most probably and also directly the player target.
         if (isCreated) { player = FindObjectOfType<StateController>().transform; }
 
-        damageable.GetComponent<Collider>().enabled = true;
-        NavMeshAgent.enabled = true;
-        this.enabled = true;
+        damageable.GetComponent<Collider>().enabled = true;        
 
         TaskPatrol patrol = GetComponent<TaskPatrol>();
         TaskGuardPosition guardPos = GetComponent<TaskGuardPosition>();
@@ -68,6 +66,8 @@ public class SoldierBehaviour : BehaviourTree.Tree, IObjectPoolNotifier
             guardPos.SetGuard(patrolParent);
         }
 
+        NavMeshAgent.enabled = true;
+        this.enabled = true;
         NavMeshAgent.Warp(patrolParent.transform.position);
 
         GameObject smokeBomb = Instantiate(this.smokeBomb, transform.position, Quaternion.identity);

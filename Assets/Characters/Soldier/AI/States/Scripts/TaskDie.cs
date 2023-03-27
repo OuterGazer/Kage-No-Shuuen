@@ -61,6 +61,9 @@ public class TaskDie : Node
         ClearData("target");
         ClearData("searchTarget");
         ClearData("interactionAnimation");
+        ClearData("hookTarget");
+        ClearData("isMovingToHookTarget");
+        ClearData("hangingDirection");
     }
 
     // Called from event raised in DamageableWithLife

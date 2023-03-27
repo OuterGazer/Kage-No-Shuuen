@@ -82,11 +82,11 @@ public class TaskThrowHook : Node
 
         characterAnimator.HaveCharacterThrowHook();
 
-        Parent.SetData("isHookThrown", false);
+        Parent.Parent.SetData("isHookThrown", false);
         hangingDirection = Vector3.zero;
-        Parent.SetData("hangingDirection", hangingDirection);
+        Parent.Parent.SetData("hangingDirection", hangingDirection);
 
-        Parent.SetData("isMovingToHookTarget", true);
+        Parent.Parent.SetData("isMovingToHookTarget", true);
     }
 
     // Called from animation event
