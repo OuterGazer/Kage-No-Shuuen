@@ -7,6 +7,10 @@ using UnityEngine.AI;
 public class TaskGuardPosition : Node
 {
     [SerializeField] Transform guardingPoint;
+    public void SetGuard(Transform guardingParent)
+    {
+        guardingPoint = guardingParent;
+    }
     [SerializeField] float timeToChangeLookingDirection = 5f;
     [SerializeField] float lookingDirectionChangeAngle = 45f;
 

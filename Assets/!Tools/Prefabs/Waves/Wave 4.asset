@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ae280492fcc8b4da66fdcf017ba5bb, type: 3}
+  m_Name: Wave 4
+  m_EditorClassIdentifier: 
+  soldiers: 020000000200000000000000040000000500000005000000
+  timeBetweenSpawnings: 1
+  patrolParents:
+  - {fileID: 8176455558095791359, guid: 4d30beb73fed8894e91686b357444369, type: 3}
+  - {fileID: 3523050124560291546, guid: ad7f6c13bb67d3d4bae8a680417a0a55, type: 3}
+  - {fileID: 6177029569207443145, guid: c1038bdd518a6d941b1a4127041a22ab, type: 3}
+  - {fileID: 7078157622602487921, guid: 4abfa2c9ff1d28f4696c7e726a87db54, type: 3}
+  - {fileID: 4014333363318518650, guid: ad4ce27e2e9e992448ea66d4bbd970cb, type: 3}
+  - {fileID: 5226128039949151452, guid: 4ed20fc0aa74a744cbaf8155c876c987, type: 3}

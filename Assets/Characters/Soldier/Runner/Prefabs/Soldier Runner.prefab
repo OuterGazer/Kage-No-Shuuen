@@ -3927,7 +3927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1dc605e8eac4347ba181434db9bf4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 50
+  explosionForce: 100
   explosionRadius: 5
   upwardsModifier: 0
   explosionCamera: {fileID: 0}

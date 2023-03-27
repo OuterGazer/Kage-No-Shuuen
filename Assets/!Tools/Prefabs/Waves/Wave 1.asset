@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ae280492fcc8b4da66fdcf017ba5bb, type: 3}
   m_Name: Wave 1
   m_EditorClassIdentifier: 
-  soldiers: 000000000000000000000000
+  soldiers: 000000000300000002000000
   timeBetweenSpawnings: 1
   patrolParents:
   - {fileID: 4108720721966596885, guid: 3a643a329c048b74d84208c54be94542, type: 3}
   - {fileID: 6399492638471009673, guid: 1e00687f1b81b7140911966f8f9d43c8, type: 3}
-  - {fileID: 4123562440126748132, guid: 4d30beb73fed8894e91686b357444369, type: 3}
+  - {fileID: 8176455558095791359, guid: 4d30beb73fed8894e91686b357444369, type: 3}

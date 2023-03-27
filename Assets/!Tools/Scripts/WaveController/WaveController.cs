@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class WaveController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class WaveController : MonoBehaviour
     [SerializeField] Wave[] waves;
 
     public List<Transform> currentWaveSoldiers = new();
+
+    public UnityEvent onWavesEnded;
 
     private void Awake()
     {
@@ -39,5 +42,7 @@ public class WaveController : MonoBehaviour
 
             yield return new WaitUntil(() => currentWaveSoldiers.Count < 1);
         }
+
+        onWavesEnded.Invoke();
     }
 }

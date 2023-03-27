@@ -52,7 +52,19 @@ public class SoldierBehaviour : BehaviourTree.Tree, IObjectPoolNotifier
         damageable.GetComponent<Collider>().enabled = true;
         NavMeshAgent.enabled = true;
         this.enabled = true;
-        GetComponent<TaskPatrol>().SetPatrol(patrolParent);
+
+        TaskPatrol patrol = GetComponent<TaskPatrol>();
+        TaskGuardPosition guardPos = GetComponent<TaskGuardPosition>();
+
+        if (patrol)
+        {
+            patrol.SetPatrol(patrolParent);
+        }
+        else
+        {
+            guardPos.SetGuard(patrolParent);
+        }
+
         NavMeshAgent.Warp(patrolParent.transform.position);
     }
 }

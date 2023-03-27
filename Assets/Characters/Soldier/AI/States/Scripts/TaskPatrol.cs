@@ -35,19 +35,22 @@ public class TaskPatrol : Node
     }
 
     public override NodeState Evaluate()
-    {
-        navMeshAgent.speed = patrolSpeed;
-        navMeshAgent.stoppingDistance = reachThreshold;
-
-        navMeshAgent.destination = patrolPoints[currentPatrolPointIndex].transform.position;
-
-        if ((navMeshAgent.destination - transform.position).sqrMagnitude < (reachThreshold * reachThreshold))
+    { 
+        if (navMeshAgent.enabled) 
         {
-            currentPatrolPointIndex++;
+            navMeshAgent.speed = patrolSpeed;
+            navMeshAgent.stoppingDistance = reachThreshold;
 
-            if (currentPatrolPointIndex == patrolPoints.Length)
-                currentPatrolPointIndex = 0;
-        }
+            navMeshAgent.destination = patrolPoints[currentPatrolPointIndex].transform.position;
+
+            if ((navMeshAgent.destination - transform.position).sqrMagnitude < (reachThreshold * reachThreshold))
+            {
+                currentPatrolPointIndex++;
+
+                if (currentPatrolPointIndex == patrolPoints.Length)
+                    currentPatrolPointIndex = 0;
+            }
+        }        
 
         state = NodeState.RUNNING;
         return state;
