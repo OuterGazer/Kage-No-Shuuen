@@ -13,12 +13,12 @@ public class TrackedObject : MonoBehaviour
 
     private void Start()
     {
-        IndicatorManager.manager.AddTrackingIndicator(this);
+        IndicatorController.manager.AddTrackingIndicator(this);
         isIndicatorVisible = false;
     }
 
     private void OnDestroy()
     {
-        IndicatorManager.manager.RemoveTrackingIndicator(this);
+        IndicatorController.manager.RemoveTrackingIndicator(this);
     }
 }

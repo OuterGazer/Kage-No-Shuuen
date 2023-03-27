@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IndicatorManager : MonoBehaviour
+public class IndicatorController : MonoBehaviour
 {
     [SerializeField] RectTransform indicatorContainer = null;
     
-    public static IndicatorManager manager;
+    public static IndicatorController manager;
 
     Dictionary<TrackedObject, RectTransform> indicators = new();
 
