@@ -48,7 +48,7 @@ MonoBehaviour:
   shootPoint: {fileID: 7660566719453689968}
   projectilePrefab: {fileID: 8082367727697544278, guid: b9bf6212b71d8de46993f18a661a1756,
     type: 3}
-  launchSpeed: 5
+  launchSpeed: 15
 --- !u!1 &1818906328791548596
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +168,11 @@ MonoBehaviour:
   shootingWeapon: {fileID: 5972805745461565220}
   closeCombatWeaponBase: {fileID: 7460529999902915179}
   throwingWeaponBase: {fileID: 4535650414918307483}
+  canBlock: 1
+  is2H: 0
+  isProjectile: 0
   aimingRig: {fileID: 0}
+  ownerTag: 
 --- !u!114 &5972805745461565220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.51
+  col: {fileID: 0}
   edgeNotch: {fileID: 6655133161190804634}
   tip: {fileID: 5867705990702930577}
   raysPerDistance: 30

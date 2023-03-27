@@ -514,8 +514,8 @@ MonoBehaviour:
   Parent: {fileID: 1999922227138396701}
   children: []
   guardingPoint: {fileID: 0}
-  timeToChangeLookingDirection: 1
-  lookingDirectionChangeAngle: 0
+  timeToChangeLookingDirection: 2
+  lookingDirectionChangeAngle: 90
 --- !u!1 &2795677104033681616
 GameObject:
   m_ObjectHideFlags: 0
