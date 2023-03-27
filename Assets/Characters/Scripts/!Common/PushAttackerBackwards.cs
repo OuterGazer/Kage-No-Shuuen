@@ -23,7 +23,8 @@ public class PushAttackerBackwards : MonoBehaviour
                 PushAttacker(other);
             }
 
-            Instantiate(blockingSparks, transform.position, Quaternion.identity);
+            GameObject sparks = Instantiate(blockingSparks, transform.position, Quaternion.identity);
+            Destroy(sparks, 3f);
         }
     }
 

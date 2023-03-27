@@ -31,6 +31,9 @@ public class SoldierBehaviour : BehaviourTree.Tree, IObjectPoolNotifier
     [SerializeField] float patrolSpeed = 2f;
     public float PatrolSpeed => patrolSpeed;
 
+    //Miscellaneous
+    [SerializeField] GameObject smokeBomb;
+
     protected override Node SetUpTree()
     {
         return localMainRoot;
@@ -66,5 +69,8 @@ public class SoldierBehaviour : BehaviourTree.Tree, IObjectPoolNotifier
         }
 
         NavMeshAgent.Warp(patrolParent.transform.position);
+
+        GameObject smokeBomb = Instantiate(this.smokeBomb, transform.position, Quaternion.identity);
+        Destroy(smokeBomb, 5f);
     }
 }

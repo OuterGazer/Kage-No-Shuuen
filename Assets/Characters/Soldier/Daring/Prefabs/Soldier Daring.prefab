@@ -281,6 +281,7 @@ MonoBehaviour:
   player: {fileID: 0}
   damageable: {fileID: 5832385808493121215}
   patrolSpeed: 1.5
+  smokeBomb: {fileID: 100000, guid: f881607407b15cc46b24d6bda799037a, type: 3}
 --- !u!114 &1999922227138396701
 MonoBehaviour:
   m_ObjectHideFlags: 0
