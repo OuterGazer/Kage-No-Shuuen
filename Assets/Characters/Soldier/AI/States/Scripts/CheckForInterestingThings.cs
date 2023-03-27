@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class CheckForInterestingThings : Node
 {
     private DecisionMaker decisionMaker;
+
+    public UnityEvent OnTargetSeen;
 
     private void Start()
     {
@@ -44,5 +47,6 @@ public class CheckForInterestingThings : Node
     private void SetInterestingTarget(Transform transform)
     {
         Parent.Parent.SetData("target", transform);
+        OnTargetSeen.Invoke();
     }
 }

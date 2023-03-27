@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using BehaviourTree;
+using UnityEngine.Events;
 
 public class TaskFleeFromTarget : Node
 {
@@ -11,6 +12,8 @@ public class TaskFleeFromTarget : Node
 
     private NavMeshAgent navMeshAgent;
     private DecisionMaker decisionMaker;
+
+    public UnityEvent OnTargetLost;
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +68,7 @@ public class TaskFleeFromTarget : Node
         if (state == NodeState.SUCCESS)
         {
             ClearData("target");
+            OnTargetLost.Invoke();
         }
     }
 }

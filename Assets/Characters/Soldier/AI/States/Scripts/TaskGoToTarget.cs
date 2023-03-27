@@ -5,6 +5,7 @@ using BehaviourTree;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.Events;
 
 public class TaskGoToTarget : Node
 {
@@ -20,6 +21,7 @@ public class TaskGoToTarget : Node
     private Transform currentTarget;
     private Vector3 targetPosition = Vector3.zero;
 
+    public UnityEvent OnTargetLost;
 
     private bool isSearching = false;
 
@@ -106,6 +108,7 @@ public class TaskGoToTarget : Node
             }
             
             ClearData("target");
+            OnTargetLost.Invoke();
         }
     }
 }

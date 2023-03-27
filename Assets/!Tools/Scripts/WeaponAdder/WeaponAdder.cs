@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WeaponAdder : MonoBehaviour
 {
     [SerializeField] Weapon weapon;
+
+    public UnityEvent<string> onWeaponAdded;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +23,7 @@ public class WeaponAdder : MonoBehaviour
                 {
                     other.GetComponent<WeaponController>().AddWeapon(item);
                     item.gameObject.SetActive(false);
+                    onWeaponAdded.Invoke(item.name);
                 }
             }
 

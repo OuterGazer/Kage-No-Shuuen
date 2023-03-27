@@ -23,6 +23,7 @@ public class WeaponController : MonoBehaviour
 
     CharacterAnimator characterAnimator; // TODO: preguntar a Kike si esto lo dejo así o aplico animator override a través de evento
     [HideInInspector] public UnityEvent<Weapon> onWeaponChange;
+    public UnityEvent<int> OnWeaponIndexChange;
 
     private void Awake()
     {
@@ -54,6 +55,7 @@ public class WeaponController : MonoBehaviour
         currentWeapon = weapons[0];
         characterAnimator.ApplyAnimatorController(currentWeapon);
         onWeaponChange.Invoke(currentWeapon);
+        OnWeaponIndexChange.Invoke(0);
     }
 
     public void AddWeapon(Weapon weapon)
@@ -85,6 +87,7 @@ public class WeaponController : MonoBehaviour
         }
 
         onWeaponChange.Invoke(currentWeapon);
+        OnWeaponIndexChange.Invoke(currentWeaponIndex);
     }
 
     private void SelectWeaponInDirection(int direction) // +1 -1

@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviourTree;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class TaskDie : Node
 {
     private CharacterAnimator characterAnimator;
     private DamageableWithLife damageable;
+
+    public UnityEvent OnTargetLost;
 
     private bool isAnimationRunning = false;
     public void SetIsAnimationRunning(bool isAnimationRunning)
@@ -68,5 +71,6 @@ public class TaskDie : Node
         //damageable.gameObject.SetActive(false);
         damageable.gameObject.GetComponent<Collider>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
+        OnTargetLost.Invoke();
     }
 }

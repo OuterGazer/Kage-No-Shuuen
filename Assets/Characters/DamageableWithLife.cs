@@ -29,8 +29,7 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
         life = maxLife;
         isAlive = true;
 
-        if (CompareTag("Player"))
-        { OnSetMaxLife.Invoke(maxLife); }
+        OnSetMaxLife.Invoke(maxLife);
     }
 
     public void ReceiveDamage(float damage)
@@ -42,8 +41,7 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
                 lastTimeDamageWasReceived = Time.time;
                 life -= damage;
 
-                if (CompareTag("Player"))
-                { OnLifeChange.Invoke(life); }
+                OnLifeChange.Invoke(life);
 
                 if (life <= 0f)
                 {

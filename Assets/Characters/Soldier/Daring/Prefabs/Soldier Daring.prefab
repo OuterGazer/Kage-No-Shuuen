@@ -180,6 +180,9 @@ MonoBehaviour:
   onWeaponChange:
     m_PersistentCalls:
       m_Calls: []
+  OnWeaponIndexChange:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2795677103851904032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +340,21 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 3904156921572790601}
   children: []
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3585352149706282340}
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: HideLifebar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2964982113095375140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +427,21 @@ MonoBehaviour:
   runningSpeed: 5
   interactionDistanceThreshold: 1.25
   playerFollowDelay: 1
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3585352149706282340}
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: HideLifebar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3620464842475499842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,6 +518,21 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 1096039331825319142}
   children: []
+  OnTargetSeen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3585352149706282340}
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: ShowLifebar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2813919417634894560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +552,21 @@ MonoBehaviour:
   runningSpeed: 4
   interactionDistanceThreshold: 7.5
   playerFollowDelay: 0.5
+  OnTargetLost:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3585352149706282340}
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: HideLifebar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &753437457498162014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,6 +633,7 @@ Transform:
   m_Children:
   - {fileID: 2397750081533684350}
   - {fileID: 7297697423969992219}
+  - {fileID: 3455980334475711125}
   m_Father: {fileID: 2795677103851904038}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2905,6 +2969,36 @@ MonoBehaviour:
   timeToDestroyObject: 5
   maxLife: 2.99
   coolDownTime: 0.2
+  OnSetMaxLife:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3585352149706282340}
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: SetMaxLife
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLifeChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3585352149706282340}
+        m_TargetAssemblyTypeName: HUDController, Assembly-CSharp
+        m_MethodName: UpdateLifebar
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnGettingHit:
     m_PersistentCalls:
       m_Calls: []
@@ -3305,6 +3399,143 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1688530540635639176}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2110528033732824190
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2795677104033681615}
+    m_Modifications:
+    - target: {fileID: 1088511219243551320, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas for Lifebar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.5713
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.0731
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0028
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.707
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b7bcf913c72925d45a0010528f1fcf91, type: 3}
+--- !u!224 &3455980334475711125 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3655799047023697643, guid: b7bcf913c72925d45a0010528f1fcf91,
+    type: 3}
+  m_PrefabInstance: {fileID: 2110528033732824190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3585352149706282340 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3209836009924270362, guid: b7bcf913c72925d45a0010528f1fcf91,
+    type: 3}
+  m_PrefabInstance: {fileID: 2110528033732824190}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb7aaf802f2f4445b008617f6a0f96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2795677104548072853
 PrefabInstance:
   m_ObjectHideFlags: 0
