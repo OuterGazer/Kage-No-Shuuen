@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PatrolPoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GetComponent<MeshRenderer>().enabled = false;
     }
 }

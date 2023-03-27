@@ -11,6 +11,12 @@ public class CharacterHitState : CharacterStateBase
         { charController.detectCollisions = false; }
     }
 
+    private void OnDisable() 
+    { 
+        if (charController)
+        { charController.detectCollisions = true; } 
+    }
+
     private void Update()
     {
         UpdateMovement(speed, movementDirection, Vector3.up);

@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class Hearing : MonoBehaviour, INoiseReceiver
 {
+    private LayerMask obstacleMask = ~(1 << 9);
+
     [System.Serializable]
     public class HeardNoise
     {
@@ -34,6 +36,11 @@ public class Hearing : MonoBehaviour, INoiseReceiver
     void INoiseReceiver.NotifyNoise(NoiseEmitter noiseEmitter)
     {
         HeardNoise heardNoise = noiseEmittersBeingHeard.Find(x => x.noiseEmitter == noiseEmitter);
+
+        // TODO: have enemies not "hear" the player when a wall stands between them.
+        //RaycastHit hit;
+        //Physics.Raycast(transform.position, (noiseEmitter.transform.position - transform.position).normalized, out hit, 5f, obstacleMask);
+        //if (!hit.collider.CompareTag("Player")) { return; }
 
         if(heardNoise == null)
         {
