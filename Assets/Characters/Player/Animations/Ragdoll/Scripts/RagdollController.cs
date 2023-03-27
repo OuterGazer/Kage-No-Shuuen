@@ -27,6 +27,7 @@ public class RagdollController : MonoBehaviour
     private Rigidbody[] limbsRB;
     private Collider[] limbsCol;
 
+    [Header("Debug")]
     public bool debugRagdoll = false;
 
     private void Awake()
@@ -42,20 +43,24 @@ public class RagdollController : MonoBehaviour
         limbsCol = GetComponentsInChildren<Collider>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        animator.enabled = true;
+        charAnimator.enabled = true;
         foreach(Rigidbody item in limbsRB) { item.isKinematic = true; }
         foreach(Collider item in limbsCol) { item.enabled = false; }
     }
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (debugRagdoll)
         {
             ActivateRagdoll();
             ApplyExplosionForceToRagdoll(transform.position + 2f * Vector3.forward);
             debugRagdoll = false;
         }
+#endif
     }
 
     public void ActivateRagdoll()
