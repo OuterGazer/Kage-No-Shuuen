@@ -24,12 +24,17 @@ public class TaskStrafeAroundTarget : Node
             state = NodeState.FAILURE; 
             return state;
         }
+        
+        if (navMeshAgent.enabled) 
+        {
+            navMeshAgent.stoppingDistance = 0.5f;
 
-        navMeshAgent.stoppingDistance = 0.5f;
+            navMeshAgent.speed = patrolSpeed;
 
-        navMeshAgent.speed = patrolSpeed;
-        navMeshAgent.destination = transform.position + transform.right;
-        transform.LookAt(target);
+            navMeshAgent.destination = transform.position + transform.right;
+            transform.LookAt(target);
+        }
+        
 
         state = NodeState.RUNNING;
         return state;

@@ -44,5 +44,6 @@ public class WaveController : MonoBehaviour
         }
 
         onWavesEnded.Invoke();
+        Debug.Log("You beated the fucking game!");
     }
 }

@@ -27,7 +27,10 @@ public class TaskGuardPosition : Node
     {
         if (IsAgentFarAwayFromGuardingPoint())
         {
-            navMeshAgent.destination = guardingPoint.position;
+            if (navMeshAgent.enabled)
+            {
+                navMeshAgent.destination = guardingPoint.position;
+            }
 
             state = NodeState.RUNNING;
             return state;
