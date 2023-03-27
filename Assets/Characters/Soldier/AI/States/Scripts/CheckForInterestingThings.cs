@@ -46,6 +46,8 @@ public class CheckForInterestingThings : Node
     // Called from event raised in DecisionMaker
     private void SetInterestingTarget(Transform transform)
     {
+        if(GetData("isDead") != null) { return; }
+
         Parent.Parent.SetData("target", transform);
         OnTargetSeen.Invoke();
     }

@@ -66,11 +66,18 @@ public class TaskDie : Node
     // Called from event raised in DamageableWithLife
     private void SetIsDead()
     {
-        Parent.SetData("isDead", true);
+        Parent.Parent.SetData("isDead", true);
         //Destroy(damageable.gameObject);
         //damageable.gameObject.SetActive(false);
         damageable.gameObject.GetComponent<Collider>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
+        StartCoroutine(DelayLifeBarDisappearence());
+    }
+
+    private IEnumerator DelayLifeBarDisappearence()
+    {
+        yield return new WaitForSeconds(1f);
+
         OnTargetLost.Invoke();
     }
 }
