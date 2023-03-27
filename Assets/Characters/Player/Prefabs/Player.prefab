@@ -2725,6 +2725,7 @@ MonoBehaviour:
   - {fileID: 7367104688647257540}
   statesAllowedToTransitionToThrowing:
   - {fileID: 7367104688647257540}
+  - {fileID: 7367104688647257541}
   statesAllowedToTransitionToGettingHit:
   - {fileID: 7367104688647257540}
   - {fileID: 7367104688647257541}
