@@ -1,34 +1,80 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] GameObject mainMenu;
-    [SerializeField] GameObject optionsMenu;
+    [SerializeField] RectTransform mainMenu;
+    [SerializeField] Image loadingImage;
+    [SerializeField] TextMeshProUGUI briefingText;
+    [SerializeField] Slider loadingBar;
+    [SerializeField] TextMeshProUGUI pressAnyKeyText;
+    [SerializeField] Image fadeToBlack;
 
     public void StartNewGame()
     {
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentScene + 1);
+        mainMenu.DOAnchorPosX(-400f, 1f).SetEase(Ease.OutQuart).OnComplete(() => StartCoroutine(PerformLoadingScreen()));
     }
 
-    public void GoToOptions()
+    public void GoToMenu(RectTransform inMenu)
     {
-        mainMenu.SetActive(false);
-        optionsMenu.SetActive(true);
+        mainMenu.DOAnchorPosX(-400f, 1f).SetEase(Ease.OutQuart);
+        inMenu.DOAnchorPosX(0f, 1f).SetEase(Ease.OutQuart);
     }
 
-    public void GoBackToMainMenu()
+    public void GoBackToMainMenu(RectTransform inMenu)
     {
-        mainMenu.SetActive(true);
-        optionsMenu.SetActive(false);
+        mainMenu.DOAnchorPosX(500f, 1f).SetEase(Ease.OutQuart);
+        inMenu.DOAnchorPosX(1500, 1f).SetEase(Ease.OutQuart);
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    private IEnumerator PerformLoadingScreen()
+    {
+        loadingImage.gameObject.SetActive(true);
+
+        loadingImage.DOFade(255f, 0.75f).SetEase(Ease.OutQuart)
+            //.OnComplete(() => briefingText.DOFade(255, 0.5f).SetEase(Ease.OutExpo))
+            .OnComplete(() => loadingBar.gameObject.SetActive(true));        
+
+        yield return new WaitUntil(() => loadingBar.gameObject.activeInHierarchy);
+
+        loadingBar.DOValue(50f, 4f).SetEase(Ease.Linear);
+
+        yield return new WaitUntil(() => loadingBar.value > 49.85f);
+
+        yield return new WaitForSeconds(1f);
+
+        loadingBar.value = 66f;
+
+        yield return new WaitForSeconds(0.5f);
+
+        loadingBar.DOValue(90f, 0.5f).SetEase(Ease.InExpo)
+            .OnComplete(() => loadingBar.DOValue(100f, 1f).SetEase(Ease.Linear));
+
+        yield return new WaitUntil(() => Mathf.Approximately(loadingBar.value, 100f));
+
+        pressAnyKeyText.gameObject.SetActive(true);
+
+        pressAnyKeyText.DOFade(0f, 1f).SetLoops(-1, LoopType.Yoyo);
+
+        yield return new WaitUntil(() => Keyboard.current.anyKey.isPressed);
+
+        fadeToBlack.DOFade(255f, 2f).SetEase(Ease.Linear).OnComplete(LoadLevel);
+    }
+
+    private void LoadLevel()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene + 1);
     }
 }
