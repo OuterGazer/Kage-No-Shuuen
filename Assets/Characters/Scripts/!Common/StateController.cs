@@ -357,6 +357,12 @@ public class StateController : MonoBehaviour
 
     private void TransitionToHit()
     {
+        if (isAiming)
+        {
+            isAiming = false;
+            weaponController.SetAim(false);
+        }
+
         ManageStateTransition(statesAllowedToTransitionToGettingHit, typeof(CharacterHitState));
         playerInput.enabled = false;
     }

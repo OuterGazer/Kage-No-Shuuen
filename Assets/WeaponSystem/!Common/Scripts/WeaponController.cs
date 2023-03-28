@@ -17,6 +17,10 @@ public class WeaponController : MonoBehaviour
     private bool prevWeapon = false;
     private bool nextWeapon = false;
     private bool aim = false;
+    public void SetAim(bool aim)
+    {
+        this.aim = aim;
+    }
 
     List<Weapon> weapons = new();
     Weapon currentWeapon;

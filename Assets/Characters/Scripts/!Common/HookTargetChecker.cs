@@ -136,7 +136,7 @@ public class HookTargetChecker : MonoBehaviour
                 RaycastHit temp = hits[i - 1];
                 hits[i - 1] = hits[i];
                 hits[i] = temp;
-                if (i > 1) { i--; }
+                if (i > 1) { i -= 2; }
             }
         }
     }
