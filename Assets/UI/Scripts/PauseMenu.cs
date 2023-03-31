@@ -18,11 +18,6 @@ public class PauseMenu : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
     }
 
-    private void OnEnable()
-    {
-        rectTransform.DOScale(0f, 0.35f).From().SetEase(Ease.OutElastic);
-    }
-
     public void ReturnToGame()
     {
         GameSessionManager.Instance.ResumeGame();
@@ -30,14 +25,16 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToMenu(RectTransform inMenu)
     {
-        pauseMenu.DOAnchorPosX(-400f, 1f).SetEase(Ease.OutQuart);
-        inMenu.DOAnchorPosX(0f, 1f).SetEase(Ease.OutQuart);
+        inMenu.gameObject.SetActive(true);
+
+        pauseMenu.DOScale(0f, 0.2f).From(1f, true).SetEase(Ease.OutCubic).SetUpdate(true)
+            .OnComplete(() => inMenu.DOScale(1f, 0.2f).From(0f, true).SetEase(Ease.OutBack).SetUpdate(true));
     }
 
     public void GoBackToPauseMenu(RectTransform inMenu)
     {
-        pauseMenu.DOAnchorPosX(500f, 1f).SetEase(Ease.OutQuart);
-        inMenu.DOAnchorPosX(1500, 1f).SetEase(Ease.OutQuart);
+        inMenu.DOScale(0f, 0.2f).From(1f, true).SetEase(Ease.OutCubic).SetUpdate(true)
+            .OnComplete(() => pauseMenu.DOScale(1f, 0.2f).From(0f, true).SetEase(Ease.OutBack).SetUpdate(true));
     }
 
     public void ExitToMainMenu()

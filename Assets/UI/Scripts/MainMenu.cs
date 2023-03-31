@@ -16,6 +16,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI pressAnyKeyText;
     [SerializeField] Image fadeToBlack;
 
+    private void Awake()
+    {
+        if (Time.timeScale < 1f)
+        { Time.timeScale = 1; }
+    }
+
     public void StartNewGame()
     {
         mainMenu.DOAnchorPosX(-400f, 1f).SetEase(Ease.OutQuart).OnComplete(() => StartCoroutine(PerformLoadingScreen()));

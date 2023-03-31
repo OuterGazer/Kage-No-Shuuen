@@ -44,6 +44,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
             {
                 Time.timeScale = 0f;
                 pauseMenu.gameObject.SetActive(true);
+                pauseMenu.DOScale(1f, 0.2f).From(0f, true).SetEase(Ease.OutBack).SetUpdate(true);
                 isGamePaused = true;
             }
         }
