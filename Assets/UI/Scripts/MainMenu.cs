@@ -75,7 +75,7 @@ public class MainMenu : MonoBehaviour
 
         yield return new WaitUntil(() => Keyboard.current.anyKey.isPressed);
 
-        fadeToBlack.DOFade(255f, 2f).SetEase(Ease.Linear).OnComplete(LoadLevel);
+        fadeToBlack.DOFade(1f, 2f).SetEase(Ease.Linear).OnComplete(LoadLevel);
     }
 
     private void LoadLevel()

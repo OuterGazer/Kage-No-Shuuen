@@ -26,6 +26,7 @@ public class ObjectDisabler : MonoBehaviour
             }
             disablingTrigger.enabled = false;
         }
+        GameSessionManager.Instance.ActivateCheckpoint();
         onDisablingObjects.Invoke();
     }
 }

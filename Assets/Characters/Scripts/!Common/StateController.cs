@@ -68,6 +68,10 @@ public class StateController : MonoBehaviour
         }
         currentState = allStates.First(x => x.GetType() == typeof(CharacterIdleState));
         currentState.enabled = true;
+
+        charController.detectCollisions = true;
+        gameObject.layer = 3;
+        playerInput.enabled = true;
     }
 
     private void GetReferenceToOnHookState()
@@ -377,5 +381,6 @@ public class StateController : MonoBehaviour
     {
         ManageStateTransition(statesAllowedToTransitionToDying, typeof(CharacterDeadState));
         playerInput.enabled = false;
+        GameSessionManager.Instance.RestartGame();
     }
 }
