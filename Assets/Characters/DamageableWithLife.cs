@@ -77,7 +77,8 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
         }
         else
         {
-            Destroy(parentToDestroy, timeToDestroyObject);
+            if (CompareTag("Soldier"))
+            { Destroy(parentToDestroy, timeToDestroyObject); }
         }
     }
 

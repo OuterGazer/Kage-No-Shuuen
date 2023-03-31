@@ -10,6 +10,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
 {
     [SerializeField] Image fadeToBlack;
     [SerializeField] RectTransform pauseMenu;
+    [SerializeField] RectTransform youAreDeadScreen;
 
     [SerializeField] InputAction pauseAction;
 
@@ -48,5 +49,10 @@ public class GameSessionManager : Singleton<GameSessionManager>
                 isGamePaused = true;
             }
         }
+    }
+
+    public void RestartGame()
+    {
+
     }
 }

@@ -12,6 +12,8 @@ public class CharacterDeadState : CharacterStateBase
             charController.detectCollisions = false;
             gameObject.layer = 0;
         }
+
+        GameSessionManager.Instance.RestartGame();
     }
 
 
