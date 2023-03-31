@@ -5,7 +5,7 @@ using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameSessionManager : MonoBehaviour
+public class GameSessionManager : Singleton<GameSessionManager>
 {
     [SerializeField] Image fadeToBlack;
 
