@@ -22,16 +22,19 @@ public class GameSessionManager : Singleton<GameSessionManager>
     {
         isChekpointActive = true;
     }
-
+#if UNITY_EDITOR
     public bool debugDeath = false;
+#endif
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (debugDeath)
         {
             GameObject.FindWithTag("Player").GetComponent<DamageableWithLife>().ReceiveDamage(20f);
             debugDeath = false;
         }
+#endif
     }
 
     public void ResumeGame()

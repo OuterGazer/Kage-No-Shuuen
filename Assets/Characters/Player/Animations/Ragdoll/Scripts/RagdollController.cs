@@ -49,6 +49,14 @@ public class RagdollController : MonoBehaviour
         charAnimator.enabled = true;
         foreach(Rigidbody item in limbsRB) { item.isKinematic = true; }
         foreach(Collider item in limbsCol) { item.enabled = false; }
+
+        if (CompareTag("Player"))
+        {
+            explosionCamera.gameObject.SetActive(false);
+            playerInput.enabled = true;
+            charController.enabled = true;
+            stateController.enabled = true;
+        }
     }
 
     private void Update()

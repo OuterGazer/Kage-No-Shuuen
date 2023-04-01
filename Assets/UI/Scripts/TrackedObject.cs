@@ -21,4 +21,9 @@ public class TrackedObject : MonoBehaviour
     {
         IndicatorController.manager.RemoveTrackingIndicator(this);
     }
+
+    public void HideIndicator()
+    {
+        isIndicatorVisible = false;
+    }
 }

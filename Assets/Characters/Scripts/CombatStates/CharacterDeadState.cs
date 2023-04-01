@@ -20,4 +20,9 @@ public class CharacterDeadState : CharacterStateBase
         if (charController.enabled)
         { UpdateMovement(speed, movementDirection, Vector3.up); }
     }
+
+    private void OnDisable()
+    {
+        SetUnfocusedCameraOnDeath();
+    }
 }

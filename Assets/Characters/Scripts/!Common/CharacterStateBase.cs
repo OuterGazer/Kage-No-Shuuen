@@ -64,6 +64,11 @@ public class CharacterStateBase : MonoBehaviour
         }
     }
 
+    protected void SetUnfocusedCameraOnDeath()
+    {
+        CorrectCameraBindingModeIfFocusedOnEnemyButThereIsNoTarget();
+    }
+
     protected void SetCameraAndCharController(CharacterController characterController)
     {
         mainCamera = Camera.main;

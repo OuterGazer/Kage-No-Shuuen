@@ -84,6 +84,14 @@ public class TaskAttack : Node
         if (state == NodeState.RUNNING)
         {
             ClearData("target");
+            TrackedObject[] indicators = GetComponentsInChildren<TrackedObject>();
+
+            if(indicators.Length < 1) { return; }
+
+            foreach(TrackedObject item in indicators)
+            {
+                item.HideIndicator();
+            }
         }
     }
 }
