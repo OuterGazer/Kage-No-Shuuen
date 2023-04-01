@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] RectTransform pauseMenu;
     [SerializeField] RectTransform optionsMenu;
-    [SerializeField] Image fadeToBlack;
+    [SerializeField] CanvasGroup fadeToBlack;
 
     private RectTransform rectTransform;
 
@@ -20,6 +20,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ReturnToGame()
     {
+        GameSessionManager.Instance.HideMousePointer();
         GameSessionManager.Instance.ResumeGame();
     }
 
@@ -40,6 +41,6 @@ public class PauseMenu : MonoBehaviour
     public void ExitToMainMenu()
     {
         fadeToBlack.gameObject.SetActive(true);
-        fadeToBlack.DOFade(255f, 2f).SetUpdate(true).OnComplete(() => SceneManager.LoadScene(0));
+        fadeToBlack.DOFade(1f, 2f).SetUpdate(true).OnComplete(() => SceneManager.LoadScene(0));
     }
 }

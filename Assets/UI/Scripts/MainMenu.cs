@@ -18,6 +18,8 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
+        GameSessionManager.Instance.ShowMousePointer();
+
         if (Time.timeScale < 1f)
         { Time.timeScale = 1; }
     }

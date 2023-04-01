@@ -37,6 +37,18 @@ public class GameSessionManager : Singleton<GameSessionManager>
 #endif
     }
 
+    public void HideMousePointer()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void ShowMousePointer()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     public void ResumeGame()
     {
         Time.timeScale = 1f;
@@ -51,17 +63,18 @@ public class GameSessionManager : Singleton<GameSessionManager>
 
     private void OnEnable()
     {
-        pauseAction.Enable();
+        pauseAction?.Enable();
+        HideMousePointer();
     }
 
     private void OnDisable()
     {
-        pauseAction.Disable();
+        pauseAction?.Disable();
     }
 
     private void LateUpdate()
     {
-        if (pauseAction.triggered)
+        if (pauseAction != null && pauseAction.triggered)
         {
             if (!isGamePaused)
             {
@@ -69,6 +82,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
                 pauseMenu.gameObject.SetActive(true);
                 pauseMenu.DOScale(1f, 0.2f).From(0f, true).SetEase(Ease.OutBack).SetUpdate(true);
                 isGamePaused = true;
+                GameSessionManager.Instance.ShowMousePointer();
             }
         }
     }
@@ -93,7 +107,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
 
         yield return new WaitForSeconds(3f);
 
-        Transform player = FindObjectOfType<StateController>().transform;
+        Transform player = FindObjectOfType<StateController>()?.transform;
 
         player.gameObject.SetActive(false);
 
