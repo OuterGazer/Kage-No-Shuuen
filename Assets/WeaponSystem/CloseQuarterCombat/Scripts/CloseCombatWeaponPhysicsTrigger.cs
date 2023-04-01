@@ -9,6 +9,12 @@ public class CloseCombatWeaponPhysicsTrigger : CloseCombatWeaponBase
     [SerializeField] GameObject bomb;
 
     private bool hasSpawnedBomb = false;
+
+    private void OnEnable()
+    {
+        hasSpawnedBomb = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(!other.CompareTag(tag) && IsSlashing)
