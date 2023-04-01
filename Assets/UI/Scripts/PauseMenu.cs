@@ -40,7 +40,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitToMainMenu()
     {
-        fadeToBlack.gameObject.SetActive(true);
+        //fadeToBlack.gameObject.SetActive(true);
         fadeToBlack.DOFade(1f, 2f).SetUpdate(true).OnComplete(() => SceneManager.LoadScene(0));
     }
 }
