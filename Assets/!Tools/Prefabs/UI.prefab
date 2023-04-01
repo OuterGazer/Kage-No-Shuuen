@@ -2520,13 +2520,14 @@ GameObject:
   - component: {fileID: 907652964269545653}
   - component: {fileID: 722203749143438331}
   - component: {fileID: 755257599534767939}
+  - component: {fileID: 135294311046774741}
   m_Layer: 5
   m_Name: fadeToBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &907652964269545653
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2585,6 +2586,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &135294311046774741
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041425938010226816}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &6112407765652732157
 GameObject:
   m_ObjectHideFlags: 0
@@ -5076,6 +5089,7 @@ GameObject:
   - component: {fileID: 1209996065874952471}
   - component: {fileID: 7901401313973100995}
   - component: {fileID: 8471201019522430894}
+  - component: {fileID: 762952459}
   m_Layer: 5
   m_Name: You Are Dead Canvas
   m_TagString: Untagged
@@ -5121,7 +5135,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -5165,6 +5179,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &762952459
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8035258286964269598}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &8703042097455936684
 GameObject:
   m_ObjectHideFlags: 0
@@ -5241,8 +5267,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 2
   m_fontColorGradient:

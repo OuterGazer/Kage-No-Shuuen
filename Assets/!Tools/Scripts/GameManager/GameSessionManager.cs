@@ -8,7 +8,7 @@ using TMPro;
 
 public class GameSessionManager : Singleton<GameSessionManager>
 {
-    [SerializeField] Image fadeToBlack;
+    [SerializeField] CanvasGroup fadeToBlack;
     [SerializeField] RectTransform pauseMenu;
     [SerializeField] CanvasGroup youAreDeadText;
     [SerializeField] Vector3 initialPosition;
@@ -29,7 +29,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
     {
         if (debugDeath)
         {
-            GameObject.FindWithTag("Player").GetComponentInChildren<DamageableWithLife>().ReceiveDamage(20f);
+            GameObject.FindWithTag("Player").GetComponent<DamageableWithLife>().ReceiveDamage(20f);
             debugDeath = false;
         }
     }
@@ -43,7 +43,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
 
     private void Awake()
     {
-        fadeToBlack.DOFade(0f, 4f).SetEase(Ease.OutQuad).OnComplete(() => fadeToBlack.gameObject.SetActive(false));
+        fadeToBlack.DOFade(0f, 6f).SetEase(Ease.OutQuad);//.OnComplete(() => fadeToBlack.gameObject.SetActive(false));
     }
 
     private void OnEnable()
@@ -72,7 +72,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
 
     public void RestartGame()
     {
-        fadeToBlack.gameObject.SetActive(true);
+        //fadeToBlack.gameObject.SetActive(true);
 
         StartCoroutine(PlayDeathFanciness());
     }
@@ -81,11 +81,14 @@ public class GameSessionManager : Singleton<GameSessionManager>
     {
         yield return new WaitForSeconds(2.6f);
 
-        youAreDeadText.DOFade(1f, 6f).SetEase(Ease.OutSine)
-            .OnComplete(() => fadeToBlack.DOFade(1f, 1f).SetEase(Ease.OutSine))
+        youAreDeadText.DOFade(1f, 6f).SetEase(Ease.OutSine);
+            
+        yield return new WaitForSeconds(6f);
+
+        fadeToBlack.DOFade(1f, 3f).SetEase(Ease.OutSine)
             .OnComplete(() => youAreDeadText.alpha = 0f);
 
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(3f);
 
         Transform player = FindObjectOfType<StateController>().transform;
 

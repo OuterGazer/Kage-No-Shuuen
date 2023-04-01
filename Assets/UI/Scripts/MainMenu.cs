@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] TextMeshProUGUI briefingText;
     [SerializeField] Slider loadingBar;
     [SerializeField] TextMeshProUGUI pressAnyKeyText;
-    [SerializeField] Image fadeToBlack;
+    [SerializeField] CanvasGroup fadeToBlack;
 
     private void Awake()
     {
@@ -49,7 +49,6 @@ public class MainMenu : MonoBehaviour
         loadingImage.gameObject.SetActive(true);
 
         loadingImage.DOFade(255f, 0.75f).SetEase(Ease.OutQuart)
-            //.OnComplete(() => briefingText.DOFade(255, 0.5f).SetEase(Ease.OutExpo))
             .OnComplete(() => loadingBar.gameObject.SetActive(true));        
 
         yield return new WaitUntil(() => loadingBar.gameObject.activeInHierarchy);

@@ -12,6 +12,7 @@ public class TaskAttack : Node
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
+    private DecisionMaker decisionMaker;
     private AttackStateBehaviour attackStateBehaviour;
 
     private bool isAttackAnimationRunning = false;    
@@ -20,12 +21,15 @@ public class TaskAttack : Node
     {
         navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
+        decisionMaker = ((SoldierBehaviour)belongingTree).DecisionMaker;
+        decisionMaker.OnTargetLost.AddListener(EraseAttackTarget);
         attackStateBehaviour = characterAnimator.Animator.GetBehaviour<AttackStateBehaviour>();
         attackStateBehaviour.ExitState.AddListener(ExitCloseCombatState);
     }
 
     private void OnDestroy()
     {
+        decisionMaker.OnTargetLost.RemoveListener(EraseAttackTarget);
         attackStateBehaviour.ExitState.RemoveListener(ExitCloseCombatState);
     }
 
@@ -73,5 +77,13 @@ public class TaskAttack : Node
         isAttackAnimationRunning = false;
         ClearData("interactionAnimation");
         ClearData("hasDodged");
+    }
+
+    public void EraseAttackTarget()
+    {
+        if (state == NodeState.RUNNING)
+        {
+            ClearData("target");
+        }
     }
 }
