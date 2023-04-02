@@ -103,4 +103,39 @@ public class AnimationEventForwarder : MonoBehaviour
     {
         SendMessageUpwards("ExitHitState");
     }
+
+    [SerializeField] AudioClip runGravel;
+    [SerializeField] AudioClip runWood;
+    [SerializeField] AudioClip walkGravel;
+    [SerializeField] AudioClip walkWood;
+
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    private void PlayRunningSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            ChooseRandomPitch();
+            audioSource.PlayOneShot(runWood);
+        }
+    }
+
+    private void PlayWalkingSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            ChooseRandomPitch();
+            audioSource.PlayOneShot(walkWood);
+        }
+    }
+
+    private void ChooseRandomPitch()
+    {
+        audioSource.pitch = Random.Range(0.8f, 1.0f);
+    }
 }

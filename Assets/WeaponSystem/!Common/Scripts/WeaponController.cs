@@ -13,6 +13,7 @@ public class WeaponController : MonoBehaviour
 {
     [SerializeField] Transform weaponsParent;
     int currentWeaponIndex;
+    [SerializeField] AudioClip unsheath;
 
     private bool prevWeapon = false;
     private bool nextWeapon = false;
@@ -25,6 +26,7 @@ public class WeaponController : MonoBehaviour
     List<Weapon> weapons = new();
     Weapon currentWeapon;
 
+    private AudioSource audioSource;
     CharacterAnimator characterAnimator; // TODO: preguntar a Kike si esto lo dejo así o aplico animator override a través de evento
     [HideInInspector] public UnityEvent<Weapon> onWeaponChange;
     public UnityEvent<int> OnWeaponIndexChange;
@@ -33,6 +35,7 @@ public class WeaponController : MonoBehaviour
     {
         weapons = weaponsParent.GetComponentsInChildren<Weapon>().ToList<Weapon>();
         characterAnimator= GetComponent<CharacterAnimator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -90,6 +93,7 @@ public class WeaponController : MonoBehaviour
             SelectWeaponInDirection(+1);
         }
 
+        if(currentWeapon.name.Contains("Katana") || currentWeapon.name.Contains("Nodachi")) { audioSource.PlayOneShot(unsheath); }
         onWeaponChange.Invoke(currentWeapon);
         OnWeaponIndexChange.Invoke(currentWeaponIndex);
     }
