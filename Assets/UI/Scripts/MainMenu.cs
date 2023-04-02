@@ -15,9 +15,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Slider loadingBar;
     [SerializeField] TextMeshProUGUI pressAnyKeyText;
     [SerializeField] CanvasGroup fadeToBlack;
+    [SerializeField] AudioClip startGame;
+
+    private AudioSource audioSource;
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -27,6 +32,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartNewGame()
     {
+        audioSource.PlayOneShot(startGame);
         mainMenu?.DOAnchorPosX(-400f, 1f).SetEase(Ease.OutQuart).OnComplete(() => StartCoroutine(PerformLoadingScreen()));
     }
 

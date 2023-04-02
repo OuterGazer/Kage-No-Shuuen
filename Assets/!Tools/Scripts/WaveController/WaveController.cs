@@ -10,18 +10,23 @@ public class WaveController : MonoBehaviour
     private ObjectPool[] objectPools;
 
     [SerializeField] Wave[] waves;
+    [SerializeField] AudioClip playerIsBusted;
 
     public List<Transform> currentWaveSoldiers = new();
 
     public UnityEvent onWavesEnded;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         objectPools = GetComponentsInChildren<ObjectPool>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void StartWaves()
     {
+        audioSource.PlayOneShot(playerIsBusted);
         SoundManager.Instance.ChangeToCombatMusic(false);
         StartCoroutine(SpawnWaves());
     }

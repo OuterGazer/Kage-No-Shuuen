@@ -86,8 +86,9 @@ public class TaskAttack : Node
     {
         if (state == NodeState.RUNNING)
         {
+            if(GetData("target") != null) { audioSource.PlayOneShot(playerIsDeadClip); }
+
             ClearData("target");
-            audioSource.PlayOneShot(playerIsDeadClip);
             SoundManager.Instance.ReturnToStealthMusic(1f);
             TrackedObject[] indicators = GetComponentsInChildren<TrackedObject>();
 

@@ -19,12 +19,23 @@ public class ObjectTweener : MonoBehaviour
     [SerializeField] TweeningType tweeningType = TweeningType.localMove;
     [SerializeField] Ease easingFunction = Ease.Linear;
 
+    [SerializeField] AudioClip soundToPlay1;
+    [SerializeField] AudioClip soundToPlay2;
+
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void PerformTweening()
     {
         switch (tweeningType)
         {
             case TweeningType.localMove:
-                objectToTween.DOLocalMove(targetLocalVector, tweeningTime).SetEase(easingFunction);
+                audioSource.PlayOneShot(soundToPlay1);
+                objectToTween.DOLocalMove(targetLocalVector, tweeningTime).SetEase(easingFunction).OnComplete(() => audioSource.PlayOneShot(soundToPlay2));
 
                 break;
             case TweeningType.localRotate:

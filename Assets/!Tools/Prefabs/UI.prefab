@@ -306,6 +306,9 @@ MonoBehaviour:
   yAnimationDistance: 20
   timeToCompleteAnimation: 0.25
   ease: 6
+  hoverOverMainMenu: {fileID: 0}
+  hoverOverPauseMenu: {fileID: 8300000, guid: 525887ed8681b1e42b0c6f1e63c37027, type: 3}
+  confirm: {fileID: 8300000, guid: 3692f49fe12294feaa89c6be9f93b537, type: 3}
 --- !u!114 &349547289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +523,9 @@ MonoBehaviour:
   yAnimationDistance: 20
   timeToCompleteAnimation: 0.25
   ease: 6
+  hoverOverMainMenu: {fileID: 0}
+  hoverOverPauseMenu: {fileID: 8300000, guid: 525887ed8681b1e42b0c6f1e63c37027, type: 3}
+  confirm: {fileID: 8300000, guid: 3692f49fe12294feaa89c6be9f93b537, type: 3}
 --- !u!114 &365497613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,6 +813,9 @@ MonoBehaviour:
   yAnimationDistance: 1
   timeToCompleteAnimation: 0.25
   ease: 0
+  hoverOverMainMenu: {fileID: 0}
+  hoverOverPauseMenu: {fileID: 0}
+  confirm: {fileID: 0}
 --- !u!1 &623808671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,6 +1809,7 @@ GameObject:
   - component: {fileID: 7348009448421520502}
   - component: {fileID: 207101514385092797}
   - component: {fileID: 8210433479317517807}
+  - component: {fileID: 6762048161373796338}
   m_Layer: 0
   m_Name: Pause Menu Canvas
   m_TagString: Untagged
@@ -1905,6 +1915,102 @@ MonoBehaviour:
   pauseMenu: {fileID: 6494183443757936829}
   optionsMenu: {fileID: 4813241494938933983}
   fadeToBlack: {fileID: 135294311046774741}
+--- !u!82 &6762048161373796338
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540740265526052376}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &586324687392224316
 GameObject:
   m_ObjectHideFlags: 0
@@ -3533,6 +3639,9 @@ MonoBehaviour:
   yAnimationDistance: 1
   timeToCompleteAnimation: 0.25
   ease: 0
+  hoverOverMainMenu: {fileID: 0}
+  hoverOverPauseMenu: {fileID: 0}
+  confirm: {fileID: 0}
 --- !u!1 &3720707159666440803
 GameObject:
   m_ObjectHideFlags: 0
@@ -3900,6 +4009,9 @@ MonoBehaviour:
   yAnimationDistance: 1
   timeToCompleteAnimation: 0.25
   ease: 0
+  hoverOverMainMenu: {fileID: 8300000, guid: e925061ab5ee64228bcd3221f87dba65, type: 3}
+  hoverOverPauseMenu: {fileID: 0}
+  confirm: {fileID: 8300000, guid: abea7ffdbfbe94a2bbfab4f0d0680bfc, type: 3}
 --- !u!1 &4226285687367190227
 GameObject:
   m_ObjectHideFlags: 0
@@ -6581,6 +6693,9 @@ MonoBehaviour:
   yAnimationDistance: 20
   timeToCompleteAnimation: 0.25
   ease: 6
+  hoverOverMainMenu: {fileID: 0}
+  hoverOverPauseMenu: {fileID: 8300000, guid: 525887ed8681b1e42b0c6f1e63c37027, type: 3}
+  confirm: {fileID: 8300000, guid: 3692f49fe12294feaa89c6be9f93b537, type: 3}
 --- !u!114 &6936379089229739886
 MonoBehaviour:
   m_ObjectHideFlags: 0

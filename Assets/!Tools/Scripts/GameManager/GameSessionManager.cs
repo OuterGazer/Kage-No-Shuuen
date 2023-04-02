@@ -14,7 +14,11 @@ public class GameSessionManager : Singleton<GameSessionManager>
     [SerializeField] Vector3 initialPosition;
     [SerializeField] Vector3 checkpointPosition;
 
+    [SerializeField] AudioClip playerDeath;
+
     [SerializeField] InputAction pauseAction;
+
+    private AudioSource audioSource;
 
     private bool isGamePaused = false;
     private bool isChekpointActive = false;
@@ -59,6 +63,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         fadeToBlack.DOFade(0f, 6f).SetEase(Ease.OutQuad);//.OnComplete(() => fadeToBlack.gameObject.SetActive(false));
     }
 
@@ -100,6 +105,8 @@ public class GameSessionManager : Singleton<GameSessionManager>
     private IEnumerator PlayDeathFanciness()
     {
         yield return new WaitForSeconds(2.6f);
+
+        audioSource.PlayOneShot(playerDeath);
 
         youAreDeadText.DOFade(1f, 6f).SetEase(Ease.OutSine);
             

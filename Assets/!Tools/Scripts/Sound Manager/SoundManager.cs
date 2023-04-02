@@ -29,6 +29,7 @@ public class SoundManager : Singleton<SoundManager>
 
         audioSource = GetComponent<AudioSource>();
         audioSource.ignoreListenerVolume = true;
+        audioSource.ignoreListenerPause = true;
     }
 
     private void Start()
@@ -64,7 +65,6 @@ public class SoundManager : Singleton<SoundManager>
     public void FadeOutCurrentTrack(float fadeTime)
     {
         audioSource.DOFade(0f, fadeTime);
-        AudioListener.volume = 0f;
     }
 
     public void ChangeToGameTrack()
