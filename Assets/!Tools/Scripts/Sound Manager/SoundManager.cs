@@ -53,7 +53,7 @@ public class SoundManager : Singleton<SoundManager>
     public void PauseMusic()
     {
         audioSource.Pause();
-        AudioListener.pause = true;
+        //AudioListener.pause = true;
     }
 
     public void ResumeMusic()
@@ -78,21 +78,29 @@ public class SoundManager : Singleton<SoundManager>
         AudioListener.volume = 1f;
     }
 
-    public void ChangeToCombatMusic(bool isRegularCombat)
+    public void ChangeToCombatMusic()
     {
-        if(currentClip == combatTrack) { combatCounter = 0f; return; }
-            else if(currentClip == enemyWavesTrack) { return; }
+        if(currentClip == combatTrack || currentClip == enemyWavesTrack) { combatCounter = 0f; return; }
 
         isIncombat = true;
-        currentClip = isRegularCombat ? combatTrack : enemyWavesTrack;
         currentClip = combatTrack;
+        audioSource.clip = currentClip;
+        audioSource.Play();
+    }
+
+    public void ChangeToEnemyWavesMusic()
+    {
+        if (currentClip == enemyWavesTrack) { return; }
+
+        isIncombat = false;
+        currentClip = enemyWavesTrack;
         audioSource.clip = currentClip;
         audioSource.Play();
     }
 
     public void ReturnToStealthMusic(float fadeTime)
     {
-        if (currentClip == stealthTrack1) { return; }
+        if (currentClip == stealthTrack1 || currentClip == enemyWavesTrack) { return; }
         if (isIncombat) { return; }
 
         audioSource.DOFade(0f, fadeTime).OnComplete(() => ChangeToGameTrack());

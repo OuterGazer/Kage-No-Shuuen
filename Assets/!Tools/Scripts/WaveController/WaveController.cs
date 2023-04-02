@@ -27,7 +27,7 @@ public class WaveController : MonoBehaviour
     public void StartWaves()
     {
         audioSource.PlayOneShot(playerIsBusted);
-        SoundManager.Instance.ChangeToCombatMusic(false);
+        SoundManager.Instance.ChangeToEnemyWavesMusic();
         StartCoroutine(SpawnWaves());
     }
 

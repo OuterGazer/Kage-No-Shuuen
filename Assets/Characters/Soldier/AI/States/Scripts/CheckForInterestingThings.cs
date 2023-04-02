@@ -57,6 +57,6 @@ public class CheckForInterestingThings : Node
         Parent.Parent.SetData("target", transform);
         OnTargetSeen.Invoke();
         if (!isPlayerSeen) { audioSource.PlayOneShot(playerIsSeenClip); isPlayerSeen = true; }
-        SoundManager.Instance.ChangeToCombatMusic(true);
+        SoundManager.Instance.ChangeToCombatMusic();
     }
 }

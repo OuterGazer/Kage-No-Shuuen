@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Slider loadingBar;
     [SerializeField] TextMeshProUGUI pressAnyKeyText;
     [SerializeField] CanvasGroup fadeToBlack;
+    [SerializeField] AudioClip startLoadingScreen;
     [SerializeField] AudioClip startGame;
 
     private AudioSource audioSource;
@@ -32,7 +33,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartNewGame()
     {
-        audioSource.PlayOneShot(startGame);
+        audioSource.PlayOneShot(startLoadingScreen);
         mainMenu?.DOAnchorPosX(-400f, 1f).SetEase(Ease.OutQuart).OnComplete(() => StartCoroutine(PerformLoadingScreen()));
     }
 
@@ -83,6 +84,7 @@ public class MainMenu : MonoBehaviour
 
         yield return new WaitUntil(() => Keyboard.current.anyKey.isPressed);
 
+        audioSource.PlayOneShot(startGame);
         fadeToBlack.DOFade(1f, 2f).SetEase(Ease.Linear).OnComplete(LoadLevel);
     }
 
