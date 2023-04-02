@@ -50,5 +50,6 @@ public class CheckForInterestingThings : Node
 
         Parent.Parent.SetData("target", transform);
         OnTargetSeen.Invoke();
+        SoundManager.Instance.ChangeToCombatMusic(true);
     }
 }

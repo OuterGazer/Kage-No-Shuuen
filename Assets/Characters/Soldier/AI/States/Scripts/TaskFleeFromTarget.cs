@@ -68,6 +68,7 @@ public class TaskFleeFromTarget : Node
         if (state == NodeState.SUCCESS)
         {
             ClearData("target");
+            SoundManager.Instance.ReturnToStealthMusic(3f);
             OnTargetLost.Invoke();
         }
     }

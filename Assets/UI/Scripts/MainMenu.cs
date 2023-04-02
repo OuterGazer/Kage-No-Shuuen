@@ -18,7 +18,8 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        GameSessionManager.Instance.ShowMousePointer();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         if (Time.timeScale < 1f)
         { Time.timeScale = 1; }
@@ -26,7 +27,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartNewGame()
     {
-        mainMenu.DOAnchorPosX(-400f, 1f).SetEase(Ease.OutQuart).OnComplete(() => StartCoroutine(PerformLoadingScreen()));
+        mainMenu?.DOAnchorPosX(-400f, 1f).SetEase(Ease.OutQuart).OnComplete(() => StartCoroutine(PerformLoadingScreen()));
     }
 
     public void GoToMenu(RectTransform inMenu)

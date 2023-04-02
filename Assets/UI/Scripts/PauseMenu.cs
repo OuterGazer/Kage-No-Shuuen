@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     {
         GameSessionManager.Instance.HideMousePointer();
         GameSessionManager.Instance.ResumeGame();
+        SoundManager.Instance.ResumeMusic();
     }
 
     public void GoToMenu(RectTransform inMenu)
@@ -40,6 +41,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ExitToMainMenu()
     {
+        SoundManager.Instance.ResumeMusic();
+        Destroy(SoundManager.Instance.gameObject);
         //fadeToBlack.gameObject.SetActive(true);
         fadeToBlack.DOFade(1f, 2f).SetUpdate(true).OnComplete(() => SceneManager.LoadScene(0));
     }

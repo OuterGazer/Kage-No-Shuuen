@@ -108,6 +108,7 @@ public class TaskGoToTarget : Node
             }
             
             ClearData("target");
+            SoundManager.Instance.ReturnToStealthMusic(3f);
             OnTargetLost.Invoke();
         }
     }

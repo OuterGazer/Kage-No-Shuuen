@@ -22,6 +22,7 @@ public class WaveController : MonoBehaviour
 
     public void StartWaves()
     {
+        SoundManager.Instance.ChangeToCombatMusic(false);
         StartCoroutine(SpawnWaves());
     }
 
@@ -44,5 +45,7 @@ public class WaveController : MonoBehaviour
         }
 
         onWavesEnded.Invoke();
+        SoundManager.Instance.PlayVictoryMusic();
+
     }
 }

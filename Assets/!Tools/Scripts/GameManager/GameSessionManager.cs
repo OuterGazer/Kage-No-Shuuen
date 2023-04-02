@@ -22,6 +22,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
     {
         isChekpointActive = true;
     }
+
 #if UNITY_EDITOR
     public bool debugDeath = false;
 #endif
@@ -65,6 +66,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
     {
         pauseAction?.Enable();
         HideMousePointer();
+        SoundManager.Instance.ChangeToGameTrack();
     }
 
     private void OnDisable()
@@ -83,6 +85,7 @@ public class GameSessionManager : Singleton<GameSessionManager>
                 pauseMenu.DOScale(1f, 0.2f).From(0f, true).SetEase(Ease.OutBack).SetUpdate(true);
                 isGamePaused = true;
                 GameSessionManager.Instance.ShowMousePointer();
+                SoundManager.Instance.PauseMusic();
             }
         }
     }

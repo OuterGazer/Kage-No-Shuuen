@@ -78,7 +78,10 @@ public class DamageableWithLife : MonoBehaviour, IDamagereceiver
         else
         {
             if (CompareTag("Soldier"))
-            { Destroy(parentToDestroy, timeToDestroyObject); }
+            {
+                SoundManager.Instance.ReturnToStealthMusic(3f);
+                Destroy(parentToDestroy, timeToDestroyObject); 
+            }
         }
     }
 

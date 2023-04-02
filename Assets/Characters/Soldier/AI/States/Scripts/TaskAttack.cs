@@ -84,6 +84,7 @@ public class TaskAttack : Node
         if (state == NodeState.RUNNING)
         {
             ClearData("target");
+            SoundManager.Instance.ReturnToStealthMusic(1f);
             TrackedObject[] indicators = GetComponentsInChildren<TrackedObject>();
 
             if(indicators.Length < 1) { return; }
