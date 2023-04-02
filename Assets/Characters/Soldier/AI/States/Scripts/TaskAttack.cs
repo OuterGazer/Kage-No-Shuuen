@@ -9,16 +9,19 @@ public class TaskAttack : Node
     [SerializeField] float timeBetweenAttacks = 1f;
     [SerializeField] float attackCounter = 0f; // Serialized for testing purposes
     [SerializeField] bool shouldPerformHeavyAttack = false;
+    [SerializeField] AudioClip playerIsDeadClip;
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
     private DecisionMaker decisionMaker;
     private AttackStateBehaviour attackStateBehaviour;
+    private AudioSource audioSource;
 
     private bool isAttackAnimationRunning = false;    
 
     private void Start()
     {
+        audioSource = ((SoldierBehaviour)belongingTree).AudioSource;
         navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
         decisionMaker = ((SoldierBehaviour)belongingTree).DecisionMaker;
@@ -84,6 +87,7 @@ public class TaskAttack : Node
         if (state == NodeState.RUNNING)
         {
             ClearData("target");
+            audioSource.PlayOneShot(playerIsDeadClip);
             SoundManager.Instance.ReturnToStealthMusic(1f);
             TrackedObject[] indicators = GetComponentsInChildren<TrackedObject>();
 

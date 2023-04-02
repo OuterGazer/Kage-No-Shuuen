@@ -14,11 +14,16 @@ public class TaskSearchTarget : Node
     private float changeSearchSpotCounter = 0;
 
     private NavMeshAgent navMeshAgent;
+    private AudioSource audioSource;
+    [SerializeField] AudioClip searchPlayerClip;
+
+    private bool isBeginningToSearch = true;
 
     private void Start()
     {
         patrolSpeed = ((SoldierBehaviour)belongingTree).PatrolSpeed;
         navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
+        audioSource = ((SoldierBehaviour)belongingTree).AudioSource;
     }
 
     public override NodeState Evaluate()
@@ -38,10 +43,13 @@ public class TaskSearchTarget : Node
         {
             changeSearchSpotCounter = 0;
             searchCounter = 0f;
-            ClearData("searchTarget"); 
+            ClearData("searchTarget");
+            isBeginningToSearch = true;
         }
         else if(searchCounter >= timeToChangeSearchSpot)
         {
+            if (isBeginningToSearch) { audioSource.PlayOneShot(searchPlayerClip); isBeginningToSearch = false; }
+
             Vector3 lastSeenSposition = new Vector3(s.position.x, 0f, s.position.z);
             Vector2 searchTargetPosition = searchRadius * Random.insideUnitCircle;
             float posX = lastSeenSposition.x + searchTargetPosition.x;

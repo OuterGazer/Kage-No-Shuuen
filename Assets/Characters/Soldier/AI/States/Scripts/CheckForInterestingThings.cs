@@ -8,11 +8,17 @@ using UnityEngine.Events;
 public class CheckForInterestingThings : Node
 {
     private DecisionMaker decisionMaker;
+    private AudioSource audioSource;
+
+    [SerializeField] AudioClip playerIsSeenClip;
 
     public UnityEvent OnTargetSeen;
 
+    private bool isPlayerSeen = false;
+
     private void Start()
     {
+        audioSource = ((SoldierBehaviour)belongingTree).AudioSource;
         decisionMaker = ((SoldierBehaviour)belongingTree).DecisionMaker;
         decisionMaker.OnPlayerSeen.AddListener(SetInterestingTarget);
     }
@@ -50,6 +56,7 @@ public class CheckForInterestingThings : Node
 
         Parent.Parent.SetData("target", transform);
         OnTargetSeen.Invoke();
+        if (!isPlayerSeen) { audioSource.PlayOneShot(playerIsSeenClip); isPlayerSeen = true; }
         SoundManager.Instance.ChangeToCombatMusic(true);
     }
 }

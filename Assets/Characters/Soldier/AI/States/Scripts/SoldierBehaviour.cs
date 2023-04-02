@@ -27,6 +27,9 @@ public class SoldierBehaviour : BehaviourTree.Tree, IObjectPoolNotifier
     [SerializeField] DamageableWithLife damageable;
     public DamageableWithLife Damageable => damageable;
 
+    [SerializeField] AudioSource audioSource;
+    public AudioSource AudioSource => audioSource;
+
     // Shared Tree Properties
     [SerializeField] float patrolSpeed = 2f;
     public float PatrolSpeed => patrolSpeed;
