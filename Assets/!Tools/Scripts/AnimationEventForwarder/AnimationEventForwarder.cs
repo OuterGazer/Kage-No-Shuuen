@@ -109,12 +109,22 @@ public class AnimationEventForwarder : MonoBehaviour
     [SerializeField] AudioClip walkGravel;
     [SerializeField] AudioClip walkWood;
     [SerializeField] AudioClip fallOnGroundSound;
+    [SerializeField] AudioClip swordExecutionSound;
+    [SerializeField] AudioClip weaponlessExecutionSound;
+    [SerializeField] AudioClip dieSound;
+
+
 
     private AudioSource audioSource;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void ChooseRandomPitch()
+    {
+        audioSource.pitch = Random.Range(0.8f, 1.0f);
     }
 
     private void PlayFallOnGroundSound()
@@ -140,8 +150,30 @@ public class AnimationEventForwarder : MonoBehaviour
         }
     }
 
-    private void ChooseRandomPitch()
+    private void PlaySwordExecutionSound()
     {
-        audioSource.pitch = Random.Range(0.8f, 1.0f);
+        if (!audioSource.isPlaying)
+        {
+            ChooseRandomPitch();
+            audioSource.PlayOneShot(swordExecutionSound);
+        }
+    }
+
+    private void PlayWeaponlessExecutionSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            ChooseRandomPitch();
+            audioSource.PlayOneShot(weaponlessExecutionSound);
+        }
+    }
+
+    private void PlayDieSound()
+    {
+        if (!audioSource.isPlaying)
+        {
+            ChooseRandomPitch();
+            audioSource.PlayOneShot(dieSound);
+        }
     }
 }

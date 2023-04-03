@@ -11,10 +11,12 @@ public class TaskShoot : Node
     [SerializeField] ShootingWeapon shootingWeapon;
     [SerializeField] float timeBetweenShots = 3f;
     [SerializeField] GameObject loadedArrow;
+    [SerializeField] AudioClip shootingSound;
 
     private float shootingCounter = 0f;
 
     private CharacterAnimator characterAnimator;
+    private AudioSource audioSource;
 
     private bool isShootingAnimationPlaying = false;
 
@@ -22,6 +24,7 @@ public class TaskShoot : Node
     private void Start()
     {
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
+        audioSource = ((SoldierBehaviour)belongingTree).AudioSource;
     }
 
     public override NodeState Evaluate()
@@ -59,6 +62,7 @@ public class TaskShoot : Node
     internal void ShootBow()
     {
         shootingWeapon?.Shoot();
+        audioSource.PlayOneShot(shootingSound);
         ClearData("interactionAnimation");
         isShootingAnimationPlaying = false;
     }

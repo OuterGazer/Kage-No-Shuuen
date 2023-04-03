@@ -4367,6 +4367,9 @@ MonoBehaviour:
   walkGravel: {fileID: 0}
   walkWood: {fileID: 8300000, guid: 716c9596e9b03d44bae419921cfdc794, type: 3}
   fallOnGroundSound: {fileID: 0}
+  swordExecutionSound: {fileID: 0}
+  weaponlessExecutionSound: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 95264ce2ae570bf47b03bc1c02413195, type: 3}
 --- !u!114 &3682733875508699856
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3114,6 +3114,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   bowstring: {fileID: 5610469249938796932}
+  shurikenShotSound: {fileID: 8300000, guid: 9a1463ed419076f46a0e29118bf02a3f, type: 3}
   loadedArrow: {fileID: 3413141248556956164}
   animAcc: 4
   leftHand: {fileID: 4323827797085878704}
@@ -7523,6 +7524,10 @@ MonoBehaviour:
   walkGravel: {fileID: 8300000, guid: 571bab372e5049a498d76dec4f0c0b2e, type: 3}
   walkWood: {fileID: 8300000, guid: 716c9596e9b03d44bae419921cfdc794, type: 3}
   fallOnGroundSound: {fileID: 8300000, guid: 5733a02174db6904b94a605f69ae1b8f, type: 3}
+  swordExecutionSound: {fileID: 8300000, guid: 7d36ef7848f296646a7f89f4b12798c9, type: 3}
+  weaponlessExecutionSound: {fileID: 8300000, guid: a28ba5d392eae8342bc849917f1744a2,
+    type: 3}
+  dieSound: {fileID: 0}
 --- !u!4 &7947735989294942735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 608321761475470972, guid: 4a2ef68dde32fe34b93f2b3ec3caed65,

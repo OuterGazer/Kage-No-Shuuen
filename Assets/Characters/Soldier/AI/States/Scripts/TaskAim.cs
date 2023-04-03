@@ -11,6 +11,7 @@ public class TaskAim : Node
     [SerializeField] GameObject quiverArrow;
     [SerializeField] GameObject loadedArrow;
     [SerializeField] Transform bowstring;
+    [SerializeField] AudioClip pullBowstringSound;
 
     [Header("Animation Settings")]
     [SerializeField] float animationAcceleration = 0.05f;    
@@ -25,6 +26,7 @@ public class TaskAim : Node
     private CharacterAnimator characterAnimator;
     private HitStateBehaviour hitBehaviour;
     private DeadStateBehaviour deadBehaviour;
+    private AudioSource audioSource;
 
     private bool isAimingAnimationPlaying = false;
     private bool isPullingBowstring = false;
@@ -36,6 +38,7 @@ public class TaskAim : Node
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
         hitBehaviour = characterAnimator.Animator.GetBehaviour<HitStateBehaviour>();
         deadBehaviour = characterAnimator.Animator.GetBehaviour<DeadStateBehaviour>();
+        audioSource = ((SoldierBehaviour)belongingTree).AudioSource;
 
         hitBehaviour.EnterState.AddListener(StopAiming);
         deadBehaviour.EnterState.AddListener(StopAiming);
@@ -99,6 +102,7 @@ public class TaskAim : Node
     internal void PullBowstring()
     {
         isPullingBowstring = true;
+        audioSource.PlayOneShot(pullBowstringSound);
     }
 
     // Called from animation event

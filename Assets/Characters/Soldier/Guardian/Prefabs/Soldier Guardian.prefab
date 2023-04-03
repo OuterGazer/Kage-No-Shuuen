@@ -529,6 +529,7 @@ MonoBehaviour:
   quiverArrow: {fileID: 8423099604456692119}
   loadedArrow: {fileID: 8047056003299957730}
   bowstring: {fileID: 949537295344373858}
+  pullBowstringSound: {fileID: 8300000, guid: b2ff47cda2c501c48a492d2df096b0ca, type: 3}
   animationAcceleration: 4
   leftHand: {fileID: 9002793872549828694}
   aimingRig: {fileID: 4679533777735971617}
@@ -551,6 +552,7 @@ MonoBehaviour:
   shootingWeapon: {fileID: 194447240708298717}
   timeBetweenShots: 1
   loadedArrow: {fileID: 8047056003299957730}
+  shootingSound: {fileID: 8300000, guid: 8b568d1e007537743b8ba644b6d686e2, type: 3}
 --- !u!114 &399686586141487253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4265,6 +4267,9 @@ MonoBehaviour:
   walkGravel: {fileID: 0}
   walkWood: {fileID: 8300000, guid: 716c9596e9b03d44bae419921cfdc794, type: 3}
   fallOnGroundSound: {fileID: 0}
+  swordExecutionSound: {fileID: 0}
+  weaponlessExecutionSound: {fileID: 0}
+  dieSound: {fileID: 8300000, guid: 95264ce2ae570bf47b03bc1c02413195, type: 3}
 --- !u!114 &8740119809353961906
 MonoBehaviour:
   m_ObjectHideFlags: 0
