@@ -12,6 +12,21 @@ public class ProjectileBomb : ProjectileBase
     [Header("VFX Settings")]
     [SerializeField] GameObject explosionVFX;
 
+    [Header("SFX Settings")]
+    [SerializeField] AudioClip explosionSound;
+
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    private void OnEnable()
+    {
+        audioSource.Play();
+    }
+
     protected override void OnTriggerEnter(Collider other)
     {
         // TODO: play SFX
@@ -37,6 +52,9 @@ public class ProjectileBomb : ProjectileBase
             targetRagdoll?.ActivateRagdoll();
             targetRagdoll?.ApplyExplosionForceToRagdoll(transform.position);
         }
+
+        audioSource.Stop();
+        AudioSource.PlayClipAtPoint(explosionSound, transform.position);
 
         Destroy(explosion, 1.5f);
         Destroy(gameObject, 1.6f);

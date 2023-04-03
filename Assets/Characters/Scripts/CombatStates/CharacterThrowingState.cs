@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class CharacterThrowingState : CharacterStateBase
 {
+    [SerializeField] AudioClip lightingBombSound;
+
     private bool throwing = false;
 
     private static Weapon currentWeapon;
@@ -14,6 +16,7 @@ public class CharacterThrowingState : CharacterStateBase
     private void OnEnable()
     {
         throwing = true;
+        AudioSource.PlayClipAtPoint(lightingBombSound, transform.position);
     }
 
     public static void SetCurrentWeapon(Weapon weapon)

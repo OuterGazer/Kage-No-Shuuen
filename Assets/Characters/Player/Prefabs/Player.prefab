@@ -2971,6 +2971,7 @@ MonoBehaviour:
       m_Calls: []
   speed: 0
   groundDistanceThreshold: 0.6
+  fallingOnGround: {fileID: 8300000, guid: 2f9b017f8e16c0b4aaf2a552120903f4, type: 3}
   IsCharacterTouchingGround:
     m_PersistentCalls:
       m_Calls: []
@@ -3128,6 +3129,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   speed: 0
+  lightingBombSound: {fileID: 8300000, guid: 47a07926ab1232f4393e23e746b243c5, type: 3}
   onThrowing:
     m_PersistentCalls:
       m_Calls: []

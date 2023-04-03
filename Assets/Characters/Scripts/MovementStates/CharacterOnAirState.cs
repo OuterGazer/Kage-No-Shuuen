@@ -7,14 +7,18 @@ public class CharacterOnAirState : CharacterStateBase
 {
     [Header("State Parameters")]
     [SerializeField] float groundDistanceThreshold = 1.0f;
+    [SerializeField] AudioClip fallingOnGround;
 
     [HideInInspector] public UnityEvent<bool> IsCharacterTouchingGround;
     [HideInInspector] public UnityEvent ChangeToLandingAnimation;
+
+    private AudioSource audioSource;
 
     private bool hasCharacterLanded = false;
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         IsCharacterTouchingGround.Invoke(true);
     }
 
@@ -37,6 +41,7 @@ public class CharacterOnAirState : CharacterStateBase
 
     private void ExitState()
     {
+        audioSource.PlayOneShot(fallingOnGround);
         IsCharacterTouchingGround.Invoke(true);
     }
 

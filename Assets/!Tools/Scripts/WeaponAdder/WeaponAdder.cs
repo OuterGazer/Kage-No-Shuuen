@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class WeaponAdder : MonoBehaviour
 {
     [SerializeField] Weapon weapon;
+    [SerializeField] AudioClip equipSound;
 
     public UnityEvent<string> onWeaponAdded;
 
@@ -26,6 +27,8 @@ public class WeaponAdder : MonoBehaviour
                     onWeaponAdded.Invoke(item.name);
                 }
             }
+
+            AudioSource.PlayClipAtPoint(equipSound, other.transform.position);
 
             Destroy(weapon.gameObject);
             Destroy(gameObject);

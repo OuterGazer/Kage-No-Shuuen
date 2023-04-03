@@ -17,6 +17,9 @@ public class CharacterOnHookState : CharacterStateBase
     [SerializeField] RigBuilder rigBuilder;
     [SerializeField] ChainIKConstraint[] shoulderToFingerConstraints;
     [SerializeField] MultiAimConstraint headConstraint;
+
+    [Header("Sound Settings")]
+    [SerializeField] AudioClip chainSound;
     
 
     [HideInInspector] public UnityEvent throwHook;
@@ -26,6 +29,7 @@ public class CharacterOnHookState : CharacterStateBase
     private CharacterAnimator characterAnimator;
     private Rig spineToFingerRig;
     private HookChainController hookChainController;
+    private AudioSource audioSource;
 
     private Vector3 hangingDirection;
 
@@ -42,6 +46,7 @@ public class CharacterOnHookState : CharacterStateBase
         spineToFingerRig.weight = 0f;
 
         hookChainController = GetComponentInChildren<HookChainController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnDestroy()
@@ -122,11 +127,13 @@ public class CharacterOnHookState : CharacterStateBase
         transform.LookAt(targetPosition, Vector3.up);
     }
 
+    [Header("Miscellaneous")]
     [SerializeField] float timeCountToHookChainThrow = 1.2f; 
     private IEnumerator CountdownForHookChainAnimationBeginning()
     {
         yield return new WaitForSeconds(timeCountToHookChainThrow);
 
+        audioSource.PlayOneShot(chainSound);
         hookChainController.ShootChain(hookTarget);
     }
 
@@ -176,6 +183,7 @@ public class CharacterOnHookState : CharacterStateBase
         currentOnHookSpeed = speed;
         spineToFingerRig.weight = 0f;
         ChangeToHangingAnimation.Invoke(true);
+        audioSource.PlayOneShot(chainSound);
         hookChainController.DisableLinksAsCharacterMovesTowardsTarget();
     }
 }
