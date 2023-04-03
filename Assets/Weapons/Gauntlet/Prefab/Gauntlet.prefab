@@ -251,7 +251,11 @@ MonoBehaviour:
   shootingWeapon: {fileID: 8803505097543784613}
   closeCombatWeaponBase: {fileID: 5252859250287839418}
   throwingWeaponBase: {fileID: 0}
+  canBlock: 1
+  is2H: 0
+  isProjectile: 0
   aimingRig: {fileID: 0}
+  ownerTag: 
 --- !u!114 &8803505097543784613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,12 +287,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.51
+  col: {fileID: 0}
   edgeNotch: {fileID: 9043023929914298945}
   tip: {fileID: 8835850004032700579}
   raysPerDistance: 30
   damageableLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
+  hitSound: {fileID: 0}
 --- !u!1001 &7160347823910966306
 PrefabInstance:
   m_ObjectHideFlags: 0

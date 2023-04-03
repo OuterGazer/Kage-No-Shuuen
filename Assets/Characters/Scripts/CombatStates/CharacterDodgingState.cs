@@ -16,6 +16,8 @@ public class CharacterDodgingState : CharacterStateBase
     private Vector3 dodgeFacingDirection;
     private float currentSpeed;
 
+    private bool hasPlayedSound = false;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -26,16 +28,18 @@ public class CharacterDodgingState : CharacterStateBase
         SetDodgeFacingDirection(charController.velocity.normalized);
         MakeCharacterDodge.Invoke();
         currentSpeed = speed;
-        audioSource.PlayOneShot(effortSound);
     }
 
     private void OnDisable()
     {
+        hasPlayedSound = false;
         OrientateCharacterForward();
     }
 
     private void Update()
     {
+        if (!hasPlayedSound) { audioSource.PlayOneShot(effortSound); hasPlayedSound = true; }
+
         transform.forward = dodgeFacingDirection;
         OrientateCameraFollowTarget();
 

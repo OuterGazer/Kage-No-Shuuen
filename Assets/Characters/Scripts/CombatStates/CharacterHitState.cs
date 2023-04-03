@@ -5,10 +5,19 @@ using UnityEngine.Events;
 
 public class CharacterHitState : CharacterStateBase
 {
+    [SerializeField] AudioClip hitSound;
+
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnEnable()
     {
         if (charController)
-        { charController.detectCollisions = false; }
+        { charController.detectCollisions = false; audioSource.PlayOneShot(hitSound); }
     }
 
     private void OnDisable() 

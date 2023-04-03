@@ -8,6 +8,7 @@ public class CharacterThrowingState : CharacterStateBase
     [SerializeField] AudioClip lightingBombSound;
 
     private bool throwing = false;
+    private bool hasSoundPlayed = false;
 
     private static Weapon currentWeapon;
 
@@ -16,7 +17,11 @@ public class CharacterThrowingState : CharacterStateBase
     private void OnEnable()
     {
         throwing = true;
-        AudioSource.PlayClipAtPoint(lightingBombSound, transform.position);
+    }
+
+    private void OnDisable()
+    {
+        hasSoundPlayed = false;
     }
 
     public static void SetCurrentWeapon(Weapon weapon)
@@ -26,6 +31,7 @@ public class CharacterThrowingState : CharacterStateBase
 
     private void Update()
     {
+        if (!hasSoundPlayed) { AudioSource.PlayClipAtPoint(lightingBombSound, transform.position); hasSoundPlayed = true; }
         UpdateThrow();
     }
 

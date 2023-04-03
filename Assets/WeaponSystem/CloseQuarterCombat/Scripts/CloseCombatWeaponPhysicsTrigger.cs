@@ -8,7 +8,17 @@ public class CloseCombatWeaponPhysicsTrigger : CloseCombatWeaponBase
 {
     [SerializeField] GameObject bomb;
 
+    [SerializeField] AudioClip hitSound;
+
+    private AudioSource audiosource;
+    private bool hasSoundPlayed = false;
+
     private bool hasSpawnedBomb = false;
+
+    private void Awake()
+    {
+        audiosource = GetComponent<AudioSource>();
+    }
 
     private void OnEnable()
     {
@@ -21,6 +31,7 @@ public class CloseCombatWeaponPhysicsTrigger : CloseCombatWeaponBase
         {
             IDamagereceiver damageReceiver = other.GetComponent<IDamagereceiver>();
             PerformDamage(damageReceiver);
+            if (CompareTag("Player")) { PlayHitsound(); }
 
             if (name.Contains("Bomb") && !hasSpawnedBomb)
             {
@@ -29,5 +40,20 @@ public class CloseCombatWeaponPhysicsTrigger : CloseCombatWeaponBase
                 hasSpawnedBomb = true;
             }
         }
+    }
+
+    private void PlayHitsound()
+    {
+        if (!hasSoundPlayed)
+        {
+            audiosource.PlayOneShot(hitSound);
+            StartCoroutine(ResetSound());
+        }
+    }
+
+    private IEnumerator ResetSound()
+    {
+        yield return new WaitForSeconds(1f);
+        hasSoundPlayed = false;
     }
 }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,20 @@ public class CloseCombatWeaponMultipleRaycast : CloseCombatWeaponBase
     [SerializeField] int raysPerDistance = 30;
     [SerializeField] LayerMask damageableLayerMask = Physics.DefaultRaycastLayers;
 
+    [SerializeField] AudioClip hitSound;
+
+    private AudioSource audiosource;
+
     float weaponLength;
     Vector3 oldPosition;
     Vector3 oldDirection;
+
+    private bool hasSoundPlayed = false;
+
+    private void Awake()
+    {
+        audiosource = GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
@@ -84,8 +96,24 @@ public class CloseCombatWeaponMultipleRaycast : CloseCombatWeaponBase
             {
                 IDamagereceiver damageReceiver = colliderHit.GetComponent<IDamagereceiver>();
                 PerformDamage(damageReceiver);
+                if (CompareTag("Player")) { PlayHitsound(); }
             }
             
         }
+    }
+
+    private void PlayHitsound()
+    {
+        if (!hasSoundPlayed) 
+        { 
+            audiosource.PlayOneShot(hitSound);
+            StartCoroutine(ResetSound());
+        }
+    }
+
+    private IEnumerator ResetSound()
+    {
+        yield return new WaitForSeconds(0.5f);
+        hasSoundPlayed = false;
     }
 }

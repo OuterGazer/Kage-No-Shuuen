@@ -40,9 +40,6 @@ public class CharacterCloseCombatState : CharacterStateBase
 
         if (shouldStepForward) 
         { 
-            if(currentWeapon.name.Contains("Katana") || currentWeapon.name.Contains("Nodachi")) { audioSource.PlayOneShot(katanaWoosh); }
-            else if(currentWeapon.name.Contains("Gauntlet") || currentWeapon.name.Contains("Bomb")) { audioSource.PlayOneShot(armWoosh); }
-
             PushCharacterForward(stepForwardLength); 
         }
     }
@@ -83,6 +80,12 @@ public class CharacterCloseCombatState : CharacterStateBase
     // Methods called from animation events
     private void OnSlash() { slash = true; }
     private void OnHeavySlash() { heavySlash = true; }
-    private void DamageStart() { shouldStepForward = true; }
+    private void DamageStart() { shouldStepForward = true; PlayWooshSound(); }
     private void DamageEnd() { shouldStepForward = false; }
+
+    private void PlayWooshSound()
+    {
+        if (currentWeapon.name.Contains("Katana") || currentWeapon.name.Contains("Nodachi")) { audioSource.PlayOneShot(katanaWoosh); }
+        else if (currentWeapon.name.Contains("Gauntlet") || currentWeapon.name.Contains("Bomb")) { audioSource.PlayOneShot(armWoosh); }
+    }
 }

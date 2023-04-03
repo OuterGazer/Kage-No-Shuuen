@@ -8,6 +8,7 @@ public class PushAttackerBackwards : MonoBehaviour
     // TODO: have a system that avoids taking damage while blocking. Just in case, sometimes player gets hit, sometimes not.
 
     [SerializeField] GameObject blockingSparks;
+    [SerializeField] AudioClip blockingSound;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,6 +24,7 @@ public class PushAttackerBackwards : MonoBehaviour
                 PushAttacker(other);
             }
 
+            AudioSource.PlayClipAtPoint(blockingSound, Camera.main.transform.position);
             GameObject sparks = Instantiate(blockingSparks, transform.position, Quaternion.identity);
             Destroy(sparks, 3f);
         }
