@@ -106,6 +106,7 @@ public class CloseCombatWeaponMultipleRaycast : CloseCombatWeaponBase
     {
         if (!hasSoundPlayed) 
         { 
+            hasSoundPlayed = true;
             audiosource?.PlayOneShot(hitSound);
             StartCoroutine(ResetSound());
         }

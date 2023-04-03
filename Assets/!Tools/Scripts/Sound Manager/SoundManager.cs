@@ -18,7 +18,7 @@ public class SoundManager : Singleton<SoundManager>
     [SerializeField] float delayedPlayTime = 3f;
     public bool isIncombat = false;
     private float combatCounter = 0f;
-    [SerializeField] float returnToStealthMusicTimeUponCombatEnd = 3f;
+    [SerializeField] float returnToStealthMusicTimeUponCombatEnd = 3f;    
 
     private AudioSource audioSource;
     private AudioClip currentClip;
@@ -34,9 +34,25 @@ public class SoundManager : Singleton<SoundManager>
 
     private void Start()
     {
+        PlayerPrefsConstants.SetSoundLevel(0.5f);
+        PlayerPrefsConstants.SetSFXLevel(0.30f);
+
+        SetVolumeLevel();
+        SetSFXLevel();
+
         currentClip = mainMenuTrack;
         audioSource.clip = currentClip;
         audioSource.PlayDelayed(delayedPlayTime);
+    }
+
+    public void SetVolumeLevel()
+    {
+        audioSource.volume = PlayerPrefsConstants.GetSoundLevel();
+    }
+
+    public void SetSFXLevel()
+    {
+        AudioListener.volume = PlayerPrefsConstants.GetSFXLevel();
     }
 
     private void Update()
@@ -74,8 +90,8 @@ public class SoundManager : Singleton<SoundManager>
 
         audioSource.Play();
 
-        audioSource.DOFade(1f, 3f);
-        AudioListener.volume = 1f;
+        audioSource.DOFade(PlayerPrefsConstants.GetSoundLevel(), 3f);
+        AudioListener.volume = PlayerPrefsConstants.GetSFXLevel();
     }
 
     public void ChangeToCombatMusic()
@@ -111,7 +127,7 @@ public class SoundManager : Singleton<SoundManager>
         audioSource.DOFade(0f, 1f);
         currentClip = victoryMusic;
         audioSource.clip = currentClip;
-        audioSource.DOFade(1f, 1f);
+        audioSource.DOFade(audioSource.volume, 1f);
         audioSource.Play();
     }
 }
