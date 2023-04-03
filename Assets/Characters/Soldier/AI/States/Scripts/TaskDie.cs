@@ -7,8 +7,11 @@ using UnityEngine.Events;
 
 public class TaskDie : Node
 {
+    [SerializeField] AudioClip dieSound;
+
     private CharacterAnimator characterAnimator;
     private DamageableWithLife damageable;
+    private AudioSource audioSource;
 
     public UnityEvent OnTargetLost;
 
@@ -26,6 +29,7 @@ public class TaskDie : Node
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
         damageable = ((SoldierBehaviour)belongingTree).Damageable;
         damageable.OnDying.AddListener(SetIsDead);
+        audioSource = ((SoldierBehaviour)belongingTree).AudioSource;
     }
 
     private void OnDestroy()
@@ -50,6 +54,9 @@ public class TaskDie : Node
 
         characterAnimator.PlayDeathAnimation();
         isAnimationRunning = true;
+
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.PlayOneShot(dieSound);
 
         state = NodeState.SUCCESS;
         return state;

@@ -7,11 +7,13 @@ using UnityEngine.AI;
 public class TaskGetHit : Node
 {
     [SerializeField] float pushLengthOnHit = 1f;
+    [SerializeField] AudioClip hitSound;
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
     private DamageableWithLife damageable;
     private Transform player;
+    private AudioSource audioSource;
 
     private bool isAnimationRunning = false;
 
@@ -22,6 +24,7 @@ public class TaskGetHit : Node
         damageable = ((SoldierBehaviour)belongingTree).Damageable;
         damageable.OnGettingHit.AddListener(SetGettingHit);
         player = ((SoldierBehaviour)belongingTree).Player;
+        audioSource = ((SoldierBehaviour)belongingTree).AudioSource;
     }
 
     private void OnDestroy()
@@ -47,6 +50,9 @@ public class TaskGetHit : Node
         characterAnimator.PlayHitAnimation();
         isAnimationRunning = true;
         navMeshAgent.Move(pushLengthOnHit * -transform.forward);
+
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.PlayOneShot(hitSound);
 
         object t = GetData("target");
         if(t == null)

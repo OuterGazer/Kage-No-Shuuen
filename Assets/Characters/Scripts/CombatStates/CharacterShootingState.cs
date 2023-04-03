@@ -21,6 +21,14 @@ public class CharacterShootingState : CharacterStateBase
 
     [SerializeField] Transform bowstring;
     private Vector3 initialBowstringPosition;
+
+    [SerializeField] AudioClip shurikenShotSound;
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     private void OnEnable()
     {
         aim = true;
@@ -129,7 +137,10 @@ public class CharacterShootingState : CharacterStateBase
             {
 
                 if (!currentWeapon.name.Equals("Bow"))
-                { currentWeapon.ShootingWeapon?.Shoot(); }
+                { 
+                    currentWeapon.ShootingWeapon?.Shoot();
+                    audioSource.PlayOneShot(shurikenShotSound);
+                }
 
                 onShoot.Invoke();
                 shoot = false;

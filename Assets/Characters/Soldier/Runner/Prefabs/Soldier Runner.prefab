@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsParent: {fileID: 2509863579027129220}
+  unsheath: {fileID: 0}
   onWeaponChange:
     m_PersistentCalls:
       m_Calls: []
@@ -337,6 +338,7 @@ MonoBehaviour:
   state: 0
   Parent: {fileID: 6669078683988773474}
   children: []
+  dieSound: {fileID: 8300000, guid: 95264ce2ae570bf47b03bc1c02413195, type: 3}
   OnTargetLost:
     m_PersistentCalls:
       m_Calls:
@@ -369,6 +371,7 @@ MonoBehaviour:
   Parent: {fileID: 6669078683988773474}
   children: []
   pushLengthOnHit: 0.5
+  hitSound: {fileID: 8300000, guid: 8359bd7f9b4a0ea48814650f468559cd, type: 3}
 --- !u!114 &1096039331825319142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4250,6 +4253,7 @@ MonoBehaviour:
   runWood: {fileID: 8300000, guid: 716c9596e9b03d44bae419921cfdc794, type: 3}
   walkGravel: {fileID: 0}
   walkWood: {fileID: 8300000, guid: 716c9596e9b03d44bae419921cfdc794, type: 3}
+  fallOnGroundSound: {fileID: 0}
 --- !u!114 &9033597374412433033
 MonoBehaviour:
   m_ObjectHideFlags: 0

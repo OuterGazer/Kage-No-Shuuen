@@ -5,6 +5,7 @@ using UnityEngine;
 public class ProjectileBase : MonoBehaviour
 {
     [SerializeField] protected float damage = 0.51f;
+    [SerializeField] AudioClip hitSound;
 
     private string ownerTag;
 
@@ -20,6 +21,7 @@ public class ProjectileBase : MonoBehaviour
         if (!other.CompareTag(ownerTag))
         {
             other.GetComponent<IDamagereceiver>()?.ReceiveDamage(damage);
+            AudioSource.PlayClipAtPoint(hitSound, transform.position);
             Destroy(gameObject);
         }
     }
