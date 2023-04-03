@@ -7,17 +7,26 @@ using UnityEngine.Events;
 public class CharacterDodgingState : CharacterStateBase
 {
     [SerializeField] float speedDeceleration = 0.05f;
+    [SerializeField] AudioClip effortSound;
 
     [HideInInspector] public UnityEvent MakeCharacterDodge;
 
+    private AudioSource audioSource;
+
     private Vector3 dodgeFacingDirection;
     private float currentSpeed;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnEnable()
     {
         SetDodgeFacingDirection(charController.velocity.normalized);
         MakeCharacterDodge.Invoke();
         currentSpeed = speed;
+        audioSource.PlayOneShot(effortSound);
     }
 
     private void OnDisable()

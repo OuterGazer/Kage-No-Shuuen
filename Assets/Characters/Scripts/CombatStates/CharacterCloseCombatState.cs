@@ -10,6 +10,17 @@ public class CharacterCloseCombatState : CharacterStateBase
     [SerializeField] float stepForwardLength = 1f;
     [SerializeField] float pushLengthOnEnemyTouch = 0.5f;
 
+    [Header("SFX Clips")]
+    [SerializeField] AudioClip katanaWoosh;
+    [SerializeField] AudioClip armWoosh;
+
+    private AudioSource audioSource;
+    private static Weapon currentWeapon;
+    public static void SetCurrentWeapon(Weapon inCurrentWeapon)
+    {
+        currentWeapon = inCurrentWeapon;
+    }
+
     private bool slash = false;
     private bool heavySlash = false;
     private bool shouldStepForward = false;
@@ -17,12 +28,23 @@ public class CharacterCloseCombatState : CharacterStateBase
     [HideInInspector] public UnityEvent onSlash;
     [HideInInspector] public UnityEvent onHeavySlash;
 
+    private void Awake()
+    {
+
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         UpdateSlash();
 
         if (shouldStepForward) 
-        { PushCharacterForward(stepForwardLength); }
+        { 
+            if(currentWeapon.name.Contains("Katana") || currentWeapon.name.Contains("Nodachi")) { audioSource.PlayOneShot(katanaWoosh); }
+            else if(currentWeapon.name.Contains("Gauntlet") || currentWeapon.name.Contains("Bomb")) { audioSource.PlayOneShot(armWoosh); }
+
+            PushCharacterForward(stepForwardLength); 
+        }
     }
 
     private void UpdateSlash()

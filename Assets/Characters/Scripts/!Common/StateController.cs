@@ -305,6 +305,7 @@ public class StateController : MonoBehaviour
         }
         else
         {
+            CharacterCloseCombatState.SetCurrentWeapon(currentWeapon);
             ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));
         }
     }
@@ -316,6 +317,7 @@ public class StateController : MonoBehaviour
 
     public void OnHeavySlash() 
     {
+        CharacterCloseCombatState.SetCurrentWeapon(currentWeapon);
         ManageStateTransition(statesAllowedToTransitionToCloseCombat, typeof(CharacterCloseCombatState));
     }
 

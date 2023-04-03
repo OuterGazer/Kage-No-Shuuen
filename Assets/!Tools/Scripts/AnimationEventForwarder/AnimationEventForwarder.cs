@@ -108,12 +108,18 @@ public class AnimationEventForwarder : MonoBehaviour
     [SerializeField] AudioClip runWood;
     [SerializeField] AudioClip walkGravel;
     [SerializeField] AudioClip walkWood;
+    [SerializeField] AudioClip fallOnGroundSound;
 
     private AudioSource audioSource;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    private void PlayFallOnGroundSound()
+    {
+        audioSource.PlayOneShot(fallOnGroundSound);
     }
 
     private void PlayRunningSound()
