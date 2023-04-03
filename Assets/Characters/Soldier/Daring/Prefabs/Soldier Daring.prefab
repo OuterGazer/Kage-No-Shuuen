@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interestingTargets: []
-  extents: {x: 10, y: 1, z: 10}
+  extents: {x: 10, y: 5, z: 10}
   sightPoint: {fileID: 4881775705463028145}
   angle: 120
   refreshFrequency: 10

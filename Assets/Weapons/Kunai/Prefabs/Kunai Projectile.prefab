@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.51
+  hitSound: {fileID: 8300000, guid: b3ff18e4d5caab64fb2c583c405afdaf, type: 3}
 --- !u!54 &97796453038608514
 Rigidbody:
   m_ObjectHideFlags: 0

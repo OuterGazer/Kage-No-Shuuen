@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interestingTargets: []
-  extents: {x: 10, y: 1, z: 10}
+  extents: {x: 10, y: 5, z: 10}
   sightPoint: {fileID: 4881775705463028145}
   angle: 120
   refreshFrequency: 10
@@ -4404,9 +4404,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runGravel: {fileID: 0}
-  runWood: {fileID: 8300000, guid: 716c9596e9b03d44bae419921cfdc794, type: 3}
+  runWood: {fileID: 8300000, guid: 35ac1b3af9fe4264dba941e136ec927d, type: 3}
   walkGravel: {fileID: 0}
-  walkWood: {fileID: 8300000, guid: 716c9596e9b03d44bae419921cfdc794, type: 3}
+  walkWood: {fileID: 8300000, guid: 35ac1b3af9fe4264dba941e136ec927d, type: 3}
   fallOnGroundSound: {fileID: 0}
   swordExecutionSound: {fileID: 0}
   weaponlessExecutionSound: {fileID: 0}
