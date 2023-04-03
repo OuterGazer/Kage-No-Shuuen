@@ -9,6 +9,7 @@ public class TaskAttack : Node
     [SerializeField] float timeBetweenAttacks = 1f;
     [SerializeField] float attackCounter = 0f; // Serialized for testing purposes
     [SerializeField] bool shouldPerformHeavyAttack = false;
+    [SerializeField] AudioClip katanaWoosh;
     [SerializeField] AudioClip playerIsDeadClip;
 
     private NavMeshAgent navMeshAgent;
@@ -65,6 +66,8 @@ public class TaskAttack : Node
             else 
             { characterAnimator.PlayHeavySlashAnimation(); }
             attackCounter = 0f;
+
+            audioSource.PlayOneShot(katanaWoosh);
 
             isAttackAnimationRunning = true;
             Parent.Parent.SetData("interactionAnimation", true);

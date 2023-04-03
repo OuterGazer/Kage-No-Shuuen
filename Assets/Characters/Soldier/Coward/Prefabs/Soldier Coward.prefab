@@ -394,6 +394,7 @@ MonoBehaviour:
   timeBetweenThrows: 1
   timeBetweenSingleWeapons: 0.2
   throwWeapon: {fileID: 689134941122071667}
+  throwSound: {fileID: 8300000, guid: 9a1463ed419076f46a0e29118bf02a3f, type: 3}
   shouldWeaponDisappear: 0
 --- !u!114 &1096039331825319142
 MonoBehaviour:

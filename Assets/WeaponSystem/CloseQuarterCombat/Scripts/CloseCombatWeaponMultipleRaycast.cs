@@ -95,8 +95,8 @@ public class CloseCombatWeaponMultipleRaycast : CloseCombatWeaponBase
             if (!colliderHit.CompareTag(tag))
             {
                 IDamagereceiver damageReceiver = colliderHit.GetComponent<IDamagereceiver>();
-                PerformDamage(damageReceiver);
-                if (CompareTag("Player")) { PlayHitsound(); }
+                PerformDamage(damageReceiver); 
+                PlayHitsound();
             }
             
         }
@@ -106,7 +106,7 @@ public class CloseCombatWeaponMultipleRaycast : CloseCombatWeaponBase
     {
         if (!hasSoundPlayed) 
         { 
-            audiosource.PlayOneShot(hitSound);
+            audiosource?.PlayOneShot(hitSound);
             StartCoroutine(ResetSound());
         }
     }

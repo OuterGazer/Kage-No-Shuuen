@@ -11,9 +11,11 @@ public class TaskThrowMultipleWeapon : Node
     [SerializeField] float timeBetweenThrows = 5f;
     [SerializeField] float timeBetweenSingleWeapons = 0.1f;
     [SerializeField] ThrowingWeaponBase throwWeapon;
+    [SerializeField] AudioClip throwSound;
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
+    private AudioSource audioSource;
 
     private float throwCounter = 5f;
     private int singleWeaponsThrownCounter = 0;
@@ -24,6 +26,7 @@ public class TaskThrowMultipleWeapon : Node
     {
         navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
+        audioSource = ((SoldierBehaviour)belongingTree).AudioSource;
     }
 
     public override NodeState Evaluate()
@@ -91,6 +94,7 @@ public class TaskThrowMultipleWeapon : Node
             if(singleWeaponsThrownCounter >= amountToThrow) { break; }
 
             throwWeapon?.Throw();
+            audioSource.PlayOneShot(throwSound);
             singleWeaponsThrownCounter++;
 
             yield return new WaitForSeconds(timeBetweenSingleWeapons);

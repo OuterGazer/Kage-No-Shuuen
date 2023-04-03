@@ -31,7 +31,7 @@ public class CloseCombatWeaponPhysicsTrigger : CloseCombatWeaponBase
         {
             IDamagereceiver damageReceiver = other.GetComponent<IDamagereceiver>();
             PerformDamage(damageReceiver);
-            if (CompareTag("Player")) { PlayHitsound(); }
+            PlayHitsound();
 
             if (name.Contains("Bomb") && !hasSpawnedBomb)
             {
@@ -46,7 +46,7 @@ public class CloseCombatWeaponPhysicsTrigger : CloseCombatWeaponBase
     {
         if (!hasSoundPlayed)
         {
-            audiosource.PlayOneShot(hitSound);
+            audiosource?.PlayOneShot(hitSound);
             StartCoroutine(ResetSound());
         }
     }

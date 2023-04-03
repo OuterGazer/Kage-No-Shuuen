@@ -9,9 +9,11 @@ public class TaskThrowSingleWeapon : Node
     [SerializeField] float distanceThresholdForThrowing = 5f;
     [SerializeField] float timeBetweenThrows = 5f;
     [SerializeField] ThrowingWeaponBase throwWeapon;
+    [SerializeField] AudioClip throwSound;
 
     private NavMeshAgent navMeshAgent;
     private CharacterAnimator characterAnimator;
+    private AudioSource audioSource;
 
     private float throwCounter = 5f;
     private bool isThrowingAnimationRunning = false;
@@ -20,6 +22,7 @@ public class TaskThrowSingleWeapon : Node
     {
         navMeshAgent = ((SoldierBehaviour)belongingTree).NavMeshAgent;
         characterAnimator = ((SoldierBehaviour)belongingTree).CharacterAnimator;
+        audioSource = ((SoldierBehaviour)belongingTree).AudioSource;
     }
 
     public override NodeState Evaluate()
@@ -73,6 +76,7 @@ public class TaskThrowSingleWeapon : Node
     {
         throwWeapon?.Throw();
         throwWeapon.gameObject.SetActive(false);
+        audioSource.PlayOneShot(throwSound);
     }
 
     // Called from an animation event

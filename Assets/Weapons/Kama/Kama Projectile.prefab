@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.51
+  hitSound: {fileID: 8300000, guid: 7ba8d8b454b37934db0ed204c933038c, type: 3}
 --- !u!1 &3667442363141569956
 GameObject:
   m_ObjectHideFlags: 0
