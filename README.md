@@ -7,6 +7,7 @@ https://vimeo.com/814520524 (video trailer)
 
 Kage no Shuuen (Shadow's Demise) is a 3D stealth-action game reminiscent of the old Tenchus from the PSX days.
 The project was done with scalability and maintainable architecture in mind. 
+
 It features codewise:
 - Player behaviour through an abstracted FSM pattern.
 - Enemy behaviour through a flexible Behaviour Tree pattern.
