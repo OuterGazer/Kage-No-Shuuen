@@ -16,7 +16,7 @@ It features codewise:
 - Enemy waves through Object Pools pattern and Scriptable Objects to easily create enemy waves.
 
 It features gameplaywise:
-- A player character than can run, crouch, block, dodge, lean against a wall to peek over corners, throw a hook, attack with physical weapons, throw weapons and shoot.
+- A player character than can run, crouch, block, dodge, lean against a wall to peek over corners, throw a hook, perform stealth executions, attack with physical weapons, throw weapons and shoot.
 - Enemies that can do exactly the same as the player character can, in addition with searching behaviours upon loosing sight of the player.
 - Ragdolls upon being affected by an explosion.
 - A basic inventory system where weapons can be added to the player upon acquiring them in-game.
