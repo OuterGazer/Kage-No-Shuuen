@@ -90,7 +90,7 @@ public class SoundManager : Singleton<SoundManager>
 
         audioSource.Play();
 
-        audioSource.DOFade(PlayerPrefsConstants.GetSoundLevel(), 3f);
+        audioSource.DOFade(PlayerPrefsConstants.GetSoundLevel(), 3f); 
         AudioListener.volume = PlayerPrefsConstants.GetSFXLevel();
     }
 

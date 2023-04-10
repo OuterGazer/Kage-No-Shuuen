@@ -7,7 +7,6 @@ using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using static UnityEditor.Progress;
 
 public class WeaponController : MonoBehaviour
 {
