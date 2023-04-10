@@ -14,4 +14,6 @@ It features:
 - Animations making full use of the animator in terms of layers, masks, Behaviours and events. Through Animator Controller Overrides a great variety of animations have been achieved with a single animator, shared by all entities.
 - Enemy waves through Object Pools pattern and Scriptable Objects to easily create enemy waves.
 
-To play the game you can download teh Windows build on the game's itch.io page: https://outergazer.itch.io/kage-no-shuuen-shadows-demise
+This project also made use of other Unity features like IK rigging and HDRP lighting (sky and volumetric fog).
+
+To play the game you can download the Windows build on the game's itch.io page: https://outergazer.itch.io/kage-no-shuuen-shadows-demise
